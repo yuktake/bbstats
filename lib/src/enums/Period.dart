@@ -1,0 +1,9 @@
+enum Period {
+  ALL,
+  FIRST,
+  SECOND,
+  THIRD,
+  FOURTH,
+  FIRST_HALF,
+  SECOND_HALF,
+}

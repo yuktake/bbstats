@@ -1,0 +1,5 @@
+enum GameAction {
+  SHOT_CLOCK_TURNOVER,
+  GAMESET,
+  TIMEOUT,
+}
