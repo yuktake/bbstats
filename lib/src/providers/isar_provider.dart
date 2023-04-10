@@ -8,6 +8,7 @@ import 'package:bb_stats/src/collections/gameStat/game_stat_model.dart';
 import 'package:bb_stats/src/collections/gameSummary/game_summary_model.dart';
 import 'package:bb_stats/src/collections/home/home_model.dart';
 import 'package:bb_stats/src/collections/playerDetail/player_detail_model.dart';
+import 'package:bb_stats/src/collections/settingDetails/setting_details_model.dart';
 import 'package:bb_stats/src/collections/shot/opponent_shot_model.dart';
 import 'package:bb_stats/src/collections/shot/shot_model.dart';
 import 'package:bb_stats/src/collections/shot/shot_parameter.dart';
@@ -26,6 +27,8 @@ import 'package:bb_stats/src/providers/player_provider.dart';
 import 'package:bb_stats/src/providers/playerdetail_provider.dart';
 import 'package:bb_stats/src/providers/playerlist_provider.dart';
 import 'package:bb_stats/src/providers/playerselect_provider.dart';
+import 'package:bb_stats/src/providers/quartermin_provider.dart';
+import 'package:bb_stats/src/providers/settingdetails_provider.dart';
 import 'package:bb_stats/src/providers/shot_provider.dart';
 import 'package:bb_stats/src/providers/team_provider.dart';
 import 'package:bb_stats/src/providers/teamdetail_provider.dart';
@@ -75,6 +78,10 @@ final documentPathProvider = FutureProvider<String>((ref) async {
 
 final onGameProvider = StateNotifierProvider<OnGameStateNotifier, bool>((ref) {
   return OnGameStateNotifier();
+});
+
+final quarterMinProvider = StateNotifierProvider<QuarterMinStateNotifier, int>((ref) {
+  return QuarterMinStateNotifier();
 });
 
 final homeProvider = StateNotifierProvider.autoDispose<HomeStateNotifier,HomeModel>((ref) {
@@ -217,4 +224,8 @@ final gameStatProvider = StateNotifierProvider.family<GameStatStateNotifier,Game
       ref.watch(pbpRepositoryProvider),
       gameId
   );
+});
+
+final settingDetailsProvider = StateNotifierProvider.autoDispose<SettingDetailsStateNotifier,SettingDetailsModel>((ref){
+  return SettingDetailsStateNotifier();
 });
