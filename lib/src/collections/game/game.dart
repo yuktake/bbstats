@@ -11,6 +11,8 @@ class Game {
   /// 自動インクリメントする ID
   Id id = Isar.autoIncrement;
 
+  late int quarterMin;
+
   final opponent = IsarLink<Team>();
 
   final boxscores = IsarLinks<Boxscore>();

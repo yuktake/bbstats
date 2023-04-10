@@ -198,38 +198,43 @@ const GameSchema = CollectionSchema(
       name: r'pf',
       type: IsarType.long,
     ),
-    r'reb': PropertySchema(
+    r'quarterMin': PropertySchema(
       id: 36,
+      name: r'quarterMin',
+      type: IsarType.long,
+    ),
+    r'reb': PropertySchema(
+      id: 37,
       name: r'reb',
       type: IsarType.long,
     ),
     r'stl': PropertySchema(
-      id: 37,
+      id: 38,
       name: r'stl',
       type: IsarType.long,
     ),
     r'to': PropertySchema(
-      id: 38,
+      id: 39,
       name: r'to',
       type: IsarType.long,
     ),
     r'tpRatio': PropertySchema(
-      id: 39,
+      id: 40,
       name: r'tpRatio',
       type: IsarType.double,
     ),
     r'tpa': PropertySchema(
-      id: 40,
+      id: 41,
       name: r'tpa',
       type: IsarType.long,
     ),
     r'tpm': PropertySchema(
-      id: 41,
+      id: 42,
       name: r'tpm',
       type: IsarType.long,
     ),
     r'updatedAt': PropertySchema(
-      id: 42,
+      id: 43,
       name: r'updatedAt',
       type: IsarType.dateTime,
     )
@@ -319,13 +324,14 @@ void _gameSerialize(
   writer.writeLong(offsets[33], object.opponentTpm);
   writer.writeByte(offsets[34], object.outcome.index);
   writer.writeLong(offsets[35], object.pf);
-  writer.writeLong(offsets[36], object.reb);
-  writer.writeLong(offsets[37], object.stl);
-  writer.writeLong(offsets[38], object.to);
-  writer.writeDouble(offsets[39], object.tpRatio);
-  writer.writeLong(offsets[40], object.tpa);
-  writer.writeLong(offsets[41], object.tpm);
-  writer.writeDateTime(offsets[42], object.updatedAt);
+  writer.writeLong(offsets[36], object.quarterMin);
+  writer.writeLong(offsets[37], object.reb);
+  writer.writeLong(offsets[38], object.stl);
+  writer.writeLong(offsets[39], object.to);
+  writer.writeDouble(offsets[40], object.tpRatio);
+  writer.writeLong(offsets[41], object.tpa);
+  writer.writeLong(offsets[42], object.tpm);
+  writer.writeDateTime(offsets[43], object.updatedAt);
 }
 
 Game _gameDeserialize(
@@ -374,13 +380,14 @@ Game _gameDeserialize(
       _GameoutcomeValueEnumMap[reader.readByteOrNull(offsets[34])] ??
           Outcome.NONE;
   object.pf = reader.readLong(offsets[35]);
-  object.reb = reader.readLong(offsets[36]);
-  object.stl = reader.readLong(offsets[37]);
-  object.to = reader.readLong(offsets[38]);
-  object.tpRatio = reader.readDouble(offsets[39]);
-  object.tpa = reader.readLong(offsets[40]);
-  object.tpm = reader.readLong(offsets[41]);
-  object.updatedAt = reader.readDateTime(offsets[42]);
+  object.quarterMin = reader.readLong(offsets[36]);
+  object.reb = reader.readLong(offsets[37]);
+  object.stl = reader.readLong(offsets[38]);
+  object.to = reader.readLong(offsets[39]);
+  object.tpRatio = reader.readDouble(offsets[40]);
+  object.tpa = reader.readLong(offsets[41]);
+  object.tpm = reader.readLong(offsets[42]);
+  object.updatedAt = reader.readDateTime(offsets[43]);
   return object;
 }
 
@@ -471,12 +478,14 @@ P _gameDeserializeProp<P>(
     case 38:
       return (reader.readLong(offset)) as P;
     case 39:
-      return (reader.readDouble(offset)) as P;
-    case 40:
       return (reader.readLong(offset)) as P;
+    case 40:
+      return (reader.readDouble(offset)) as P;
     case 41:
       return (reader.readLong(offset)) as P;
     case 42:
+      return (reader.readLong(offset)) as P;
+    case 43:
       return (reader.readDateTime(offset)) as P;
     default:
       throw IsarError('Unknown property with id $propertyId');
@@ -2536,6 +2545,58 @@ extension GameQueryFilter on QueryBuilder<Game, Game, QFilterCondition> {
     });
   }
 
+  QueryBuilder<Game, Game, QAfterFilterCondition> quarterMinEqualTo(int value) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'quarterMin',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<Game, Game, QAfterFilterCondition> quarterMinGreaterThan(
+    int value, {
+    bool include = false,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        include: include,
+        property: r'quarterMin',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<Game, Game, QAfterFilterCondition> quarterMinLessThan(
+    int value, {
+    bool include = false,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.lessThan(
+        include: include,
+        property: r'quarterMin',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<Game, Game, QAfterFilterCondition> quarterMinBetween(
+    int lower,
+    int upper, {
+    bool includeLower = true,
+    bool includeUpper = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.between(
+        property: r'quarterMin',
+        lower: lower,
+        includeLower: includeLower,
+        upper: upper,
+        includeUpper: includeUpper,
+      ));
+    });
+  }
+
   QueryBuilder<Game, Game, QAfterFilterCondition> rebEqualTo(int value) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.equalTo(
@@ -3473,6 +3534,18 @@ extension GameQuerySortBy on QueryBuilder<Game, Game, QSortBy> {
     });
   }
 
+  QueryBuilder<Game, Game, QAfterSortBy> sortByQuarterMin() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'quarterMin', Sort.asc);
+    });
+  }
+
+  QueryBuilder<Game, Game, QAfterSortBy> sortByQuarterMinDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'quarterMin', Sort.desc);
+    });
+  }
+
   QueryBuilder<Game, Game, QAfterSortBy> sortByReb() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'reb', Sort.asc);
@@ -4003,6 +4076,18 @@ extension GameQuerySortThenBy on QueryBuilder<Game, Game, QSortThenBy> {
     });
   }
 
+  QueryBuilder<Game, Game, QAfterSortBy> thenByQuarterMin() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'quarterMin', Sort.asc);
+    });
+  }
+
+  QueryBuilder<Game, Game, QAfterSortBy> thenByQuarterMinDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'quarterMin', Sort.desc);
+    });
+  }
+
   QueryBuilder<Game, Game, QAfterSortBy> thenByReb() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'reb', Sort.asc);
@@ -4305,6 +4390,12 @@ extension GameQueryWhereDistinct on QueryBuilder<Game, Game, QDistinct> {
     });
   }
 
+  QueryBuilder<Game, Game, QDistinct> distinctByQuarterMin() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addDistinctBy(r'quarterMin');
+    });
+  }
+
   QueryBuilder<Game, Game, QDistinct> distinctByReb() {
     return QueryBuilder.apply(this, (query) {
       return query.addDistinctBy(r'reb');
@@ -4568,6 +4659,12 @@ extension GameQueryProperty on QueryBuilder<Game, Game, QQueryProperty> {
   QueryBuilder<Game, int, QQueryOperations> pfProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'pf');
+    });
+  }
+
+  QueryBuilder<Game, int, QQueryOperations> quarterMinProperty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addPropertyName(r'quarterMin');
     });
   }
 
