@@ -17,6 +17,7 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$GamePreparationModel {
   DateTime get gameDate => throw _privateConstructorUsedError;
+  int get quarterMin => throw _privateConstructorUsedError;
   Team get myTeam => throw _privateConstructorUsedError;
   Team? get opponentTeam => throw _privateConstructorUsedError;
   Player? get pg => throw _privateConstructorUsedError;
@@ -39,6 +40,7 @@ abstract class $GamePreparationModelCopyWith<$Res> {
       _$GamePreparationModelCopyWithImpl<$Res>;
   $Res call(
       {DateTime gameDate,
+      int quarterMin,
       Team myTeam,
       Team? opponentTeam,
       Player? pg,
@@ -62,6 +64,7 @@ class _$GamePreparationModelCopyWithImpl<$Res>
   @override
   $Res call({
     Object? gameDate = freezed,
+    Object? quarterMin = freezed,
     Object? myTeam = freezed,
     Object? opponentTeam = freezed,
     Object? pg = freezed,
@@ -77,6 +80,10 @@ class _$GamePreparationModelCopyWithImpl<$Res>
           ? _value.gameDate
           : gameDate // ignore: cast_nullable_to_non_nullable
               as DateTime,
+      quarterMin: quarterMin == freezed
+          ? _value.quarterMin
+          : quarterMin // ignore: cast_nullable_to_non_nullable
+              as int,
       myTeam: myTeam == freezed
           ? _value.myTeam
           : myTeam // ignore: cast_nullable_to_non_nullable
@@ -126,6 +133,7 @@ abstract class _$$_GamePreparationModelCopyWith<$Res>
   @override
   $Res call(
       {DateTime gameDate,
+      int quarterMin,
       Team myTeam,
       Team? opponentTeam,
       Player? pg,
@@ -151,6 +159,7 @@ class __$$_GamePreparationModelCopyWithImpl<$Res>
   @override
   $Res call({
     Object? gameDate = freezed,
+    Object? quarterMin = freezed,
     Object? myTeam = freezed,
     Object? opponentTeam = freezed,
     Object? pg = freezed,
@@ -166,6 +175,10 @@ class __$$_GamePreparationModelCopyWithImpl<$Res>
           ? _value.gameDate
           : gameDate // ignore: cast_nullable_to_non_nullable
               as DateTime,
+      quarterMin: quarterMin == freezed
+          ? _value.quarterMin
+          : quarterMin // ignore: cast_nullable_to_non_nullable
+              as int,
       myTeam: myTeam == freezed
           ? _value.myTeam
           : myTeam // ignore: cast_nullable_to_non_nullable
@@ -211,6 +224,7 @@ class __$$_GamePreparationModelCopyWithImpl<$Res>
 class _$_GamePreparationModel implements _GamePreparationModel {
   const _$_GamePreparationModel(
       {required this.gameDate,
+      required this.quarterMin,
       required this.myTeam,
       required this.opponentTeam,
       required this.pg,
@@ -224,6 +238,8 @@ class _$_GamePreparationModel implements _GamePreparationModel {
 
   @override
   final DateTime gameDate;
+  @override
+  final int quarterMin;
   @override
   final Team myTeam;
   @override
@@ -250,7 +266,7 @@ class _$_GamePreparationModel implements _GamePreparationModel {
 
   @override
   String toString() {
-    return 'GamePreparationModel(gameDate: $gameDate, myTeam: $myTeam, opponentTeam: $opponentTeam, pg: $pg, sg: $sg, sf: $sf, pf: $pf, c: $c, histories: $histories, startable: $startable)';
+    return 'GamePreparationModel(gameDate: $gameDate, quarterMin: $quarterMin, myTeam: $myTeam, opponentTeam: $opponentTeam, pg: $pg, sg: $sg, sf: $sf, pf: $pf, c: $c, histories: $histories, startable: $startable)';
   }
 
   @override
@@ -259,6 +275,8 @@ class _$_GamePreparationModel implements _GamePreparationModel {
         (other.runtimeType == runtimeType &&
             other is _$_GamePreparationModel &&
             const DeepCollectionEquality().equals(other.gameDate, gameDate) &&
+            const DeepCollectionEquality()
+                .equals(other.quarterMin, quarterMin) &&
             const DeepCollectionEquality().equals(other.myTeam, myTeam) &&
             const DeepCollectionEquality()
                 .equals(other.opponentTeam, opponentTeam) &&
@@ -276,6 +294,7 @@ class _$_GamePreparationModel implements _GamePreparationModel {
   int get hashCode => Object.hash(
       runtimeType,
       const DeepCollectionEquality().hash(gameDate),
+      const DeepCollectionEquality().hash(quarterMin),
       const DeepCollectionEquality().hash(myTeam),
       const DeepCollectionEquality().hash(opponentTeam),
       const DeepCollectionEquality().hash(pg),
@@ -296,6 +315,7 @@ class _$_GamePreparationModel implements _GamePreparationModel {
 abstract class _GamePreparationModel implements GamePreparationModel {
   const factory _GamePreparationModel(
       {required final DateTime gameDate,
+      required final int quarterMin,
       required final Team myTeam,
       required final Team? opponentTeam,
       required final Player? pg,
@@ -308,6 +328,8 @@ abstract class _GamePreparationModel implements GamePreparationModel {
 
   @override
   DateTime get gameDate;
+  @override
+  int get quarterMin;
   @override
   Team get myTeam;
   @override

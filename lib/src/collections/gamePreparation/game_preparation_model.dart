@@ -10,6 +10,7 @@ part 'game_preparation_model.freezed.dart';
 class GamePreparationModel with _$GamePreparationModel {
   const factory GamePreparationModel({
     required DateTime gameDate,
+    required int quarterMin,
     required Team myTeam,
     required Team? opponentTeam,
     required Player? pg,

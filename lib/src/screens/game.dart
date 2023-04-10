@@ -21,6 +21,8 @@ class GameScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final gamePreparation = ref.watch(gamePreparationProvider.notifier);
     final gamePreparationInfo = ref.watch(gamePreparationProvider);
+    final settingDetails = ref.watch(settingDetailsProvider.notifier);
+    final settingDetailsInfo = ref.watch(settingDetailsProvider);
     final documentPath = ref.watch(documentPathProvider);
 
     final bool onGame = ref.watch(onGameProvider);
@@ -72,7 +74,28 @@ class GameScreen extends ConsumerWidget {
                             child: Text(DateFormat('yyyy-MM-dd').format(
                                 gamePreparationInfo.gameDate),
                                 style: const TextStyle(color: Colors.black)),
-                          )
+                          ),
+                          onGame ? Text("${gamePreparationInfo.quarterMin} Minutes Per　Quarter", style: const TextStyle(color: Colors.black)) :
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              DropdownButton(
+                                items: [
+                                  for(int i = 24; i > 0; i--) ... {
+                                    DropdownMenuItem(
+                                      value:  i,
+                                      child: Text(i.toString()),
+                                    )
+                                  }
+                                ],
+                                onChanged: (int? value) {
+                                  settingDetails.updateQuarterMinState(value!);
+                                },
+                                value: settingDetailsInfo.quarterMin,
+                              ),
+                              const Text('  Minutes Per Quarter'),
+                            ],
+                          ),
                         ],
                       ),
                     ),

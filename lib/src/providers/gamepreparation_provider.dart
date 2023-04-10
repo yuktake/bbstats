@@ -20,6 +20,7 @@ class GamePreparationStateNotifier extends StateNotifier<GamePreparationModel> {
     ): super (
       GamePreparationModel(
         gameDate: DateTime.now(),
+        quarterMin: 10,
         myTeam: teamRepository.findTeam(1)!,
         opponentTeam: null,
         pg: null,
@@ -31,6 +32,7 @@ class GamePreparationStateNotifier extends StateNotifier<GamePreparationModel> {
         startable: false,
       )
   ){
+    initialize();
     // onGame=trueのGameのstarter5人を代入後、全てnull出なければstartable=trueにする
     Game? game = gameRepository.findOnGame();
     Team? opponent = game?.opponent.value;
@@ -58,6 +60,28 @@ class GamePreparationStateNotifier extends StateNotifier<GamePreparationModel> {
   final PlayerRepository playerRepository;
   final GameRepository gameRepository;
   final BoxscoreRepository boxScoreRepository;
+
+  static const quarterMinPrefsKey = 'quarterMin';
+
+  SharedPreferences? prefs;
+
+  Future initialize() async {
+    final quarterMin = await _quarterMinStatus;
+    state = state.copyWith(
+        quarterMin: quarterMin
+    );
+  }
+
+  Future<int> get _quarterMinStatus async {
+    prefs = await SharedPreferences.getInstance();
+    return prefs!.getInt(quarterMinPrefsKey) ?? 10;
+  }
+
+  void updateQuarterMinState(int quarterMin) {
+    state = state.copyWith(
+        quarterMin: quarterMin
+    );
+  }
 
   void initState() {
     state = state.copyWith(
