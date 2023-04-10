@@ -14,7 +14,7 @@ class GameRepository {
   /// Isarインスタンス
   final Isar isar;
 
-  Future<int> createGame(Team team, DateTime gameDate) async {
+  Future<int> createGame(Team team, DateTime gameDate, int quarterMin) async {
     if (!isar.isOpen) {
       return Future<int>(() {
         return 0;
@@ -22,6 +22,7 @@ class GameRepository {
     }
 
     final game = Game()
+      ..quarterMin = quarterMin
       ..opponent.value = team
       ..myPts = 0
       ..benchPts = 0

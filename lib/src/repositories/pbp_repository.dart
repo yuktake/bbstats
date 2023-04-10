@@ -539,9 +539,10 @@ class PbpRepository {
   }
 
   DateTime getLatestPlayAt(int gameId) {
+    Game game = isar.games.filter().idEqualTo(gameId).findFirstSync()!;
     Pbp? latestPbp = isar.pbps.filter().game((q) => q.idEqualTo(gameId)).sortByQuarterDesc().thenByPlayAt().findFirstSync();
     if (latestPbp == null) {
-      return DateTime(2000,1,1,12,0,0);
+      return DateTime(2000,1,1,game.quarterMin,0,0);
     }
 
     return latestPbp.playAt;

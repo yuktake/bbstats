@@ -134,7 +134,7 @@ class GamePreparationStateNotifier extends StateNotifier<GamePreparationModel> {
 
   Future<int?> startGame() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    final gameId = await gameRepository.createGame(state.opponentTeam!, state.gameDate);
+    final gameId = await gameRepository.createGame(state.opponentTeam!, state.gameDate, state.quarterMin);
 
     Game? game = gameRepository.findGame(gameId);
     if (game == null) {
