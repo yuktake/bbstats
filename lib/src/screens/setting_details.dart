@@ -1,5 +1,4 @@
 import 'package:bb_stats/src/providers/isar_provider.dart';
-import 'package:bb_stats/src/providers/quartermin_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
