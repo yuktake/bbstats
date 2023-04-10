@@ -261,17 +261,6 @@ class GameChartScreen extends ConsumerWidget {
               child: const Text("Home"),
             ),
 
-            // FloatingActionButton.extended(
-            //     icon: const Icon(Icons.sports_basketball),
-            //     label: const Text("DOWNLOAD IMAGE"),
-            //     onPressed: () {
-            //       gameChart.download(gameChartInfo.image!);
-            //       ScaffoldMessenger.of(context).showSnackBar(
-            //           const SnackBar(content: Text('画像を保存しました。'))
-            //       );
-            //     }
-            // ),
-
             gameChartInfo.image != null ?
             GestureDetector(
               onLongPress: (){
@@ -280,7 +269,7 @@ class GameChartScreen extends ConsumerWidget {
                   builder: (context) {
                     return AlertDialog(
                       title: const Text('Confirm'),
-                      content: const Text('FreeThrow'),
+                      content: const Text('Download ShotChart'),
                       actions: [
                         SimpleDialogOption(
                           onPressed: () => {
@@ -382,7 +371,7 @@ class GameChartScreen extends ConsumerWidget {
                     ),
                     DropdownMenuItem(
                       value:  PlayType.FASTBREAK,
-                      child: Text('FASTBREAK'),
+                      child: Text('FAST BREAK'),
                     ),
                     DropdownMenuItem(
                       value:  PlayType.PICK_AND_ROLL_BALL_HANDLER,
@@ -394,11 +383,11 @@ class GameChartScreen extends ConsumerWidget {
                     ),
                     DropdownMenuItem(
                       value:  PlayType.POSTUP,
-                      child: Text('POSTUP'),
+                      child: Text('POST UP'),
                     ),
                     DropdownMenuItem(
                       value:  PlayType.SPOTUP,
-                      child: Text('SPOTUP'),
+                      child: Text('SPOT UP'),
                     ),
                     DropdownMenuItem(
                       value:  PlayType.HANDOFF,
@@ -444,7 +433,7 @@ class GameChartScreen extends ConsumerWidget {
                     ),
                     DropdownMenuItem(
                       value: ShotType.PULLUP,
-                      child: Text('PULLUP'),
+                      child: Text('PULL UP'),
                     ),
                     DropdownMenuItem(
                       value: ShotType.FLOATING_SHOT,
@@ -536,14 +525,6 @@ class GameChartScreen extends ConsumerWidget {
               ),
             ),
 
-            // FloatingActionButton.extended(
-            //     icon: const Icon(Icons.sports_basketball),
-            //     label: const Text("DOWNLOAD IMAGE"),
-            //     onPressed: () async {
-            //       gameChart.download(gameChartInfo.opponentImage!);
-            //     }
-            // ),
-
             Container(
               width: MediaQuery.of(context).size.width,
               decoration: const BoxDecoration(
@@ -560,7 +541,7 @@ class GameChartScreen extends ConsumerWidget {
                   builder: (context) {
                     return AlertDialog(
                       title: const Text('Confirm'),
-                      content: const Text('FreeThrow'),
+                      content: const Text('DOWNLOAD SHOT CHART'),
                       actions: [
                         SimpleDialogOption(
                           onPressed: () => {

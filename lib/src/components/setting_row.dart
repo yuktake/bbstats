@@ -1,4 +1,5 @@
 import 'package:bb_stats/src/screens/players.dart';
+import 'package:bb_stats/src/screens/setting_details.dart';
 import 'package:flutter/material.dart';
 
 import '../screens/export.dart';
@@ -15,7 +16,6 @@ class SidebarRow extends StatelessWidget {
         padding: const EdgeInsets.symmetric(vertical: 16.0),
         child: GestureDetector(
           onTap: (){
-            // setMyTeamInfo to TeamStateNotifiler
             Navigator.push(
               context,
               MaterialPageRoute(
@@ -38,14 +38,12 @@ class SidebarRow extends StatelessWidget {
                     child: item.icon,
                   ),
                   const SizedBox(width: 24),
-                  Container(
-                    child: Text(
-                      item.title,
-                      style: const TextStyle(
-                        fontSize: 16.0,
-                        fontWeight: FontWeight.w800,
-                        color: Color(0xFF242629),
-                      ),
+                  Text(
+                    item.title,
+                    style: const TextStyle(
+                      fontSize: 16.0,
+                      fontWeight: FontWeight.w800,
+                      color: Color(0xFF242629),
                     ),
                   ),
                   const Spacer(),
@@ -134,7 +132,7 @@ var sidebarItems = [
     screen: ExportScreen(),
   ),
   SidebarItem(
-    title: "Settings",
+    title: "Setting Details",
     background: const LinearGradient(
       begin: Alignment.topLeft,
       end: Alignment.bottomRight,
@@ -144,7 +142,7 @@ var sidebarItems = [
       Icons.settings,
       color: Colors.white,
     ),
-    screen: const PlayersScreen(),
+    screen: const SettingDetailsScreen(),
   ),
   // SidebarItem(
   //   title: "Agreement",
