@@ -135,6 +135,10 @@ class GameRecordScreen extends ConsumerWidget {
                             ),
                             PopupMenuButton(
                               onSelected: (PlayerAction value) {
+                                if (!validateTime(gameRecordInfo.game.quarterMin, gameRecordInfo.time)) {
+                                  timeAlertSnackBar(context);
+                                  return;
+                                }
                                 switch(value) {
                                   case PlayerAction.SHOT:
                                     Navigator.push(
@@ -369,96 +373,104 @@ Widget _buildCircleAvatar(int gameId, Player player, String img, int index) {
     builder: (context, constraints) {
       final radius = min(constraints.maxHeight / 2, constraints.maxWidth / 2);
 
-      return Column(
-        children: [
-          PopupMenuButton(
-            onSelected: (PlayerAction value) {
-              switch(value) {
-                case PlayerAction.SHOT:
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (_) => Shot(gameId, player.id),
-                      fullscreenDialog: true, // true だとモーダル遷移になる
-                    ),
-                  );
-                  break;
-                case PlayerAction.FT:
-                  ftDialog(context, gameId, player);
-                  break;
-                case PlayerAction.REBOUND:
-                  reboundDialog(context, gameId, player);
-                  break;
-                case PlayerAction.BLOCK:
-                  confirmDialog(context, 'Add Block', gameId, player, RecordType.BLOCK);
-                  break;
-                case PlayerAction.STEAL:
-                  confirmDialog(context, 'Add Steal',gameId, player, RecordType.STEAL);
-                  break;
-                case PlayerAction.TURNOVER:
-                  confirmDialog(context, 'Add Turnover',gameId, player, RecordType.TURNOVER);
-                  break;
-                case PlayerAction.FOUL:
-                  confirmDialog(context, 'Add Foul',gameId, player, RecordType.FOUL);
-                  break;
-                case PlayerAction.SUBSTITUTE:
-                  showModalBottomSheet(
-                    context: context,
-                    shape: const RoundedRectangleBorder(
-                      borderRadius: BorderRadius.vertical(top: Radius.circular(25.0)),
-                    ),
-                    builder: (builder) {
-                      return substituteSheet(gameId, index);
-                    }
-                  );
-                  break;
-                default:
-                  break;
-              }
-            },
-            itemBuilder: (context) => [
-              const PopupMenuItem(
-                value: PlayerAction.SHOT,
-                child: Text('Shot')
+      return Consumer(builder: (context, ref, _) {
+        final gameRecordInfo = ref.watch(gameRecordProvider(gameId));
+
+        return Column(
+            children: [
+              PopupMenuButton(
+                onSelected: (PlayerAction value) {
+                  if (!validateTime(gameRecordInfo.game.quarterMin, gameRecordInfo.time)) {
+                    timeAlertSnackBar(context);
+                    return;
+                  }
+                  switch(value) {
+                    case PlayerAction.SHOT:
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (_) => Shot(gameId, player.id),
+                          fullscreenDialog: true, // true だとモーダル遷移になる
+                        ),
+                      );
+                      break;
+                    case PlayerAction.FT:
+                      ftDialog(context, gameId, player);
+                      break;
+                    case PlayerAction.REBOUND:
+                      reboundDialog(context, gameId, player);
+                      break;
+                    case PlayerAction.BLOCK:
+                      confirmDialog(context, 'Add Block', gameId, player, RecordType.BLOCK);
+                      break;
+                    case PlayerAction.STEAL:
+                      confirmDialog(context, 'Add Steal',gameId, player, RecordType.STEAL);
+                      break;
+                    case PlayerAction.TURNOVER:
+                      confirmDialog(context, 'Add Turnover',gameId, player, RecordType.TURNOVER);
+                      break;
+                    case PlayerAction.FOUL:
+                      confirmDialog(context, 'Add Foul',gameId, player, RecordType.FOUL);
+                      break;
+                    case PlayerAction.SUBSTITUTE:
+                      showModalBottomSheet(
+                          context: context,
+                          shape: const RoundedRectangleBorder(
+                            borderRadius: BorderRadius.vertical(top: Radius.circular(25.0)),
+                          ),
+                          builder: (builder) {
+                            return substituteSheet(gameId, index);
+                          }
+                      );
+                      break;
+                    default:
+                      break;
+                  }
+                },
+                itemBuilder: (context) => [
+                  const PopupMenuItem(
+                      value: PlayerAction.SHOT,
+                      child: Text('Shot')
+                  ),
+                  const PopupMenuItem(
+                      value: PlayerAction.FT,
+                      child: Text('FT')
+                  ),
+                  const PopupMenuItem(
+                      value: PlayerAction.REBOUND,
+                      child: Text('Rebound')
+                  ),
+                  const PopupMenuItem(
+                      value: PlayerAction.BLOCK,
+                      child: Text('Block')
+                  ),
+                  const PopupMenuItem(
+                      value: PlayerAction.STEAL,
+                      child: Text('Steal')
+                  ),
+                  const PopupMenuItem(
+                      value: PlayerAction.TURNOVER,
+                      child: Text('Turnover')
+                  ),
+                  const PopupMenuItem(
+                      value: PlayerAction.FOUL,
+                      child: Text('Foul')
+                  ),
+                  const PopupMenuItem(
+                      value: PlayerAction.SUBSTITUTE,
+                      child: Text('Substitute')
+                  ),
+                ],
+                icon: CircleAvatar(
+                  radius: radius,
+                  backgroundImage: AssetImage(img),
+                ),
+                iconSize: radius*2,
               ),
-              const PopupMenuItem(
-                  value: PlayerAction.FT,
-                  child: Text('FT')
-              ),
-              const PopupMenuItem(
-                value: PlayerAction.REBOUND,
-                child: Text('Rebound')
-              ),
-              const PopupMenuItem(
-                value: PlayerAction.BLOCK,
-                child: Text('Block')
-              ),
-              const PopupMenuItem(
-                value: PlayerAction.STEAL,
-                child: Text('Steal')
-              ),
-              const PopupMenuItem(
-                  value: PlayerAction.TURNOVER,
-                  child: Text('Turnover')
-              ),
-              const PopupMenuItem(
-                  value: PlayerAction.FOUL,
-                  child: Text('Foul')
-              ),
-              const PopupMenuItem(
-                  value: PlayerAction.SUBSTITUTE,
-                  child: Text('Substitute')
-              ),
-            ],
-            icon: CircleAvatar(
-              radius: radius,
-              backgroundImage: AssetImage(img),
-            ),
-            iconSize: radius*2,
-          ),
-          Text(player.name, maxLines: 1,)
-        ]
-      );
+              Text(player.name, maxLines: 1,)
+            ]
+        );
+      });
     },
   );
 }
@@ -609,6 +621,7 @@ Future<dynamic> gameActionDialog(BuildContext context, int gameId, GameAction ga
       builder: (context) {
         return Consumer(builder: (context, ref, _) {
           final gameRecord = ref.watch(gameRecordProvider(gameId).notifier);
+          final gameRecordInfo = ref.watch(gameRecordProvider(gameId));
           final gameSummary = ref.watch(gameSummaryProvider(gameId).notifier);
           final gameStat = ref.watch(gameStatProvider(gameId).notifier);
           return AlertDialog(
@@ -617,21 +630,29 @@ Future<dynamic> gameActionDialog(BuildContext context, int gameId, GameAction ga
             actions: [
               SimpleDialogOption(
                 onPressed: () => {
-                  gameRecord.addGameAction(gameAction, true),
-                  gameSummary.update(),
-                  gameStat.updateStats(),
+                  if (!validateTime(gameRecordInfo.game.quarterMin, gameRecordInfo.time)) {
+                    timeAlertSnackBar(context)
+                  } else {
+                    gameRecord.addGameAction(gameAction, true),
+                    gameSummary.update(),
+                    gameStat.updateStats(),
+                    gameRecord.scrollDown()
+                  },
                   Navigator.of(context).pop(true),
-                  gameRecord.scrollDown()
                 },
                 child: const Text('US'),
               ),
               SimpleDialogOption(
                 onPressed: () => {
-                  gameRecord.addGameAction(gameAction, false),
-                  gameSummary.update(),
-                  gameStat.updateStats(),
+                  if (!validateTime(gameRecordInfo.game.quarterMin, gameRecordInfo.time)) {
+                    timeAlertSnackBar(context)
+                  } else {
+                    gameRecord.addGameAction(gameAction, false),
+                    gameSummary.update(),
+                    gameStat.updateStats(),
+                    gameRecord.scrollDown()
+                  },
                   Navigator.of(context).pop(true),
-                  gameRecord.scrollDown()
                 },
                 child: const Text('THEM'),
               ),
@@ -714,4 +735,18 @@ Widget substituteSheet(int gameId, int onCourtPlayerIndex) {
         ),
       );
   });
+}
+
+void timeAlertSnackBar(BuildContext context) {
+  ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(content: Text('クォーターの時間を超えています。'))
+  );
+}
+
+bool validateTime(int quarterMin, DateTime now) {
+  DateTime quarterMinDateTime = DateTime(2000,1,1,quarterMin,0,0);
+  if (quarterMinDateTime.compareTo(now) == -1) {
+    return false;
+  }
+  return true;
 }
