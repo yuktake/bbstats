@@ -542,13 +542,15 @@ Widget bottomTitles(double value, TitleMeta meta) {
   const style = TextStyle(color: Color(0xff939393), fontSize: 15);
   String text;
   int intValue = value.toInt();
+  int maxValue = meta.max.toInt();
+  int quarter = (maxValue~/4)+1;
   if (intValue == 0) {
     text = '1Q';
-  } else if (intValue == 12) {
+  } else if (intValue == quarter) {
     text = '2Q';
-  } else if (intValue == 24) {
+  } else if (intValue == quarter*2) {
     text = '3Q';
-  } else if (intValue == 36) {
+  } else if (intValue == quarter*3) {
     text = '4Q';
   } else {
     text = '';
