@@ -18,7 +18,6 @@ class HistoryScreen extends ConsumerWidget {
     var formatter = DateFormat('yyyy/MM/dd(E)', "ja_JP");
 
     var width = MediaQuery.of(context).size.width / 10;
-    print(width);
 
     return Scaffold(
       appBar: AppBar(

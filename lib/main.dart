@@ -24,11 +24,7 @@ Future<void> main() async {
   final isar = await Isar.open(
     [
       TeamSchema,
-      // TeamHistorySchema,
-      // TeamStatSchema,
       PlayerSchema,
-      // PlayerHistorySchema,
-      // PlayerStatSchema,
       GameSchema,
       BoxscoreSchema,
       PbpSchema,
