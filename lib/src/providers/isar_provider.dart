@@ -27,7 +27,6 @@ import 'package:bb_stats/src/providers/player_provider.dart';
 import 'package:bb_stats/src/providers/playerdetail_provider.dart';
 import 'package:bb_stats/src/providers/playerlist_provider.dart';
 import 'package:bb_stats/src/providers/playerselect_provider.dart';
-import 'package:bb_stats/src/providers/quartermin_provider.dart';
 import 'package:bb_stats/src/providers/settingdetails_provider.dart';
 import 'package:bb_stats/src/providers/shot_provider.dart';
 import 'package:bb_stats/src/providers/team_provider.dart';
@@ -78,10 +77,6 @@ final documentPathProvider = FutureProvider<String>((ref) async {
 
 final onGameProvider = StateNotifierProvider<OnGameStateNotifier, bool>((ref) {
   return OnGameStateNotifier();
-});
-
-final quarterMinProvider = StateNotifierProvider<QuarterMinStateNotifier, int>((ref) {
-  return QuarterMinStateNotifier();
 });
 
 final homeProvider = StateNotifierProvider.autoDispose<HomeStateNotifier,HomeModel>((ref) {
