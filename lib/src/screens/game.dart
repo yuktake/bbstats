@@ -75,7 +75,7 @@ class GameScreen extends ConsumerWidget {
                                 gamePreparationInfo.gameDate),
                                 style: const TextStyle(color: Colors.black)),
                           ),
-                          onGame ? Text("${gamePreparationInfo.quarterMin} Minutes Per　Quarter", style: const TextStyle(color: Colors.black)) :
+                          onGame ? Text("${gamePreparationInfo.quarterMin} Min Per Quarter", style: const TextStyle(color: Colors.black)) :
                           Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
@@ -93,7 +93,7 @@ class GameScreen extends ConsumerWidget {
                                 },
                                 value: settingDetailsInfo.quarterMin,
                               ),
-                              const Text('  Minutes Per Quarter'),
+                              const Text('Min Per Quarter'),
                             ],
                           ),
                         ],
