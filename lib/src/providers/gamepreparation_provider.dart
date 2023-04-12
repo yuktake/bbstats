@@ -32,11 +32,11 @@ class GamePreparationStateNotifier extends StateNotifier<GamePreparationModel> {
         startable: false,
       )
   ){
-    initialize();
     // onGame=trueのGameのstarter5人を代入後、全てnull出なければstartable=trueにする
     Game? game = gameRepository.findOnGame();
     Team? opponent = game?.opponent.value;
     if (game == null || opponent == null) {
+      initialize();
       return;
     }
     List<Boxscore> boxScores = boxScoreRepository.findStarterBoxScores(game.id);
@@ -46,6 +46,7 @@ class GamePreparationStateNotifier extends StateNotifier<GamePreparationModel> {
     state = state.copyWith(
       gameDate: game.gameDate,
       opponentTeam: opponent,
+      quarterMin: game.quarterMin,
       pg: boxScores.elementAt(0).player.value,
       sg: boxScores.elementAt(1).player.value,
       sf: boxScores.elementAt(2).player.value,
