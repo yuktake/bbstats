@@ -808,6 +808,36 @@ class GameRepository {
     return game;
   }
 
+  int getQuarterMin(int id) {
+    if (!isar.isOpen) {
+      return -1;
+    }
+
+    final game = isar.games.where().idEqualTo(id).findFirstSync();
+    if (game == null) {
+      return -1;
+    }
+
+    return game.quarterMin;
+  }
+
+  void updateQuarterMin(int gameId, int quarterMin) {
+    if (!isar.isOpen) {
+      return;
+    }
+
+    final game = isar.games.where().idEqualTo(gameId).findFirstSync();
+    if (game == null) {
+      return;
+    }
+
+    game.quarterMin = quarterMin;
+
+    isar.writeTxnSync(() {
+      isar.games.putSync(game);
+    });
+  }
+
   Game? findOnGame() {
     if (!isar.isOpen) {
       return null;

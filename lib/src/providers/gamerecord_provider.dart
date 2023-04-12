@@ -27,6 +27,7 @@ class GameRecordStateNotifier extends StateNotifier<GameRecordModel> {
       player4: null,
       player5: null,
       game: gameRepository.findGame(gameId)!,
+      quarterMin: gameRepository.getQuarterMin(gameId),
       time: pbpRepository.getLatestPlayAt(gameId),
       currentQuarter: pbpRepository.getCurrentQuarter(gameId),
       records: pbpRepository.getPbpByCurrentQuarter(gameId),
@@ -420,6 +421,33 @@ class GameRecordStateNotifier extends StateNotifier<GameRecordModel> {
       records: pbps,
       game: gameRepository.findGame(gameId)!,
     );
+  }
+
+  void updateQuarterMinState(int quarterMin) {
+    state = state.copyWith(
+        quarterMin: quarterMin
+    );
+  }
+
+  void saveQuarterMin(int gameId) {
+    gameRepository.updateQuarterMin(gameId, state.quarterMin);
+    Game game = gameRepository.findGame(gameId)!;
+    state = state.copyWith(
+      game: game
+    );
+  }
+
+  bool beDeletedPbpExists(int gameId, int quarterMin) {
+    List<Pbp> beDeletedPbps = pbpRepository.getPbpsBetweenDateTime(gameId, state.quarterMin);
+
+    return beDeletedPbps.isNotEmpty;
+  }
+
+  void deleteOutOfQuarterPbps(int gameId, int quarterMin) {
+    List<Pbp> beDeletedPbps = pbpRepository.getPbpsBetweenDateTime(gameId, state.quarterMin);
+    for (var pbp in beDeletedPbps) {
+      deletePbp(pbp);
+    }
   }
 
   void gameSet() {

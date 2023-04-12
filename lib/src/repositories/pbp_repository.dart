@@ -619,8 +619,6 @@ class PbpRepository {
         scores.add(score);
       }
     }
-
-    print(scores);
     return scores;
   }
 
@@ -1497,6 +1495,23 @@ class PbpRepository {
     int benchPts = -1;
 
     return [pitpPts, fbPts, secondChancePts, benchPts];
+  }
+
+  List<Pbp> getPbpsBetweenDateTime(int gameId, int quarterMin) {
+    Game game = isar.games.filter().idEqualTo(gameId).findFirstSync()!;
+
+    if (game.quarterMin <= quarterMin) {
+      return [];
+    }
+
+    List<Pbp> pbps = isar.pbps.filter()
+      .game((q) =>
+        q.idEqualTo(gameId)
+      )
+      .playAtBetween(DateTime(2000,1,1,quarterMin,0,1), DateTime(2000,1,1,game.quarterMin,0,0))
+      .findAllSync();
+
+    return pbps;
   }
 
   void deletePbp(int id) {

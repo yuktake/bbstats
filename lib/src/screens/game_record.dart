@@ -34,6 +34,12 @@ class GameRecordScreen extends ConsumerWidget {
         appBar: AppBar(
           title: const Text('Game Record'),
           actions: [
+            IconButton(
+              icon: const Icon(Icons.settings),
+              onPressed: () => {
+                quarterChangeDialog(context,  id)
+              },
+            ),
             PopupMenuButton(
               onSelected: (GameAction value) {
                 if (value == GameAction.GAMESET) {
@@ -735,6 +741,84 @@ Widget substituteSheet(int gameId, int onCourtPlayerIndex) {
         ),
       );
   });
+}
+
+Future<dynamic> quarterChangeDialog(BuildContext context, int gameId) {
+  return showDialog(
+      context: context,
+      builder: (context) {
+        return Consumer(builder: (context, ref, _) {
+          final gameRecord = ref.watch(gameRecordProvider(gameId).notifier);
+          final gameRecordInfo = ref.watch(gameRecordProvider(gameId));
+          final gamePreparation = ref.watch(gamePreparationProvider.notifier);
+          return AlertDialog(
+            title: const Text('Settings'),
+            content: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                const Text('Quarter Min'),
+                DropdownButton(
+                  items: [
+                    for(int i = 24; i > 0; i--) ... {
+                      DropdownMenuItem(
+                        value:  i,
+                        child: Text(i.toString()),
+                      )
+                    }
+                  ],
+                  onChanged: (int? value) {
+                    gameRecord.updateQuarterMinState(value!);
+                  },
+                  value: gameRecordInfo.quarterMin,
+                ),
+              ],
+            ),
+            actions: [
+              SimpleDialogOption(
+                onPressed: () => {
+                  if (gameRecord.beDeletedPbpExists(gameId, gameRecordInfo.quarterMin)) {
+                    showDialog(
+                        context: context,
+                        builder: (context) {
+                          return AlertDialog(
+                              title: const Text('Warning'),
+                              content: const Text('There are some pbps to be deleted.'),
+                              actions : [
+                                SimpleDialogOption(
+                                  onPressed: () => {
+                                    gameRecord.deleteOutOfQuarterPbps(gameId, gameRecordInfo.quarterMin),
+                                    gameRecord.saveQuarterMin(gameId),
+                                    gamePreparation.updateQuarterMinState(gameRecordInfo.quarterMin),
+                                    Navigator.of(context).pop(false),
+                                    Navigator.of(context).pop(false)
+                                  },
+                                  child: const Text('Delete?'),
+                                ),
+                                SimpleDialogOption(
+                                  onPressed: () => Navigator.of(context).pop(false),
+                                  child: const Text('Cancel'),
+                                ),
+                              ]
+                          );
+                        }
+                    ),
+                  } else {
+                    gameRecord.saveQuarterMin(gameId),
+                    gamePreparation.updateQuarterMinState(gameRecordInfo.quarterMin),
+                    Navigator.of(context).pop(false),
+                  },
+                },
+                child: const Text('はい'),
+              ),
+              SimpleDialogOption(
+                onPressed: () => Navigator.of(context).pop(false),
+                child: const Text('いいえ'),
+              ),
+            ],
+          );
+        });
+      }
+  );
 }
 
 void timeAlertSnackBar(BuildContext context) {
