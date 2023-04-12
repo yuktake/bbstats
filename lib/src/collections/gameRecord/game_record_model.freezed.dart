@@ -22,6 +22,7 @@ mixin _$GameRecordModel {
   Player? get player4 => throw _privateConstructorUsedError;
   Player? get player5 => throw _privateConstructorUsedError;
   Game get game => throw _privateConstructorUsedError;
+  int get quarterMin => throw _privateConstructorUsedError;
   DateTime get time => throw _privateConstructorUsedError;
   int get currentQuarter => throw _privateConstructorUsedError;
   List<Pbp> get records => throw _privateConstructorUsedError;
@@ -45,6 +46,7 @@ abstract class $GameRecordModelCopyWith<$Res> {
       Player? player4,
       Player? player5,
       Game game,
+      int quarterMin,
       DateTime time,
       int currentQuarter,
       List<Pbp> records,
@@ -69,6 +71,7 @@ class _$GameRecordModelCopyWithImpl<$Res>
     Object? player4 = freezed,
     Object? player5 = freezed,
     Object? game = freezed,
+    Object? quarterMin = freezed,
     Object? time = freezed,
     Object? currentQuarter = freezed,
     Object? records = freezed,
@@ -100,6 +103,10 @@ class _$GameRecordModelCopyWithImpl<$Res>
           ? _value.game
           : game // ignore: cast_nullable_to_non_nullable
               as Game,
+      quarterMin: quarterMin == freezed
+          ? _value.quarterMin
+          : quarterMin // ignore: cast_nullable_to_non_nullable
+              as int,
       time: time == freezed
           ? _value.time
           : time // ignore: cast_nullable_to_non_nullable
@@ -138,6 +145,7 @@ abstract class _$$_GameRecordModelCopyWith<$Res>
       Player? player4,
       Player? player5,
       Game game,
+      int quarterMin,
       DateTime time,
       int currentQuarter,
       List<Pbp> records,
@@ -164,6 +172,7 @@ class __$$_GameRecordModelCopyWithImpl<$Res>
     Object? player4 = freezed,
     Object? player5 = freezed,
     Object? game = freezed,
+    Object? quarterMin = freezed,
     Object? time = freezed,
     Object? currentQuarter = freezed,
     Object? records = freezed,
@@ -195,6 +204,10 @@ class __$$_GameRecordModelCopyWithImpl<$Res>
           ? _value.game
           : game // ignore: cast_nullable_to_non_nullable
               as Game,
+      quarterMin: quarterMin == freezed
+          ? _value.quarterMin
+          : quarterMin // ignore: cast_nullable_to_non_nullable
+              as int,
       time: time == freezed
           ? _value.time
           : time // ignore: cast_nullable_to_non_nullable
@@ -229,6 +242,7 @@ class _$_GameRecordModel implements _GameRecordModel {
       required this.player4,
       required this.player5,
       required this.game,
+      required this.quarterMin,
       required this.time,
       required this.currentQuarter,
       required final List<Pbp> records,
@@ -249,6 +263,8 @@ class _$_GameRecordModel implements _GameRecordModel {
   final Player? player5;
   @override
   final Game game;
+  @override
+  final int quarterMin;
   @override
   final DateTime time;
   @override
@@ -272,7 +288,7 @@ class _$_GameRecordModel implements _GameRecordModel {
 
   @override
   String toString() {
-    return 'GameRecordModel(player1: $player1, player2: $player2, player3: $player3, player4: $player4, player5: $player5, game: $game, time: $time, currentQuarter: $currentQuarter, records: $records, substitutes: $substitutes, controller: $controller)';
+    return 'GameRecordModel(player1: $player1, player2: $player2, player3: $player3, player4: $player4, player5: $player5, game: $game, quarterMin: $quarterMin, time: $time, currentQuarter: $currentQuarter, records: $records, substitutes: $substitutes, controller: $controller)';
   }
 
   @override
@@ -286,6 +302,8 @@ class _$_GameRecordModel implements _GameRecordModel {
             const DeepCollectionEquality().equals(other.player4, player4) &&
             const DeepCollectionEquality().equals(other.player5, player5) &&
             const DeepCollectionEquality().equals(other.game, game) &&
+            const DeepCollectionEquality()
+                .equals(other.quarterMin, quarterMin) &&
             const DeepCollectionEquality().equals(other.time, time) &&
             const DeepCollectionEquality()
                 .equals(other.currentQuarter, currentQuarter) &&
@@ -305,6 +323,7 @@ class _$_GameRecordModel implements _GameRecordModel {
       const DeepCollectionEquality().hash(player4),
       const DeepCollectionEquality().hash(player5),
       const DeepCollectionEquality().hash(game),
+      const DeepCollectionEquality().hash(quarterMin),
       const DeepCollectionEquality().hash(time),
       const DeepCollectionEquality().hash(currentQuarter),
       const DeepCollectionEquality().hash(_records),
@@ -325,6 +344,7 @@ abstract class _GameRecordModel implements GameRecordModel {
       required final Player? player4,
       required final Player? player5,
       required final Game game,
+      required final int quarterMin,
       required final DateTime time,
       required final int currentQuarter,
       required final List<Pbp> records,
@@ -343,6 +363,8 @@ abstract class _GameRecordModel implements GameRecordModel {
   Player? get player5;
   @override
   Game get game;
+  @override
+  int get quarterMin;
   @override
   DateTime get time;
   @override
