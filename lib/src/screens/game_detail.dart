@@ -5,8 +5,11 @@ import 'package:bb_stats/src/providers/isar_provider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:path_provider/path_provider.dart';
+import 'package:share_plus/share_plus.dart';
 import '../components/stat_datatable.dart';
 import 'game_record.dart';
+import 'dart:io';
 
 
 class GameDetailScreen extends ConsumerWidget {
@@ -19,9 +22,14 @@ class GameDetailScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final documentPath = ref.watch(documentPathProvider);
+    final bool onGame = ref.watch(onGameProvider);
+
     final game = ref.watch(gameProvider(id).notifier);
     final gameInfo = ref.watch(gameProvider(id));
-    final bool onGame = ref.watch(onGameProvider);
+    final boxScoreList = ref.watch(boxScoreListProvider(id).notifier);
+    final gamePbp = ref.watch(gamePbpProvider(id).notifier);
+    final gamePbpInfo = ref.watch(gamePbpProvider(id));
 
     const segmentedControlMaxWidth = 500.0;
     final selection = <int, Widget>{
@@ -40,21 +48,43 @@ class GameDetailScreen extends ConsumerWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('GAME'),
-        actions: gameInfo.page == 3 && !onGame ? (
-            [
-              IconButton(
-                icon: const Icon(Icons.edit),
-                onPressed: () => {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => GameRecordScreen(id),
-                    ),
-                  )
-                },
+        actions: [
+          gameInfo.page == 1 ?
+          IconButton(
+            icon: const Icon(Icons.download),
+            onPressed: () async {
+              final csvFile = File('${(await getApplicationDocumentsDirectory()).path}/csvs/box-scores.csv');
+              String csvString = boxScoreList.getBoxScoresString(id);
+              await csvFile.writeAsString(csvString);
+              Share.shareXFiles([XFile('${documentPath.value}/csvs/box-scores.csv', name: 'box-scores.csv')], subject: 'Export', text: 'Output BoxScores');
+            },
+          ) : Container(),
+
+          gameInfo.page == 3 && !onGame ?
+          IconButton(
+            icon: const Icon(Icons.edit),
+            onPressed: () => {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => GameRecordScreen(id),
+                ),
               )
-            ]
-        ) : [],
+            },
+          ) : Container(),
+
+          gameInfo.page == 3 ?
+          IconButton(
+            icon: const Icon(Icons.download),
+            onPressed: () async {
+              final csvFile = File('${(await getApplicationDocumentsDirectory()).path}/csvs/pbp.csv');
+              String csvString = gamePbp.getPbpString(id);
+              await csvFile.writeAsString(csvString);
+              Share.shareXFiles([XFile('${documentPath.value}/csvs/pbp.csv', name: 'pbp.csv')], subject: 'Export', text: 'Output Pbp');
+            },
+          ) : Container(),
+        ]
+
       ),
       body: Padding(
         padding: const EdgeInsets.only(bottom: 20),
