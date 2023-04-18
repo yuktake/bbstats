@@ -64,7 +64,7 @@ class BoxscoreRepository {
     return boxScores;
   }
 
-  List<List<dynamic>> getAvgBoxScores() {
+  List<List<dynamic>> getAvgBoxScores(int columnIndex, bool ascending) {
     final players = isar.players.filter().visibleEqualTo(true).findAllSync();
     if (players.isEmpty) {
       return [];
@@ -132,6 +132,12 @@ class BoxscoreRepository {
         pfAvg,
       ];
       playerStats.add(tmp);
+    }
+
+    if (ascending) {
+      playerStats.sort((a, b) => a[columnIndex+1].compareTo(b[columnIndex+1]));
+    } else {
+      playerStats.sort((a, b) => b[columnIndex+1].compareTo(a[columnIndex+1]));
     }
 
     return playerStats;

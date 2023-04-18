@@ -11,7 +11,7 @@ class HomeStateNotifier extends StateNotifier<HomeModel> {
       this.teamRepository
     ) : super (HomeModel(
       teamStat: gameRepository.getAvgTeamStat(),
-      playerStats: boxScoreRepository.getAvgBoxScores(),
+      playerStats: boxScoreRepository.getAvgBoxScores(0, true),
       team: teamRepository.findTeam(1)!,
       win: gameRepository.countWinGame(),
       lost: gameRepository.countLostGame(),
@@ -21,4 +21,14 @@ class HomeStateNotifier extends StateNotifier<HomeModel> {
   final GameRepository gameRepository;
   final BoxscoreRepository boxScoreRepository;
   final TeamRepository teamRepository;
+
+  void updateSortTargetIndex(int index, bool ascending) {
+    List<List<dynamic>> playerStats = boxScoreRepository.getAvgBoxScores(index, ascending);
+
+    state = state.copyWith(
+      playerStats: playerStats,
+      sortTargetIndex: index,
+      ascending: !state.ascending,
+    );
+  }
 }

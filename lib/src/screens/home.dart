@@ -1,3 +1,4 @@
+import 'package:bb_stats/src/consts/CsvColumns.dart';
 import 'package:bb_stats/src/providers/isar_provider.dart';
 import 'package:bb_stats/src/screens/tutorial.dart';
 import 'package:data_table_2/data_table_2.dart';
@@ -27,6 +28,7 @@ class HomeScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final home = ref.watch(homeProvider.notifier);
     final homeInfo = ref.watch(homeProvider);
     final documentPath = ref.watch(documentPathProvider);
     _showTutorial(context);
@@ -170,69 +172,20 @@ class HomeScreen extends ConsumerWidget {
                               // ソートしないならbottomMarginのために普通のdatatableか他のものでいいかも
                               child: DataTable2(
                                 fixedLeftColumns: 1,
-                                // sortColumnIndex: _currentSortColumn,
-                                // sortAscending: _isAscending,
+                                sortColumnIndex: homeInfo.sortTargetIndex,
+                                sortAscending: homeInfo.ascending,
                                 columnSpacing: 12,
                                 horizontalMargin: 12,
                                 minWidth: 2000,
-                                columns: const [
-                                  DataColumn(
-                                    label: Text('PLAYER'),
-                                  ),
-                                  DataColumn(
-                                    label: Text('PTS'),
-                                  ),
-                                  DataColumn(
-                                    label: Text('FGM'),
-                                  ),
-                                  DataColumn(
-                                    label: Text('FGA'),
-                                  ),
-                                  DataColumn(
-                                    label: Text('FG%'),
-                                  ),
-                                  DataColumn(
-                                    label: Text('3PM'),
-                                  ),
-                                  DataColumn(
-                                    label: Text('3PA'),
-                                  ),
-                                  DataColumn(
-                                    label: Text('3P%'),
-                                  ),
-                                  DataColumn(
-                                    label: Text('FTM'),
-                                  ),
-                                  DataColumn(
-                                    label: Text('FTA'),
-                                  ),
-                                  DataColumn(
-                                    label: Text('FT%'),
-                                  ),
-                                  DataColumn(
-                                    label: Text('OREB'),
-                                  ),
-                                  DataColumn(
-                                    label: Text('DREB'),
-                                  ),
-                                  DataColumn(
-                                    label: Text('REB'),
-                                  ),
-                                  DataColumn(
-                                    label: Text('AST'),
-                                  ),
-                                  DataColumn(
-                                    label: Text('STL'),
-                                  ),
-                                  DataColumn(
-                                    label: Text('BLK'),
-                                  ),
-                                  DataColumn(
-                                    label: Text('TO'),
-                                  ),
-                                  DataColumn(
-                                    label: Text('PF'),
-                                  ),
+                                columns: [
+                                  for(int i = 0; i < CsvColumns.boxScoreColumnList.length; i++) ... {
+                                    DataColumn(
+                                      label: Text(CsvColumns.boxScoreColumnList[i]),
+                                      onSort: (columnIndex, isAscending) {
+                                        home.updateSortTargetIndex(i, isAscending);
+                                      },
+                                    )
+                                  }
                                 ],
                                 rows: homeInfo.playerStats
                                     .map(
