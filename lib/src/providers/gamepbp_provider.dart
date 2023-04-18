@@ -19,9 +19,7 @@ class GamePbpStateNotifier extends StateNotifier<GamePbpModel> {
     pbps: pbpRepository.getPbpByQuarter(gameId, 5),
     // ALL
     quarter: 5
-  )){
-
-    }
+  ));
 
     final int gameId;
     final PlayerRepository playerRepository;

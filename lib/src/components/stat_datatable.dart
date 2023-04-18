@@ -61,7 +61,7 @@ class StatDataTable extends ConsumerWidget {
     final documentPath = ref.watch(documentPathProvider);
     return
       Padding(
-        padding: EdgeInsets.symmetric(horizontal: 16.0),
+        padding: const EdgeInsets.symmetric(horizontal: 16.0),
         child: Container(
           height: overall_list.length*60,
           decoration: BoxDecoration(
@@ -69,12 +69,12 @@ class StatDataTable extends ConsumerWidget {
             boxShadow: [
               BoxShadow(
                   color: Colors.black.withOpacity(0.3),
-                  offset: Offset(0, 0),
+                  offset: const Offset(0, 0),
                   blurRadius: 5.0
               ),
               BoxShadow(
                   color: Colors.black.withOpacity(0.3),
-                  offset: Offset(0, 10),
+                  offset: const Offset(0, 10),
                   blurRadius: 10.0
               )
             ],

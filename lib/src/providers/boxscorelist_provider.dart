@@ -11,9 +11,7 @@ class  BoxScoreListStateNotifier extends StateNotifier<BoxScoreListModel> {
     BoxScoreListModel(
       boxScores : boxScoreRepository.findByGame(gameId)
     )
-  ){
-
-  }
+  );
 
   final int gameId;
   final BoxscoreRepository boxScoreRepository;
