@@ -4,6 +4,7 @@ import 'package:data_table_2/data_table_2.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../consts/CsvColumns.dart';
 import '../providers/isar_provider.dart';
 
 class StatDataTable extends ConsumerWidget {
@@ -58,6 +59,7 @@ class StatDataTable extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final boxScoreListInfo = ref.watch(boxScoreListProvider(gameId));
+    final boxScoreList = ref.watch(boxScoreListProvider(gameId).notifier);
     final documentPath = ref.watch(documentPathProvider);
     return
       Padding(
@@ -87,69 +89,20 @@ class StatDataTable extends ConsumerWidget {
                 // ソートしないならbottomMarginのために普通のdatatableか他のものでいいかも
                 child: DataTable2(
                   fixedLeftColumns: 1,
-                  sortColumnIndex: _currentSortColumn,
-                  sortAscending: _isAscending,
+                  sortColumnIndex: boxScoreListInfo.sortTargetIndex,
+                  sortAscending: boxScoreListInfo.ascending,
                   columnSpacing: 12,
                   horizontalMargin: 12,
                   minWidth: 2000,
-                  columns: const [
-                    DataColumn(
-                      label: Text('PLAYER'),
-                    ),
-                    DataColumn(
-                      label: Text('PTS'),
-                    ),
-                    DataColumn(
-                      label: Text('FGM'),
-                    ),
-                    DataColumn(
-                      label: Text('FGA'),
-                    ),
-                    DataColumn(
-                      label: Text('FG%'),
-                    ),
-                    DataColumn(
-                      label: Text('3PM'),
-                    ),
-                    DataColumn(
-                      label: Text('3PA'),
-                    ),
-                    DataColumn(
-                      label: Text('3P%'),
-                    ),
-                    DataColumn(
-                      label: Text('FTM'),
-                    ),
-                    DataColumn(
-                      label: Text('FTA'),
-                    ),
-                    DataColumn(
-                      label: Text('FT%'),
-                    ),
-                    DataColumn(
-                      label: Text('OREB'),
-                    ),
-                    DataColumn(
-                      label: Text('DREB'),
-                    ),
-                    DataColumn(
-                      label: Text('REB'),
-                    ),
-                    DataColumn(
-                      label: Text('AST'),
-                    ),
-                    DataColumn(
-                      label: Text('STL'),
-                    ),
-                    DataColumn(
-                      label: Text('BLK'),
-                    ),
-                    DataColumn(
-                      label: Text('TO'),
-                    ),
-                    DataColumn(
-                      label: Text('PF'),
-                    ),
+                  columns:  [
+                    for(int i = 0; i < CsvColumns.boxScoreColumnList.length; i++) ... {
+                      DataColumn(
+                        label: Text(CsvColumns.boxScoreColumnList[i]),
+                        onSort: (columnIndex, isAscending) {
+                          boxScoreList.updateSortTargetIndex(i, boxScoreListInfo.ascending);
+                        },
+                      )
+                    }
                   ],
                   rows: boxScoreListInfo.boxScores
                       .map(

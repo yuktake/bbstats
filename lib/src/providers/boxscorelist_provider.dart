@@ -1,3 +1,4 @@
+import 'package:bb_stats/src/collections/boxscore/boxscore.dart';
 import 'package:bb_stats/src/consts/CsvColumns.dart';
 import 'package:bb_stats/src/repositories/boxscore_repository.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -10,7 +11,9 @@ class  BoxScoreListStateNotifier extends StateNotifier<BoxScoreListModel> {
     this.boxScoreRepository
   ) : super (
     BoxScoreListModel(
-      boxScores : boxScoreRepository.findByGame(gameId)
+      boxScores : boxScoreRepository.findByGame(gameId, 0, true),
+      sortTargetIndex: 0,
+      ascending: true,
     )
   );
 
@@ -52,5 +55,17 @@ class  BoxScoreListStateNotifier extends StateNotifier<BoxScoreListModel> {
     }
 
     return boxScores.join("\n");
+  }
+
+  void updateSortTargetIndex(int index, bool ascending) {
+    print(index);
+    print(ascending);
+    List<Boxscore> boxScores = boxScoreRepository.findByGame(gameId, index, !ascending);
+
+    state = state.copyWith(
+      boxScores: boxScores,
+      sortTargetIndex: index,
+      ascending: !state.ascending,
+    );
   }
 }

@@ -51,7 +51,7 @@ class BoxscoreRepository {
     return boxScore;
   }
 
-  List<Boxscore> findByGame(int gameId) {
+  List<Boxscore> findByGame(int gameId, int columnIndex, bool ascending) {
     if (!isar.isOpen) {
       return [];
     }
@@ -61,6 +61,129 @@ class BoxscoreRepository {
       boxScore.player.loadSync();
     });
 
+    if (ascending) {
+      switch(columnIndex){
+        case 0:
+          boxScores.sort((a, b) => a.player.value!.name.compareTo(b.player.value!.name));
+          break;
+        case 1:
+          boxScores.sort((a, b) => a.pts.compareTo(b.pts));
+          break;
+        case 2:
+          boxScores.sort((a, b) => a.fgm.compareTo(b.fgm));
+          break;
+        case 3:
+          boxScores.sort((a, b) => a.fga.compareTo(b.fga));
+          break;
+        case 4:
+          boxScores.sort((a, b) => a.fgRatio.compareTo(b.fgRatio));
+          break;
+        case 5:
+          boxScores.sort((a, b) => a.tpm.compareTo(b.tpm));
+          break;
+        case 6:
+          boxScores.sort((a, b) => a.tpa.compareTo(b.tpa));
+          break;
+        case 7:
+          boxScores.sort((a, b) => a.tpRatio.compareTo(b.tpRatio));
+          break;
+        case 8:
+          boxScores.sort((a, b) => a.ftm.compareTo(b.ftm));
+          break;
+        case 9:
+          boxScores.sort((a, b) => a.fta.compareTo(b.fta));
+          break;
+        case 10:
+          boxScores.sort((a, b) => a.ftRatio.compareTo(b.ftRatio));
+          break;
+        case 11:
+          boxScores.sort((a, b) => a.oReb.compareTo(b.oReb));
+          break;
+        case 12:
+          boxScores.sort((a, b) => a.dReb.compareTo(b.dReb));
+          break;
+        case 13:
+          boxScores.sort((a, b) => a.reb.compareTo(b.reb));
+          break;
+        case 14:
+          boxScores.sort((a, b) => a.ast.compareTo(b.ast));
+          break;
+        case 15:
+          boxScores.sort((a, b) => a.stl.compareTo(b.stl));
+          break;
+        case 16:
+          boxScores.sort((a, b) => a.blk.compareTo(b.blk));
+          break;
+        case 17:
+          boxScores.sort((a, b) => a.to.compareTo(b.to));
+          break;
+        case 18:
+          boxScores.sort((a, b) => a.pf.compareTo(b.pf));
+          break;
+      }
+    } else {
+      switch(columnIndex){
+        case 0:
+          boxScores.sort((a, b) => b.player.value!.name.compareTo(a.player.value!.name));
+          break;
+        case 1:
+          boxScores.sort((a, b) => b.pts.compareTo(a.pts));
+          break;
+        case 2:
+          boxScores.sort((a, b) => b.fgm.compareTo(a.fgm));
+          break;
+        case 3:
+          boxScores.sort((a, b) => b.fga.compareTo(a.fga));
+          break;
+        case 4:
+          boxScores.sort((a, b) => b.fgRatio.compareTo(a.fgRatio));
+          break;
+        case 5:
+          boxScores.sort((a, b) => b.tpm.compareTo(a.tpm));
+          break;
+        case 6:
+          boxScores.sort((a, b) => b.tpa.compareTo(a.tpa));
+          break;
+        case 7:
+          boxScores.sort((a, b) => b.tpRatio.compareTo(a.tpRatio));
+          break;
+        case 8:
+          boxScores.sort((a, b) => b.ftm.compareTo(a.ftm));
+          break;
+        case 9:
+          boxScores.sort((a, b) => b.fta.compareTo(a.fta));
+          break;
+        case 10:
+          boxScores.sort((a, b) => b.ftRatio.compareTo(a.ftRatio));
+          break;
+        case 11:
+          boxScores.sort((a, b) => b.oReb.compareTo(a.oReb));
+          break;
+        case 12:
+          boxScores.sort((a, b) => b.dReb.compareTo(a.dReb));
+          break;
+        case 13:
+          boxScores.sort((a, b) => b.reb.compareTo(a.reb));
+          break;
+        case 14:
+          boxScores.sort((a, b) => b.ast.compareTo(a.ast));
+          break;
+        case 15:
+          boxScores.sort((a, b) => b.stl.compareTo(a.stl));
+          break;
+        case 16:
+          boxScores.sort((a, b) => b.blk.compareTo(a.blk));
+          break;
+        case 17:
+          boxScores.sort((a, b) => b.to.compareTo(a.to));
+          break;
+        case 18:
+          boxScores.sort((a, b) => b.pf.compareTo(a.pf));
+          break;
+      }
+    }
+
+    print('working');
     return boxScores;
   }
 
