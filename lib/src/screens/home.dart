@@ -182,7 +182,7 @@ class HomeScreen extends ConsumerWidget {
                                     DataColumn(
                                       label: Text(CsvColumns.boxScoreColumnList[i]),
                                       onSort: (columnIndex, isAscending) {
-                                        home.updateSortTargetIndex(i, isAscending);
+                                        home.updateSortTargetIndex(i, homeInfo.ascending);
                                       },
                                     )
                                   }
