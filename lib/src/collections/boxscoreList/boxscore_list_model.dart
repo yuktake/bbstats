@@ -7,5 +7,7 @@ part 'boxscore_list_model.freezed.dart';
 class BoxScoreListModel with _$BoxScoreListModel {
   const factory BoxScoreListModel({
     required List<Boxscore> boxScores,
+    required int sortTargetIndex,
+    required bool ascending,
   }) = _BoxScoreListModel;
 }

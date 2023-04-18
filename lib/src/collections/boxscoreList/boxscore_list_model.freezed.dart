@@ -17,6 +17,8 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$BoxScoreListModel {
   List<Boxscore> get boxScores => throw _privateConstructorUsedError;
+  int get sortTargetIndex => throw _privateConstructorUsedError;
+  bool get ascending => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $BoxScoreListModelCopyWith<BoxScoreListModel> get copyWith =>
@@ -28,7 +30,7 @@ abstract class $BoxScoreListModelCopyWith<$Res> {
   factory $BoxScoreListModelCopyWith(
           BoxScoreListModel value, $Res Function(BoxScoreListModel) then) =
       _$BoxScoreListModelCopyWithImpl<$Res>;
-  $Res call({List<Boxscore> boxScores});
+  $Res call({List<Boxscore> boxScores, int sortTargetIndex, bool ascending});
 }
 
 /// @nodoc
@@ -43,12 +45,22 @@ class _$BoxScoreListModelCopyWithImpl<$Res>
   @override
   $Res call({
     Object? boxScores = freezed,
+    Object? sortTargetIndex = freezed,
+    Object? ascending = freezed,
   }) {
     return _then(_value.copyWith(
       boxScores: boxScores == freezed
           ? _value.boxScores
           : boxScores // ignore: cast_nullable_to_non_nullable
               as List<Boxscore>,
+      sortTargetIndex: sortTargetIndex == freezed
+          ? _value.sortTargetIndex
+          : sortTargetIndex // ignore: cast_nullable_to_non_nullable
+              as int,
+      ascending: ascending == freezed
+          ? _value.ascending
+          : ascending // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -60,7 +72,7 @@ abstract class _$$_BoxScoreListModelCopyWith<$Res>
           $Res Function(_$_BoxScoreListModel) then) =
       __$$_BoxScoreListModelCopyWithImpl<$Res>;
   @override
-  $Res call({List<Boxscore> boxScores});
+  $Res call({List<Boxscore> boxScores, int sortTargetIndex, bool ascending});
 }
 
 /// @nodoc
@@ -77,12 +89,22 @@ class __$$_BoxScoreListModelCopyWithImpl<$Res>
   @override
   $Res call({
     Object? boxScores = freezed,
+    Object? sortTargetIndex = freezed,
+    Object? ascending = freezed,
   }) {
     return _then(_$_BoxScoreListModel(
       boxScores: boxScores == freezed
           ? _value._boxScores
           : boxScores // ignore: cast_nullable_to_non_nullable
               as List<Boxscore>,
+      sortTargetIndex: sortTargetIndex == freezed
+          ? _value.sortTargetIndex
+          : sortTargetIndex // ignore: cast_nullable_to_non_nullable
+              as int,
+      ascending: ascending == freezed
+          ? _value.ascending
+          : ascending // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -90,7 +112,10 @@ class __$$_BoxScoreListModelCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_BoxScoreListModel implements _BoxScoreListModel {
-  const _$_BoxScoreListModel({required final List<Boxscore> boxScores})
+  const _$_BoxScoreListModel(
+      {required final List<Boxscore> boxScores,
+      required this.sortTargetIndex,
+      required this.ascending})
       : _boxScores = boxScores;
 
   final List<Boxscore> _boxScores;
@@ -101,8 +126,13 @@ class _$_BoxScoreListModel implements _BoxScoreListModel {
   }
 
   @override
+  final int sortTargetIndex;
+  @override
+  final bool ascending;
+
+  @override
   String toString() {
-    return 'BoxScoreListModel(boxScores: $boxScores)';
+    return 'BoxScoreListModel(boxScores: $boxScores, sortTargetIndex: $sortTargetIndex, ascending: $ascending)';
   }
 
   @override
@@ -111,12 +141,18 @@ class _$_BoxScoreListModel implements _BoxScoreListModel {
         (other.runtimeType == runtimeType &&
             other is _$_BoxScoreListModel &&
             const DeepCollectionEquality()
-                .equals(other._boxScores, _boxScores));
+                .equals(other._boxScores, _boxScores) &&
+            const DeepCollectionEquality()
+                .equals(other.sortTargetIndex, sortTargetIndex) &&
+            const DeepCollectionEquality().equals(other.ascending, ascending));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(_boxScores));
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(_boxScores),
+      const DeepCollectionEquality().hash(sortTargetIndex),
+      const DeepCollectionEquality().hash(ascending));
 
   @JsonKey(ignore: true)
   @override
@@ -126,11 +162,17 @@ class _$_BoxScoreListModel implements _BoxScoreListModel {
 }
 
 abstract class _BoxScoreListModel implements BoxScoreListModel {
-  const factory _BoxScoreListModel({required final List<Boxscore> boxScores}) =
-      _$_BoxScoreListModel;
+  const factory _BoxScoreListModel(
+      {required final List<Boxscore> boxScores,
+      required final int sortTargetIndex,
+      required final bool ascending}) = _$_BoxScoreListModel;
 
   @override
   List<Boxscore> get boxScores;
+  @override
+  int get sortTargetIndex;
+  @override
+  bool get ascending;
   @override
   @JsonKey(ignore: true)
   _$$_BoxScoreListModelCopyWith<_$_BoxScoreListModel> get copyWith =>
