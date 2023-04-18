@@ -11,5 +11,7 @@ class HomeModel with _$HomeModel {
     required Team team,
     required int win,
     required int lost,
+    required int sortTargetIndex,
+    required bool ascending,
   }) = _HomeModel;
 }

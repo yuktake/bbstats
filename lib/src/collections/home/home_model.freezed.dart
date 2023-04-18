@@ -21,6 +21,8 @@ mixin _$HomeModel {
   Team get team => throw _privateConstructorUsedError;
   int get win => throw _privateConstructorUsedError;
   int get lost => throw _privateConstructorUsedError;
+  int get sortTargetIndex => throw _privateConstructorUsedError;
+  bool get ascending => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $HomeModelCopyWith<HomeModel> get copyWith =>
@@ -36,7 +38,9 @@ abstract class $HomeModelCopyWith<$Res> {
       List<List<dynamic>> playerStats,
       Team team,
       int win,
-      int lost});
+      int lost,
+      int sortTargetIndex,
+      bool ascending});
 }
 
 /// @nodoc
@@ -54,6 +58,8 @@ class _$HomeModelCopyWithImpl<$Res> implements $HomeModelCopyWith<$Res> {
     Object? team = freezed,
     Object? win = freezed,
     Object? lost = freezed,
+    Object? sortTargetIndex = freezed,
+    Object? ascending = freezed,
   }) {
     return _then(_value.copyWith(
       teamStat: teamStat == freezed
@@ -76,6 +82,14 @@ class _$HomeModelCopyWithImpl<$Res> implements $HomeModelCopyWith<$Res> {
           ? _value.lost
           : lost // ignore: cast_nullable_to_non_nullable
               as int,
+      sortTargetIndex: sortTargetIndex == freezed
+          ? _value.sortTargetIndex
+          : sortTargetIndex // ignore: cast_nullable_to_non_nullable
+              as int,
+      ascending: ascending == freezed
+          ? _value.ascending
+          : ascending // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -91,7 +105,9 @@ abstract class _$$_HomeModelCopyWith<$Res> implements $HomeModelCopyWith<$Res> {
       List<List<dynamic>> playerStats,
       Team team,
       int win,
-      int lost});
+      int lost,
+      int sortTargetIndex,
+      bool ascending});
 }
 
 /// @nodoc
@@ -111,6 +127,8 @@ class __$$_HomeModelCopyWithImpl<$Res> extends _$HomeModelCopyWithImpl<$Res>
     Object? team = freezed,
     Object? win = freezed,
     Object? lost = freezed,
+    Object? sortTargetIndex = freezed,
+    Object? ascending = freezed,
   }) {
     return _then(_$_HomeModel(
       teamStat: teamStat == freezed
@@ -133,6 +151,14 @@ class __$$_HomeModelCopyWithImpl<$Res> extends _$HomeModelCopyWithImpl<$Res>
           ? _value.lost
           : lost // ignore: cast_nullable_to_non_nullable
               as int,
+      sortTargetIndex: sortTargetIndex == freezed
+          ? _value.sortTargetIndex
+          : sortTargetIndex // ignore: cast_nullable_to_non_nullable
+              as int,
+      ascending: ascending == freezed
+          ? _value.ascending
+          : ascending // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -145,7 +171,9 @@ class _$_HomeModel implements _HomeModel {
       required final List<List<dynamic>> playerStats,
       required this.team,
       required this.win,
-      required this.lost})
+      required this.lost,
+      required this.sortTargetIndex,
+      required this.ascending})
       : _teamStat = teamStat,
         _playerStats = playerStats;
 
@@ -169,10 +197,14 @@ class _$_HomeModel implements _HomeModel {
   final int win;
   @override
   final int lost;
+  @override
+  final int sortTargetIndex;
+  @override
+  final bool ascending;
 
   @override
   String toString() {
-    return 'HomeModel(teamStat: $teamStat, playerStats: $playerStats, team: $team, win: $win, lost: $lost)';
+    return 'HomeModel(teamStat: $teamStat, playerStats: $playerStats, team: $team, win: $win, lost: $lost, sortTargetIndex: $sortTargetIndex, ascending: $ascending)';
   }
 
   @override
@@ -185,7 +217,10 @@ class _$_HomeModel implements _HomeModel {
                 .equals(other._playerStats, _playerStats) &&
             const DeepCollectionEquality().equals(other.team, team) &&
             const DeepCollectionEquality().equals(other.win, win) &&
-            const DeepCollectionEquality().equals(other.lost, lost));
+            const DeepCollectionEquality().equals(other.lost, lost) &&
+            const DeepCollectionEquality()
+                .equals(other.sortTargetIndex, sortTargetIndex) &&
+            const DeepCollectionEquality().equals(other.ascending, ascending));
   }
 
   @override
@@ -195,7 +230,9 @@ class _$_HomeModel implements _HomeModel {
       const DeepCollectionEquality().hash(_playerStats),
       const DeepCollectionEquality().hash(team),
       const DeepCollectionEquality().hash(win),
-      const DeepCollectionEquality().hash(lost));
+      const DeepCollectionEquality().hash(lost),
+      const DeepCollectionEquality().hash(sortTargetIndex),
+      const DeepCollectionEquality().hash(ascending));
 
   @JsonKey(ignore: true)
   @override
@@ -209,7 +246,9 @@ abstract class _HomeModel implements HomeModel {
       required final List<List<dynamic>> playerStats,
       required final Team team,
       required final int win,
-      required final int lost}) = _$_HomeModel;
+      required final int lost,
+      required final int sortTargetIndex,
+      required final bool ascending}) = _$_HomeModel;
 
   @override
   List<dynamic> get teamStat;
@@ -221,6 +260,10 @@ abstract class _HomeModel implements HomeModel {
   int get win;
   @override
   int get lost;
+  @override
+  int get sortTargetIndex;
+  @override
+  bool get ascending;
   @override
   @JsonKey(ignore: true)
   _$$_HomeModelCopyWith<_$_HomeModel> get copyWith =>

@@ -15,6 +15,8 @@ class HomeStateNotifier extends StateNotifier<HomeModel> {
       team: teamRepository.findTeam(1)!,
       win: gameRepository.countWinGame(),
       lost: gameRepository.countLostGame(),
+      sortTargetIndex: 0,
+      ascending: false,
     ));
   final GameRepository gameRepository;
   final BoxscoreRepository boxScoreRepository;
