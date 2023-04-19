@@ -6,6 +6,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
+import 'package:path_provider/path_provider.dart';
+import 'package:share_plus/share_plus.dart';
 
 import '../consts/CsvColumns.dart';
 import '../providers/isar_provider.dart';
@@ -90,6 +92,15 @@ class PlayerProfile extends ConsumerWidget {
                 )
               },
             ),
+          IconButton(
+            icon: const Icon(Icons.download),
+            onPressed: () async {
+              final csvFile = File('${(await getApplicationDocumentsDirectory()).path}/csvs/player.csv');
+              String csvString = playerDetail.getStatsString(id);
+              await csvFile.writeAsString(csvString);
+              Share.shareXFiles([XFile('${documentPath.value}/csvs/player.csv', name: 'player.csv')], subject: 'Export', text: 'Output Player Stats');
+            },
+          ),
           IconButton(
             icon: const Icon(Icons.edit),
             onPressed: () => {
