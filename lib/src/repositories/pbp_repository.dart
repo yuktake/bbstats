@@ -960,7 +960,7 @@ class PbpRepository {
     return shotTypeStats;
   }
 
-  List<List<dynamic>> getPlayTypeStats(int? opponentTeamId) {
+  List<List<dynamic>> getPlayTypeStats(int? opponentTeamId, int columnIndex, bool ascending) {
     int isolationFga = isar.pbps.filter().not().playerIsNull().and().game((q) => opponentTeamId==null ? q.not().opponentIsNull() : q.opponent((q) => q.idEqualTo(opponentTeamId))).and().group((q) => q.typeEqualTo(RecordType.THREE_POINT_MISS).or().typeEqualTo(RecordType.THREE_POINT_MADE).or().typeEqualTo(RecordType.TWO_POINT_MADE).or().typeEqualTo(RecordType.TWO_POINT_MISS)).and().shotPosition((q) => q.playTypeEqualTo(PlayType.ISOLATION)).countSync();
     int isolationFgm = isar.pbps.filter().not().playerIsNull().and().game((q) => opponentTeamId==null ? q.not().opponentIsNull() : q.opponent((q) => q.idEqualTo(opponentTeamId))).and().group((q) => q.typeEqualTo(RecordType.THREE_POINT_MADE).or().typeEqualTo(RecordType.TWO_POINT_MADE)).and().shotPosition((q) => q.playTypeEqualTo(PlayType.ISOLATION)).countSync();
     double isolationFgRatio = 0.0;
@@ -1099,10 +1099,16 @@ class PbpRepository {
       offScreenStats,
     ];
 
+    if (ascending) {
+      playTypeStats.sort((a, b) => a[columnIndex].compareTo(b[columnIndex]));
+    } else {
+      playTypeStats.sort((a, b) => b[columnIndex].compareTo(a[columnIndex]));
+    }
+
     return playTypeStats;
   }
 
-  List<List<dynamic>> getShotZoneStats(int? opponentTeamId) {
+  List<List<dynamic>> getShotZoneStats(int? opponentTeamId, int columnIndex, bool ascending) {
     int inThePaintFga = isar.pbps.filter().not().playerIsNull().and().game((q) => opponentTeamId==null ? q.not().opponentIsNull() : q.opponent((q) => q.idEqualTo(opponentTeamId))).and().group((q) => q.typeEqualTo(RecordType.THREE_POINT_MISS).or().typeEqualTo(RecordType.THREE_POINT_MADE).or().typeEqualTo(RecordType.TWO_POINT_MADE).or().typeEqualTo(RecordType.TWO_POINT_MISS)).and().shotPosition((q) => q.shotZoneEqualTo(ShotZone.IN_THE_PAINT)).countSync();
     int inThePaintFgm = isar.pbps.filter().not().playerIsNull().and().game((q) => opponentTeamId==null ? q.not().opponentIsNull() : q.opponent((q) => q.idEqualTo(opponentTeamId))).and().group((q) => q.typeEqualTo(RecordType.THREE_POINT_MADE).or().typeEqualTo(RecordType.TWO_POINT_MADE)).and().shotPosition((q) => q.shotZoneEqualTo(ShotZone.IN_THE_PAINT)).countSync();
     double inThePaintFgRatio = 0.0;
@@ -1174,6 +1180,12 @@ class PbpRepository {
       leftCornerThreeStats,
       rightCornerThreeStats
     ];
+
+    if (ascending) {
+      stats.sort((a, b) => a[columnIndex].compareTo(b[columnIndex]));
+    } else {
+      stats.sort((a, b) => b[columnIndex].compareTo(a[columnIndex]));
+    }
 
     return stats;
   }

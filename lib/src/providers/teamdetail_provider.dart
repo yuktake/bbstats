@@ -24,8 +24,12 @@ class TeamDetailStateNotifier extends StateNotifier<TeamDetailModel> {
         overallStats: gameRepository.getOverallStats(null, null, null),
         winStats: gameRepository.getStatsByResult(null, null, null, Outcome.WIN),
         loseStats: gameRepository.getStatsByResult(null, null, null, Outcome.LOSE),
-        playTypeStats: pbpRepository.getPlayTypeStats(null),
-        shotZoneStats: pbpRepository.getShotZoneStats(null),
+        playTypeStats: pbpRepository.getPlayTypeStats(null, 0, true),
+        playTypeSortTargetIndex: 0,
+        playTypeAscending: true,
+        shotZoneStats: pbpRepository.getShotZoneStats(null, 0, true),
+        shotZoneSortTargetIndex: 0,
+        shotZoneAscending: true,
       )
   );
 
@@ -44,8 +48,8 @@ class TeamDetailStateNotifier extends StateNotifier<TeamDetailModel> {
       overallStats = gameRepository.getOverallStats(start, state.end, state.opponentTeamId);
       winStats = gameRepository.getStatsByResult(start, state.end, state.opponentTeamId, Outcome.WIN);
       loseStats = gameRepository.getStatsByResult(start, state.end, state.opponentTeamId, Outcome.LOSE);
-      playTypeStats = pbpRepository.getPlayTypeStats(state.opponentTeamId);
-      shotZoneStats = pbpRepository.getShotZoneStats(state.opponentTeamId);
+      playTypeStats = pbpRepository.getPlayTypeStats(state.opponentTeamId, state.playTypeSortTargetIndex, state.playTypeAscending);
+      shotZoneStats = pbpRepository.getShotZoneStats(state.opponentTeamId, state.shotZoneSortTargetIndex, state.shotZoneAscending);
     }
 
     state = state.copyWith(
@@ -68,8 +72,8 @@ class TeamDetailStateNotifier extends StateNotifier<TeamDetailModel> {
       overallStats = gameRepository.getOverallStats(state.start, end, state.opponentTeamId);
       winStats = gameRepository.getStatsByResult(state.start, end, state.opponentTeamId, Outcome.WIN);
       loseStats = gameRepository.getStatsByResult(state.start, end, state.opponentTeamId, Outcome.LOSE);
-      playTypeStats = pbpRepository.getPlayTypeStats(state.opponentTeamId);
-      shotZoneStats = pbpRepository.getShotZoneStats(state.opponentTeamId);
+      playTypeStats = pbpRepository.getPlayTypeStats(state.opponentTeamId, state.playTypeSortTargetIndex, state.playTypeAscending);
+      shotZoneStats = pbpRepository.getShotZoneStats(state.opponentTeamId, state.shotZoneSortTargetIndex, state.shotZoneAscending);
     }
 
     state = state.copyWith(
@@ -86,9 +90,29 @@ class TeamDetailStateNotifier extends StateNotifier<TeamDetailModel> {
     state = state.copyWith(
         opponentTeamId: teamId,
         overallStats: gameRepository.getOverallStats(state.start, state.end, teamId),
-        playTypeStats: pbpRepository.getPlayTypeStats(teamId),
-        shotZoneStats: pbpRepository.getShotZoneStats(teamId),
+        playTypeStats: pbpRepository.getPlayTypeStats(teamId, state.playTypeSortTargetIndex, state.playTypeAscending),
+        shotZoneStats: pbpRepository.getShotZoneStats(teamId, state.shotZoneSortTargetIndex, state.shotZoneAscending),
     );
 
+  }
+
+  void updatePlayTypeSortTargetIndex(int index, bool ascending) {
+    List<List<dynamic>> playerTypeStats = pbpRepository.getPlayTypeStats(null, index, ascending);
+
+    state = state.copyWith(
+      playTypeStats: playerTypeStats,
+      playTypeSortTargetIndex: index,
+      playTypeAscending: !state.playTypeAscending,
+    );
+  }
+
+  void updateShotZoneSortTargetIndex(int index, bool ascending) {
+    List<List<dynamic>> shotZoneStats = pbpRepository.getShotZoneStats(null, index, ascending);
+
+    state = state.copyWith(
+      shotZoneStats: shotZoneStats,
+      shotZoneSortTargetIndex: index,
+      shotZoneAscending: !state.shotZoneAscending,
+    );
   }
 }

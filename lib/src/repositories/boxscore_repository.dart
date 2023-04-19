@@ -183,7 +183,6 @@ class BoxscoreRepository {
       }
     }
 
-    print('working');
     return boxScores;
   }
 

@@ -6,6 +6,7 @@ import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
 
+import '../consts/CsvColumns.dart';
 import '../providers/isar_provider.dart';
 
 class TeamProfile extends ConsumerWidget {
@@ -15,9 +16,6 @@ class TeamProfile extends ConsumerWidget {
   ) : super(key: key);
 
   final int id;
-
-  final _isAscending = true;
-  final _currentSortColumn = 0;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -212,8 +210,6 @@ class TeamProfile extends ConsumerWidget {
               SizedBox(
                 height: 100,
                 child: DataTable2(
-                  sortColumnIndex: _currentSortColumn,
-                  sortAscending: _isAscending,
                   columnSpacing: 16,
                   minWidth: 1000,
                   columns: const [
@@ -287,8 +283,6 @@ class TeamProfile extends ConsumerWidget {
               SizedBox(
                 height: 200,
                 child: DataTable2(
-                  sortColumnIndex: _currentSortColumn,
-                  sortAscending: _isAscending,
                   columnSpacing: 16,
                   minWidth: 1000,
                   columns: const [
@@ -373,31 +367,18 @@ class TeamProfile extends ConsumerWidget {
                 height: 500,
                 child: DataTable2(
                   fixedLeftColumns: 1,
-                  sortColumnIndex: _currentSortColumn,
-                  sortAscending: _isAscending,
+                  sortColumnIndex: teamDetailInfo.playTypeSortTargetIndex,
+                  sortAscending: teamDetailInfo.playTypeAscending,
                   minWidth: 1000,
-                  columns: const [
-                    DataColumn(
-                      label: Text('PLAY TYPE'),
-                    ),
-                    DataColumn(
-                      label: Text('FGM'),
-                    ),
-                    DataColumn(
-                      label: Text('FGA'),
-                    ),
-                    DataColumn(
-                      label: Text('FG%'),
-                    ),
-                    DataColumn(
-                      label: Text('3PM'),
-                    ),
-                    DataColumn(
-                      label: Text('3PA'),
-                    ),
-                    DataColumn(
-                      label: Text('3P%'),
-                    ),
+                  columns:  [
+                    for(int i = 0; i < CsvColumns.playTypeColumnList.length; i++) ... {
+                      DataColumn(
+                        label: Text(CsvColumns.playTypeColumnList[i]),
+                        onSort: (columnIndex, isAscending) {
+                          teamDetail.updatePlayTypeSortTargetIndex(i, teamDetailInfo.playTypeAscending);
+                        },
+                      )
+                    }
                   ],
                   rows: teamDetailInfo.playTypeStats.map((e) =>
                       DataRow(
@@ -433,31 +414,18 @@ class TeamProfile extends ConsumerWidget {
                 height: 500,
                 child: DataTable2(
                   fixedLeftColumns: 1,
-                  sortColumnIndex: _currentSortColumn,
-                  sortAscending: _isAscending,
+                  sortColumnIndex: teamDetailInfo.shotZoneSortTargetIndex,
+                  sortAscending: teamDetailInfo.shotZoneAscending,
                   minWidth: 1000,
-                  columns: const [
-                    DataColumn(
-                      label: Text('SHOT ZONE'),
-                    ),
-                    DataColumn(
-                      label: Text('FGM'),
-                    ),
-                    DataColumn(
-                      label: Text('FGA'),
-                    ),
-                    DataColumn(
-                      label: Text('FG%'),
-                    ),
-                    DataColumn(
-                      label: Text('3PM'),
-                    ),
-                    DataColumn(
-                      label: Text('3PA'),
-                    ),
-                    DataColumn(
-                      label: Text('3P%'),
-                    ),
+                  columns: [
+                    for(int i = 0; i < CsvColumns.shotZoneColumnList.length; i++) ... {
+                      DataColumn(
+                        label: Text(CsvColumns.shotZoneColumnList[i]),
+                        onSort: (columnIndex, isAscending) {
+                          teamDetail.updateShotZoneSortTargetIndex(i, teamDetailInfo.shotZoneAscending);
+                        },
+                      )
+                    }
                   ],
                   rows: teamDetailInfo.shotZoneStats.map((e) =>
                       DataRow(

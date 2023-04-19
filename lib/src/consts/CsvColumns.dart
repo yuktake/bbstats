@@ -22,6 +22,26 @@ class CsvColumns {
     'PF',
   ];
 
+  static const List<String> playTypeColumnList = [
+    'PLAY TYPE',
+    'FGM',
+    'FGA',
+    'FG%',
+    '3PM',
+    '3PA',
+    '3P%',
+  ];
+
+  static const List<String> shotZoneColumnList = [
+    'SHOT ZONE',
+    'FGM',
+    'FGA',
+    'FG%',
+    '3PM',
+    '3PA',
+    '3P%',
+  ];
+
   static const List<String> pbpColumnList = [
     'TEAM',
     'PLAYER',
