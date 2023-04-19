@@ -261,61 +261,12 @@ class PlayerProfile extends ConsumerWidget {
               child: DataTable2(
                 columnSpacing: 16,
                 minWidth: 1000,
-                columns: const [
-                  DataColumn(
-                    label: Text('PTS'),
-                  ),
-                  DataColumn(
-                    label: Text('FGM'),
-                  ),
-                  DataColumn(
-                    label: Text('FGA'),
-                  ),
-                  DataColumn(
-                    label: Text('FG%'),
-                  ),
-                  DataColumn(
-                    label: Text('3PM'),
-                  ),
-                  DataColumn(
-                    label: Text('3PA'),
-                  ),
-                  DataColumn(
-                    label: Text('3P%'),
-                  ),
-                  DataColumn(
-                    label: Text('FTM'),
-                  ),
-                  DataColumn(
-                    label: Text('FTA'),
-                  ),
-                  DataColumn(
-                    label: Text('FT%'),
-                  ),
-                  DataColumn(
-                    label: Text('OREB'),
-                  ),
-                  DataColumn(
-                    label: Text('DREB'),
-                  ),
-                  DataColumn(
-                    label: Text('REB'),
-                  ),
-                  DataColumn(
-                    label: Text('AST'),
-                  ),
-                  DataColumn(
-                    label: Text('TO'),
-                  ),
-                  DataColumn(
-                    label: Text('STL'),
-                  ),
-                  DataColumn(
-                    label: Text('BLK'),
-                  ),
-                  DataColumn(
-                    label: Text('PF'),
-                  ),
+                columns: [
+                  for(int i = 0; i < CsvColumns.playerStatColumnList.length; i++) ... {
+                    DataColumn(
+                      label: Text(CsvColumns.playerStatColumnList[i]),
+                    )
+                  }
                 ],
                 rows: [
                   DataRow(

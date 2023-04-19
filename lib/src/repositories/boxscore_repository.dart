@@ -857,28 +857,12 @@ class BoxscoreRepository {
       seasonDRebAvg,
       seasonRebAvg,
       seasonAstAvg,
-      seasonToAvg,
       seasonStlAvg,
       seasonBlkAvg,
+      seasonToAvg,
       seasonPfAvg,
     ];
 
     return seasonStats;
   }
-
-  // Map<int, Boxscore>? findGameBoxScores(int gameId) {
-  //   if (!isar.isOpen) {
-  //     return null;
-  //   }
-  //
-  //   Map<int, Boxscore> boxScoreMap = {};
-  //   final boxScores = isar.boxscores.filter().game((q) => q.idEqualTo(gameId)).findAllSync();
-  //   boxScores.asMap().forEach((int index, Boxscore boxScore)  {
-  //     boxScore.playerHistory.loadSync();
-  //     boxScore.playerHistory.value?.player.loadSync();
-  //     boxScoreMap.putIfAbsent(index, () => boxScore);
-  //   });
-  //
-  //   return boxScoreMap;
-  // }
 }
