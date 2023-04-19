@@ -14,6 +14,10 @@ class TeamDetailModel with _$TeamDetailModel {
     required List<dynamic> winStats,
     required List<dynamic> loseStats,
     required List<List<dynamic>> playTypeStats,
+    required int playTypeSortTargetIndex,
+    required bool playTypeAscending,
     required List<List<dynamic>> shotZoneStats,
+    required int shotZoneSortTargetIndex,
+    required bool shotZoneAscending,
   }) = _TeamDetailModel;
 }
