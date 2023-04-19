@@ -9,7 +9,13 @@ class PlayerDetailModel with _$PlayerDetailModel {
     required DateTime? end,
     required List<dynamic> seasonStats,
     required List<List<dynamic>> shotTypeStats,
+    required int shotTypeSortTargetIndex,
+    required bool shotTypeAscending,
     required List<List<dynamic>> playTypeStats,
+    required int playTypeSortTargetIndex,
+    required bool playTypeAscending,
     required List<List<dynamic>> assistPlayerStats,
+    required int assistSortTargetIndex,
+    required bool assistAscending,
   }) = _PlayerDetailModel;
 }

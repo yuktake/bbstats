@@ -20,9 +20,15 @@ mixin _$PlayerDetailModel {
   DateTime? get end => throw _privateConstructorUsedError;
   List<dynamic> get seasonStats => throw _privateConstructorUsedError;
   List<List<dynamic>> get shotTypeStats => throw _privateConstructorUsedError;
+  int get shotTypeSortTargetIndex => throw _privateConstructorUsedError;
+  bool get shotTypeAscending => throw _privateConstructorUsedError;
   List<List<dynamic>> get playTypeStats => throw _privateConstructorUsedError;
+  int get playTypeSortTargetIndex => throw _privateConstructorUsedError;
+  bool get playTypeAscending => throw _privateConstructorUsedError;
   List<List<dynamic>> get assistPlayerStats =>
       throw _privateConstructorUsedError;
+  int get assistSortTargetIndex => throw _privateConstructorUsedError;
+  bool get assistAscending => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $PlayerDetailModelCopyWith<PlayerDetailModel> get copyWith =>
@@ -39,8 +45,14 @@ abstract class $PlayerDetailModelCopyWith<$Res> {
       DateTime? end,
       List<dynamic> seasonStats,
       List<List<dynamic>> shotTypeStats,
+      int shotTypeSortTargetIndex,
+      bool shotTypeAscending,
       List<List<dynamic>> playTypeStats,
-      List<List<dynamic>> assistPlayerStats});
+      int playTypeSortTargetIndex,
+      bool playTypeAscending,
+      List<List<dynamic>> assistPlayerStats,
+      int assistSortTargetIndex,
+      bool assistAscending});
 }
 
 /// @nodoc
@@ -58,8 +70,14 @@ class _$PlayerDetailModelCopyWithImpl<$Res>
     Object? end = freezed,
     Object? seasonStats = freezed,
     Object? shotTypeStats = freezed,
+    Object? shotTypeSortTargetIndex = freezed,
+    Object? shotTypeAscending = freezed,
     Object? playTypeStats = freezed,
+    Object? playTypeSortTargetIndex = freezed,
+    Object? playTypeAscending = freezed,
     Object? assistPlayerStats = freezed,
+    Object? assistSortTargetIndex = freezed,
+    Object? assistAscending = freezed,
   }) {
     return _then(_value.copyWith(
       start: start == freezed
@@ -78,14 +96,38 @@ class _$PlayerDetailModelCopyWithImpl<$Res>
           ? _value.shotTypeStats
           : shotTypeStats // ignore: cast_nullable_to_non_nullable
               as List<List<dynamic>>,
+      shotTypeSortTargetIndex: shotTypeSortTargetIndex == freezed
+          ? _value.shotTypeSortTargetIndex
+          : shotTypeSortTargetIndex // ignore: cast_nullable_to_non_nullable
+              as int,
+      shotTypeAscending: shotTypeAscending == freezed
+          ? _value.shotTypeAscending
+          : shotTypeAscending // ignore: cast_nullable_to_non_nullable
+              as bool,
       playTypeStats: playTypeStats == freezed
           ? _value.playTypeStats
           : playTypeStats // ignore: cast_nullable_to_non_nullable
               as List<List<dynamic>>,
+      playTypeSortTargetIndex: playTypeSortTargetIndex == freezed
+          ? _value.playTypeSortTargetIndex
+          : playTypeSortTargetIndex // ignore: cast_nullable_to_non_nullable
+              as int,
+      playTypeAscending: playTypeAscending == freezed
+          ? _value.playTypeAscending
+          : playTypeAscending // ignore: cast_nullable_to_non_nullable
+              as bool,
       assistPlayerStats: assistPlayerStats == freezed
           ? _value.assistPlayerStats
           : assistPlayerStats // ignore: cast_nullable_to_non_nullable
               as List<List<dynamic>>,
+      assistSortTargetIndex: assistSortTargetIndex == freezed
+          ? _value.assistSortTargetIndex
+          : assistSortTargetIndex // ignore: cast_nullable_to_non_nullable
+              as int,
+      assistAscending: assistAscending == freezed
+          ? _value.assistAscending
+          : assistAscending // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -102,8 +144,14 @@ abstract class _$$_PlayerDetailModelCopyWith<$Res>
       DateTime? end,
       List<dynamic> seasonStats,
       List<List<dynamic>> shotTypeStats,
+      int shotTypeSortTargetIndex,
+      bool shotTypeAscending,
       List<List<dynamic>> playTypeStats,
-      List<List<dynamic>> assistPlayerStats});
+      int playTypeSortTargetIndex,
+      bool playTypeAscending,
+      List<List<dynamic>> assistPlayerStats,
+      int assistSortTargetIndex,
+      bool assistAscending});
 }
 
 /// @nodoc
@@ -123,8 +171,14 @@ class __$$_PlayerDetailModelCopyWithImpl<$Res>
     Object? end = freezed,
     Object? seasonStats = freezed,
     Object? shotTypeStats = freezed,
+    Object? shotTypeSortTargetIndex = freezed,
+    Object? shotTypeAscending = freezed,
     Object? playTypeStats = freezed,
+    Object? playTypeSortTargetIndex = freezed,
+    Object? playTypeAscending = freezed,
     Object? assistPlayerStats = freezed,
+    Object? assistSortTargetIndex = freezed,
+    Object? assistAscending = freezed,
   }) {
     return _then(_$_PlayerDetailModel(
       start: start == freezed
@@ -143,14 +197,38 @@ class __$$_PlayerDetailModelCopyWithImpl<$Res>
           ? _value._shotTypeStats
           : shotTypeStats // ignore: cast_nullable_to_non_nullable
               as List<List<dynamic>>,
+      shotTypeSortTargetIndex: shotTypeSortTargetIndex == freezed
+          ? _value.shotTypeSortTargetIndex
+          : shotTypeSortTargetIndex // ignore: cast_nullable_to_non_nullable
+              as int,
+      shotTypeAscending: shotTypeAscending == freezed
+          ? _value.shotTypeAscending
+          : shotTypeAscending // ignore: cast_nullable_to_non_nullable
+              as bool,
       playTypeStats: playTypeStats == freezed
           ? _value._playTypeStats
           : playTypeStats // ignore: cast_nullable_to_non_nullable
               as List<List<dynamic>>,
+      playTypeSortTargetIndex: playTypeSortTargetIndex == freezed
+          ? _value.playTypeSortTargetIndex
+          : playTypeSortTargetIndex // ignore: cast_nullable_to_non_nullable
+              as int,
+      playTypeAscending: playTypeAscending == freezed
+          ? _value.playTypeAscending
+          : playTypeAscending // ignore: cast_nullable_to_non_nullable
+              as bool,
       assistPlayerStats: assistPlayerStats == freezed
           ? _value._assistPlayerStats
           : assistPlayerStats // ignore: cast_nullable_to_non_nullable
               as List<List<dynamic>>,
+      assistSortTargetIndex: assistSortTargetIndex == freezed
+          ? _value.assistSortTargetIndex
+          : assistSortTargetIndex // ignore: cast_nullable_to_non_nullable
+              as int,
+      assistAscending: assistAscending == freezed
+          ? _value.assistAscending
+          : assistAscending // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -163,8 +241,14 @@ class _$_PlayerDetailModel implements _PlayerDetailModel {
       required this.end,
       required final List<dynamic> seasonStats,
       required final List<List<dynamic>> shotTypeStats,
+      required this.shotTypeSortTargetIndex,
+      required this.shotTypeAscending,
       required final List<List<dynamic>> playTypeStats,
-      required final List<List<dynamic>> assistPlayerStats})
+      required this.playTypeSortTargetIndex,
+      required this.playTypeAscending,
+      required final List<List<dynamic>> assistPlayerStats,
+      required this.assistSortTargetIndex,
+      required this.assistAscending})
       : _seasonStats = seasonStats,
         _shotTypeStats = shotTypeStats,
         _playTypeStats = playTypeStats,
@@ -188,6 +272,10 @@ class _$_PlayerDetailModel implements _PlayerDetailModel {
     return EqualUnmodifiableListView(_shotTypeStats);
   }
 
+  @override
+  final int shotTypeSortTargetIndex;
+  @override
+  final bool shotTypeAscending;
   final List<List<dynamic>> _playTypeStats;
   @override
   List<List<dynamic>> get playTypeStats {
@@ -195,6 +283,10 @@ class _$_PlayerDetailModel implements _PlayerDetailModel {
     return EqualUnmodifiableListView(_playTypeStats);
   }
 
+  @override
+  final int playTypeSortTargetIndex;
+  @override
+  final bool playTypeAscending;
   final List<List<dynamic>> _assistPlayerStats;
   @override
   List<List<dynamic>> get assistPlayerStats {
@@ -203,8 +295,13 @@ class _$_PlayerDetailModel implements _PlayerDetailModel {
   }
 
   @override
+  final int assistSortTargetIndex;
+  @override
+  final bool assistAscending;
+
+  @override
   String toString() {
-    return 'PlayerDetailModel(start: $start, end: $end, seasonStats: $seasonStats, shotTypeStats: $shotTypeStats, playTypeStats: $playTypeStats, assistPlayerStats: $assistPlayerStats)';
+    return 'PlayerDetailModel(start: $start, end: $end, seasonStats: $seasonStats, shotTypeStats: $shotTypeStats, shotTypeSortTargetIndex: $shotTypeSortTargetIndex, shotTypeAscending: $shotTypeAscending, playTypeStats: $playTypeStats, playTypeSortTargetIndex: $playTypeSortTargetIndex, playTypeAscending: $playTypeAscending, assistPlayerStats: $assistPlayerStats, assistSortTargetIndex: $assistSortTargetIndex, assistAscending: $assistAscending)';
   }
 
   @override
@@ -218,10 +315,22 @@ class _$_PlayerDetailModel implements _PlayerDetailModel {
                 .equals(other._seasonStats, _seasonStats) &&
             const DeepCollectionEquality()
                 .equals(other._shotTypeStats, _shotTypeStats) &&
+            const DeepCollectionEquality().equals(
+                other.shotTypeSortTargetIndex, shotTypeSortTargetIndex) &&
+            const DeepCollectionEquality()
+                .equals(other.shotTypeAscending, shotTypeAscending) &&
             const DeepCollectionEquality()
                 .equals(other._playTypeStats, _playTypeStats) &&
+            const DeepCollectionEquality().equals(
+                other.playTypeSortTargetIndex, playTypeSortTargetIndex) &&
             const DeepCollectionEquality()
-                .equals(other._assistPlayerStats, _assistPlayerStats));
+                .equals(other.playTypeAscending, playTypeAscending) &&
+            const DeepCollectionEquality()
+                .equals(other._assistPlayerStats, _assistPlayerStats) &&
+            const DeepCollectionEquality()
+                .equals(other.assistSortTargetIndex, assistSortTargetIndex) &&
+            const DeepCollectionEquality()
+                .equals(other.assistAscending, assistAscending));
   }
 
   @override
@@ -231,8 +340,14 @@ class _$_PlayerDetailModel implements _PlayerDetailModel {
       const DeepCollectionEquality().hash(end),
       const DeepCollectionEquality().hash(_seasonStats),
       const DeepCollectionEquality().hash(_shotTypeStats),
+      const DeepCollectionEquality().hash(shotTypeSortTargetIndex),
+      const DeepCollectionEquality().hash(shotTypeAscending),
       const DeepCollectionEquality().hash(_playTypeStats),
-      const DeepCollectionEquality().hash(_assistPlayerStats));
+      const DeepCollectionEquality().hash(playTypeSortTargetIndex),
+      const DeepCollectionEquality().hash(playTypeAscending),
+      const DeepCollectionEquality().hash(_assistPlayerStats),
+      const DeepCollectionEquality().hash(assistSortTargetIndex),
+      const DeepCollectionEquality().hash(assistAscending));
 
   @JsonKey(ignore: true)
   @override
@@ -243,13 +358,18 @@ class _$_PlayerDetailModel implements _PlayerDetailModel {
 
 abstract class _PlayerDetailModel implements PlayerDetailModel {
   const factory _PlayerDetailModel(
-          {required final DateTime? start,
-          required final DateTime? end,
-          required final List<dynamic> seasonStats,
-          required final List<List<dynamic>> shotTypeStats,
-          required final List<List<dynamic>> playTypeStats,
-          required final List<List<dynamic>> assistPlayerStats}) =
-      _$_PlayerDetailModel;
+      {required final DateTime? start,
+      required final DateTime? end,
+      required final List<dynamic> seasonStats,
+      required final List<List<dynamic>> shotTypeStats,
+      required final int shotTypeSortTargetIndex,
+      required final bool shotTypeAscending,
+      required final List<List<dynamic>> playTypeStats,
+      required final int playTypeSortTargetIndex,
+      required final bool playTypeAscending,
+      required final List<List<dynamic>> assistPlayerStats,
+      required final int assistSortTargetIndex,
+      required final bool assistAscending}) = _$_PlayerDetailModel;
 
   @override
   DateTime? get start;
@@ -260,9 +380,21 @@ abstract class _PlayerDetailModel implements PlayerDetailModel {
   @override
   List<List<dynamic>> get shotTypeStats;
   @override
+  int get shotTypeSortTargetIndex;
+  @override
+  bool get shotTypeAscending;
+  @override
   List<List<dynamic>> get playTypeStats;
   @override
+  int get playTypeSortTargetIndex;
+  @override
+  bool get playTypeAscending;
+  @override
   List<List<dynamic>> get assistPlayerStats;
+  @override
+  int get assistSortTargetIndex;
+  @override
+  bool get assistAscending;
   @override
   @JsonKey(ignore: true)
   _$$_PlayerDetailModelCopyWith<_$_PlayerDetailModel> get copyWith =>
