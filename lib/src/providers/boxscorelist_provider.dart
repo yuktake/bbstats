@@ -58,8 +58,6 @@ class  BoxScoreListStateNotifier extends StateNotifier<BoxScoreListModel> {
   }
 
   void updateSortTargetIndex(int index, bool ascending) {
-    print(index);
-    print(ascending);
     List<Boxscore> boxScores = boxScoreRepository.findByGame(gameId, index, !ascending);
 
     state = state.copyWith(
