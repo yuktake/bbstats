@@ -7,6 +7,7 @@ import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
 
+import '../consts/CsvColumns.dart';
 import '../providers/isar_provider.dart';
 
 class PlayerProfile extends ConsumerWidget {
@@ -16,8 +17,6 @@ class PlayerProfile extends ConsumerWidget {
   ) : super(key: key);
 
   final int id;
-  final _isAscending = true;
-  final _currentSortColumn = 0;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -260,8 +259,6 @@ class PlayerProfile extends ConsumerWidget {
             SizedBox(
               height: 100,
               child: DataTable2(
-                sortColumnIndex: _currentSortColumn,
-                sortAscending: _isAscending,
                 columnSpacing: 16,
                 minWidth: 1000,
                 columns: const [
@@ -336,31 +333,18 @@ class PlayerProfile extends ConsumerWidget {
               height: 500,
               child: DataTable2(
                 fixedLeftColumns: 1,
-                sortColumnIndex: _currentSortColumn,
-                sortAscending: _isAscending,
+                sortColumnIndex: playerDetailInfo.shotTypeSortTargetIndex,
+                sortAscending: playerDetailInfo.shotTypeAscending,
                 minWidth: 1000,
-                columns: const [
-                  DataColumn(
-                    label: Text('SHOT TYPE'),
-                  ),
-                  DataColumn(
-                    label: Text('FGM'),
-                  ),
-                  DataColumn(
-                    label: Text('FGA'),
-                  ),
-                  DataColumn(
-                    label: Text('FG%'),
-                  ),
-                  DataColumn(
-                    label: Text('3PM'),
-                  ),
-                  DataColumn(
-                    label: Text('3PA'),
-                  ),
-                  DataColumn(
-                    label: Text('3P%'),
-                  ),
+                columns: [
+                  for(int i = 0; i < CsvColumns.shotTypeColumnList.length; i++) ... {
+                    DataColumn(
+                      label: Text(CsvColumns.shotTypeColumnList[i]),
+                      onSort: (columnIndex, isAscending) {
+                        playerDetail.updateShotTypeSortTargetIndex(i, playerDetailInfo.shotTypeAscending);
+                      },
+                    )
+                  }
                 ],
                 rows: playerDetailInfo.shotTypeStats.map((e) =>
                     DataRow(
@@ -396,31 +380,18 @@ class PlayerProfile extends ConsumerWidget {
               height: 500,
               child: DataTable2(
                 fixedLeftColumns: 1,
-                sortColumnIndex: _currentSortColumn,
-                sortAscending: _isAscending,
+                sortColumnIndex: playerDetailInfo.playTypeSortTargetIndex,
+                sortAscending: playerDetailInfo.playTypeAscending,
                 minWidth: 1000,
-                columns: const [
-                  DataColumn(
-                    label: Text('PLAY TYPE'),
-                  ),
-                  DataColumn(
-                    label: Text('FGM'),
-                  ),
-                  DataColumn(
-                    label: Text('FGA'),
-                  ),
-                  DataColumn(
-                    label: Text('FG%'),
-                  ),
-                  DataColumn(
-                    label: Text('3PM'),
-                  ),
-                  DataColumn(
-                    label: Text('3PA'),
-                  ),
-                  DataColumn(
-                    label: Text('3P%'),
-                  ),
+                columns:  [
+                  for(int i = 0; i < CsvColumns.playTypeColumnList.length; i++) ... {
+                    DataColumn(
+                      label: Text(CsvColumns.playTypeColumnList[i]),
+                      onSort: (columnIndex, isAscending) {
+                        playerDetail.updatePlayTypeSortTargetIndex(i, playerDetailInfo.playTypeAscending);
+                      },
+                    )
+                  }
                 ],
                 rows: playerDetailInfo.playTypeStats.map((e) =>
                     DataRow(
@@ -456,16 +427,18 @@ class PlayerProfile extends ConsumerWidget {
               height: 500,
               child: DataTable2(
                 fixedLeftColumns: 1,
-                sortColumnIndex: _currentSortColumn,
-                sortAscending: _isAscending,
+                sortColumnIndex: playerDetailInfo.assistSortTargetIndex,
+                sortAscending: playerDetailInfo.assistAscending,
                 // minWidth: 1000,
-                columns: const [
-                  DataColumn(
-                    label: Text('PLAYER'),
-                  ),
-                  DataColumn(
-                    label: Text('FGM'),
-                  ),
+                columns: [
+                  for(int i = 0; i < CsvColumns.assistColumnList.length; i++) ... {
+                    DataColumn(
+                      label: Text(CsvColumns.assistColumnList[i]),
+                      onSort: (columnIndex, isAscending) {
+                        playerDetail.updateAssistSortTargetIndex(i, playerDetailInfo.assistAscending);
+                      },
+                    )
+                  }
                 ],
                 rows: playerDetailInfo.assistPlayerStats.map((e) =>
                     DataRow(

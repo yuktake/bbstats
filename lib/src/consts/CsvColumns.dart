@@ -32,6 +32,21 @@ class CsvColumns {
     '3P%',
   ];
 
+  static const List<String> shotTypeColumnList = [
+    'SHOT TYPE',
+    'FGM',
+    'FGA',
+    'FG%',
+    '3PM',
+    '3PA',
+    '3P%',
+  ];
+
+  static const List<String> assistColumnList = [
+    'PLAYER',
+    'FGM',
+  ];
+
   static const List<String> shotZoneColumnList = [
     'SHOT ZONE',
     'FGM',

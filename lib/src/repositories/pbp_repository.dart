@@ -818,7 +818,7 @@ class PbpRepository {
     });
   }
 
-  List<List<dynamic>> getShotTypeStatsByPlayer(int playerId) {
+  List<List<dynamic>> getShotTypeStatsByPlayer(int playerId, int columnIndex, bool ascending) {
     int layupFga = isar.pbps.filter().player((q) => q.idEqualTo(playerId)).and().group((q) => q.typeEqualTo(RecordType.THREE_POINT_MISS).or().typeEqualTo(RecordType.THREE_POINT_MADE).or().typeEqualTo(RecordType.TWO_POINT_MADE).or().typeEqualTo(RecordType.TWO_POINT_MISS)).and().shotPosition((q) => q.shotTypeEqualTo(ShotType.LAYUP)).countSync();
     int layupFgm = isar.pbps.filter().player((q) => q.idEqualTo(playerId)).and().group((q) => q.typeEqualTo(RecordType.THREE_POINT_MADE).or().typeEqualTo(RecordType.TWO_POINT_MADE)).and().shotPosition((q) => q.shotTypeEqualTo(ShotType.LAYUP)).countSync();
     double layupFgRatio = 0.0;
@@ -956,6 +956,12 @@ class PbpRepository {
       dunkStats,
       alleyOopStats
     ];
+
+    if (ascending) {
+      shotTypeStats.sort((a, b) => a[columnIndex].compareTo(b[columnIndex]));
+    } else {
+      shotTypeStats.sort((a, b) => b[columnIndex].compareTo(a[columnIndex]));
+    }
 
     return shotTypeStats;
   }
@@ -1190,7 +1196,7 @@ class PbpRepository {
     return stats;
   }
 
-  List<List<dynamic>> getPlayTypeStatsByPlayer(int playerId) {
+  List<List<dynamic>> getPlayTypeStatsByPlayer(int playerId, int columnIndex, bool ascending) {
     int isolationFga = isar.pbps.filter().player((q) => q.idEqualTo(playerId)).and().group((q) => q.typeEqualTo(RecordType.THREE_POINT_MISS).or().typeEqualTo(RecordType.THREE_POINT_MADE).or().typeEqualTo(RecordType.TWO_POINT_MADE).or().typeEqualTo(RecordType.TWO_POINT_MISS)).and().shotPosition((q) => q.playTypeEqualTo(PlayType.ISOLATION)).countSync();
     int isolationFgm = isar.pbps.filter().player((q) => q.idEqualTo(playerId)).and().group((q) => q.typeEqualTo(RecordType.THREE_POINT_MADE).or().typeEqualTo(RecordType.TWO_POINT_MADE)).and().shotPosition((q) => q.playTypeEqualTo(PlayType.ISOLATION)).countSync();
     double isolationFgRatio = 0.0;
@@ -1329,10 +1335,16 @@ class PbpRepository {
       offScreenStats,
     ];
 
+    if (ascending) {
+      playTypeStats.sort((a, b) => a[columnIndex].compareTo(b[columnIndex]));
+    } else {
+      playTypeStats.sort((a, b) => b[columnIndex].compareTo(a[columnIndex]));
+    }
+
     return playTypeStats;
   }
 
-  List<List<dynamic>> getAssistPlayerStats(int playerId) {
+  List<List<dynamic>> getAssistPlayerStats(int playerId, int columnIndex, bool ascending) {
     List<Player> players = isar.players.filter().not().idEqualTo(playerId).findAllSync();
     Map<int,int> maps = {};
     for (var player in players) {
@@ -1363,6 +1375,12 @@ class PbpRepository {
         maps[player.id],
       ];
       lists.add(list);
+    }
+
+    if (ascending) {
+      lists.sort((a, b) => a[columnIndex].compareTo(b[columnIndex]));
+    } else {
+      lists.sort((a, b) => b[columnIndex].compareTo(a[columnIndex]));
     }
 
     return lists;
