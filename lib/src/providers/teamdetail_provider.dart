@@ -5,6 +5,7 @@ import 'package:bb_stats/src/repositories/game_repository.dart';
 import 'package:bb_stats/src/repositories/team_repository.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../consts/CsvColumns.dart';
 import '../enums/Outcome.dart';
 import '../repositories/boxscore_repository.dart';
 import '../repositories/pbp_repository.dart';
@@ -114,5 +115,48 @@ class TeamDetailStateNotifier extends StateNotifier<TeamDetailModel> {
       shotZoneSortTargetIndex: index,
       shotZoneAscending: !state.shotZoneAscending,
     );
+  }
+
+  String getStatsString(int id) {
+    List<String> stats = [
+      CsvColumns.teamStatColumnList.join(','),
+    ];
+    List<String> overallList = [];
+    for (var item in state.overallStats) {
+      overallList.add(item.toString());
+    }
+    stats.add(overallList.join(','));
+
+    stats.add(CsvColumns.resultStatColumnList.join(','));
+    List<String> winList = [];
+    for (var item in state.winStats) {
+      winList.add(item.toString());
+    }
+    stats.add(winList.join(','));
+    List<String> loseList = [];
+    for (var item in state.loseStats) {
+      loseList.add(item.toString());
+    }
+    stats.add(loseList.join(','));
+
+    stats.add(CsvColumns.playTypeColumnList.join(','));
+    for (var stat in state.playTypeStats) {
+      List<String> tmpList = [];
+      for (var item in stat) {
+        tmpList.add(item.toString());
+      }
+      stats.add(tmpList.join(','));
+    }
+
+    stats.add(CsvColumns.shotZoneColumnList.join(','));
+    for (var stat in state.shotZoneStats) {
+      List<String> tmpList = [];
+      for (var item in stat) {
+        tmpList.add(item.toString());
+      }
+      stats.add(tmpList.join(','));
+    }
+
+    return stats.join("\n");
   }
 }

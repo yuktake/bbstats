@@ -21,6 +21,49 @@ class CsvColumns {
     'PF',
   ];
 
+  static const List<String> teamStatColumnList = [
+    'PTS',
+    'FGM',
+    'FGA',
+    'FG%',
+    '3PM',
+    '3PA',
+    '3P%',
+    'FTM',
+    'FTA',
+    'FT%',
+    'OREB',
+    'DREB',
+    'REB',
+    'AST',
+    'STL',
+    'BLK',
+    'TO',
+    'PF',
+  ];
+
+  static const List<String> resultStatColumnList = [
+    '',
+    'PTS',
+    'FGM',
+    'FGA',
+    'FG%',
+    '3PM',
+    '3PA',
+    '3P%',
+    'FTM',
+    'FTA',
+    'FT%',
+    'OREB',
+    'DREB',
+    'REB',
+    'AST',
+    'STL',
+    'BLK',
+    'TO',
+    'PF',
+  ];
+
   static const List<String> boxScoreColumnList = [
     'PLAYER',
     'PTS',

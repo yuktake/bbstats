@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:bb_stats/src/screens/player_profile.dart';
 import 'package:bb_stats/src/screens/team_edit.dart';
 import 'package:data_table_2/data_table_2.dart';
@@ -5,6 +7,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
+import 'package:path_provider/path_provider.dart';
+import 'package:share_plus/share_plus.dart';
 
 import '../consts/CsvColumns.dart';
 import '../providers/isar_provider.dart';
@@ -30,6 +34,15 @@ class TeamProfile extends ConsumerWidget {
         appBar: AppBar(
           title: const Text('Team Profile'),
           actions: [
+            IconButton(
+              icon: const Icon(Icons.download),
+              onPressed: () async {
+                final csvFile = File('${(await getApplicationDocumentsDirectory()).path}/csvs/team.csv');
+                String csvString = teamDetail.getStatsString(id);
+                await csvFile.writeAsString(csvString);
+                Share.shareXFiles([XFile('${documentPath.value}/csvs/team.csv', name: 'team.csv')], subject: 'Export', text: 'Output Team Stats');
+              },
+            ),
             IconButton(
               icon: const Icon(Icons.edit),
               onPressed: () => {
@@ -212,61 +225,12 @@ class TeamProfile extends ConsumerWidget {
                 child: DataTable2(
                   columnSpacing: 16,
                   minWidth: 1000,
-                  columns: const [
-                    DataColumn(
-                      label: Text('PTS'),
-                    ),
-                    DataColumn(
-                      label: Text('FGM'),
-                    ),
-                    DataColumn(
-                      label: Text('FGA'),
-                    ),
-                    DataColumn(
-                      label: Text('FG%'),
-                    ),
-                    DataColumn(
-                      label: Text('3PM'),
-                    ),
-                    DataColumn(
-                      label: Text('3PA'),
-                    ),
-                    DataColumn(
-                      label: Text('3P%'),
-                    ),
-                    DataColumn(
-                      label: Text('FTM'),
-                    ),
-                    DataColumn(
-                      label: Text('FTA'),
-                    ),
-                    DataColumn(
-                      label: Text('FT%'),
-                    ),
-                    DataColumn(
-                      label: Text('OREB'),
-                    ),
-                    DataColumn(
-                      label: Text('DREB'),
-                    ),
-                    DataColumn(
-                      label: Text('REB'),
-                    ),
-                    DataColumn(
-                      label: Text('AST'),
-                    ),
-                    DataColumn(
-                      label: Text('TO'),
-                    ),
-                    DataColumn(
-                      label: Text('STL'),
-                    ),
-                    DataColumn(
-                      label: Text('BLK'),
-                    ),
-                    DataColumn(
-                      label: Text('PF'),
-                    ),
+                  columns: [
+                    for(int i = 0; i < CsvColumns.teamStatColumnList.length; i++) ... {
+                      DataColumn(
+                        label: Text(CsvColumns.teamStatColumnList[i]),
+                      )
+                    }
                   ],
                   rows: [
                     DataRow(
@@ -285,64 +249,12 @@ class TeamProfile extends ConsumerWidget {
                 child: DataTable2(
                   columnSpacing: 16,
                   minWidth: 1000,
-                  columns: const [
-                    DataColumn(
-                      label: Text(''),
-                    ),
-                    DataColumn(
-                      label: Text('PTS'),
-                    ),
-                    DataColumn(
-                      label: Text('FGM'),
-                    ),
-                    DataColumn(
-                      label: Text('FGA'),
-                    ),
-                    DataColumn(
-                      label: Text('FG%'),
-                    ),
-                    DataColumn(
-                      label: Text('3PM'),
-                    ),
-                    DataColumn(
-                      label: Text('3PA'),
-                    ),
-                    DataColumn(
-                      label: Text('3P%'),
-                    ),
-                    DataColumn(
-                      label: Text('FTM'),
-                    ),
-                    DataColumn(
-                      label: Text('FTA'),
-                    ),
-                    DataColumn(
-                      label: Text('FT%'),
-                    ),
-                    DataColumn(
-                      label: Text('OREB'),
-                    ),
-                    DataColumn(
-                      label: Text('DREB'),
-                    ),
-                    DataColumn(
-                      label: Text('REB'),
-                    ),
-                    DataColumn(
-                      label: Text('AST'),
-                    ),
-                    DataColumn(
-                      label: Text('TO'),
-                    ),
-                    DataColumn(
-                      label: Text('STL'),
-                    ),
-                    DataColumn(
-                      label: Text('BLK'),
-                    ),
-                    DataColumn(
-                      label: Text('PF'),
-                    ),
+                  columns: [
+                    for(int i = 0; i < CsvColumns.resultStatColumnList.length; i++) ... {
+                      DataColumn(
+                        label: Text(CsvColumns.resultStatColumnList[i]),
+                      )
+                    }
                   ],
                   rows: [
                     DataRow(

@@ -997,9 +997,9 @@ class GameRepository {
       seasonDRebAvg,
       seasonRebAvg,
       seasonAstAvg,
-      seasonToAvg,
       seasonStlAvg,
       seasonBlkAvg,
+      seasonToAvg,
       seasonPfAvg,
     ];
 
@@ -1116,9 +1116,9 @@ class GameRepository {
       seasonDRebAvg,
       seasonRebAvg,
       seasonAstAvg,
-      seasonToAvg,
       seasonStlAvg,
       seasonBlkAvg,
+      seasonToAvg,
       seasonPfAvg,
     ];
 
