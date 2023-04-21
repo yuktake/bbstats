@@ -3,7 +3,9 @@ import 'package:bb_stats/src/providers/isar_provider.dart';
 import 'package:bb_stats/src/screens/tutorial.dart';
 import 'package:data_table_2/data_table_2.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:intl/intl.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class HomeScreen extends ConsumerWidget {
@@ -143,6 +145,43 @@ class HomeScreen extends ConsumerWidget {
                           ),
                         ],
                       ),
+                    ),
+
+                    Row(
+                      children: [
+                        TextButton(
+                          onPressed: () {
+                            DatePicker.showDatePicker(context,
+                                showTitleActions: true,
+                                minTime: DateTime(1950, 1, 1),
+                                maxTime: DateTime.now(),
+                                onConfirm: (date) {
+                                  home.updateStartDate(date);
+                                },
+                                currentTime: homeInfo.start,
+                                locale: LocaleType.jp
+                            );
+                          },
+                          child: Text(homeInfo.start == null ? '-/-/-/' : DateFormat('yyyy-MM-dd').format(homeInfo.start!), style: const TextStyle(color: Colors.black)),
+                        ),
+                        const Text('-'),
+                        TextButton(
+                          onPressed: () {
+                            DatePicker.showDatePicker(context,
+                                showTitleActions: true,
+                                minTime: DateTime(1950, 1, 1),
+                                maxTime: DateTime.now(),
+                                onConfirm: (date) {
+                                  DateTime modifiedDateTime = DateTime(date.year, date.month, date.day, 23, 59, 59);
+                                  home.updateEndDate(modifiedDateTime);
+                                },
+                                currentTime: homeInfo.end,
+                                locale: LocaleType.jp
+                            );
+                          },
+                          child: Text(homeInfo.end == null ? '-/-/-/' : DateFormat('yyyy-MM-dd').format(homeInfo.end!), style: const TextStyle(color: Colors.black)),
+                        ),
+                      ],
                     ),
 
                     Padding(

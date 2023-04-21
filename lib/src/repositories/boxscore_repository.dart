@@ -186,7 +186,7 @@ class BoxscoreRepository {
     return boxScores;
   }
 
-  List<List<dynamic>> getAvgBoxScores(int columnIndex, bool ascending) {
+  List<List<dynamic>> getAvgBoxScores(DateTime? start, DateTime? end, int columnIndex, bool ascending) {
     final players = isar.players.filter().visibleEqualTo(true).findAllSync();
     if (players.isEmpty) {
       return [];
@@ -195,22 +195,30 @@ class BoxscoreRepository {
     List<List<dynamic>> playerStats = [];
 
     for (var player in players) {
-      final boxScoreNum = isar.boxscores.filter().player((q) => q.idEqualTo(player.id)).countSync();
-      final ptsSum = isar.boxscores.filter().player((q) => q.idEqualTo(player.id)).ptsProperty().sumSync();
-      final fgmSum = isar.boxscores.filter().player((q) => q.idEqualTo(player.id)).fgmProperty().sumSync();
-      final fgaSum = isar.boxscores.filter().player((q) => q.idEqualTo(player.id)).fgaProperty().sumSync();
-      final tpmSum = isar.boxscores.filter().player((q) => q.idEqualTo(player.id)).tpmProperty().sumSync();
-      final tpaSum = isar.boxscores.filter().player((q) => q.idEqualTo(player.id)).tpaProperty().sumSync();
-      final ftmSum = isar.boxscores.filter().player((q) => q.idEqualTo(player.id)).ftmProperty().sumSync();
-      final ftaSum = isar.boxscores.filter().player((q) => q.idEqualTo(player.id)).ftaProperty().sumSync();
-      final oRebSum = isar.boxscores.filter().player((q) => q.idEqualTo(player.id)).oRebProperty().sumSync();
-      final dRebSum = isar.boxscores.filter().player((q) => q.idEqualTo(player.id)).dRebProperty().sumSync();
-      final rebSum = isar.boxscores.filter().player((q) => q.idEqualTo(player.id)).rebProperty().sumSync();
-      final astSum = isar.boxscores.filter().player((q) => q.idEqualTo(player.id)).astProperty().sumSync();
-      final stlSum = isar.boxscores.filter().player((q) => q.idEqualTo(player.id)).stlProperty().sumSync();
-      final blkSum = isar.boxscores.filter().player((q) => q.idEqualTo(player.id)).blkProperty().sumSync();
-      final toSum = isar.boxscores.filter().player((q) => q.idEqualTo(player.id)).toProperty().sumSync();
-      final pfSum = isar.boxscores.filter().player((q) => q.idEqualTo(player.id)).pfProperty().sumSync();
+      QueryBuilder<Boxscore, Boxscore, QAfterFilterCondition> queryBuilder = isar.boxscores.filter().player((q) => q.idEqualTo(player.id));
+      if (start != null) {
+        queryBuilder = queryBuilder.game((q) => q.gameDateGreaterThan(start, include: true));
+      }
+      if (end != null) {
+        queryBuilder = queryBuilder.game((q) => q.gameDateLessThan(end, include: true));
+      }
+
+      final boxScoreNum = queryBuilder.countSync();
+      final ptsSum = queryBuilder.ptsProperty().sumSync();
+      final fgmSum = queryBuilder.fgmProperty().sumSync();
+      final fgaSum = queryBuilder.fgaProperty().sumSync();
+      final tpmSum = queryBuilder.tpmProperty().sumSync();
+      final tpaSum = queryBuilder.tpaProperty().sumSync();
+      final ftmSum = queryBuilder.ftmProperty().sumSync();
+      final ftaSum = queryBuilder.ftaProperty().sumSync();
+      final oRebSum = queryBuilder.oRebProperty().sumSync();
+      final dRebSum = queryBuilder.dRebProperty().sumSync();
+      final rebSum = queryBuilder.rebProperty().sumSync();
+      final astSum = queryBuilder.astProperty().sumSync();
+      final stlSum = queryBuilder.stlProperty().sumSync();
+      final blkSum = queryBuilder.blkProperty().sumSync();
+      final toSum = queryBuilder.toProperty().sumSync();
+      final pfSum = queryBuilder.pfProperty().sumSync();
 
       final ptsAvg = boxScoreNum == 0 ? 0.0 : ((ptsSum/boxScoreNum) * 10).round() / 10;
       final fgmAvg = boxScoreNum == 0 ? 0.0 : ((fgmSum/boxScoreNum) * 10).round() / 10;
