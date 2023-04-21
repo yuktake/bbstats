@@ -17,6 +17,8 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$HomeModel {
   List<dynamic> get teamStat => throw _privateConstructorUsedError;
+  DateTime? get start => throw _privateConstructorUsedError;
+  DateTime? get end => throw _privateConstructorUsedError;
   List<List<dynamic>> get playerStats => throw _privateConstructorUsedError;
   Team get team => throw _privateConstructorUsedError;
   int get win => throw _privateConstructorUsedError;
@@ -35,6 +37,8 @@ abstract class $HomeModelCopyWith<$Res> {
       _$HomeModelCopyWithImpl<$Res>;
   $Res call(
       {List<dynamic> teamStat,
+      DateTime? start,
+      DateTime? end,
       List<List<dynamic>> playerStats,
       Team team,
       int win,
@@ -54,6 +58,8 @@ class _$HomeModelCopyWithImpl<$Res> implements $HomeModelCopyWith<$Res> {
   @override
   $Res call({
     Object? teamStat = freezed,
+    Object? start = freezed,
+    Object? end = freezed,
     Object? playerStats = freezed,
     Object? team = freezed,
     Object? win = freezed,
@@ -66,6 +72,14 @@ class _$HomeModelCopyWithImpl<$Res> implements $HomeModelCopyWith<$Res> {
           ? _value.teamStat
           : teamStat // ignore: cast_nullable_to_non_nullable
               as List<dynamic>,
+      start: start == freezed
+          ? _value.start
+          : start // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      end: end == freezed
+          ? _value.end
+          : end // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
       playerStats: playerStats == freezed
           ? _value.playerStats
           : playerStats // ignore: cast_nullable_to_non_nullable
@@ -102,6 +116,8 @@ abstract class _$$_HomeModelCopyWith<$Res> implements $HomeModelCopyWith<$Res> {
   @override
   $Res call(
       {List<dynamic> teamStat,
+      DateTime? start,
+      DateTime? end,
       List<List<dynamic>> playerStats,
       Team team,
       int win,
@@ -123,6 +139,8 @@ class __$$_HomeModelCopyWithImpl<$Res> extends _$HomeModelCopyWithImpl<$Res>
   @override
   $Res call({
     Object? teamStat = freezed,
+    Object? start = freezed,
+    Object? end = freezed,
     Object? playerStats = freezed,
     Object? team = freezed,
     Object? win = freezed,
@@ -135,6 +153,14 @@ class __$$_HomeModelCopyWithImpl<$Res> extends _$HomeModelCopyWithImpl<$Res>
           ? _value._teamStat
           : teamStat // ignore: cast_nullable_to_non_nullable
               as List<dynamic>,
+      start: start == freezed
+          ? _value.start
+          : start // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      end: end == freezed
+          ? _value.end
+          : end // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
       playerStats: playerStats == freezed
           ? _value._playerStats
           : playerStats // ignore: cast_nullable_to_non_nullable
@@ -168,6 +194,8 @@ class __$$_HomeModelCopyWithImpl<$Res> extends _$HomeModelCopyWithImpl<$Res>
 class _$_HomeModel implements _HomeModel {
   const _$_HomeModel(
       {required final List<dynamic> teamStat,
+      required this.start,
+      required this.end,
       required final List<List<dynamic>> playerStats,
       required this.team,
       required this.win,
@@ -184,6 +212,10 @@ class _$_HomeModel implements _HomeModel {
     return EqualUnmodifiableListView(_teamStat);
   }
 
+  @override
+  final DateTime? start;
+  @override
+  final DateTime? end;
   final List<List<dynamic>> _playerStats;
   @override
   List<List<dynamic>> get playerStats {
@@ -204,7 +236,7 @@ class _$_HomeModel implements _HomeModel {
 
   @override
   String toString() {
-    return 'HomeModel(teamStat: $teamStat, playerStats: $playerStats, team: $team, win: $win, lost: $lost, sortTargetIndex: $sortTargetIndex, ascending: $ascending)';
+    return 'HomeModel(teamStat: $teamStat, start: $start, end: $end, playerStats: $playerStats, team: $team, win: $win, lost: $lost, sortTargetIndex: $sortTargetIndex, ascending: $ascending)';
   }
 
   @override
@@ -213,6 +245,8 @@ class _$_HomeModel implements _HomeModel {
         (other.runtimeType == runtimeType &&
             other is _$_HomeModel &&
             const DeepCollectionEquality().equals(other._teamStat, _teamStat) &&
+            const DeepCollectionEquality().equals(other.start, start) &&
+            const DeepCollectionEquality().equals(other.end, end) &&
             const DeepCollectionEquality()
                 .equals(other._playerStats, _playerStats) &&
             const DeepCollectionEquality().equals(other.team, team) &&
@@ -227,6 +261,8 @@ class _$_HomeModel implements _HomeModel {
   int get hashCode => Object.hash(
       runtimeType,
       const DeepCollectionEquality().hash(_teamStat),
+      const DeepCollectionEquality().hash(start),
+      const DeepCollectionEquality().hash(end),
       const DeepCollectionEquality().hash(_playerStats),
       const DeepCollectionEquality().hash(team),
       const DeepCollectionEquality().hash(win),
@@ -243,6 +279,8 @@ class _$_HomeModel implements _HomeModel {
 abstract class _HomeModel implements HomeModel {
   const factory _HomeModel(
       {required final List<dynamic> teamStat,
+      required final DateTime? start,
+      required final DateTime? end,
       required final List<List<dynamic>> playerStats,
       required final Team team,
       required final int win,
@@ -252,6 +290,10 @@ abstract class _HomeModel implements HomeModel {
 
   @override
   List<dynamic> get teamStat;
+  @override
+  DateTime? get start;
+  @override
+  DateTime? get end;
   @override
   List<List<dynamic>> get playerStats;
   @override
