@@ -106,31 +106,31 @@ var sidebarItems = [
     ),
     screen: const PlayersScreen(),
   ),
-  SidebarItem(
-    title: "Opponent Teams",
-    background: const LinearGradient(
-      begin: Alignment.topLeft,
-      end: Alignment.bottomRight,
-      colors: [Color(0xFF434244), Color(0xFF101013)],
-    ),
-    icon: const Icon(
-      Icons.folder_shared,
-      color: Colors.white,
-    ),
-    screen: const PlayersScreen(),
-  ),
-  SidebarItem(
-    title: "Data Export",
-    background: const LinearGradient(
-        begin: Alignment.topLeft,
-        end: Alignment.bottomRight,
-        colors: [Color(0xFFFAD64A), Color(0xFFEA880F)]),
-    icon: const Icon(
-      Icons.import_export,
-      color: Colors.white,
-    ),
-    screen: ExportScreen(),
-  ),
+  // SidebarItem(
+  //   title: "Opponent Teams",
+  //   background: const LinearGradient(
+  //     begin: Alignment.topLeft,
+  //     end: Alignment.bottomRight,
+  //     colors: [Color(0xFF434244), Color(0xFF101013)],
+  //   ),
+  //   icon: const Icon(
+  //     Icons.folder_shared,
+  //     color: Colors.white,
+  //   ),
+  //   screen: const PlayersScreen(),
+  // ),
+  // SidebarItem(
+  //   title: "Data Export",
+  //   background: const LinearGradient(
+  //       begin: Alignment.topLeft,
+  //       end: Alignment.bottomRight,
+  //       colors: [Color(0xFFFAD64A), Color(0xFFEA880F)]),
+  //   icon: const Icon(
+  //     Icons.import_export,
+  //     color: Colors.white,
+  //   ),
+  //   screen: ExportScreen(),
+  // ),
   SidebarItem(
     title: "Setting Details",
     background: const LinearGradient(
@@ -144,6 +144,7 @@ var sidebarItems = [
     ),
     screen: const SettingDetailsScreen(),
   ),
+
   // SidebarItem(
   //   title: "Agreement",
   //   background: const LinearGradient(

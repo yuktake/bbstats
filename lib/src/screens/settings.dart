@@ -12,20 +12,18 @@ class SettingScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Settings'),
+        title: const Text('Settings'),
       ),
       body: Padding(
-        padding: EdgeInsets.only(top: 16.0, left: 16.0, right: 16.0),
-        child: SingleChildScrollView(
-          scrollDirection: Axis.vertical,
-          child: Column(
+        padding: const EdgeInsets.only(top: 16.0, left: 16.0, right: 16.0),
+        child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Container(
                 alignment: Alignment.centerLeft,
                 width: MediaQuery.of(context).size.width,
                 height: 100,
-                child: Text(
+                child: const Text(
                     "General",
                     style: TextStyle(
                       fontSize: 32.0,
@@ -34,11 +32,14 @@ class SettingScreen extends StatelessWidget {
                     ),
                 )
               ),
-              for (final sidebarItem in sidebarItems)
-                SidebarRow(item: sidebarItem)
+
+              for(int i = 0; i < sidebarItems.length; i++) ... {
+                sidebarItems.last == sidebarItems[i] ? const Spacer() : Container(),
+                SidebarRow(item: sidebarItems[i])
+              }
             ],
           ),
-        ),
+
       )
     );
   }
