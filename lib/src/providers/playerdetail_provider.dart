@@ -30,6 +30,22 @@ class PlayerDetailStateNotifier extends StateNotifier<PlayerDetailModel> {
   final BoxscoreRepository boxScoreRepository;
   final PbpRepository pbpRepository;
 
+  List<dynamic> getSeasonStats() {
+    return boxScoreRepository.getSeasonStats(playerId, null, null);
+  }
+
+  List<List<dynamic>> getShotTypeStats(int index, bool ascending) {
+    return pbpRepository.getShotTypeStatsByPlayer(playerId, index, ascending);
+  }
+
+  List<List<dynamic>> getPlayTypeStats(int index, bool ascending) {
+    return pbpRepository.getPlayTypeStatsByPlayer(playerId, index, ascending);
+  }
+
+  List<List<dynamic>> getAssistPlayerStats(int index, bool ascending) {
+    return pbpRepository.getAssistPlayerStats(playerId, index, ascending);
+  }
+
   void updateStartDate(DateTime start) {
     List<dynamic> seasonStats = state.seasonStats;
     if (state.end != null) {

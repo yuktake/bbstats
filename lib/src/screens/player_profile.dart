@@ -281,7 +281,7 @@ class PlayerProfile extends ConsumerWidget {
                 ],
                 rows: [
                   DataRow(
-                    cells: playerDetailInfo.seasonStats.map((e) =>
+                    cells: playerDetail.getSeasonStats().map((e) =>
                       DataCell(
                         Text('$e'),
                       ),
@@ -308,7 +308,7 @@ class PlayerProfile extends ConsumerWidget {
                     )
                   }
                 ],
-                rows: playerDetailInfo.shotTypeStats.map((e) =>
+                rows: playerDetail.getShotTypeStats(playerDetailInfo.shotTypeSortTargetIndex, playerDetailInfo.shotTypeAscending).map((e) =>
                     DataRow(
                       cells: [
                         DataCell(
@@ -355,7 +355,7 @@ class PlayerProfile extends ConsumerWidget {
                     )
                   }
                 ],
-                rows: playerDetailInfo.playTypeStats.map((e) =>
+                rows: playerDetail.getPlayTypeStats(playerDetailInfo.playTypeSortTargetIndex, playerDetailInfo.playTypeAscending).map((e) =>
                     DataRow(
                       cells: [
                         DataCell(
@@ -402,7 +402,7 @@ class PlayerProfile extends ConsumerWidget {
                     )
                   }
                 ],
-                rows: playerDetailInfo.assistPlayerStats.map((e) =>
+                rows: playerDetail.getAssistPlayerStats(playerDetailInfo.assistSortTargetIndex, playerDetailInfo.assistAscending).map((e) =>
                     DataRow(
                       cells: [
                         DataCell(
