@@ -27,6 +27,10 @@ class HomeStateNotifier extends StateNotifier<HomeModel> {
   final BoxscoreRepository boxScoreRepository;
   final TeamRepository teamRepository;
 
+  List<List<dynamic>> getPlayerStats(DateTime? start, DateTime? end, int index, bool ascending) {
+    return boxScoreRepository.getAvgBoxScores(state.start, state.end, index, ascending);
+  }
+
   void updateSortTargetIndex(int index, bool ascending) {
     List<List<dynamic>> playerStats = boxScoreRepository.getAvgBoxScores(state.start, state.end, index, ascending);
 

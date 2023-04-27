@@ -226,7 +226,12 @@ class HomeScreen extends ConsumerWidget {
                                     )
                                   }
                                 ],
-                                rows: homeInfo.playerStats
+                                rows: home.getPlayerStats(
+                                  homeInfo.start,
+                                  homeInfo.end,
+                                  homeInfo.sortTargetIndex,
+                                  homeInfo.ascending,
+                                )
                                     .map(
                                       (e) => DataRow(
                                     cells: [
