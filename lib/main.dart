@@ -17,7 +17,6 @@ import 'package:flutter_native_splash/flutter_native_splash.dart';
 Future<void> main() async {
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
   FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
-  await Common.initialize();
   final dir = await getApplicationSupportDirectory();
   var path = dir.path;
 
@@ -38,7 +37,6 @@ Future<void> main() async {
   if (first) {
     await _initTeam(isar);
     await createDefaultTeamImageFromAssets("logos/default.png");
-
     prefs.setBool('first', false);
   }
 
@@ -47,52 +45,15 @@ Future<void> main() async {
   FlutterNativeSplash.remove();
 }
 
-Future<int> count() async {
-  int count = 0;
-
-  for (int i = 0; i < 1000000; i++) {
-    count++;
-  }
-
-  await Future.delayed(Duration(seconds: 3));
-  return count;
-}
-
 Future<void> _initTeam(Isar isar) async {
   try {
-    final now = DateTime.now();
-
     final team = Team()
       ..name = "YOUR TEAM"
     ;
 
-    // final teamStat = TeamStat()
-    //   ..ppg = 0.0
-    //   ..rpg = 0.0
-    //   ..apg = 0.0
-    //   ..oppg = 0.0
-    //   ..createdAt = now
-    //   ..updatedAt = now
-    // ;
-
     isar.writeTxn(() async {
       await isar.teams.put(team);
-      // await isar.teamStats.put(teamStat);
     });
-
-    // final teamHistory = TeamHistory()
-    //   ..team.value = team
-    //   ..stat.value = teamStat
-    //   ..season = 2022
-    //   ..createdAt = now
-    //   ..updatedAt = now
-    // ;
-
-    // isar.writeTxn(() async {
-    //   await isar.teamHistorys.put(teamHistory);
-    //   await teamHistory.team.save();
-    //   await teamHistory.stat.save();
-    // });
 
   } catch (e) {
     // debugPrint(e.toString());

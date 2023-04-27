@@ -61,7 +61,6 @@ final isarProvider = Provider<Isar>((_) {
 final playerRepositoryProvider = Provider((ref) => PlayerRepository(ref.watch(isarProvider)));
 final playerHistoryRepositoryProvider = Provider((ref) => PlayerHistoryRepository(ref.watch(isarProvider)));
 final teamRepositoryProvider = Provider((ref) => TeamRepository(ref.watch(isarProvider)));
-// final teamHistoryRepositoryProvider = Provider((ref) => TeamHistoryRepository(ref.watch(isarProvider)));
 final gameRepositoryProvider = Provider((ref) => GameRepository(ref.watch(isarProvider)));
 final boxscoreRepositoryProvider = Provider((ref) => BoxscoreRepository(ref.watch(isarProvider)));
 final pbpRepositoryProvider = Provider((ref) => PbpRepository(ref.watch(isarProvider)));
@@ -70,9 +69,6 @@ final documentPathProvider = FutureProvider<String>((ref) async {
   var previewPath = (await getApplicationDocumentsDirectory()).path;
   return previewPath;
 });
-// final sharedPreferenceProvider = FutureProvider<SharedPreferences>((ref) async {
-//   return await SharedPreferences.getInstance();
-// });
 
 final onGameProvider = StateNotifierProvider<OnGameStateNotifier, bool>((ref) {
   return OnGameStateNotifier();
