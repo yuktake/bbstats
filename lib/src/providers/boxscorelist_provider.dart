@@ -57,6 +57,10 @@ class  BoxScoreListStateNotifier extends StateNotifier<BoxScoreListModel> {
     return boxScores.join("\n");
   }
 
+  List<Boxscore> getBoxScores(int index, bool ascending) {
+    return boxScoreRepository.findByGame(gameId, index, ascending);
+  }
+
   void updateSortTargetIndex(int index, bool ascending) {
     List<Boxscore> boxScores = boxScoreRepository.findByGame(gameId, index, !ascending);
 

@@ -12,8 +12,6 @@ class StatDataTable extends ConsumerWidget {
 
   final int gameId;
 
-  var _isAscending = true;
-  var _currentSortColumn = 0;
   final List<Map> overall_list = List.generate(10, (index) => {
     'PLAYER': index,
     'MIN':  index,
@@ -104,7 +102,7 @@ class StatDataTable extends ConsumerWidget {
                       )
                     }
                   ],
-                  rows: boxScoreListInfo.boxScores
+                  rows: boxScoreList.getBoxScores(boxScoreListInfo.sortTargetIndex, boxScoreListInfo.ascending)
                       .map(
                         (e) => DataRow(
                       cells: [
