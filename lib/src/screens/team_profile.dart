@@ -234,7 +234,7 @@ class TeamProfile extends ConsumerWidget {
                   ],
                   rows: [
                     DataRow(
-                      cells: teamDetailInfo.overallStats.map((e) =>
+                      cells: teamDetail.getOverAllStats(teamDetailInfo.start, teamDetailInfo.end, teamDetailInfo.opponentTeamId).map((e) =>
                           DataCell(
                             Text('$e'),
                           ),
@@ -258,14 +258,14 @@ class TeamProfile extends ConsumerWidget {
                   ],
                   rows: [
                     DataRow(
-                      cells: teamDetailInfo.winStats.map((e) =>
+                      cells: teamDetail.getWinStats(teamDetailInfo.start, teamDetailInfo.end, teamDetailInfo.opponentTeamId).map((e) =>
                           DataCell(
                             Text('$e'),
                           ),
                       ).toList(),
                     ),
                     DataRow(
-                      cells: teamDetailInfo.loseStats.map((e) =>
+                      cells: teamDetail.getLoseStats(teamDetailInfo.start, teamDetailInfo.end, teamDetailInfo.opponentTeamId).map((e) =>
                           DataCell(
                             Text('$e'),
                           ),
@@ -292,7 +292,7 @@ class TeamProfile extends ConsumerWidget {
                       )
                     }
                   ],
-                  rows: teamDetailInfo.playTypeStats.map((e) =>
+                  rows: teamDetail.getPlayTypeStats(teamDetailInfo.opponentTeamId, teamDetailInfo.playTypeSortTargetIndex, teamDetailInfo.playTypeAscending).map((e) =>
                       DataRow(
                         cells: [
                           DataCell(
@@ -339,7 +339,7 @@ class TeamProfile extends ConsumerWidget {
                       )
                     }
                   ],
-                  rows: teamDetailInfo.shotZoneStats.map((e) =>
+                  rows: teamDetail.getShotZoneStats(teamDetailInfo.opponentTeamId, teamDetailInfo.shotZoneSortTargetIndex, teamDetailInfo.shotZoneAscending).map((e) =>
                       DataRow(
                         cells: [
                           DataCell(

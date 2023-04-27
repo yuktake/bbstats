@@ -39,6 +39,26 @@ class TeamDetailStateNotifier extends StateNotifier<TeamDetailModel> {
   final BoxscoreRepository boxScoreRepository;
   final PbpRepository pbpRepository;
 
+  List<dynamic> getOverAllStats(DateTime? start, DateTime? end, int? opponentId) {
+    return gameRepository.getOverallStats(start, end, opponentId);
+  }
+
+  List<dynamic> getWinStats(DateTime? start, DateTime? end, int? opponentId) {
+    return gameRepository.getStatsByResult(start, end, opponentId, Outcome.WIN);
+  }
+
+  List<dynamic> getLoseStats(DateTime? start, DateTime? end, int? opponentId) {
+    return gameRepository.getStatsByResult(start, end, opponentId, Outcome.LOSE);
+  }
+
+  List<List<dynamic>> getPlayTypeStats(int? opponentTeamId, int index, bool ascending) {
+    return pbpRepository.getPlayTypeStats(opponentTeamId, index, ascending);
+  }
+
+  List<List<dynamic>> getShotZoneStats(int? opponentTeamId, int index, bool ascending) {
+    return pbpRepository.getShotZoneStats(opponentTeamId, index, ascending);
+  }
+
   void updateStartDate(DateTime start) {
     List<dynamic> overallStats = state.overallStats;
     List<dynamic> winStats = state.winStats;
