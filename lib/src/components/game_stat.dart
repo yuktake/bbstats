@@ -214,7 +214,7 @@ class GameStat extends ConsumerWidget {
                                   strokeWidth: 1,
                                 ),
                               ),
-                              barGroups: gameStatInfo.comparisonStats.asMap().entries.map((e) {
+                              barGroups: gameStat.getComparisonStats().asMap().entries.map((e) {
                                 final index = e.key;
                                 return generateBarGroup(index, Colors.greenAccent, e.value[0], e.value[1]);
                               }).toList(),

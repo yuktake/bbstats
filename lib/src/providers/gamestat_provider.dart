@@ -48,6 +48,10 @@ class GameStatStateNotifier extends StateNotifier<GameStatModel> {
   final PbpRepository pbpRepository;
   final int gameId;
 
+  List<List<dynamic>> getComparisonStats() {
+    return gameRepository.getStatsForComparison(gameId);
+  }
+
   void updateStats() {
     state = state.copyWith(
       game: gameRepository.findGame(gameId)!,

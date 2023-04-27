@@ -292,7 +292,6 @@ class GameRecordScreen extends ConsumerWidget {
                       onDismissed: (direction) {
                         gameRecord.deletePbp(gameRecordInfo.records.elementAt(index));
                         gameSummary.update();
-                        gameStat.updateStats();
                       },
                       confirmDismiss: (direction) async {
                         return await showDialog(
@@ -490,7 +489,6 @@ Future<dynamic> confirmDialog(BuildContext context, String title, int gameId, Pl
           final gameRecord = ref.watch(gameRecordProvider(gameId).notifier);
           final gameRecordInfo = ref.watch(gameRecordProvider(gameId));
           final gameSummary = ref.watch(gameSummaryProvider(gameId).notifier);
-          final gameStat = ref.watch(gameStatProvider(gameId).notifier);
           return AlertDialog(
             title: const Text('Confirm'),
             content: Text(title),
@@ -500,7 +498,6 @@ Future<dynamic> confirmDialog(BuildContext context, String title, int gameId, Pl
                   gameRecord.updateBoxScore(player, recordType),
                   gameRecord.addPlayAction(player != null ? player.id : 0, recordType, gameRecordInfo.currentQuarter, null, null, myTeamPlay),
                   gameSummary.update(),
-                  gameStat.updateStats(),
                   Navigator.of(context).pop(true),
                   gameRecord.scrollDown()
                 },
@@ -526,7 +523,6 @@ Future<dynamic> ftDialog(BuildContext context, int gameId, Player? player) {
           final gameRecord = ref.watch(gameRecordProvider(gameId).notifier);
           final gameRecordInfo = ref.watch(gameRecordProvider(gameId));
           final gameSummary = ref.watch(gameSummaryProvider(gameId).notifier);
-          final gameStat = ref.watch(gameStatProvider(gameId).notifier);
           return AlertDialog(
             title: const Text('Confirm'),
             content: const Text('FreeThrow'),
@@ -536,7 +532,6 @@ Future<dynamic> ftDialog(BuildContext context, int gameId, Player? player) {
                   gameRecord.updateBoxScore(player, RecordType.FT_MADE),
                   gameRecord.addPlayAction(player != null ? player.id : 0, RecordType.FT_MADE, gameRecordInfo.currentQuarter, null, null, myTeamPlay),
                   gameSummary.update(),
-                  gameStat.updateStats(),
                   Navigator.of(context).pop(true),
                   gameRecord.scrollDown()
                 },
@@ -571,7 +566,6 @@ Future<dynamic> reboundDialog(BuildContext context, int gameId, Player? player) 
           final gameRecord = ref.watch(gameRecordProvider(gameId).notifier);
           final gameRecordInfo = ref.watch(gameRecordProvider(gameId));
           final gameSummary = ref.watch(gameSummaryProvider(gameId).notifier);
-          final gameStat = ref.watch(gameStatProvider(gameId).notifier);
           return AlertDialog(
             title: const Text('Confirm'),
             content: const Text('Rebound'),
@@ -581,7 +575,6 @@ Future<dynamic> reboundDialog(BuildContext context, int gameId, Player? player) 
                   gameRecord.updateBoxScore(player, RecordType.OFFENCE_REBOUND),
                   gameRecord.addPlayAction(player != null ? player.id : 0, RecordType.OFFENCE_REBOUND, gameRecordInfo.currentQuarter, null, null, myTeamPlay),
                   gameSummary.update(),
-                  gameStat.updateStats(),
                   Navigator.of(context).pop(true),
                   gameRecord.scrollDown()
                 },
@@ -592,7 +585,6 @@ Future<dynamic> reboundDialog(BuildContext context, int gameId, Player? player) 
                   gameRecord.updateBoxScore(player, RecordType.DEFENCE_REBOUND),
                   gameRecord.addPlayAction(player != null ? player.id : 0, RecordType.DEFENCE_REBOUND, gameRecordInfo.currentQuarter, null, null, myTeamPlay),
                   gameSummary.update(),
-                  gameStat.updateStats(),
                   Navigator.of(context).pop(true),
                   gameRecord.scrollDown()
                 },
@@ -629,7 +621,6 @@ Future<dynamic> gameActionDialog(BuildContext context, int gameId, GameAction ga
           final gameRecord = ref.watch(gameRecordProvider(gameId).notifier);
           final gameRecordInfo = ref.watch(gameRecordProvider(gameId));
           final gameSummary = ref.watch(gameSummaryProvider(gameId).notifier);
-          final gameStat = ref.watch(gameStatProvider(gameId).notifier);
           return AlertDialog(
             title: const Text('Confirm'),
             content: Text(title),
@@ -641,7 +632,6 @@ Future<dynamic> gameActionDialog(BuildContext context, int gameId, GameAction ga
                   } else {
                     gameRecord.addGameAction(gameAction, true),
                     gameSummary.update(),
-                    gameStat.updateStats(),
                     gameRecord.scrollDown()
                   },
                   Navigator.of(context).pop(true),
@@ -655,7 +645,6 @@ Future<dynamic> gameActionDialog(BuildContext context, int gameId, GameAction ga
                   } else {
                     gameRecord.addGameAction(gameAction, false),
                     gameSummary.update(),
-                    gameStat.updateStats(),
                     gameRecord.scrollDown()
                   },
                   Navigator.of(context).pop(true),
