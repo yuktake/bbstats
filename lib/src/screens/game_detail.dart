@@ -29,7 +29,6 @@ class GameDetailScreen extends ConsumerWidget {
     final gameInfo = ref.watch(gameProvider(id));
     final boxScoreList = ref.watch(boxScoreListProvider(id).notifier);
     final gamePbp = ref.watch(gamePbpProvider(id).notifier);
-    final gamePbpInfo = ref.watch(gamePbpProvider(id));
 
     const segmentedControlMaxWidth = 500.0;
     final selection = <int, Widget>{

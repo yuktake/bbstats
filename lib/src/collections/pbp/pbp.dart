@@ -15,8 +15,6 @@ class Pbp {
 
   final player = IsarLink<Player>();
 
-  // late int gameId;
-
   final game = IsarLink<Game>();
 
   late int? supportedPlayerId;
