@@ -13,6 +13,13 @@ class GameListStateNotifier extends StateNotifier<GameListModel> {
 
   final GameRepository gameRepository;
 
+  void initGameList() {
+    List<Game> games = gameRepository.findGamesByDate(state.dateTime);
+    state = state.copyWith(
+      games: games,
+    );
+  }
+
   void updateGameListModel(DateTime dateTime) {
     List<Game> games = gameRepository.findGamesByDate(dateTime);
     state = state.copyWith(

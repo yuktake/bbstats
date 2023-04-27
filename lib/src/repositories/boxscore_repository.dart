@@ -873,4 +873,8 @@ class BoxscoreRepository {
 
     return seasonStats;
   }
+
+  void deleteByGame(int gameId) {
+    isar.boxscores.filter().game((q) => q.idEqualTo(gameId)).deleteAllSync();
+  }
 }

@@ -1549,4 +1549,8 @@ class PbpRepository {
       isar.pbps.filter().idEqualTo(id).deleteFirstSync();
     });
   }
+
+  void deleteByGame(int gameId) {
+    isar.pbps.filter().game((q) => q.idEqualTo(gameId)).deleteAllSync();
+  }
 }

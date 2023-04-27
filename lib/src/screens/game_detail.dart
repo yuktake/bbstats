@@ -24,11 +24,14 @@ class GameDetailScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final documentPath = ref.watch(documentPathProvider);
     final bool onGame = ref.watch(onGameProvider);
+    final onGameNotifier = ref.watch(onGameProvider.notifier);
 
     final game = ref.watch(gameProvider(id).notifier);
     final gameInfo = ref.watch(gameProvider(id));
     final boxScoreList = ref.watch(boxScoreListProvider(id).notifier);
     final gamePbp = ref.watch(gamePbpProvider(id).notifier);
+
+    final gameList = ref.watch(gameListProvider.notifier);
 
     const segmentedControlMaxWidth = 500.0;
     final selection = <int, Widget>{
@@ -48,6 +51,45 @@ class GameDetailScreen extends ConsumerWidget {
       appBar: AppBar(
         title: const Text('GAME'),
         actions: [
+          gameInfo.page == 0 ?
+          IconButton(
+            icon: const Icon(
+              Icons.delete,
+              color: Colors.red,
+            ),
+            onPressed: () {
+              // Confirm
+              showDialog(
+                context: context,
+                builder: (context) {
+                  return AlertDialog(
+                    title: const Text('Confirm'),
+                    content: const Text('Delete???'),
+                    actions: [
+                      SimpleDialogOption(
+                        onPressed: () {
+                          if (gameInfo.game!.onGame) {
+                            onGameNotifier.change(false);
+                          }
+                          game.deleteGame(id);
+                          // stateの更新
+                          gameList.initGameList();
+                          Navigator.of(context).pop(false);
+                          Navigator.of(context).pop(false);
+                        },
+                        child: const Text('Y'),
+                      ),
+                      SimpleDialogOption(
+                        onPressed: () => Navigator.of(context).pop(false),
+                        child: const Text('N'),
+                      ),
+                    ],
+                  );
+                }
+              );
+            },
+          ) : Container(),
+
           gameInfo.page == 1 ?
           IconButton(
             icon: const Icon(Icons.download),

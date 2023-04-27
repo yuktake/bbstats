@@ -139,7 +139,13 @@ final gamePreparationProvider = StateNotifierProvider.autoDispose<GamePreparatio
 });
 
 final gameProvider = StateNotifierProvider.family<GameStateNotifier,GameModel,int>((ref, id){
-  return GameStateNotifier(ref.watch(gameRepositoryProvider), id);
+  return GameStateNotifier(
+      ref.watch(isarProvider),
+      ref.watch(gameRepositoryProvider),
+      ref.watch(boxscoreRepositoryProvider),
+      ref.watch(pbpRepositoryProvider),
+      id
+  );
 });
 
 final shotProvider = StateNotifierProvider.family<ShotStateNotifier,ShotModel,ShotParameter>((ref,shotParameter){

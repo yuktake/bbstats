@@ -1180,4 +1180,8 @@ class GameRepository {
       isar.games.putSync(game);
     });
   }
+
+  void deleteGame(int gameId) {
+      isar.games.deleteSync(gameId);
+  }
 }
