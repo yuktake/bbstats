@@ -1055,7 +1055,7 @@ class PbpRepository {
     int handoffFgm = isar.pbps.filter().not().playerIsNull().and().game((q) => opponentTeamId==null ? q.not().opponentIsNull() : q.opponent((q) => q.idEqualTo(opponentTeamId))).and().group((q) => q.typeEqualTo(RecordType.THREE_POINT_MADE).or().typeEqualTo(RecordType.TWO_POINT_MADE)).and().shotPosition((q) => q.playTypeEqualTo(PlayType.HANDOFF)).countSync();
     double handoffFgRatio = 0.0;
     if (handoffFga != 0) {
-      handoffFgRatio = ((spotUpFgm/spotUpFga) * 100 * 10).round() / 10;
+      handoffFgRatio = ((handoffFgm/handoffFga) * 100 * 10).round() / 10;
     }
     int handoffTpa = isar.pbps.filter().not().playerIsNull().and().game((q) => opponentTeamId==null ? q.not().opponentIsNull() : q.opponent((q) => q.idEqualTo(opponentTeamId))).and().group((q) => q.typeEqualTo(RecordType.THREE_POINT_MISS).or().typeEqualTo(RecordType.THREE_POINT_MADE)).and().shotPosition((q) => q.playTypeEqualTo(PlayType.HANDOFF)).countSync();
     int handoffTpm = isar.pbps.filter().not().playerIsNull().and().game((q) => opponentTeamId==null ? q.not().opponentIsNull() : q.opponent((q) => q.idEqualTo(opponentTeamId))).and().typeEqualTo(RecordType.THREE_POINT_MADE).and().shotPosition((q) => q.playTypeEqualTo(PlayType.HANDOFF)).countSync();
@@ -1285,7 +1285,7 @@ class PbpRepository {
     int handoffFgm = isar.pbps.filter().player((q) => q.idEqualTo(playerId)).and().group((q) => q.typeEqualTo(RecordType.THREE_POINT_MADE).or().typeEqualTo(RecordType.TWO_POINT_MADE)).and().shotPosition((q) => q.playTypeEqualTo(PlayType.HANDOFF)).countSync();
     double handoffFgRatio = 0.0;
     if (handoffFga != 0) {
-      handoffFgRatio = ((spotUpFgm/spotUpFga) * 100 * 10).round() / 10;
+      handoffFgRatio = ((handoffFgm/handoffFga) * 100 * 10).round() / 10;
     }
     int handoffTpa = isar.pbps.filter().player((q) => q.idEqualTo(playerId)).and().group((q) => q.typeEqualTo(RecordType.THREE_POINT_MISS).or().typeEqualTo(RecordType.THREE_POINT_MADE)).and().shotPosition((q) => q.playTypeEqualTo(PlayType.HANDOFF)).countSync();
     int handoffTpm = isar.pbps.filter().player((q) => q.idEqualTo(playerId)).and().typeEqualTo(RecordType.THREE_POINT_MADE).and().shotPosition((q) => q.playTypeEqualTo(PlayType.HANDOFF)).countSync();
