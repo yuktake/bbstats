@@ -13,6 +13,7 @@ class SummaryScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final gameInfo = ref.watch(gameProvider(id));
+    final gameSummary = ref.watch(gameSummaryProvider(id).notifier);
     final gameSummaryInfo = ref.watch(gameSummaryProvider(id));
     final documentPath = ref.watch(documentPathProvider);
 
@@ -125,7 +126,7 @@ class SummaryScreen extends ConsumerWidget {
                         show: true,
                         color: Colors.greenAccent.withOpacity(0.2),
                       ),
-                      spots: gameSummaryInfo.scores.asMap().entries.map((e) {
+                      spots: gameSummary.getScores().asMap().entries.map((e) {
                         final index = e.key;
                         final data = e.value;
                         return FlSpot(index.toDouble(), data.toDouble());
@@ -141,7 +142,7 @@ class SummaryScreen extends ConsumerWidget {
                         show: true,
                         color: Colors.redAccent.withOpacity(0.2),
                       ),
-                      spots: gameSummaryInfo.opponentScores.asMap().entries.map((e) {
+                      spots: gameSummary.getOpponentScores().asMap().entries.map((e) {
                         final index = e.key;
                         final data = e.value;
                         return FlSpot(index.toDouble(), data.toDouble());
@@ -208,21 +209,15 @@ class SummaryScreen extends ConsumerWidget {
                           DataRow(
                             cells: [
                               DataCell(Text(gameSummaryInfo.myTeam!.name)),
-                              DataCell(Text(gameSummaryInfo.scoreByQuarter[0].toString())),
-                              DataCell(Text(gameSummaryInfo.scoreByQuarter[1].toString())),
-                              DataCell(Text(gameSummaryInfo.scoreByQuarter[2].toString())),
-                              DataCell(Text(gameSummaryInfo.scoreByQuarter[3].toString())),
-                              DataCell(Text(gameSummaryInfo.scoreByQuarter[4].toString()))
+                              for (final element in gameSummary.getScoreByQuarter())
+                                DataCell(Text(element.toString())),
                             ],
                           ),
                           DataRow(
                             cells: [
                               DataCell(Text(gameInfo.game!.opponent.value!.name)),
-                              DataCell(Text(gameSummaryInfo.opponentScoreByQuarter[0].toString())),
-                              DataCell(Text(gameSummaryInfo.opponentScoreByQuarter[1].toString())),
-                              DataCell(Text(gameSummaryInfo.opponentScoreByQuarter[2].toString())),
-                              DataCell(Text(gameSummaryInfo.opponentScoreByQuarter[3].toString())),
-                              DataCell(Text(gameSummaryInfo.opponentScoreByQuarter[4].toString())),
+                              for (final element in gameSummary.getOpponentScoreByQuarter())
+                                DataCell(Text(element.toString())),
                             ],
                           ),
                         ],
@@ -412,7 +407,7 @@ class SummaryScreen extends ConsumerWidget {
                               strokeWidth: 1,
                             ),
                           ),
-                          barGroups: gameSummaryInfo.comparisonStats.asMap().entries.map((e) {
+                          barGroups: gameSummary.getComparisonStats().asMap().entries.map((e) {
                             final index = e.key;
                             return generateBarGroup(index, Colors.greenAccent, e.value[0], e.value[1]);
                           }).toList(),
@@ -509,19 +504,15 @@ class SummaryScreen extends ConsumerWidget {
                             DataRow(
                               cells: [
                                 DataCell(Text(gameSummaryInfo.myTeam!.name)),
-                                DataCell(Text(gameSummaryInfo.pickupStats[0].toString())),
-                                DataCell(Text(gameSummaryInfo.pickupStats[1].toString())),
-                                DataCell(Text(gameSummaryInfo.pickupStats[2].toString())),
-                                DataCell(Text(gameSummaryInfo.pickupStats[3].toString())),
+                                for (final element in gameSummary.getPickUpStats())
+                                  DataCell(Text(element.toString())),
                               ],
                             ),
                             DataRow(
                               cells: [
                                 DataCell(Text(gameInfo.game!.opponent.value!.name)),
-                                DataCell(Text(gameSummaryInfo.opponentPickupStats[0].toString())),
-                                DataCell(Text(gameSummaryInfo.opponentPickupStats[1].toString())),
-                                DataCell(Text(gameSummaryInfo.opponentPickupStats[2].toString())),
-                                DataCell(Text(gameSummaryInfo.opponentPickupStats[3].toString())),
+                                for (final element in gameSummary.getOpponentPickUpStats())
+                                  DataCell(Text(element.toString())),
                               ],
                             ),
                           ],

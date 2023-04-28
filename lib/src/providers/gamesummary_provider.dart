@@ -32,6 +32,34 @@ class GameSummaryStateNotifier extends StateNotifier<GameSummaryModel> {
   final PbpRepository pbpRepository;
   final int gameId;
 
+  List<int> getScores() {
+    return pbpRepository.getScoresForChart(gameId);
+  }
+
+  List<int> getOpponentScores() {
+    return pbpRepository.getOpponentScoresForChart(gameId);
+  }
+
+  List<List<dynamic>> getComparisonStats() {
+    return gameRepository.getStatsForComparison(gameId);
+  }
+
+  List<int> getScoreByQuarter() {
+    return pbpRepository.getScoresByQuarter(gameId);
+  }
+
+  List<int> getOpponentScoreByQuarter() {
+    return pbpRepository.getOpponentScoresByQuarter(gameId);
+  }
+
+  List<int> getPickUpStats() {
+    return pbpRepository.getPickupStats(gameId);
+  }
+
+  List<int> getOpponentPickUpStats() {
+    return pbpRepository.getOpponentPickupStats(gameId);
+  }
+
   void update() {
     Game game = gameRepository.findGame(gameId)!;
     state = state.copyWith(
