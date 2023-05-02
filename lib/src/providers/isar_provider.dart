@@ -35,6 +35,7 @@ import 'package:bb_stats/src/providers/teamselect_provider.dart';
 import 'package:bb_stats/src/repositories/boxscore_repository.dart';
 import 'package:bb_stats/src/repositories/game_repository.dart';
 import 'package:bb_stats/src/repositories/pbp_repository.dart';
+import 'package:bb_stats/src/repositories/teamStatRepository.php.dart';
 import 'package:bb_stats/src/repositories/team_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:isar/isar.dart';
@@ -59,6 +60,7 @@ final isarProvider = Provider<Isar>((_) {
 
 final playerRepositoryProvider = Provider((ref) => PlayerRepository(ref.watch(isarProvider)));
 final teamRepositoryProvider = Provider((ref) => TeamRepository(ref.watch(isarProvider)));
+final teamStatRepositoryProvider = Provider((ref) => TeamStatRepository(ref.watch(isarProvider)));
 final gameRepositoryProvider = Provider((ref) => GameRepository(ref.watch(isarProvider)));
 final boxscoreRepositoryProvider = Provider((ref) => BoxscoreRepository(ref.watch(isarProvider)));
 final pbpRepositoryProvider = Provider((ref) => PbpRepository(ref.watch(isarProvider)));
@@ -126,6 +128,7 @@ final teamsSelectProvider = StateNotifierProvider.autoDispose<TeamSelectStateNot
 final gamePreparationProvider = StateNotifierProvider.autoDispose<GamePreparationStateNotifier,GamePreparationModel>((ref) {
   return GamePreparationStateNotifier(
       ref.watch(teamRepositoryProvider),
+      ref.watch(teamStatRepositoryProvider),
       ref.watch(playerRepositoryProvider),
       ref.watch(gameRepositoryProvider),
       ref.watch(boxscoreRepositoryProvider),

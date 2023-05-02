@@ -1,5 +1,6 @@
 import 'package:bb_stats/src/repositories/boxscore_repository.dart';
 import 'package:bb_stats/src/repositories/player_repository.dart';
+import 'package:bb_stats/src/repositories/teamStatRepository.php.dart';
 import 'package:bb_stats/src/repositories/team_repository.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -14,6 +15,7 @@ import '../repositories/game_repository.dart';
 class GamePreparationStateNotifier extends StateNotifier<GamePreparationModel> {
   GamePreparationStateNotifier(
       this.teamRepository,
+      this.teamStatRepository,
       this.playerRepository,
       this.gameRepository,
       this.boxScoreRepository
@@ -58,6 +60,7 @@ class GamePreparationStateNotifier extends StateNotifier<GamePreparationModel> {
   }
 
   final TeamRepository teamRepository;
+  final TeamStatRepository teamStatRepository;
   final PlayerRepository playerRepository;
   final GameRepository gameRepository;
   final BoxscoreRepository boxScoreRepository;
@@ -159,6 +162,7 @@ class GamePreparationStateNotifier extends StateNotifier<GamePreparationModel> {
     }
 
     await gameRepository.addBoxScores(game, boxScores);
+    await teamStatRepository.createTeamStat(game);
     prefs.setBool('onGame', true);
 
     return gameId;
