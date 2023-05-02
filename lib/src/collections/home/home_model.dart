@@ -11,8 +11,6 @@ class HomeModel with _$HomeModel {
     required DateTime? end,
     required List<List<dynamic>> playerStats,
     required Team team,
-    required int win,
-    required int lost,
     required int sortTargetIndex,
     required bool ascending,
   }) = _HomeModel;

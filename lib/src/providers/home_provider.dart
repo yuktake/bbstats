@@ -16,8 +16,6 @@ class HomeStateNotifier extends StateNotifier<HomeModel> {
       end: null,
       playerStats: boxScoreRepository.getAvgBoxScores(null, null, 0, true),
       team: teamRepository.findTeam(1)!,
-      win: gameRepository.countWinGame(),
-      lost: gameRepository.countLostGame(),
       sortTargetIndex: 0,
       ascending: false,
     )
@@ -29,6 +27,14 @@ class HomeStateNotifier extends StateNotifier<HomeModel> {
 
   List<List<dynamic>> getPlayerStats(DateTime? start, DateTime? end, int index, bool ascending) {
     return boxScoreRepository.getAvgBoxScores(state.start, state.end, index, ascending);
+  }
+
+  int countWinGame() {
+    return gameRepository.countWinGame();
+  }
+
+  int countLostGame() {
+    return gameRepository.countLostGame();
   }
 
   void updateSortTargetIndex(int index, bool ascending) {

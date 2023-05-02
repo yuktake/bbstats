@@ -23,6 +23,7 @@ class TeamProfile extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final home = ref.watch(homeProvider.notifier);
     final homeInfo = ref.watch(homeProvider);
     final team = ref.watch(teamProvider(id).notifier);
     final teamInfo = ref.watch(teamProvider(id));
@@ -83,7 +84,7 @@ class TeamProfile extends ConsumerWidget {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(teamInfo.name),
-                                  Text("${homeInfo.win.toString()}-${homeInfo.lost.toString()}"),
+                                  Text("${home.countWinGame().toString()}-${home.countLostGame().toString()}"),
                                 ],
                               ),
                             ),

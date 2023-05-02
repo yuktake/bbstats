@@ -9,9 +9,8 @@ import 'package:intl/intl.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class HomeScreen extends ConsumerWidget {
-  HomeScreen({Key? key}) : super(key: key){
+  HomeScreen({Key? key}) : super(key: key);
 
-  }
 
   void _showTutorial(BuildContext context) async {
     final preference = await SharedPreferences.getInstance();
@@ -71,7 +70,7 @@ class HomeScreen extends ConsumerWidget {
                                       crossAxisAlignment: CrossAxisAlignment.start,
                                       children: [
                                         Text(homeInfo.team.name),
-                                        Text("${homeInfo.win.toString()}-${homeInfo.lost.toString()}"),
+                                        Text("${home.countWinGame().toString()}-${home.countLostGame().toString()}"),
                                       ],
                                     ),
                                   ),
