@@ -40,6 +40,102 @@ class BoxscoreRepository {
       ..pf = 0
       ..starter = starter
       ..onCourt = starter
+
+      ..fgmLayup = 0
+      ..fgaLayup = 0
+      ..tpmLayup = 0
+      ..tpaLayup = 0
+
+      ..fgmCatchAndShot = 0
+      ..fgaCatchAndShot = 0
+      ..tpmCatchAndShot = 0
+      ..tpaCatchAndShot = 0
+
+      ..fgmPullUp = 0
+      ..fgaPullUp = 0
+      ..tpmPullUp = 0
+      ..tpaPullUp = 0
+
+      ..fgmFloating = 0
+      ..fgaFloating = 0
+      ..tpmFloating = 0
+      ..tpaFloating = 0
+
+      ..fgmHook = 0
+      ..fgaHook = 0
+      ..tpmHook = 0
+      ..tpaHook = 0
+
+      ..fgmTip = 0
+      ..fgaTip = 0
+      ..tpmTip = 0
+      ..tpaTip = 0
+
+      ..fgmFadeAway = 0
+      ..fgaFadeAway = 0
+      ..tpmFadeAway = 0
+      ..tpaFadeAway = 0
+
+      ..fgmDunk = 0
+      ..fgaDunk = 0
+      ..tpmDunk = 0
+      ..tpaDunk = 0
+
+      ..fgmAlleyOop = 0
+      ..fgaAlleyOop = 0
+      ..tpmAlleyOop = 0
+      ..tpaAlleyOop = 0
+
+      // playtype
+      ..fgmIsolation = 0
+      ..fgaIsolation = 0
+      ..tpmIsolation = 0
+      ..tpaIsolation = 0
+
+      ..fgmFastBreak = 0
+      ..fgaFastBreak = 0
+      ..tpmFastBreak = 0
+      ..tpaFastBreak = 0
+
+      ..fgmHandler = 0
+      ..fgaHandler = 0
+      ..tpmHandler = 0
+      ..tpaHandler = 0
+
+      ..fgmRoller = 0
+      ..fgaRoller = 0
+      ..tpmRoller = 0
+      ..tpaRoller = 0
+
+      ..fgmPostUp = 0
+      ..fgaPostUp = 0
+      ..tpmPostUp = 0
+      ..tpaPostUp = 0
+
+      ..fgmSpotUp = 0
+      ..fgaSpotUp = 0
+      ..tpmSpotUp = 0
+      ..tpaSpotUp = 0
+
+      ..fgmHandOff = 0
+      ..fgaHandOff = 0
+      ..tpmHandOff = 0
+      ..tpaHandOff = 0
+
+      ..fgmCut = 0
+      ..fgaCut = 0
+      ..tpmCut = 0
+      ..tpaCut = 0
+
+      ..fgmOffScreen = 0
+      ..fgaOffScreen = 0
+      ..tpmOffScreen = 0
+      ..tpaOffScreen = 0
+
+      ..fgmSecondChance = 0
+      ..fgaSecondChance = 0
+      ..tpmSecondChance = 0
+      ..tpaSecondChance = 0
     ;
 
     isar.writeTxnSync(() {
