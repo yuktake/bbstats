@@ -55,9 +55,10 @@ class GameScreen extends ConsumerWidget {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-                          onGame ? Text(DateFormat('yyyy-MM-dd').format(
-                              gamePreparationInfo.gameDate),
-                              style: const TextStyle(color: Colors.black)) :
+                          onGame ? Text(
+                              DateFormat('yyyy-MM-dd').format(gamePreparationInfo.gameDate),
+                              style: const TextStyle(color: Colors.black)
+                          ) :
                           TextButton(
                             onPressed: () {
                               DatePicker.showDatePicker(context,
@@ -71,9 +72,10 @@ class GameScreen extends ConsumerWidget {
                                   locale: LocaleType.jp
                               );
                             },
-                            child: Text(DateFormat('yyyy-MM-dd').format(
-                                gamePreparationInfo.gameDate),
-                                style: const TextStyle(color: Colors.black)),
+                            child: Text(
+                                DateFormat('yyyy-MM-dd').format(gamePreparationInfo.gameDate),
+                                style: const TextStyle(color: Colors.black)
+                            ),
                           ),
                           onGame ? Text("${gamePreparationInfo.quarterMin} Min Per Quarter", style: const TextStyle(color: Colors.black)) :
                           Row(
