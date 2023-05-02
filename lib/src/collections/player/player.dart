@@ -13,8 +13,6 @@ class Player {
 
   final boxscores = IsarLinks<Boxscore>();
 
-  // final histories = IsarLinks<PlayerHistory>();
-
   late String name;
 
   // late DateTime? birthDay;

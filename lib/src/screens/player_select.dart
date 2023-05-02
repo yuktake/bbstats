@@ -47,24 +47,6 @@ class PlayersSelectScreen extends ConsumerWidget {
             );
           },
         ),
-
-        // child: ListView(
-        //   children: [
-        //     for (var i = 0; i < playersInfo.playerHistories.length; i++)
-        //       CheckboxListTile(
-        //         title: Text(playersInfo.playerHistories[i].player.value!.name),
-        //         secondary: CircleAvatar(
-        //           radius: 40,
-        //           backgroundImage: AssetImage("${documentPath.value}/players/${playersInfo.playerHistories[i].player.value!.id}.jpg"),
-        //         ),
-        //         value: isChecked[i],
-        //         onChanged: (bool? value) {
-        //           isChecked[i] = value!;
-        //         },
-        //         controlAffinity: ListTileControlAffinity.leading,
-        //     )
-        //   ],
-        // ),
       ),
     );
   }

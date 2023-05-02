@@ -48,7 +48,6 @@ class TeamRepository {
     }
 
     final team = isar.teams.where().idEqualTo(id).findFirstSync();
-    // team?.histories.load();
 
     // デフォルトのソートはidの昇順
     return team;
