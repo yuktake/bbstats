@@ -258,6 +258,12 @@ const GameSchema = CollectionSchema(
       target: r'Boxscore',
       single: false,
     ),
+    r'teamStat': LinkSchema(
+      id: 1244503771798514855,
+      name: r'teamStat',
+      target: r'TeamStat',
+      single: true,
+    ),
     r'pbps': LinkSchema(
       id: -4427701273131939474,
       name: r'pbps',
@@ -510,7 +516,7 @@ Id _gameGetId(Game object) {
 }
 
 List<IsarLinkBase<dynamic>> _gameGetLinks(Game object) {
-  return [object.opponent, object.boxscores, object.pbps];
+  return [object.opponent, object.boxscores, object.teamStat, object.pbps];
 }
 
 void _gameAttach(IsarCollection<dynamic> col, Id id, Game object) {
@@ -518,6 +524,7 @@ void _gameAttach(IsarCollection<dynamic> col, Id id, Game object) {
   object.opponent.attach(col, col.isar.collection<Team>(), r'opponent', id);
   object.boxscores
       .attach(col, col.isar.collection<Boxscore>(), r'boxscores', id);
+  object.teamStat.attach(col, col.isar.collection<TeamStat>(), r'teamStat', id);
   object.pbps.attach(col, col.isar.collection<Pbp>(), r'pbps', id);
 }
 
@@ -3042,6 +3049,19 @@ extension GameQueryLinks on QueryBuilder<Game, Game, QFilterCondition> {
     return QueryBuilder.apply(this, (query) {
       return query.linkLength(
           r'boxscores', lower, includeLower, upper, includeUpper);
+    });
+  }
+
+  QueryBuilder<Game, Game, QAfterFilterCondition> teamStat(
+      FilterQuery<TeamStat> q) {
+    return QueryBuilder.apply(this, (query) {
+      return query.link(q, r'teamStat');
+    });
+  }
+
+  QueryBuilder<Game, Game, QAfterFilterCondition> teamStatIsNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.linkLength(r'teamStat', 0, true, 0, true);
     });
   }
 

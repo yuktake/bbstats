@@ -1,3 +1,4 @@
+import 'package:bb_stats/src/collections/teamStat/teamStat.dart';
 import 'package:bb_stats/src/enums/Outcome.dart';
 import 'package:isar/isar.dart';
 import '../boxscore/boxscore.dart';
@@ -16,6 +17,8 @@ class Game {
   final opponent = IsarLink<Team>();
 
   final boxscores = IsarLinks<Boxscore>();
+
+  final teamStat = IsarLink<TeamStat>();
 
   @Backlink(to: 'game')
   final pbps = IsarLinks<Pbp>();
