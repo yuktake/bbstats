@@ -22,11 +22,11 @@ class ExportScreen extends ConsumerWidget {
                 onPressed: () {
                   Share.shareXFiles([XFile('${documentPath.value}/csvs/test.csv', name: 'test.csv')], subject: 'title', text: 'Great picture');
                 },
-                child: const Text("Mail"),
                 style: ElevatedButton.styleFrom(
                   primary: Colors.orange,
                   onPrimary: Colors.white,
                 ),
+                child: const Text("Mail"),
               )
             ],
           ),

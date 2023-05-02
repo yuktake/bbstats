@@ -10,7 +10,7 @@ import 'package:intl/intl.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class HomeScreen extends ConsumerWidget {
-  HomeScreen({Key? key}) : super(key: key);
+  const HomeScreen({Key? key}) : super(key: key);
 
   void _showTutorial(BuildContext context) async {
     final preference = await SharedPreferences.getInstance();

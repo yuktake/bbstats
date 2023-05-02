@@ -143,7 +143,7 @@ class GameDetailScreen extends ConsumerWidget {
                     shrinkWrap: true,
                     physics: const NeverScrollableScrollPhysics(),
                     children: [
-                      SizedBox(height: 16),
+                      const SizedBox(height: 16),
                       SizedBox(
                         width: segmentedControlMaxWidth,
                         child: Padding(

@@ -10,7 +10,7 @@ import '../providers/isar_provider.dart';
 import '../providers/player_provider.dart';
 
 class PlayerEditScreen extends ConsumerWidget {
-  PlayerEditScreen(this.id, {Key? key}) : super(key: key);
+  const PlayerEditScreen(this.id, {Key? key}) : super(key: key);
 
   final int id;
 

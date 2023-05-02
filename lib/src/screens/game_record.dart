@@ -678,7 +678,7 @@ Widget substituteSheet(int gameId, int onCourtPlayerIndex) {
               const Text('Substitutes', style: TextStyle(fontSize: 20)),
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 16),
-                child: Container(
+                child: SizedBox(
                   height: 100,
                   child: ListView(
                     scrollDirection: Axis.horizontal,

@@ -45,15 +45,14 @@ class TeamsSelectScreen extends ConsumerWidget {
                 Navigator.of(context).pop();
               },
               child: Padding(
-                padding: EdgeInsets.symmetric(vertical: 8.0),
+                padding: const EdgeInsets.symmetric(vertical: 8.0),
                 child: Row(
                   children: [
                     CircleAvatar(
                       radius: 40,
-                      // backgroundImage: AssetImage(teamsInfo.teams[index].image == null ? "assets/logos/default.png" : teamsInfo.teams[index].image!.path),
                       backgroundImage: AssetImage("${documentPath.value}/teams/${teamsInfo.teams[index].id}.jpg"),
                     ),
-                    SizedBox(width: 32.0),
+                    const SizedBox(width: 32.0),
                     Text(teamsInfo.teams[index].name)
                   ],
                 ),

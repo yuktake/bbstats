@@ -16,10 +16,10 @@ class PlayersSelectScreen extends ConsumerWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('Player Select'),
+        title: const Text('Player Select'),
       ),
       body: Padding(
-        padding: EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(16.0),
         child: ListView.builder(
           itemCount: playersInfo.players.length,
           itemBuilder: (context, index) {
@@ -29,14 +29,14 @@ class PlayersSelectScreen extends ConsumerWidget {
                 Navigator.of(context).pop();
               },
               child: Padding(
-                padding: EdgeInsets.symmetric(vertical: 8.0),
+                padding: const EdgeInsets.symmetric(vertical: 8.0),
                 child: Row(
                   children: [
                     CircleAvatar(
                       radius: 40,
                       backgroundImage: AssetImage("${documentPath.value}/players/${playersInfo.players[index].id}.jpg"),
                     ),
-                    SizedBox(width: 32.0),
+                    const SizedBox(width: 32.0),
                     Text(playersInfo.players[index].name)
                   ],
                 ),

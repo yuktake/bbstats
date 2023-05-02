@@ -62,7 +62,7 @@ class TeamNewScreen extends ConsumerWidget {
                     ),
                     child: showProfileImage(null, "${documentPath.value}/teams/preview.jpg", teamInfo.showPreview )
                 ),
-                Container(
+                SizedBox(
                   width: 100,
                   child: TextFormField(
                     controller: teamInfo.teamNameInputController,
@@ -83,11 +83,11 @@ class TeamNewScreen extends ConsumerWidget {
                     onPressed: () async {
                       await getPictureImage(team);
                     },
-                    child: Text("画像選択"),
                     style: ElevatedButton.styleFrom(
                       primary: Colors.orange,
                       onPrimary: Colors.white,
                     ),
+                    child: const Text("画像選択"),
                   );
                 }),
               ],
