@@ -11,10 +11,8 @@ class HomeStateNotifier extends StateNotifier<HomeModel> {
       this.teamRepository
   ) : super (
     HomeModel(
-      teamStat: gameRepository.getAvgTeamStat(),
       start: null,
       end: null,
-      playerStats: boxScoreRepository.getAvgBoxScores(null, null, 0, true),
       team: teamRepository.findTeam(1)!,
       sortTargetIndex: 0,
       ascending: false,
@@ -24,6 +22,10 @@ class HomeStateNotifier extends StateNotifier<HomeModel> {
   final GameRepository gameRepository;
   final BoxscoreRepository boxScoreRepository;
   final TeamRepository teamRepository;
+
+  List<dynamic> getTeamStat() {
+    return gameRepository.getAvgTeamStat();
+  }
 
   List<List<dynamic>> getPlayerStats(DateTime? start, DateTime? end, int index, bool ascending) {
     return boxScoreRepository.getAvgBoxScores(state.start, state.end, index, ascending);
@@ -38,30 +40,22 @@ class HomeStateNotifier extends StateNotifier<HomeModel> {
   }
 
   void updateSortTargetIndex(int index, bool ascending) {
-    List<List<dynamic>> playerStats = boxScoreRepository.getAvgBoxScores(state.start, state.end, index, ascending);
-
     state = state.copyWith(
-      playerStats: playerStats,
       sortTargetIndex: index,
       ascending: !state.ascending,
     );
   }
 
   void updateStartDate(DateTime start) {
-    List<List<dynamic>> playerStats = boxScoreRepository.getAvgBoxScores(start, state.end, state.sortTargetIndex, state.ascending);
 
     state = state.copyWith(
       start: start,
-      playerStats: playerStats,
     );
   }
 
   void updateEndDate(DateTime end) {
-    List<List<dynamic>> playerStats = boxScoreRepository.getAvgBoxScores(state.start, end, state.sortTargetIndex, state.ascending);
-
     state = state.copyWith(
       end: end,
-      playerStats: playerStats,
     );
   }
 }

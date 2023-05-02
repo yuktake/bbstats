@@ -11,6 +11,7 @@ import 'package:path_provider/path_provider.dart';
 import 'package:share_plus/share_plus.dart';
 
 import '../consts/CsvColumns.dart';
+import '../consts/TeamStatColumns.dart';
 import '../providers/isar_provider.dart';
 
 class TeamProfile extends ConsumerWidget {
@@ -104,53 +105,15 @@ class TeamProfile extends ConsumerWidget {
                               padding: const EdgeInsets.only(right:10),
                               child: Row(
                                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                children: [
-                                  Column(
+                                children: home.getTeamStat().asMap().entries.map((e) {
+                                  final index = e.key;
+                                  return Column(
                                     children: [
-                                      const Text('PPG'),
-                                      Text(homeInfo.teamStat[0].toString()),
+                                      Text(TeamStatColumns.teamStatColumnList[index]),
+                                      Text(e.value.toString()),
                                     ],
-                                  ),
-                                  const VerticalDivider(
-                                    color: Colors.red,
-                                    thickness: 1,
-                                    indent: 0,
-                                    endIndent: 0,
-                                    width: 10,
-                                  ),
-                                  Column(
-                                    children: [
-                                      const Text('RPG'),
-                                      Text(homeInfo.teamStat[1].toString()),
-                                    ],
-                                  ),
-                                  const VerticalDivider(
-                                    color: Colors.red,
-                                    thickness: 1,
-                                    indent: 0,
-                                    endIndent: 0,
-                                    width: 10,
-                                  ),
-                                  Column(
-                                    children: [
-                                      const Text('APG'),
-                                      Text(homeInfo.teamStat[2].toString()),
-                                    ],
-                                  ),
-                                  const VerticalDivider(
-                                    color: Colors.red,
-                                    thickness: 1,
-                                    indent: 0,
-                                    endIndent: 0,
-                                    width: 10,
-                                  ),
-                                  Column(
-                                    children: [
-                                      const Text('OPPG'),
-                                      Text(homeInfo.teamStat[3].toString()),
-                                    ],
-                                  ),
-                                ],
+                                  );
+                                }).toList(),
                               ),
                             )
                           ]

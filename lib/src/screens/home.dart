@@ -1,4 +1,5 @@
 import 'package:bb_stats/src/consts/CsvColumns.dart';
+import 'package:bb_stats/src/consts/TeamStatColumns.dart';
 import 'package:bb_stats/src/providers/isar_provider.dart';
 import 'package:bb_stats/src/screens/tutorial.dart';
 import 'package:data_table_2/data_table_2.dart';
@@ -10,7 +11,6 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class HomeScreen extends ConsumerWidget {
   HomeScreen({Key? key}) : super(key: key);
-
 
   void _showTutorial(BuildContext context) async {
     final preference = await SharedPreferences.getInstance();
@@ -90,53 +90,15 @@ class HomeScreen extends ConsumerWidget {
                                     padding: const EdgeInsets.only(right:10),
                                     child: Row(
                                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                      children: [
-                                        Column(
-                                          children: [
-                                            const Text('PPG'),
-                                            Text(homeInfo.teamStat[0].toString()),
-                                          ],
-                                        ),
-                                        const VerticalDivider(
-                                          color: Colors.red,
-                                          thickness: 1,
-                                          indent: 0,
-                                          endIndent: 0,
-                                          width: 10,
-                                        ),
-                                        Column(
-                                          children: [
-                                            const Text('RPG'),
-                                            Text(homeInfo.teamStat[1].toString()),
-                                          ],
-                                        ),
-                                        const VerticalDivider(
-                                          color: Colors.red,
-                                          thickness: 1,
-                                          indent: 0,
-                                          endIndent: 0,
-                                          width: 10,
-                                        ),
-                                        Column(
-                                          children: [
-                                            const Text('APG'),
-                                            Text(homeInfo.teamStat[2].toString()),
-                                          ],
-                                        ),
-                                        const VerticalDivider(
-                                          color: Colors.red,
-                                          thickness: 1,
-                                          indent: 0,
-                                          endIndent: 0,
-                                          width: 10,
-                                        ),
-                                        Column(
-                                          children: [
-                                            const Text('OPPG'),
-                                            Text(homeInfo.teamStat[3].toString()),
-                                          ],
-                                        ),
-                                      ],
+                                      children: home.getTeamStat().asMap().entries.map((e) {
+                                          final index = e.key;
+                                          return Column(
+                                            children: [
+                                              Text(TeamStatColumns.teamStatColumnList[index]),
+                                              Text(e.value.toString()),
+                                            ],
+                                          );
+                                      }).toList(),
                                     ),
                                   )
                                 ]
