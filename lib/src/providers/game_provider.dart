@@ -1,4 +1,3 @@
-import 'package:bb_stats/src/collections/game/game.dart';
 import 'package:bb_stats/src/collections/game/game_model.dart';
 import 'package:bb_stats/src/repositories/boxscore_repository.dart';
 import 'package:bb_stats/src/repositories/game_repository.dart';

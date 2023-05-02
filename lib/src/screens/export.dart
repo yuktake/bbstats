@@ -1,7 +1,6 @@
 import 'package:bb_stats/src/providers/isar_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'dart:io';
 
 import 'package:share_plus/share_plus.dart';
 

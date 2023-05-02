@@ -16,8 +16,6 @@ import '../repositories/boxscore_repository.dart';
 import '../repositories/pbp_repository.dart';
 import '../repositories/player_repository.dart';
 
-import 'dart:io';
-import 'dart:typed_data';
 import 'package:image_gallery_saver/image_gallery_saver.dart';
 
 class GameChartStateNotifier extends StateNotifier<GameChartModel> {

@@ -61,7 +61,6 @@ class GameSummaryStateNotifier extends StateNotifier<GameSummaryModel> {
   }
 
   void update() {
-    Game game = gameRepository.findGame(gameId)!;
     state = state.copyWith(
       game: gameRepository.findGame(gameId)!,
       scores: pbpRepository.getScoresForChart(gameId),

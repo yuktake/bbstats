@@ -14,8 +14,6 @@ class PlayersSelectScreen extends ConsumerWidget {
     final playersInfo = ref.watch(playerSelectProvider);
     final documentPath = ref.watch(documentPathProvider);
 
-    var isChecked = List.filled(playersInfo.players.length, false);
-
     return Scaffold(
       appBar: AppBar(
         title: Text('Player Select'),
@@ -36,7 +34,6 @@ class PlayersSelectScreen extends ConsumerWidget {
                   children: [
                     CircleAvatar(
                       radius: 40,
-                      // backgroundImage: AssetImage(playersInfo.players[index].image == null ? "assets/logos/default.png" : playersInfo.players[index].image!.path),
                       backgroundImage: AssetImage("${documentPath.value}/players/${playersInfo.players[index].id}.jpg"),
                     ),
                     SizedBox(width: 32.0),

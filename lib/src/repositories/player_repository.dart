@@ -102,24 +102,6 @@ class PlayerRepository {
     return name ?? "";
   }
 
-  // DateTime? getBirthday(int id) {
-  //   if (!isar.isOpen) {
-  //     return null;
-  //   }
-  //   final birthday =  isar.players.where().idEqualTo(id).birthDayProperty().findFirstSync();
-  //
-  //   return birthday;
-  // }
-
-  // int? getHeight(int id) {
-  //   if (!isar.isOpen) {
-  //     return null;
-  //   }
-  //   final height =  isar.players.where().idEqualTo(id).heightProperty().findFirstSync();
-  //
-  //   return height;
-  // }
-
   bool getVisible(int id) {
     if (!isar.isOpen) {
       return true;
@@ -152,8 +134,6 @@ class PlayerRepository {
   int addPlayer({
     required Team team,
     required String name,
-    // required int height,
-    // required DateTime? birthDay,
   }) {
     if (!isar.isOpen) {
       return 0;
@@ -163,40 +143,14 @@ class PlayerRepository {
     final player = Player()
       ..team.value = team
       ..name = name
-      // ..height = height
-      // ..birthDay = birthDay
       ..visible = true
       ..createdAt = now
       ..updatedAt = now;
 
-    // final playerStat = PlayerStat()
-    //   ..min = 0.0
-    //   ..fgm = 0.0
-    //   ..fga = 0.0
-    //   ..fgRate = 0.0
-    //   ..threePm = 0.0
-    //   ..threePa = 0.0
-    //   ..threeRate = 0.0
-    //   ..ftm = 0.0
-    //   ..fta = 0.0
-    //   ..ftRate = 0.0
-    //   ..oreb = 0.0
-    //   ..dreb = 0.0
-    //   ..reb = 0.0
-    //   ..ast = 0.0
-    //   ..stl = 0.0
-    //   ..blk = 0.0
-    //   ..to = 0.0
-    //   ..pf = 0.0
-    //   ..pts = 0.0
-    //   ..createdAt = now
-    //   ..updatedAt = now
-    // ;
 
     isar.writeTxnSync(() {
        isar.players.putSync(player);
        player.team.saveSync();
-       // isar.playerStats.putSync(playerStat);
     });
 
     return player.id;

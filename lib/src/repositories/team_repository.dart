@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:io';
 
 import 'package:isar/isar.dart';
 import 'package:path_provider/path_provider.dart';
@@ -78,19 +77,11 @@ class TeamRepository {
 
     String avatarPath = "${(await getApplicationDocumentsDirectory()).path}/teams/1.jpg";
     return avatarPath;
-
-    // final image =  isar.teams.where().idEqualTo(1).imageProperty().findFirstSync();
-    // if (image != null) {
-    //   image.setLastAccessed(DateTime.now());
-    // }
-    //
-    // return image;
   }
 
   /// Playerを追加する
   int addTeam({
     required String name,
-    // required File? image,
   }) {
     if (!isar.isOpen) {
       return 0;
@@ -125,14 +116,9 @@ class TeamRepository {
     if (!isar.isOpen) {
       return Future<void>(() {});
     }
-    // team.image = imageFile;
     return isar.writeTxn(() async {
       await isar.teams.put(team);
     });
-  }
-
-  Future<void> debug()async {
-    print("done");
   }
 
   /// Teamを削除する

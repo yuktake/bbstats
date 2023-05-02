@@ -58,7 +58,6 @@ final isarProvider = Provider<Isar>((_) {
 });
 
 final playerRepositoryProvider = Provider((ref) => PlayerRepository(ref.watch(isarProvider)));
-final playerHistoryRepositoryProvider = Provider((ref) => PlayerHistoryRepository(ref.watch(isarProvider)));
 final teamRepositoryProvider = Provider((ref) => TeamRepository(ref.watch(isarProvider)));
 final gameRepositoryProvider = Provider((ref) => GameRepository(ref.watch(isarProvider)));
 final boxscoreRepositoryProvider = Provider((ref) => BoxscoreRepository(ref.watch(isarProvider)));

@@ -25,7 +25,6 @@ class TeamProfile extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final home = ref.watch(homeProvider.notifier);
-    final homeInfo = ref.watch(homeProvider);
     final team = ref.watch(teamProvider(id).notifier);
     final teamInfo = ref.watch(teamProvider(id));
     final teamDetail = ref.watch(teamDetailProvider.notifier);
