@@ -5,6 +5,7 @@ import 'package:bb_stats/src/collections/game/game.dart';
 import 'package:bb_stats/src/collections/pbp/pbp.dart';
 import 'package:bb_stats/src/collections/player/player.dart';
 import 'package:bb_stats/src/collections/team/team.dart';
+import 'package:bb_stats/src/collections/teamStat/teamStat.dart';
 import 'package:bb_stats/src/common.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -23,6 +24,7 @@ Future<void> main() async {
   final isar = await Isar.open(
     [
       TeamSchema,
+      TeamStatSchema,
       PlayerSchema,
       GameSchema,
       BoxscoreSchema,
