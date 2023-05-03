@@ -160,32 +160,54 @@ class ShotStateNotifier extends StateNotifier<ShotModel> {
   }
 
   void confirm(int gameId, int playerId) {
+    Boxscore boxScore = boxScoreRepository.findOneByGameAndPlayer(gameId, playerId)!;
+    RecordType recordType = RecordType.NONE;
     if (state.result) {
-      Boxscore boxScore = boxScoreRepository.findOneByGameAndPlayer(gameId, playerId)!;
-      if (state.point == 2) {
-        gameRepository.madeShot(gameId, RecordType.TWO_POINT_MADE, boxScore.starter);
-      } else if (state.point == 3) {
-        gameRepository.madeShot(gameId, RecordType.THREE_POINT_MADE, boxScore.starter);
+      if (state.point == 3) {
+        recordType = RecordType.THREE_POINT_MADE;
+      } else if (state.point == 2) {
+        recordType = RecordType.TWO_POINT_MADE;
       }
     } else {
-      if (state.point == 2) {
-        gameRepository.missShot(gameId, RecordType.TWO_POINT_MISS);
-      } else if (state.point == 3) {
-        gameRepository.missShot(gameId, RecordType.THREE_POINT_MISS);
+      if (state.point == 3) {
+        recordType = RecordType.THREE_POINT_MISS;
+      } else if (state.point == 2) {
+        recordType = RecordType.TWO_POINT_MISS;
       }
+    }
+
+    if (recordType == RecordType.NONE) {
+      // TODO:: ERROR
+      return;
+    }
+
+    // Gameテーブルへの書き込み
+    switch(recordType) {
+      case RecordType.TWO_POINT_MADE:
+      case RecordType.THREE_POINT_MADE:
+        gameRepository.madeShot(gameId, recordType, boxScore.starter);
+        break;
+      case RecordType.TWO_POINT_MISS:
+      case RecordType.THREE_POINT_MISS:
+        gameRepository.missShot(gameId, recordType);
+        break;
+      default:
+        // TODO:: ERROR
+        return;
     }
 
     if (state.supportPlayerId != null) {
       if (state.result) {
-        // boxScoreRepository.makeAssist(gameId, state.supportPlayerId!);
         gameRepository.addAssist(gameId, true);
       } else {
-        // boxScoreRepository.makeRebound(gameId, state.supportPlayerId!, RecordType.OFFENCE_REBOUND);
         gameRepository.addOffenceRebound(gameId, true);
       }
     }
 
-    boxScoreRepository.makeShot(shotParameter.gameId, shotParameter.playerId, state.result, state.point, state.supportPlayerId);
+    // BoxScoreへの書き込み
+    boxScoreRepository.makeShot(boxScore, recordType, state.supportPlayerId, state.playType, state.shotType, state.shotZone);
+    // TeamStatへの書き込み
+    teamStatRepository.makeShot(gameId, recordType, state.shotType, state.shotZone);
   }
 
   void mixImage(BuildContext context, GlobalKey globalKey, Uint8List src, TapDownDetails details) async {
