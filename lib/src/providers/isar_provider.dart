@@ -149,6 +149,7 @@ final shotProvider = StateNotifierProvider.family<ShotStateNotifier,ShotModel,Sh
   return ShotStateNotifier(
       ref.watch(playerRepositoryProvider),
       ref.watch(gameRepositoryProvider),
+      ref.watch(teamStatRepositoryProvider),
       ref.watch(boxscoreRepositoryProvider),
       shotParameter
   );

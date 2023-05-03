@@ -8,6 +8,7 @@ import 'package:bb_stats/src/enums/ShotType.dart';
 import 'package:bb_stats/src/enums/ShotZone.dart';
 import 'package:bb_stats/src/repositories/boxscore_repository.dart';
 import 'package:bb_stats/src/repositories/game_repository.dart';
+import 'package:bb_stats/src/repositories/teamStatRepository.php.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -20,6 +21,7 @@ class ShotStateNotifier extends StateNotifier<ShotModel> {
   ShotStateNotifier(
       this.playerRepository,
       this.gameRepository,
+      this.teamStatRepository,
       this.boxScoreRepository,
       this.shotParameter,
   ) : super (
@@ -43,6 +45,7 @@ class ShotStateNotifier extends StateNotifier<ShotModel> {
 
   final PlayerRepository playerRepository;
   final GameRepository gameRepository;
+  final TeamStatRepository teamStatRepository;
   final BoxscoreRepository boxScoreRepository;
   final ShotParameter shotParameter;
 
