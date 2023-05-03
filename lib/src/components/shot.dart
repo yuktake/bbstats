@@ -36,7 +36,7 @@ class Shot extends ConsumerWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('Shot'),
+        title: const Text('Shot'),
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -53,18 +53,18 @@ class Shot extends ConsumerWidget {
               ),
             )
               :
-            Text(
+            const Text(
               'No Image Taken',
               textAlign: TextAlign.center,
             ),
-            Text('Make or Miss'),
+            const Text('Make or Miss'),
             Padding(
               padding: EdgeInsets.only(top: 16, left: 16, right: 16),
               child: Row(
                 children: [
                   Expanded(
                     child: CupertinoSegmentedControl(
-                        children: {
+                        children: const {
                           1: Text('Make'),
                           0: Text('Miss'),
                         },
@@ -80,7 +80,7 @@ class Shot extends ConsumerWidget {
             ),
             // change depend on support type
             Text(shotInfo.result ? 'Assisted By' : 'rebounded by'),
-            Container(
+            SizedBox(
               height: 100,
               child: ListView(
                 // This next line does the trick.
@@ -102,14 +102,14 @@ class Shot extends ConsumerWidget {
                 ],
               ),
             ),
-            Text('Points'),
+            const Text('Points'),
             Padding(
               padding: EdgeInsets.all(16),
               child: Row(
                 children: [
                   Expanded(
                     child: CupertinoSegmentedControl(
-                        children: {
+                        children: const {
                           2: Text('2'),
                           3: Text('3'),
                         },
@@ -126,7 +126,7 @@ class Shot extends ConsumerWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                Text('Play Type'),
+                const Text('Play Type'),
                 DropdownButton(
                   items: const [
                     DropdownMenuItem(
@@ -277,6 +277,7 @@ class Shot extends ConsumerWidget {
                 backgroundColor: Colors.blue,
                 onPressed: () {
                   if (shotInfo.positionX == null || shotInfo.positionY == null) {
+                    // TODO:: ALERT
                     return;
                   }
                   shot.confirm(gameId, playerId);
