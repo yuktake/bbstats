@@ -33,7 +33,6 @@ class GameStatStateNotifier extends StateNotifier<GameStatModel> {
         src: null,
         pbps: pbpRepository.getShotChartPbps(gameId, Period.ALL, PlayType.NONE, ShotType.NONE, null, 1, ShotZone.ALL),
         shotFilter: 1,
-        players: playerRepository.getAllPlayers(true),
         selectedPlayerId: null,
         detailPlayer: null,
         comparisonStats: gameRepository.getStatsForComparison(gameId),
@@ -47,6 +46,10 @@ class GameStatStateNotifier extends StateNotifier<GameStatModel> {
   final BoxscoreRepository boxScoreRepository;
   final PbpRepository pbpRepository;
   final int gameId;
+
+  List<Player> getPlayers() {
+    return playerRepository.getAllPlayers(true);
+  }
 
   List<List<dynamic>> getComparisonStats() {
     return gameRepository.getStatsForComparison(gameId);

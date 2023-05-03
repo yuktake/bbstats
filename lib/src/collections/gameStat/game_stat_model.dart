@@ -19,7 +19,6 @@ class GameStatModel with _$GameStatModel {
     required Uint8List? src,
     required List<Pbp> pbps,
     required int shotFilter,
-    required List<Player> players,
     required int? selectedPlayerId,
     required Boxscore? detailPlayer,
     required List<List<dynamic>> comparisonStats,

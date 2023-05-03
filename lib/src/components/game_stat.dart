@@ -303,15 +303,15 @@ class GameStat extends ConsumerWidget {
                             child: ListView(
                               // This next line does the trick.
                               scrollDirection: Axis.horizontal,
-                              children: [
-                                for (var i = 0; i < gameStatInfo.players.length; i++)
-                                  GestureDetector(
-                                      onTap: () {
-                                        gameStat.updateDetailPlayer(gameStatInfo.players[i]);
-                                      },
-                                      child: _buildCircleAvatar(gameStatInfo.selectedPlayerId ,gameStatInfo.players[i], documentPath.value)
-                                  )
-                              ],
+                              children: gameStat.getPlayers().asMap().entries.map((e) {
+                                final index = e.key;
+                                return GestureDetector(
+                                    onTap: () {
+                                      gameStat.updateDetailPlayer(e.value);
+                                    },
+                                    child: _buildCircleAvatar(gameStatInfo.selectedPlayerId ,e.value, documentPath.value)
+                                );
+                              }).toList(),
                             ),
                           ),
                         ),

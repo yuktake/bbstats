@@ -22,7 +22,6 @@ mixin _$GameStatModel {
   Uint8List? get src => throw _privateConstructorUsedError;
   List<Pbp> get pbps => throw _privateConstructorUsedError;
   int get shotFilter => throw _privateConstructorUsedError;
-  List<Player> get players => throw _privateConstructorUsedError;
   int? get selectedPlayerId => throw _privateConstructorUsedError;
   Boxscore? get detailPlayer => throw _privateConstructorUsedError;
   List<List<dynamic>> get comparisonStats => throw _privateConstructorUsedError;
@@ -44,7 +43,6 @@ abstract class $GameStatModelCopyWith<$Res> {
       Uint8List? src,
       List<Pbp> pbps,
       int shotFilter,
-      List<Player> players,
       int? selectedPlayerId,
       Boxscore? detailPlayer,
       List<List<dynamic>> comparisonStats});
@@ -67,7 +65,6 @@ class _$GameStatModelCopyWithImpl<$Res>
     Object? src = freezed,
     Object? pbps = freezed,
     Object? shotFilter = freezed,
-    Object? players = freezed,
     Object? selectedPlayerId = freezed,
     Object? detailPlayer = freezed,
     Object? comparisonStats = freezed,
@@ -97,10 +94,6 @@ class _$GameStatModelCopyWithImpl<$Res>
           ? _value.shotFilter
           : shotFilter // ignore: cast_nullable_to_non_nullable
               as int,
-      players: players == freezed
-          ? _value.players
-          : players // ignore: cast_nullable_to_non_nullable
-              as List<Player>,
       selectedPlayerId: selectedPlayerId == freezed
           ? _value.selectedPlayerId
           : selectedPlayerId // ignore: cast_nullable_to_non_nullable
@@ -131,7 +124,6 @@ abstract class _$$_GameStatModelCopyWith<$Res>
       Uint8List? src,
       List<Pbp> pbps,
       int shotFilter,
-      List<Player> players,
       int? selectedPlayerId,
       Boxscore? detailPlayer,
       List<List<dynamic>> comparisonStats});
@@ -156,7 +148,6 @@ class __$$_GameStatModelCopyWithImpl<$Res>
     Object? src = freezed,
     Object? pbps = freezed,
     Object? shotFilter = freezed,
-    Object? players = freezed,
     Object? selectedPlayerId = freezed,
     Object? detailPlayer = freezed,
     Object? comparisonStats = freezed,
@@ -186,10 +177,6 @@ class __$$_GameStatModelCopyWithImpl<$Res>
           ? _value.shotFilter
           : shotFilter // ignore: cast_nullable_to_non_nullable
               as int,
-      players: players == freezed
-          ? _value._players
-          : players // ignore: cast_nullable_to_non_nullable
-              as List<Player>,
       selectedPlayerId: selectedPlayerId == freezed
           ? _value.selectedPlayerId
           : selectedPlayerId // ignore: cast_nullable_to_non_nullable
@@ -216,12 +203,10 @@ class _$_GameStatModel implements _GameStatModel {
       required this.src,
       required final List<Pbp> pbps,
       required this.shotFilter,
-      required final List<Player> players,
       required this.selectedPlayerId,
       required this.detailPlayer,
       required final List<List<dynamic>> comparisonStats})
       : _pbps = pbps,
-        _players = players,
         _comparisonStats = comparisonStats;
 
   @override
@@ -241,13 +226,6 @@ class _$_GameStatModel implements _GameStatModel {
 
   @override
   final int shotFilter;
-  final List<Player> _players;
-  @override
-  List<Player> get players {
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_players);
-  }
-
   @override
   final int? selectedPlayerId;
   @override
@@ -261,7 +239,7 @@ class _$_GameStatModel implements _GameStatModel {
 
   @override
   String toString() {
-    return 'GameStatModel(game: $game, image: $image, blendMode: $blendMode, src: $src, pbps: $pbps, shotFilter: $shotFilter, players: $players, selectedPlayerId: $selectedPlayerId, detailPlayer: $detailPlayer, comparisonStats: $comparisonStats)';
+    return 'GameStatModel(game: $game, image: $image, blendMode: $blendMode, src: $src, pbps: $pbps, shotFilter: $shotFilter, selectedPlayerId: $selectedPlayerId, detailPlayer: $detailPlayer, comparisonStats: $comparisonStats)';
   }
 
   @override
@@ -276,7 +254,6 @@ class _$_GameStatModel implements _GameStatModel {
             const DeepCollectionEquality().equals(other._pbps, _pbps) &&
             const DeepCollectionEquality()
                 .equals(other.shotFilter, shotFilter) &&
-            const DeepCollectionEquality().equals(other._players, _players) &&
             const DeepCollectionEquality()
                 .equals(other.selectedPlayerId, selectedPlayerId) &&
             const DeepCollectionEquality()
@@ -294,7 +271,6 @@ class _$_GameStatModel implements _GameStatModel {
       const DeepCollectionEquality().hash(src),
       const DeepCollectionEquality().hash(_pbps),
       const DeepCollectionEquality().hash(shotFilter),
-      const DeepCollectionEquality().hash(_players),
       const DeepCollectionEquality().hash(selectedPlayerId),
       const DeepCollectionEquality().hash(detailPlayer),
       const DeepCollectionEquality().hash(_comparisonStats));
@@ -313,7 +289,6 @@ abstract class _GameStatModel implements GameStatModel {
       required final Uint8List? src,
       required final List<Pbp> pbps,
       required final int shotFilter,
-      required final List<Player> players,
       required final int? selectedPlayerId,
       required final Boxscore? detailPlayer,
       required final List<List<dynamic>> comparisonStats}) = _$_GameStatModel;
@@ -330,8 +305,6 @@ abstract class _GameStatModel implements GameStatModel {
   List<Pbp> get pbps;
   @override
   int get shotFilter;
-  @override
-  List<Player> get players;
   @override
   int? get selectedPlayerId;
   @override
