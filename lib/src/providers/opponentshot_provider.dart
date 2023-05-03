@@ -185,10 +185,6 @@ class OpponentShotStateNotifier extends StateNotifier<OpponentShotModel> {
           break;
       }
     }
-
-    if (shotParameter.playerId != 0) {
-      boxScoreRepository.makeShot(shotParameter.gameId, shotParameter.playerId, true, state.point, state.defencePlayerId);
-    }
   }
 
   void mixImage(BuildContext context, GlobalKey globalKey, Uint8List src, TapDownDetails details) async {
