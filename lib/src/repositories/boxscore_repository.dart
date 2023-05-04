@@ -5,6 +5,7 @@ import 'package:bb_stats/src/collections/game/game.dart';
 import 'package:bb_stats/src/collections/player/player.dart';
 import 'package:bb_stats/src/enums/FgResult.dart';
 import 'package:bb_stats/src/enums/PlayType.dart';
+import 'package:bb_stats/src/enums/PointType.dart';
 import 'package:bb_stats/src/enums/RecordType.dart';
 import 'package:bb_stats/src/enums/ShotType.dart';
 import 'package:bb_stats/src/enums/ShotZone.dart';
@@ -420,6 +421,11 @@ class BoxscoreRepository {
 
   void makeShot(Boxscore boxScore, FgResult fgResult, int? supportPlayerId, PlayType playType, ShotType shotType, ShotZone shotZone) {
 
+    if (fgResult == FgResult.NONE) {
+      // TODO:: ERROR
+      return;
+    }
+
     if (fgResult == FgResult.THREE_POINT_MADE) {
       boxScore.tpa = boxScore.tpa+1;
       boxScore.tpm = boxScore.tpm+1;
@@ -441,9 +447,6 @@ class BoxscoreRepository {
     } else if (fgResult == FgResult.TWO_POINT_MISS) {
       boxScore.fga = boxScore.fga+1;
       boxScore.fgRatio = ((boxScore.fgm / boxScore.fga) * 100 * 10).round() / 10;
-    } else if (fgResult == FgResult.NONE) {
-      // TODO:: ERROR
-      return;
     }
 
     // 以降はTPM/TPA/FGM/FGAしか存在しない
@@ -794,7 +797,12 @@ class BoxscoreRepository {
     });
   }
 
-  void modifyShot(int gameId, int playerId, bool result, int point, int? supportPlayerId) {
+  void modifyShot(int gameId, int playerId, FgResult fgResult, int? supportPlayerId) {
+
+    if (fgResult == FgResult.NONE) {
+      // TODO:: ERROR
+      return;
+    }
 
     final boxScore = isar.boxscores.filter()
         .game((q) => q.idEqualTo(gameId))
@@ -806,8 +814,29 @@ class BoxscoreRepository {
       return;
     }
 
-    if (result) {
-      if (point == 3) {
+    switch (fgResult){
+      case FgResult.NONE:
+        // 通らない
+        break;
+      case FgResult.TWO_POINT_MADE:
+        boxScore.fga-=1;
+        boxScore.fgm-=1;
+        if (boxScore.fga == 0) {
+          boxScore.fgRatio = 0.0;
+        } else {
+          boxScore.fgRatio = ((boxScore.fgm / boxScore.fga) * 100 * 10).round() / 10;
+        }
+        boxScore.pts-=2;
+        break;
+      case FgResult.TWO_POINT_MISS:
+        boxScore.fga-=1;
+        if (boxScore.fga == 0) {
+          boxScore.fgRatio = 0.0;
+        } else {
+          boxScore.fgRatio = ((boxScore.fgm / boxScore.fga) * 100 * 10).round() / 10;
+        }
+        break;
+      case FgResult.THREE_POINT_MADE:
         boxScore.tpa-=1;
         boxScore.tpm-=1;
         if (boxScore.tpa == 0) {
@@ -815,37 +844,36 @@ class BoxscoreRepository {
         } else {
           boxScore.tpRatio = ((boxScore.tpm / boxScore.tpa) * 100 * 10).round() / 10;
         }
-      }
-      boxScore.fga-=1;
-      boxScore.fgm-=1;
-      if (boxScore.fga == 0) {
-        boxScore.fgRatio = 0.0;
-      } else {
-        boxScore.fgRatio = ((boxScore.fgm / boxScore.fga) * 100 * 10).round() / 10;
-      }
-      boxScore.pts-=point;
-    } else {
-      if (point == 3) {
+        boxScore.fga-=1;
+        boxScore.fgm-=1;
+        if (boxScore.fga == 0) {
+          boxScore.fgRatio = 0.0;
+        } else {
+          boxScore.fgRatio = ((boxScore.fgm / boxScore.fga) * 100 * 10).round() / 10;
+        }
+        boxScore.pts-=3;
+        break;
+      case FgResult.THREE_POINT_MISS:
         boxScore.tpa-=1;
         if (boxScore.tpa == 0) {
           boxScore.tpRatio = 0.0;
         } else {
           boxScore.tpRatio = ((boxScore.tpm / boxScore.tpa) * 100 * 10).round() / 10;
         }
-      }
-      boxScore.fga-=1;
-      if (boxScore.fga == 0) {
-        boxScore.fgRatio = 0.0;
-      } else {
-        boxScore.fgRatio = ((boxScore.fgm / boxScore.fga) * 100 * 10).round() / 10;
-      }
+        boxScore.fga-=1;
+        if (boxScore.fga == 0) {
+          boxScore.fgRatio = 0.0;
+        } else {
+          boxScore.fgRatio = ((boxScore.fgm / boxScore.fga) * 100 * 10).round() / 10;
+        }
+        break;
     }
 
     isar.writeTxnSync(() {
       isar.boxscores.putSync(boxScore);
     });
 
-
+    // アシストされていなければここで終了
     if (supportPlayerId == null) {
       return;
     }
@@ -860,9 +888,9 @@ class BoxscoreRepository {
       return;
     }
 
-    if (result) {
+    if (fgResult == FgResult.TWO_POINT_MADE || fgResult == FgResult.THREE_POINT_MADE) {
       supportPlayerBoxScore.ast-=1;
-    } else {
+    } else if (fgResult == FgResult.TWO_POINT_MISS || fgResult == FgResult.THREE_POINT_MISS) {
       supportPlayerBoxScore.reb-=1;
       supportPlayerBoxScore.oReb-=1;
     }

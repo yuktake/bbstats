@@ -1,4 +1,5 @@
 import 'package:bb_stats/src/collections/gameRecord/game_record_model.dart';
+import 'package:bb_stats/src/enums/FgResult.dart';
 import 'package:bb_stats/src/enums/GameAction.dart';
 import 'package:bb_stats/src/enums/RecordType.dart';
 import 'package:bb_stats/src/repositories/boxscore_repository.dart';
@@ -316,8 +317,8 @@ class GameRecordStateNotifier extends StateNotifier<GameRecordModel> {
         } else {
           Boxscore boxScore = boxScoreRepository.findOneByGameAndPlayer(gameId, pbp.player.value!.id)!;
           gameRepository.modifyShot(gameId, pbp.supportedPlayerId, RecordType.TWO_POINT_MADE, boxScore.starter);
-          // TODO:: teamStat
-          boxScoreRepository.modifyShot(gameId, pbp.player.value!.id, true, 2, pbp.supportedPlayerId);
+          teamStatRepository.modifyShot(gameId, FgResult.TWO_POINT_MADE, pbp.shotPosition!.shotType, pbp.shotPosition!.shotZone);
+          boxScoreRepository.modifyShot(gameId, pbp.player.value!.id, FgResult.TWO_POINT_MADE, pbp.supportedPlayerId);
         }
         break;
       case RecordType.TWO_POINT_MISS:
@@ -326,7 +327,8 @@ class GameRecordStateNotifier extends StateNotifier<GameRecordModel> {
         } else {
           Boxscore boxScore = boxScoreRepository.findOneByGameAndPlayer(gameId, pbp.player.value!.id)!;
           gameRepository.modifyShot(gameId, pbp.supportedPlayerId, RecordType.TWO_POINT_MISS, boxScore.starter);
-          boxScoreRepository.modifyShot(gameId, pbp.player.value!.id, false, 2, pbp.supportedPlayerId);
+          teamStatRepository.modifyShot(gameId, FgResult.TWO_POINT_MISS, pbp.shotPosition!.shotType, pbp.shotPosition!.shotZone);
+          boxScoreRepository.modifyShot(gameId, pbp.player.value!.id, FgResult.TWO_POINT_MISS, pbp.supportedPlayerId);
         }
         break;
       case RecordType.THREE_POINT_MADE:
@@ -335,7 +337,8 @@ class GameRecordStateNotifier extends StateNotifier<GameRecordModel> {
         } else {
           Boxscore boxScore = boxScoreRepository.findOneByGameAndPlayer(gameId, pbp.player.value!.id)!;
           gameRepository.modifyShot(gameId, pbp.supportedPlayerId, RecordType.THREE_POINT_MADE, boxScore.starter);
-          boxScoreRepository.modifyShot(gameId, pbp.player.value!.id, true, 3, pbp.supportedPlayerId);
+          teamStatRepository.modifyShot(gameId, FgResult.THREE_POINT_MADE, pbp.shotPosition!.shotType, pbp.shotPosition!.shotZone);
+          boxScoreRepository.modifyShot(gameId, pbp.player.value!.id, FgResult.THREE_POINT_MADE, pbp.supportedPlayerId);
         }
         break;
       case RecordType.THREE_POINT_MISS:
@@ -344,7 +347,8 @@ class GameRecordStateNotifier extends StateNotifier<GameRecordModel> {
         } else {
           Boxscore boxScore = boxScoreRepository.findOneByGameAndPlayer(gameId, pbp.player.value!.id)!;
           gameRepository.modifyShot(gameId, pbp.supportedPlayerId, RecordType.THREE_POINT_MISS, boxScore.starter);
-          boxScoreRepository.modifyShot(gameId, pbp.player.value!.id, false, 3, pbp.supportedPlayerId);
+          teamStatRepository.modifyShot(gameId, FgResult.THREE_POINT_MISS, pbp.shotPosition!.shotType, pbp.shotPosition!.shotZone);
+          boxScoreRepository.modifyShot(gameId, pbp.player.value!.id, FgResult.THREE_POINT_MISS, pbp.supportedPlayerId);
         }
         break;
       case RecordType.FT_MADE:
@@ -353,6 +357,7 @@ class GameRecordStateNotifier extends StateNotifier<GameRecordModel> {
         } else {
           Boxscore boxScore = boxScoreRepository.findOneByGameAndPlayer(gameId, pbp.player.value!.id)!;
           gameRepository.modifyShot(gameId, pbp.supportedPlayerId, RecordType.FT_MADE, boxScore.starter);
+          // TODO:: modify to FtResult
           boxScoreRepository.modifyFreeThrow(gameId, pbp.player.value!.id, RecordType.FT_MADE);
         }
         break;
@@ -362,6 +367,7 @@ class GameRecordStateNotifier extends StateNotifier<GameRecordModel> {
         } else {
           Boxscore boxScore = boxScoreRepository.findOneByGameAndPlayer(gameId, pbp.player.value!.id)!;
           gameRepository.modifyShot(gameId, pbp.supportedPlayerId, RecordType.FT_MISS, boxScore.starter);
+          // TODO:: modify to FtResult
           boxScoreRepository.modifyFreeThrow(gameId, pbp.player.value!.id, RecordType.FT_MISS);
         }
         break;
