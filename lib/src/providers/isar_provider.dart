@@ -116,6 +116,7 @@ final teamDetailProvider = StateNotifierProvider.autoDispose<TeamDetailStateNoti
   return TeamDetailStateNotifier(
     ref.watch(teamRepositoryProvider),
     ref.watch(gameRepositoryProvider),
+    ref.watch(teamStatRepositoryProvider),
     ref.watch(boxscoreRepositoryProvider),
     ref.watch(pbpRepositoryProvider),
   );

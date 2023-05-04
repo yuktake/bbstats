@@ -1,7 +1,6 @@
-
-
 import 'package:bb_stats/src/collections/teamDetail/team_detail_model.dart';
 import 'package:bb_stats/src/repositories/game_repository.dart';
+import 'package:bb_stats/src/repositories/teamStatRepository.php.dart';
 import 'package:bb_stats/src/repositories/team_repository.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -14,6 +13,7 @@ class TeamDetailStateNotifier extends StateNotifier<TeamDetailModel> {
   TeamDetailStateNotifier(
       this.teamRepository,
       this.gameRepository,
+      this.teamStatRepository,
       this.boxScoreRepository,
       this.pbpRepository,
   ) : super(
@@ -36,6 +36,7 @@ class TeamDetailStateNotifier extends StateNotifier<TeamDetailModel> {
 
   final TeamRepository teamRepository;
   final GameRepository gameRepository;
+  final TeamStatRepository teamStatRepository;
   final BoxscoreRepository boxScoreRepository;
   final PbpRepository pbpRepository;
 
