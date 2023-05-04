@@ -2,7 +2,9 @@ import 'dart:typed_data';
 
 import 'package:bb_stats/src/collections/shot/shot_model.dart';
 import 'package:bb_stats/src/collections/shot/shot_parameter.dart';
+import 'package:bb_stats/src/enums/FgResult.dart';
 import 'package:bb_stats/src/enums/PlayType.dart';
+import 'package:bb_stats/src/enums/PointType.dart';
 import 'package:bb_stats/src/enums/RecordType.dart';
 import 'package:bb_stats/src/enums/ShotType.dart';
 import 'package:bb_stats/src/enums/ShotZone.dart';
@@ -161,38 +163,42 @@ class ShotStateNotifier extends StateNotifier<ShotModel> {
 
   void confirm(int gameId, int playerId) {
     Boxscore boxScore = boxScoreRepository.findOneByGameAndPlayer(gameId, playerId)!;
-    RecordType recordType = RecordType.NONE;
+    FgResult fgResult = FgResult.NONE;
     if (state.result) {
       if (state.point == 3) {
-        recordType = RecordType.THREE_POINT_MADE;
+        fgResult = FgResult.THREE_POINT_MADE;
       } else if (state.point == 2) {
-        recordType = RecordType.TWO_POINT_MADE;
+        fgResult = FgResult.TWO_POINT_MADE;
       }
     } else {
       if (state.point == 3) {
-        recordType = RecordType.THREE_POINT_MISS;
+        fgResult = FgResult.THREE_POINT_MISS;
       } else if (state.point == 2) {
-        recordType = RecordType.TWO_POINT_MISS;
+        fgResult = FgResult.TWO_POINT_MISS;
       }
     }
 
-    if (recordType == RecordType.NONE) {
+    if (fgResult == FgResult.NONE) {
       // TODO:: ERROR
       return;
     }
 
     // Gameテーブルへの書き込み
-    switch(recordType) {
-      case RecordType.TWO_POINT_MADE:
-      case RecordType.THREE_POINT_MADE:
-        gameRepository.madeShot(gameId, recordType, boxScore.starter);
+    switch(fgResult) {
+      case FgResult.TWO_POINT_MADE:
+        gameRepository.madeShot(gameId, RecordType.TWO_POINT_MADE, boxScore.starter);
         break;
-      case RecordType.TWO_POINT_MISS:
-      case RecordType.THREE_POINT_MISS:
-        gameRepository.missShot(gameId, recordType);
+      case FgResult.THREE_POINT_MADE:
+        gameRepository.madeShot(gameId, RecordType.THREE_POINT_MADE, boxScore.starter);
         break;
-      default:
-        // TODO:: ERROR
+      case FgResult.TWO_POINT_MISS:
+        gameRepository.missShot(gameId, RecordType.TWO_POINT_MISS);
+        break;
+      case FgResult.THREE_POINT_MISS:
+        gameRepository.missShot(gameId, RecordType.THREE_POINT_MISS);
+        break;
+      case FgResult.NONE:
+        // ここは通らない
         return;
     }
 
@@ -205,9 +211,9 @@ class ShotStateNotifier extends StateNotifier<ShotModel> {
     }
 
     // BoxScoreへの書き込み
-    boxScoreRepository.makeShot(boxScore, recordType, state.supportPlayerId, state.playType, state.shotType, state.shotZone);
+    boxScoreRepository.makeShot(boxScore, fgResult, state.supportPlayerId, state.playType, state.shotType, state.shotZone);
     // TeamStatへの書き込み
-    teamStatRepository.makeShot(gameId, recordType, state.shotType, state.shotZone);
+    teamStatRepository.makeShot(gameId, fgResult, state.shotType, state.shotZone);
   }
 
   void mixImage(BuildContext context, GlobalKey globalKey, Uint8List src, TapDownDetails details) async {

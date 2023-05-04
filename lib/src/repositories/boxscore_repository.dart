@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:bb_stats/src/collections/boxscore/boxscore.dart';
 import 'package:bb_stats/src/collections/game/game.dart';
 import 'package:bb_stats/src/collections/player/player.dart';
+import 'package:bb_stats/src/enums/FgResult.dart';
 import 'package:bb_stats/src/enums/PlayType.dart';
 import 'package:bb_stats/src/enums/RecordType.dart';
 import 'package:bb_stats/src/enums/ShotType.dart';
@@ -417,9 +418,9 @@ class BoxscoreRepository {
     return boxScores;
   }
 
-  void makeShot(Boxscore boxScore, RecordType recordType, int? supportPlayerId, PlayType playType, ShotType shotType, ShotZone shotZone) {
+  void makeShot(Boxscore boxScore, FgResult fgResult, int? supportPlayerId, PlayType playType, ShotType shotType, ShotZone shotZone) {
 
-    if (recordType == RecordType.THREE_POINT_MADE) {
+    if (fgResult == FgResult.THREE_POINT_MADE) {
       boxScore.tpa = boxScore.tpa+1;
       boxScore.tpm = boxScore.tpm+1;
       boxScore.tpRatio = ((boxScore.tpm / boxScore.tpa) * 100 * 10).round() / 10;
@@ -427,23 +428,25 @@ class BoxscoreRepository {
       boxScore.fga = boxScore.fga+1;
       boxScore.fgm = boxScore.fgm+1;
       boxScore.fgRatio = ((boxScore.fgm / boxScore.fga) * 100 * 10).round() / 10;
-    } else if (recordType == RecordType.THREE_POINT_MISS) {
+    } else if (fgResult == FgResult.THREE_POINT_MISS) {
       boxScore.tpa = boxScore.tpa+1;
       boxScore.tpRatio = ((boxScore.tpm / boxScore.tpa) * 100 * 10).round() / 10;
       boxScore.fga = boxScore.fga+1;
       boxScore.fgRatio = ((boxScore.fgm / boxScore.fga) * 100 * 10).round() / 10;
-    } else if (recordType == RecordType.TWO_POINT_MADE) {
+    } else if (fgResult == FgResult.TWO_POINT_MADE) {
       boxScore.pts = boxScore.pts + 2;
       boxScore.fga = boxScore.fga+1;
       boxScore.fgm = boxScore.fgm+1;
       boxScore.fgRatio = ((boxScore.fgm / boxScore.fga) * 100 * 10).round() / 10;
-    } else if (recordType == RecordType.TWO_POINT_MISS) {
+    } else if (fgResult == FgResult.TWO_POINT_MISS) {
       boxScore.fga = boxScore.fga+1;
       boxScore.fgRatio = ((boxScore.fgm / boxScore.fga) * 100 * 10).round() / 10;
-    } else {
+    } else if (fgResult == FgResult.NONE) {
       // TODO:: ERROR
       return;
     }
+
+    // 以降はTPM/TPA/FGM/FGAしか存在しない
 
     isar.writeTxnSync(() {
       isar.boxscores.putSync(boxScore);
@@ -463,9 +466,9 @@ class BoxscoreRepository {
       return;
     }
 
-    if (recordType == RecordType.TWO_POINT_MADE || recordType == RecordType.THREE_POINT_MADE) {
+    if (fgResult == FgResult.TWO_POINT_MADE || fgResult == FgResult.THREE_POINT_MADE) {
       supportPlayerBoxScore.ast = supportPlayerBoxScore.ast+1;
-    } else {
+    } else if (fgResult == FgResult.TWO_POINT_MISS || fgResult == FgResult.THREE_POINT_MISS) {
       supportPlayerBoxScore.reb = supportPlayerBoxScore.reb+1;
       supportPlayerBoxScore.oReb = supportPlayerBoxScore.oReb+1;
     }
@@ -474,162 +477,162 @@ class BoxscoreRepository {
       case PlayType.NONE:
         break;
       case PlayType.ISOLATION:
-        if (recordType == RecordType.THREE_POINT_MADE) {
+        if (fgResult == FgResult.THREE_POINT_MADE) {
           boxScore.tpmIsolation = boxScore.tpmIsolation + 1;
           boxScore.tpaIsolation = boxScore.tpaIsolation + 1;
           boxScore.fgmIsolation = boxScore.fgmIsolation + 1;
           boxScore.fgaIsolation = boxScore.fgaIsolation + 1;
-        } else if (recordType == RecordType.THREE_POINT_MISS) {
+        } else if (fgResult == FgResult.THREE_POINT_MISS) {
           boxScore.tpaIsolation = boxScore.tpaIsolation + 1;
           boxScore.fgaIsolation = boxScore.fgaIsolation + 1;
-        } else if (recordType == RecordType.TWO_POINT_MADE) {
+        } else if (fgResult == FgResult.TWO_POINT_MADE) {
           boxScore.fgmIsolation = boxScore.fgmIsolation + 1;
           boxScore.fgaIsolation = boxScore.fgaIsolation + 1;
-        } else if (recordType == RecordType.TWO_POINT_MISS) {
+        } else if (fgResult == FgResult.TWO_POINT_MISS) {
           boxScore.fgaIsolation = boxScore.fgaIsolation + 1;
         }
         break;
       case PlayType.FASTBREAK:
-        if (recordType == RecordType.THREE_POINT_MADE) {
+        if (fgResult == FgResult.THREE_POINT_MADE) {
           boxScore.tpmFastBreak = boxScore.tpmFastBreak + 1;
           boxScore.tpaFastBreak = boxScore.tpaFastBreak + 1;
           boxScore.fgmFastBreak = boxScore.fgmFastBreak + 1;
           boxScore.fgaFastBreak = boxScore.fgaFastBreak + 1;
-        } else if (recordType == RecordType.THREE_POINT_MISS) {
+        } else if (fgResult == FgResult.THREE_POINT_MISS) {
           boxScore.tpaFastBreak = boxScore.tpaFastBreak + 1;
           boxScore.fgaFastBreak = boxScore.fgaFastBreak + 1;
-        } else if (recordType == RecordType.TWO_POINT_MADE) {
+        } else if (fgResult == FgResult.TWO_POINT_MADE) {
           boxScore.fgmFastBreak = boxScore.fgmFastBreak + 1;
           boxScore.fgaFastBreak = boxScore.fgaFastBreak + 1;
-        } else if (recordType == RecordType.TWO_POINT_MISS) {
+        } else if (fgResult == FgResult.TWO_POINT_MISS) {
           boxScore.fgaFastBreak = boxScore.fgaFastBreak + 1;
         }
         break;
       case PlayType.PICK_AND_ROLL_BALL_HANDLER:
-        if (recordType == RecordType.THREE_POINT_MADE) {
+        if (fgResult == FgResult.THREE_POINT_MADE) {
           boxScore.tpmHandler = boxScore.tpmHandler + 1;
           boxScore.tpaHandler = boxScore.tpaHandler + 1;
           boxScore.fgmHandler = boxScore.fgmHandler + 1;
           boxScore.fgaHandler = boxScore.fgaHandler + 1;
-        } else if (recordType == RecordType.THREE_POINT_MISS) {
+        } else if (fgResult == FgResult.THREE_POINT_MISS) {
           boxScore.tpaHandler = boxScore.tpaHandler + 1;
           boxScore.fgaHandler = boxScore.fgaHandler + 1;
-        } else if (recordType == RecordType.TWO_POINT_MADE) {
+        } else if (fgResult == FgResult.TWO_POINT_MADE) {
           boxScore.fgmHandler = boxScore.fgmHandler + 1;
           boxScore.fgaHandler = boxScore.fgaHandler + 1;
-        } else if (recordType == RecordType.TWO_POINT_MISS) {
+        } else if (fgResult == FgResult.TWO_POINT_MISS) {
           boxScore.fgaHandler = boxScore.fgaHandler + 1;
         }
         break;
       case PlayType.PICK_AND_ROLL_ROLL_MAN:
-        if (recordType == RecordType.THREE_POINT_MADE) {
+        if (fgResult == FgResult.THREE_POINT_MADE) {
           boxScore.tpmRoller = boxScore.tpmRoller + 1;
           boxScore.tpaRoller = boxScore.tpaRoller + 1;
           boxScore.fgmRoller = boxScore.fgmRoller + 1;
           boxScore.fgaRoller = boxScore.fgaRoller + 1;
-        } else if (recordType == RecordType.THREE_POINT_MISS) {
+        } else if (fgResult == FgResult.THREE_POINT_MISS) {
           boxScore.tpaRoller = boxScore.tpaRoller + 1;
           boxScore.fgaRoller = boxScore.fgaRoller + 1;
-        } else if (recordType == RecordType.TWO_POINT_MADE) {
+        } else if (fgResult == FgResult.TWO_POINT_MADE) {
           boxScore.fgmRoller = boxScore.fgmRoller + 1;
           boxScore.fgaRoller = boxScore.fgaRoller + 1;
-        } else if (recordType == RecordType.TWO_POINT_MISS) {
+        } else if (fgResult == FgResult.TWO_POINT_MISS) {
           boxScore.fgaRoller = boxScore.fgaRoller + 1;
         }
         break;
       case PlayType.POSTUP:
-        if (recordType == RecordType.THREE_POINT_MADE) {
+        if (fgResult == FgResult.THREE_POINT_MADE) {
           boxScore.tpmPostUp = boxScore.tpmPostUp + 1;
           boxScore.tpaPostUp = boxScore.tpaPostUp + 1;
           boxScore.fgmPostUp = boxScore.fgmPostUp + 1;
           boxScore.fgaPostUp = boxScore.fgaPostUp + 1;
-        } else if (recordType == RecordType.THREE_POINT_MISS) {
+        } else if (fgResult == FgResult.THREE_POINT_MISS) {
           boxScore.tpaPostUp = boxScore.tpaPostUp + 1;
           boxScore.fgaPostUp = boxScore.fgaPostUp + 1;
-        } else if (recordType == RecordType.TWO_POINT_MADE) {
+        } else if (fgResult == FgResult.TWO_POINT_MADE) {
           boxScore.fgmPostUp = boxScore.fgmPostUp + 1;
           boxScore.fgaPostUp = boxScore.fgaPostUp + 1;
-        } else if (recordType == RecordType.TWO_POINT_MISS) {
+        } else if (fgResult == FgResult.TWO_POINT_MISS) {
           boxScore.fgaPostUp = boxScore.fgaPostUp + 1;
         }
         break;
       case PlayType.SPOTUP:
-        if (recordType == RecordType.THREE_POINT_MADE) {
+        if (fgResult == FgResult.THREE_POINT_MADE) {
           boxScore.tpmSpotUp = boxScore.tpmSpotUp + 1;
           boxScore.tpaSpotUp = boxScore.tpaSpotUp + 1;
           boxScore.fgmSpotUp = boxScore.fgmSpotUp + 1;
           boxScore.fgaSpotUp = boxScore.fgaSpotUp + 1;
-        } else if (recordType == RecordType.THREE_POINT_MISS) {
+        } else if (fgResult == FgResult.THREE_POINT_MISS) {
           boxScore.tpaSpotUp = boxScore.tpaSpotUp + 1;
           boxScore.fgaSpotUp = boxScore.fgaSpotUp + 1;
-        } else if (recordType == RecordType.TWO_POINT_MADE) {
+        } else if (fgResult == FgResult.TWO_POINT_MADE) {
           boxScore.fgmSpotUp = boxScore.fgmSpotUp + 1;
           boxScore.fgaSpotUp = boxScore.fgaSpotUp + 1;
-        } else if (recordType == RecordType.TWO_POINT_MISS) {
+        } else if (fgResult == FgResult.TWO_POINT_MISS) {
           boxScore.fgaSpotUp = boxScore.fgaSpotUp + 1;
         }
         break;
       case PlayType.HANDOFF:
-        if (recordType == RecordType.THREE_POINT_MADE) {
+        if (fgResult == FgResult.THREE_POINT_MADE) {
           boxScore.tpmHandOff = boxScore.tpmHandOff + 1;
           boxScore.tpaHandOff = boxScore.tpaHandOff + 1;
           boxScore.fgmHandOff = boxScore.fgmHandOff + 1;
           boxScore.fgaHandOff = boxScore.fgaHandOff + 1;
-        } else if (recordType == RecordType.THREE_POINT_MISS) {
+        } else if (fgResult == FgResult.THREE_POINT_MISS) {
           boxScore.tpaHandOff = boxScore.tpaHandOff + 1;
           boxScore.fgaHandOff = boxScore.fgaHandOff + 1;
-        } else if (recordType == RecordType.TWO_POINT_MADE) {
+        } else if (fgResult == FgResult.TWO_POINT_MADE) {
           boxScore.fgmHandOff = boxScore.fgmHandOff + 1;
           boxScore.fgaHandOff = boxScore.fgaHandOff + 1;
-        } else if (recordType == RecordType.TWO_POINT_MISS) {
+        } else if (fgResult == FgResult.TWO_POINT_MISS) {
           boxScore.fgaHandOff = boxScore.fgaHandOff + 1;
         }
         break;
       case PlayType.CUT:
-        if (recordType == RecordType.THREE_POINT_MADE) {
+        if (fgResult == FgResult.THREE_POINT_MADE) {
           boxScore.tpmCut = boxScore.tpmCut + 1;
           boxScore.tpaCut = boxScore.tpaCut + 1;
           boxScore.fgmCut = boxScore.fgmCut + 1;
           boxScore.fgaCut = boxScore.fgaCut + 1;
-        } else if (recordType == RecordType.THREE_POINT_MISS) {
+        } else if (fgResult == FgResult.THREE_POINT_MISS) {
           boxScore.tpaCut = boxScore.tpaCut + 1;
           boxScore.fgaCut = boxScore.fgaCut + 1;
-        } else if (recordType == RecordType.TWO_POINT_MADE) {
+        } else if (fgResult == FgResult.TWO_POINT_MADE) {
           boxScore.fgmCut = boxScore.fgmCut + 1;
           boxScore.fgaCut = boxScore.fgaCut + 1;
-        } else if (recordType == RecordType.TWO_POINT_MISS) {
+        } else if (fgResult == FgResult.TWO_POINT_MISS) {
           boxScore.fgaCut = boxScore.fgaCut + 1;
         }
         break;
       case PlayType.OFF_SCREEN:
-        if (recordType == RecordType.THREE_POINT_MADE) {
+        if (fgResult == FgResult.THREE_POINT_MADE) {
           boxScore.tpmOffScreen = boxScore.tpmOffScreen + 1;
           boxScore.tpaOffScreen = boxScore.tpaOffScreen + 1;
           boxScore.fgmOffScreen = boxScore.fgmOffScreen + 1;
           boxScore.fgaOffScreen = boxScore.fgaOffScreen + 1;
-        } else if (recordType == RecordType.THREE_POINT_MISS) {
+        } else if (fgResult == FgResult.THREE_POINT_MISS) {
           boxScore.tpaOffScreen = boxScore.tpaOffScreen + 1;
           boxScore.fgaOffScreen = boxScore.fgaOffScreen + 1;
-        } else if (recordType == RecordType.TWO_POINT_MADE) {
+        } else if (fgResult == FgResult.TWO_POINT_MADE) {
           boxScore.fgmOffScreen = boxScore.fgmOffScreen + 1;
           boxScore.fgaOffScreen = boxScore.fgaOffScreen + 1;
-        } else if (recordType == RecordType.TWO_POINT_MISS) {
+        } else if (fgResult == FgResult.TWO_POINT_MISS) {
           boxScore.fgaOffScreen = boxScore.fgaOffScreen + 1;
         }
         break;
       case PlayType.SECOND_CHANCE:
-        if (recordType == RecordType.THREE_POINT_MADE) {
+        if (fgResult == FgResult.THREE_POINT_MADE) {
           boxScore.tpmSecondChance = boxScore.tpmSecondChance + 1;
           boxScore.tpaSecondChance = boxScore.tpaSecondChance + 1;
           boxScore.fgmSecondChance = boxScore.fgmSecondChance + 1;
           boxScore.fgaSecondChance = boxScore.fgaSecondChance + 1;
-        } else if (recordType == RecordType.THREE_POINT_MISS) {
+        } else if (fgResult == FgResult.THREE_POINT_MISS) {
           boxScore.tpaSecondChance = boxScore.tpaSecondChance + 1;
           boxScore.fgaSecondChance = boxScore.fgaSecondChance + 1;
-        } else if (recordType == RecordType.TWO_POINT_MADE) {
+        } else if (fgResult == FgResult.TWO_POINT_MADE) {
           boxScore.fgmSecondChance = boxScore.fgmSecondChance + 1;
           boxScore.fgaSecondChance = boxScore.fgaSecondChance + 1;
-        } else if (recordType == RecordType.TWO_POINT_MISS) {
+        } else if (fgResult == FgResult.TWO_POINT_MISS) {
           boxScore.fgaSecondChance = boxScore.fgaSecondChance + 1;
         }
         break;
@@ -639,146 +642,146 @@ class BoxscoreRepository {
       case ShotType.NONE:
         break;
       case ShotType.LAYUP:
-        if (recordType == RecordType.THREE_POINT_MADE) {
+        if (fgResult == FgResult.THREE_POINT_MADE) {
           boxScore.tpmLayup = boxScore.tpmLayup + 1;
           boxScore.tpaLayup = boxScore.tpaLayup + 1;
           boxScore.fgmLayup = boxScore.fgmLayup + 1;
           boxScore.fgaLayup = boxScore.fgaLayup + 1;
-        } else if (recordType == RecordType.THREE_POINT_MISS) {
+        } else if (fgResult == FgResult.THREE_POINT_MISS) {
           boxScore.tpaLayup = boxScore.tpaLayup + 1;
           boxScore.fgaLayup = boxScore.fgaLayup + 1;
-        } else if (recordType == RecordType.TWO_POINT_MADE) {
+        } else if (fgResult == FgResult.TWO_POINT_MADE) {
           boxScore.fgmLayup = boxScore.fgmLayup + 1;
           boxScore.fgaLayup = boxScore.fgaLayup + 1;
-        } else if (recordType == RecordType.TWO_POINT_MISS) {
+        } else if (fgResult == FgResult.TWO_POINT_MISS) {
           boxScore.fgaLayup = boxScore.fgaLayup + 1;
         }
         break;
       case ShotType.CATCH_AND_SHOT:
-        if (recordType == RecordType.THREE_POINT_MADE) {
+        if (fgResult == FgResult.THREE_POINT_MADE) {
           boxScore.tpmCatchAndShot = boxScore.tpmCatchAndShot + 1;
           boxScore.tpaCatchAndShot = boxScore.tpaCatchAndShot + 1;
           boxScore.fgmCatchAndShot = boxScore.fgmCatchAndShot + 1;
           boxScore.fgaCatchAndShot = boxScore.fgaCatchAndShot + 1;
-        } else if (recordType == RecordType.THREE_POINT_MISS) {
+        } else if (fgResult == FgResult.THREE_POINT_MISS) {
           boxScore.tpaCatchAndShot = boxScore.tpaCatchAndShot + 1;
           boxScore.fgaCatchAndShot = boxScore.fgaCatchAndShot + 1;
-        } else if (recordType == RecordType.TWO_POINT_MADE) {
+        } else if (fgResult == FgResult.TWO_POINT_MADE) {
           boxScore.fgmCatchAndShot = boxScore.fgmCatchAndShot + 1;
           boxScore.fgaCatchAndShot = boxScore.fgaCatchAndShot + 1;
-        } else if (recordType == RecordType.TWO_POINT_MISS) {
+        } else if (fgResult == FgResult.TWO_POINT_MISS) {
           boxScore.fgaCatchAndShot = boxScore.fgaCatchAndShot + 1;
         }
         break;
       case ShotType.PULLUP:
-        if (recordType == RecordType.THREE_POINT_MADE) {
+        if (fgResult == FgResult.THREE_POINT_MADE) {
           boxScore.tpmPullUp = boxScore.tpmPullUp + 1;
           boxScore.tpaPullUp = boxScore.tpaPullUp + 1;
           boxScore.fgmPullUp = boxScore.fgmPullUp + 1;
           boxScore.fgaPullUp = boxScore.fgaPullUp + 1;
-        } else if (recordType == RecordType.THREE_POINT_MISS) {
+        } else if (fgResult == FgResult.THREE_POINT_MISS) {
           boxScore.tpaPullUp = boxScore.tpaPullUp + 1;
           boxScore.fgaPullUp = boxScore.fgaPullUp + 1;
-        } else if (recordType == RecordType.TWO_POINT_MADE) {
+        } else if (fgResult == FgResult.TWO_POINT_MADE) {
           boxScore.fgmPullUp = boxScore.fgmPullUp + 1;
           boxScore.fgaPullUp = boxScore.fgaPullUp + 1;
-        } else if (recordType == RecordType.TWO_POINT_MISS) {
+        } else if (fgResult == FgResult.TWO_POINT_MISS) {
           boxScore.fgaPullUp = boxScore.fgaPullUp + 1;
         }
         break;
       case ShotType.FLOATING_SHOT:
-        if (recordType == RecordType.THREE_POINT_MADE) {
+        if (fgResult == FgResult.THREE_POINT_MADE) {
           boxScore.tpmFloating = boxScore.tpmFloating + 1;
           boxScore.tpaFloating = boxScore.tpaFloating + 1;
           boxScore.fgmFloating = boxScore.fgmFloating + 1;
           boxScore.fgaFloating = boxScore.fgaFloating + 1;
-        } else if (recordType == RecordType.THREE_POINT_MISS) {
+        } else if (fgResult == FgResult.THREE_POINT_MISS) {
           boxScore.tpaFloating = boxScore.tpaFloating + 1;
           boxScore.fgaFloating = boxScore.fgaFloating + 1;
-        } else if (recordType == RecordType.TWO_POINT_MADE) {
+        } else if (fgResult == FgResult.TWO_POINT_MADE) {
           boxScore.fgmFloating = boxScore.fgmFloating + 1;
           boxScore.fgaFloating = boxScore.fgaFloating + 1;
-        } else if (recordType == RecordType.TWO_POINT_MISS) {
+        } else if (fgResult == FgResult.TWO_POINT_MISS) {
           boxScore.fgaFloating = boxScore.fgaFloating + 1;
         }
         break;
       case ShotType.HOOK_SHOT:
-        if (recordType == RecordType.THREE_POINT_MADE) {
+        if (fgResult == FgResult.THREE_POINT_MADE) {
           boxScore.tpmHook = boxScore.tpmHook + 1;
           boxScore.tpaHook = boxScore.tpaHook + 1;
           boxScore.fgmHook = boxScore.fgmHook + 1;
           boxScore.fgaHook = boxScore.fgaHook + 1;
-        } else if (recordType == RecordType.THREE_POINT_MISS) {
+        } else if (fgResult == FgResult.THREE_POINT_MISS) {
           boxScore.tpaHook = boxScore.tpaHook + 1;
           boxScore.fgaHook = boxScore.fgaHook + 1;
-        } else if (recordType == RecordType.TWO_POINT_MADE) {
+        } else if (fgResult == FgResult.TWO_POINT_MADE) {
           boxScore.fgmHook = boxScore.fgmHook + 1;
           boxScore.fgaHook = boxScore.fgaHook + 1;
-        } else if (recordType == RecordType.TWO_POINT_MISS) {
+        } else if (fgResult == FgResult.TWO_POINT_MISS) {
           boxScore.fgaHook = boxScore.fgaHook + 1;
         }
         break;
       case ShotType.TIP_SHOT:
-        if (recordType == RecordType.THREE_POINT_MADE) {
+        if (fgResult == FgResult.THREE_POINT_MADE) {
           boxScore.tpmTip = boxScore.tpmTip + 1;
           boxScore.tpaTip = boxScore.tpaTip + 1;
           boxScore.fgmTip = boxScore.fgmTip + 1;
           boxScore.fgaTip = boxScore.fgaTip + 1;
-        } else if (recordType == RecordType.THREE_POINT_MISS) {
+        } else if (fgResult == FgResult.THREE_POINT_MISS) {
           boxScore.tpaTip = boxScore.tpaTip + 1;
           boxScore.fgaTip = boxScore.fgaTip + 1;
-        } else if (recordType == RecordType.TWO_POINT_MADE) {
+        } else if (fgResult == FgResult.TWO_POINT_MADE) {
           boxScore.fgmTip = boxScore.fgmTip + 1;
           boxScore.fgaTip = boxScore.fgaTip + 1;
-        } else if (recordType == RecordType.TWO_POINT_MISS) {
+        } else if (fgResult == FgResult.TWO_POINT_MISS) {
           boxScore.fgaTip = boxScore.fgaTip + 1;
         }
         break;
       case ShotType.FADEAWAY:
-        if (recordType == RecordType.THREE_POINT_MADE) {
+        if (fgResult == FgResult.THREE_POINT_MADE) {
           boxScore.tpmFadeAway = boxScore.tpmFadeAway + 1;
           boxScore.tpaFadeAway = boxScore.tpaFadeAway + 1;
           boxScore.fgmFadeAway = boxScore.fgmFadeAway + 1;
           boxScore.fgaFadeAway = boxScore.fgaFadeAway + 1;
-        } else if (recordType == RecordType.THREE_POINT_MISS) {
+        } else if (fgResult == FgResult.THREE_POINT_MISS) {
           boxScore.tpaFadeAway = boxScore.tpaFadeAway + 1;
           boxScore.fgaFadeAway = boxScore.fgaFadeAway + 1;
-        } else if (recordType == RecordType.TWO_POINT_MADE) {
+        } else if (fgResult == FgResult.TWO_POINT_MADE) {
           boxScore.fgmFadeAway = boxScore.fgmFadeAway + 1;
           boxScore.fgaFadeAway = boxScore.fgaFadeAway + 1;
-        } else if (recordType == RecordType.TWO_POINT_MISS) {
+        } else if (fgResult == FgResult.TWO_POINT_MISS) {
           boxScore.fgaFadeAway = boxScore.fgaFadeAway + 1;
         }
         break;
       case ShotType.DUNK:
-        if (recordType == RecordType.THREE_POINT_MADE) {
+        if (fgResult == FgResult.THREE_POINT_MADE) {
           boxScore.tpmDunk = boxScore.tpmDunk + 1;
           boxScore.tpaDunk = boxScore.tpaDunk + 1;
           boxScore.fgmDunk = boxScore.fgmDunk + 1;
           boxScore.fgaDunk = boxScore.fgaDunk + 1;
-        } else if (recordType == RecordType.THREE_POINT_MISS) {
+        } else if (fgResult == FgResult.THREE_POINT_MISS) {
           boxScore.tpaDunk = boxScore.tpaDunk + 1;
           boxScore.fgaDunk = boxScore.fgaDunk + 1;
-        } else if (recordType == RecordType.TWO_POINT_MADE) {
+        } else if (fgResult == FgResult.TWO_POINT_MADE) {
           boxScore.fgmDunk = boxScore.fgmDunk + 1;
           boxScore.fgaDunk = boxScore.fgaDunk + 1;
-        } else if (recordType == RecordType.TWO_POINT_MISS) {
+        } else if (fgResult == FgResult.TWO_POINT_MISS) {
           boxScore.fgaDunk = boxScore.fgaDunk + 1;
         }
         break;
       case ShotType.ALLEY_OOP:
-        if (recordType == RecordType.THREE_POINT_MADE) {
+        if (fgResult == FgResult.THREE_POINT_MADE) {
           boxScore.tpmAlleyOop = boxScore.tpmAlleyOop + 1;
           boxScore.tpaAlleyOop = boxScore.tpaAlleyOop + 1;
           boxScore.fgmAlleyOop = boxScore.fgmAlleyOop + 1;
           boxScore.fgaAlleyOop = boxScore.fgaAlleyOop + 1;
-        } else if (recordType == RecordType.THREE_POINT_MISS) {
+        } else if (fgResult == FgResult.THREE_POINT_MISS) {
           boxScore.tpaAlleyOop = boxScore.tpaAlleyOop + 1;
           boxScore.fgaAlleyOop = boxScore.fgaAlleyOop + 1;
-        } else if (recordType == RecordType.TWO_POINT_MADE) {
+        } else if (fgResult == FgResult.TWO_POINT_MADE) {
           boxScore.fgmAlleyOop = boxScore.fgmAlleyOop + 1;
           boxScore.fgaAlleyOop = boxScore.fgaAlleyOop + 1;
-        } else if (recordType == RecordType.TWO_POINT_MISS) {
+        } else if (fgResult == FgResult.TWO_POINT_MISS) {
           boxScore.fgaAlleyOop = boxScore.fgaAlleyOop + 1;
         }
         break;
