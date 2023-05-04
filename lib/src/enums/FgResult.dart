@@ -1,0 +1,7 @@
+enum FgResult {
+  NONE,
+  TWO_POINT_MADE,
+  TWO_POINT_MISS,
+  THREE_POINT_MADE,
+  THREE_POINT_MISS,
+}
