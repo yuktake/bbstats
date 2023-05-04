@@ -15,10 +15,10 @@ class PlayerDetailStateNotifier extends StateNotifier<PlayerDetailModel> {
       start: null,
       end: null,
       seasonStats: boxScoreRepository.getSeasonStats(playerId, null, null),
-      shotTypeStats: pbpRepository.getShotTypeStatsByPlayer(playerId, 0, true),
+      shotTypeStats: boxScoreRepository.getShotTypeStatsByPlayer(playerId, 0, true),
       shotTypeSortTargetIndex: 0,
       shotTypeAscending: true,
-      playTypeStats: pbpRepository.getPlayTypeStatsByPlayer(playerId, 0, true),
+      playTypeStats: boxScoreRepository.getPlayTypeStatsByPlayer(playerId, 0, true),
       playTypeSortTargetIndex: 0,
       playTypeAscending: true,
       assistPlayerStats: pbpRepository.getAssistPlayerStats(playerId, 0, true),
@@ -35,11 +35,11 @@ class PlayerDetailStateNotifier extends StateNotifier<PlayerDetailModel> {
   }
 
   List<List<dynamic>> getShotTypeStats(int index, bool ascending) {
-    return pbpRepository.getShotTypeStatsByPlayer(playerId, index, ascending);
+    return boxScoreRepository.getShotTypeStatsByPlayer(playerId, index, ascending);
   }
 
   List<List<dynamic>> getPlayTypeStats(int index, bool ascending) {
-    return pbpRepository.getPlayTypeStatsByPlayer(playerId, index, ascending);
+    return boxScoreRepository.getPlayTypeStatsByPlayer(playerId, index, ascending);
   }
 
   List<List<dynamic>> getAssistPlayerStats(int index, bool ascending) {
@@ -71,7 +71,7 @@ class PlayerDetailStateNotifier extends StateNotifier<PlayerDetailModel> {
   }
 
   void updateShotTypeSortTargetIndex(int index, bool ascending) {
-    List<List<dynamic>> shotTypeStats = pbpRepository.getShotTypeStatsByPlayer(playerId, index, ascending);
+    List<List<dynamic>> shotTypeStats = boxScoreRepository.getShotTypeStatsByPlayer(playerId, index, ascending);
 
     state = state.copyWith(
       shotTypeStats: shotTypeStats,
@@ -81,7 +81,7 @@ class PlayerDetailStateNotifier extends StateNotifier<PlayerDetailModel> {
   }
 
   void updatePlayTypeSortTargetIndex(int index, bool ascending) {
-    List<List<dynamic>> playTypeStats = pbpRepository.getPlayTypeStatsByPlayer(playerId, index, ascending);
+    List<List<dynamic>> playTypeStats = boxScoreRepository.getPlayTypeStatsByPlayer(playerId, index, ascending);
 
     state = state.copyWith(
       playTypeStats: playTypeStats,

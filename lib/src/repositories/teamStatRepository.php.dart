@@ -641,6 +641,7 @@ class TeamStatRepository {
     });
   }
 
+  // TODO:: 期間指定に対応する
   List<List<dynamic>> getPlayTypeStats(int? opponentTeamId, int columnIndex, bool ascending) {
     if (!isar.isOpen) {
       return [];
