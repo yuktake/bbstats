@@ -1079,19 +1079,33 @@ class PbpRepository {
     }
     List<dynamic> cutStats = ["CUT", cutFgm, cutFga, cutFgRatio, cutTpm, cutTpa, cutTpRatio];
 
-    int offScreenFga = isar.pbps.filter().not().playerIsNull().and().game((q) => opponentTeamId==null ? q.not().opponentIsNull() : q.opponent((q) => q.idEqualTo(opponentTeamId))).and().group((q) => q.typeEqualTo(RecordType.THREE_POINT_MISS).or().typeEqualTo(RecordType.THREE_POINT_MADE).or().typeEqualTo(RecordType.TWO_POINT_MADE).or().typeEqualTo(RecordType.TWO_POINT_MISS)).and().shotPosition((q) => q.playTypeEqualTo(PlayType.CUT)).countSync();
-    int offScreenFgm = isar.pbps.filter().not().playerIsNull().and().game((q) => opponentTeamId==null ? q.not().opponentIsNull() : q.opponent((q) => q.idEqualTo(opponentTeamId))).and().group((q) => q.typeEqualTo(RecordType.THREE_POINT_MADE).or().typeEqualTo(RecordType.TWO_POINT_MADE)).and().shotPosition((q) => q.playTypeEqualTo(PlayType.CUT)).countSync();
+    int offScreenFga = isar.pbps.filter().not().playerIsNull().and().game((q) => opponentTeamId==null ? q.not().opponentIsNull() : q.opponent((q) => q.idEqualTo(opponentTeamId))).and().group((q) => q.typeEqualTo(RecordType.THREE_POINT_MISS).or().typeEqualTo(RecordType.THREE_POINT_MADE).or().typeEqualTo(RecordType.TWO_POINT_MADE).or().typeEqualTo(RecordType.TWO_POINT_MISS)).and().shotPosition((q) => q.playTypeEqualTo(PlayType.OFF_SCREEN)).countSync();
+    int offScreenFgm = isar.pbps.filter().not().playerIsNull().and().game((q) => opponentTeamId==null ? q.not().opponentIsNull() : q.opponent((q) => q.idEqualTo(opponentTeamId))).and().group((q) => q.typeEqualTo(RecordType.THREE_POINT_MADE).or().typeEqualTo(RecordType.TWO_POINT_MADE)).and().shotPosition((q) => q.playTypeEqualTo(PlayType.OFF_SCREEN)).countSync();
     double offScreenFgRatio = 0.0;
     if (offScreenFga != 0) {
       offScreenFgRatio = ((offScreenFgm/offScreenFga) * 100 * 10).round() / 10;
     }
-    int offScreenTpa = isar.pbps.filter().not().playerIsNull().and().game((q) => opponentTeamId==null ? q.not().opponentIsNull() : q.opponent((q) => q.idEqualTo(opponentTeamId))).and().group((q) => q.typeEqualTo(RecordType.THREE_POINT_MISS).or().typeEqualTo(RecordType.THREE_POINT_MADE)).and().shotPosition((q) => q.playTypeEqualTo(PlayType.CUT)).countSync();
-    int offScreenTpm = isar.pbps.filter().not().playerIsNull().and().game((q) => opponentTeamId==null ? q.not().opponentIsNull() : q.opponent((q) => q.idEqualTo(opponentTeamId))).and().typeEqualTo(RecordType.THREE_POINT_MADE).and().shotPosition((q) => q.playTypeEqualTo(PlayType.CUT)).countSync();
+    int offScreenTpa = isar.pbps.filter().not().playerIsNull().and().game((q) => opponentTeamId==null ? q.not().opponentIsNull() : q.opponent((q) => q.idEqualTo(opponentTeamId))).and().group((q) => q.typeEqualTo(RecordType.THREE_POINT_MISS).or().typeEqualTo(RecordType.THREE_POINT_MADE)).and().shotPosition((q) => q.playTypeEqualTo(PlayType.OFF_SCREEN)).countSync();
+    int offScreenTpm = isar.pbps.filter().not().playerIsNull().and().game((q) => opponentTeamId==null ? q.not().opponentIsNull() : q.opponent((q) => q.idEqualTo(opponentTeamId))).and().typeEqualTo(RecordType.THREE_POINT_MADE).and().shotPosition((q) => q.playTypeEqualTo(PlayType.OFF_SCREEN)).countSync();
     double offScreenTpRatio = 0.0;
     if (offScreenTpa != 0) {
       offScreenTpRatio = ((offScreenTpm/offScreenTpa) * 100 * 10).round() / 10;
     }
     List<dynamic> offScreenStats = ["OFF SCREEN", offScreenFgm, offScreenFga, offScreenFgRatio, offScreenTpm, offScreenTpa, offScreenTpRatio];
+
+    int secondChanceFga = isar.pbps.filter().not().playerIsNull().and().game((q) => opponentTeamId==null ? q.not().opponentIsNull() : q.opponent((q) => q.idEqualTo(opponentTeamId))).and().group((q) => q.typeEqualTo(RecordType.THREE_POINT_MISS).or().typeEqualTo(RecordType.THREE_POINT_MADE).or().typeEqualTo(RecordType.TWO_POINT_MADE).or().typeEqualTo(RecordType.TWO_POINT_MISS)).and().shotPosition((q) => q.playTypeEqualTo(PlayType.SECOND_CHANCE)).countSync();
+    int secondChanceFgm = isar.pbps.filter().not().playerIsNull().and().game((q) => opponentTeamId==null ? q.not().opponentIsNull() : q.opponent((q) => q.idEqualTo(opponentTeamId))).and().group((q) => q.typeEqualTo(RecordType.THREE_POINT_MADE).or().typeEqualTo(RecordType.TWO_POINT_MADE)).and().shotPosition((q) => q.playTypeEqualTo(PlayType.SECOND_CHANCE)).countSync();
+    double secondChanceFgRatio = 0.0;
+    if (secondChanceFga != 0) {
+      secondChanceFgRatio = ((offScreenFgm/offScreenFga) * 100 * 10).round() / 10;
+    }
+    int secondChanceTpa = isar.pbps.filter().not().playerIsNull().and().game((q) => opponentTeamId==null ? q.not().opponentIsNull() : q.opponent((q) => q.idEqualTo(opponentTeamId))).and().group((q) => q.typeEqualTo(RecordType.THREE_POINT_MISS).or().typeEqualTo(RecordType.THREE_POINT_MADE)).and().shotPosition((q) => q.playTypeEqualTo(PlayType.SECOND_CHANCE)).countSync();
+    int secondChanceTpm = isar.pbps.filter().not().playerIsNull().and().game((q) => opponentTeamId==null ? q.not().opponentIsNull() : q.opponent((q) => q.idEqualTo(opponentTeamId))).and().typeEqualTo(RecordType.THREE_POINT_MADE).and().shotPosition((q) => q.playTypeEqualTo(PlayType.SECOND_CHANCE)).countSync();
+    double secondChanceTpRatio = 0.0;
+    if (secondChanceTpa != 0) {
+      secondChanceTpRatio = ((secondChanceTpm/secondChanceTpa) * 100 * 10).round() / 10;
+    }
+    List<dynamic> secondChanceStats = ["SECOND CHANCE", secondChanceFgm, secondChanceFga, secondChanceFgRatio, secondChanceTpm, secondChanceTpa, secondChanceTpRatio];
 
     List<List<dynamic>> playTypeStats = [
       isolationStats,
@@ -1103,6 +1117,7 @@ class PbpRepository {
       handoffStats,
       cutStats,
       offScreenStats,
+      secondChanceStats,
     ];
 
     if (ascending) {
@@ -1309,19 +1324,33 @@ class PbpRepository {
     }
     List<dynamic> cutStats = ["CUT", cutFgm, cutFga, cutFgRatio, cutTpm, cutTpa, cutTpRatio];
 
-    int offScreenFga = isar.pbps.filter().player((q) => q.idEqualTo(playerId)).and().group((q) => q.typeEqualTo(RecordType.THREE_POINT_MISS).or().typeEqualTo(RecordType.THREE_POINT_MADE).or().typeEqualTo(RecordType.TWO_POINT_MADE).or().typeEqualTo(RecordType.TWO_POINT_MISS)).and().shotPosition((q) => q.playTypeEqualTo(PlayType.CUT)).countSync();
-    int offScreenFgm = isar.pbps.filter().player((q) => q.idEqualTo(playerId)).and().group((q) => q.typeEqualTo(RecordType.THREE_POINT_MADE).or().typeEqualTo(RecordType.TWO_POINT_MADE)).and().shotPosition((q) => q.playTypeEqualTo(PlayType.CUT)).countSync();
+    int offScreenFga = isar.pbps.filter().player((q) => q.idEqualTo(playerId)).and().group((q) => q.typeEqualTo(RecordType.THREE_POINT_MISS).or().typeEqualTo(RecordType.THREE_POINT_MADE).or().typeEqualTo(RecordType.TWO_POINT_MADE).or().typeEqualTo(RecordType.TWO_POINT_MISS)).and().shotPosition((q) => q.playTypeEqualTo(PlayType.OFF_SCREEN)).countSync();
+    int offScreenFgm = isar.pbps.filter().player((q) => q.idEqualTo(playerId)).and().group((q) => q.typeEqualTo(RecordType.THREE_POINT_MADE).or().typeEqualTo(RecordType.TWO_POINT_MADE)).and().shotPosition((q) => q.playTypeEqualTo(PlayType.OFF_SCREEN)).countSync();
     double offScreenFgRatio = 0.0;
     if (offScreenFga != 0) {
       offScreenFgRatio = ((offScreenFgm/offScreenFga) * 100 * 10).round() / 10;
     }
-    int offScreenTpa = isar.pbps.filter().player((q) => q.idEqualTo(playerId)).and().group((q) => q.typeEqualTo(RecordType.THREE_POINT_MISS).or().typeEqualTo(RecordType.THREE_POINT_MADE)).and().shotPosition((q) => q.playTypeEqualTo(PlayType.CUT)).countSync();
-    int offScreenTpm = isar.pbps.filter().player((q) => q.idEqualTo(playerId)).and().typeEqualTo(RecordType.THREE_POINT_MADE).and().shotPosition((q) => q.playTypeEqualTo(PlayType.CUT)).countSync();
+    int offScreenTpa = isar.pbps.filter().player((q) => q.idEqualTo(playerId)).and().group((q) => q.typeEqualTo(RecordType.THREE_POINT_MISS).or().typeEqualTo(RecordType.THREE_POINT_MADE)).and().shotPosition((q) => q.playTypeEqualTo(PlayType.OFF_SCREEN)).countSync();
+    int offScreenTpm = isar.pbps.filter().player((q) => q.idEqualTo(playerId)).and().typeEqualTo(RecordType.THREE_POINT_MADE).and().shotPosition((q) => q.playTypeEqualTo(PlayType.OFF_SCREEN)).countSync();
     double offScreenTpRatio = 0.0;
     if (offScreenTpa != 0) {
       offScreenTpRatio = ((offScreenTpm/offScreenTpa) * 100 * 10).round() / 10;
     }
     List<dynamic> offScreenStats = ["OFF SCREEN", offScreenFgm, offScreenFga, offScreenFgRatio, offScreenTpm, offScreenTpa, offScreenTpRatio];
+
+    int secondChangeFga = isar.pbps.filter().player((q) => q.idEqualTo(playerId)).and().group((q) => q.typeEqualTo(RecordType.THREE_POINT_MISS).or().typeEqualTo(RecordType.THREE_POINT_MADE).or().typeEqualTo(RecordType.TWO_POINT_MADE).or().typeEqualTo(RecordType.TWO_POINT_MISS)).and().shotPosition((q) => q.playTypeEqualTo(PlayType.SECOND_CHANCE)).countSync();
+    int secondChangeFgm = isar.pbps.filter().player((q) => q.idEqualTo(playerId)).and().group((q) => q.typeEqualTo(RecordType.THREE_POINT_MADE).or().typeEqualTo(RecordType.TWO_POINT_MADE)).and().shotPosition((q) => q.playTypeEqualTo(PlayType.SECOND_CHANCE)).countSync();
+    double secondChangeFgRatio = 0.0;
+    if (secondChangeFga != 0) {
+      secondChangeFgRatio = ((secondChangeFgm/secondChangeFga) * 100 * 10).round() / 10;
+    }
+    int secondChangeTpa = isar.pbps.filter().player((q) => q.idEqualTo(playerId)).and().group((q) => q.typeEqualTo(RecordType.THREE_POINT_MISS).or().typeEqualTo(RecordType.THREE_POINT_MADE)).and().shotPosition((q) => q.playTypeEqualTo(PlayType.SECOND_CHANCE)).countSync();
+    int secondChangeTpm = isar.pbps.filter().player((q) => q.idEqualTo(playerId)).and().typeEqualTo(RecordType.THREE_POINT_MADE).and().shotPosition((q) => q.playTypeEqualTo(PlayType.SECOND_CHANCE)).countSync();
+    double secondChangeTpRatio = 0.0;
+    if (secondChangeTpa != 0) {
+      secondChangeTpRatio = ((secondChangeTpm/secondChangeTpa) * 100 * 10).round() / 10;
+    }
+    List<dynamic> secondChangeStats = ["SECOND CHANCE", secondChangeFgm, secondChangeFga, secondChangeFgRatio, secondChangeTpm, secondChangeTpa, secondChangeTpRatio];
 
     List<List<dynamic>> playTypeStats = [
       isolationStats,
@@ -1333,6 +1362,7 @@ class PbpRepository {
       handoffStats,
       cutStats,
       offScreenStats,
+      secondChangeStats,
     ];
 
     if (ascending) {
@@ -1344,6 +1374,7 @@ class PbpRepository {
     return playTypeStats;
   }
 
+  // 対象のplayerが誰にどれくらいアシストされたのか
   List<List<dynamic>> getAssistPlayerStats(int playerId, int columnIndex, bool ascending) {
     List<Player> players = isar.players.filter().not().idEqualTo(playerId).findAllSync();
     Map<int,int> maps = {};
