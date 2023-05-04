@@ -1,5 +1,6 @@
 import 'package:bb_stats/src/collections/gameRecord/game_record_model.dart';
 import 'package:bb_stats/src/enums/FgResult.dart';
+import 'package:bb_stats/src/enums/FtResult.dart';
 import 'package:bb_stats/src/enums/GameAction.dart';
 import 'package:bb_stats/src/enums/RecordType.dart';
 import 'package:bb_stats/src/repositories/boxscore_repository.dart';
@@ -104,7 +105,7 @@ class GameRecordStateNotifier extends StateNotifier<GameRecordModel> {
         } else {
           Boxscore boxScore = boxScoreRepository.findOneByGameAndPlayer(gameId, player.id)!;
           gameRepository.madeShot(gameId, RecordType.FT_MADE, boxScore.starter);
-          boxScoreRepository.makeFreeThrow(gameId, player.id, RecordType.FT_MADE);
+          boxScoreRepository.makeFreeThrow(gameId, player.id, FtResult.FT_MADE);
         }
         break;
       case RecordType.FT_MISS:
@@ -112,7 +113,7 @@ class GameRecordStateNotifier extends StateNotifier<GameRecordModel> {
           gameRepository.opponentMissShot(gameId, RecordType.FT_MISS);
         } else {
           gameRepository.missShot(gameId, RecordType.FT_MISS);
-          boxScoreRepository.makeFreeThrow(gameId, player.id, RecordType.FT_MISS);
+          boxScoreRepository.makeFreeThrow(gameId, player.id, FtResult.FT_MISS);
         }
         break;
       case RecordType.OFFENCE_REBOUND:
@@ -357,8 +358,7 @@ class GameRecordStateNotifier extends StateNotifier<GameRecordModel> {
         } else {
           Boxscore boxScore = boxScoreRepository.findOneByGameAndPlayer(gameId, pbp.player.value!.id)!;
           gameRepository.modifyShot(gameId, pbp.supportedPlayerId, RecordType.FT_MADE, boxScore.starter);
-          // TODO:: modify to FtResult
-          boxScoreRepository.modifyFreeThrow(gameId, pbp.player.value!.id, RecordType.FT_MADE);
+          boxScoreRepository.modifyFreeThrow(gameId, pbp.player.value!.id, FtResult.FT_MADE);
         }
         break;
       case RecordType.FT_MISS:
@@ -367,8 +367,7 @@ class GameRecordStateNotifier extends StateNotifier<GameRecordModel> {
         } else {
           Boxscore boxScore = boxScoreRepository.findOneByGameAndPlayer(gameId, pbp.player.value!.id)!;
           gameRepository.modifyShot(gameId, pbp.supportedPlayerId, RecordType.FT_MISS, boxScore.starter);
-          // TODO:: modify to FtResult
-          boxScoreRepository.modifyFreeThrow(gameId, pbp.player.value!.id, RecordType.FT_MISS);
+          boxScoreRepository.modifyFreeThrow(gameId, pbp.player.value!.id, FtResult.FT_MISS);
         }
         break;
       case RecordType.OFFENCE_REBOUND:

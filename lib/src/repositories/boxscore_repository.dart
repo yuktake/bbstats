@@ -4,8 +4,8 @@ import 'package:bb_stats/src/collections/boxscore/boxscore.dart';
 import 'package:bb_stats/src/collections/game/game.dart';
 import 'package:bb_stats/src/collections/player/player.dart';
 import 'package:bb_stats/src/enums/FgResult.dart';
+import 'package:bb_stats/src/enums/FtResult.dart';
 import 'package:bb_stats/src/enums/PlayType.dart';
-import 'package:bb_stats/src/enums/PointType.dart';
 import 'package:bb_stats/src/enums/RecordType.dart';
 import 'package:bb_stats/src/enums/ShotType.dart';
 import 'package:bb_stats/src/enums/ShotZone.dart';
@@ -900,7 +900,7 @@ class BoxscoreRepository {
     });
   }
 
-  void makeFreeThrow(int gameId, int playerId, RecordType recordType) {
+  void makeFreeThrow(int gameId, int playerId, FtResult ftResult) {
     final boxScore = isar.boxscores.filter()
         .game((q) => q.idEqualTo(gameId))
         .and()
@@ -913,24 +913,25 @@ class BoxscoreRepository {
       return;
     }
 
-    switch (recordType) {
-      case RecordType.FT_MADE:
+    switch (ftResult) {
+      case FtResult.FT_MADE:
         boxScore.pts = boxScore.pts+1;
         boxScore.ftm = boxScore.ftm+1;
+        boxScore.fta = boxScore.fta+1;
+        boxScore.ftRatio = ((boxScore.ftm / boxScore.fta) * 100 * 10).round() / 10;
         break;
-      case RecordType.FT_MISS:
-      default:
+      case FtResult.FT_MISS:
+        boxScore.fta = boxScore.fta+1;
+        boxScore.ftRatio = ((boxScore.ftm / boxScore.fta) * 100 * 10).round() / 10;
         break;
     }
-    boxScore.fta = boxScore.fta+1;
-    boxScore.ftRatio = ((boxScore.ftm / boxScore.fta) * 100 * 10).round() / 10;
 
     isar.writeTxnSync(() {
       isar.boxscores.putSync(boxScore);
     });
   }
 
-  void modifyFreeThrow(int gameId, int playerId, RecordType recordType) {
+  void modifyFreeThrow(int gameId, int playerId, FtResult ftResult) {
     final boxScore = isar.boxscores.filter()
         .game((q) => q.idEqualTo(gameId))
         .and()
@@ -941,19 +942,24 @@ class BoxscoreRepository {
       return;
     }
 
-    switch (recordType) {
-      case RecordType.FT_MADE:
+    switch (ftResult) {
+      case FtResult.FT_MADE:
         boxScore.ftm-=1;
+        boxScore.fta-=1;
+        if (boxScore.fta == 0) {
+          boxScore.ftRatio = 0.0;
+        } else {
+          boxScore.ftRatio = ((boxScore.ftm / boxScore.fta) * 100 * 10).round() / 10;
+        }
         break;
-      case RecordType.FT_MISS:
-      default:
+      case FtResult.FT_MISS:
+        boxScore.fta-=1;
+        if (boxScore.fta == 0) {
+          boxScore.ftRatio = 0.0;
+        } else {
+          boxScore.ftRatio = ((boxScore.ftm / boxScore.fta) * 100 * 10).round() / 10;
+        }
         break;
-    }
-    boxScore.fta-=1;
-    if (boxScore.fta == 0) {
-      boxScore.ftRatio = 0.0;
-    } else {
-      boxScore.ftRatio = ((boxScore.ftm / boxScore.fta) * 100 * 10).round() / 10;
     }
 
     isar.writeTxnSync(() {
