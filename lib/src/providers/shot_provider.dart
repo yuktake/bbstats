@@ -213,7 +213,7 @@ class ShotStateNotifier extends StateNotifier<ShotModel> {
     // BoxScoreへの書き込み
     boxScoreRepository.makeShot(boxScore, fgResult, state.supportPlayerId, state.playType, state.shotType, state.shotZone);
     // TeamStatへの書き込み
-    teamStatRepository.makeShot(gameId, fgResult, state.shotType, state.shotZone);
+    teamStatRepository.makeShot(gameId, fgResult, state.playType, state.shotZone);
   }
 
   void mixImage(BuildContext context, GlobalKey globalKey, Uint8List src, TapDownDetails details) async {

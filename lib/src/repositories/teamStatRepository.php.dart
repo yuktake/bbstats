@@ -1,5 +1,8 @@
 import 'package:bb_stats/src/collections/game/game.dart';
+import 'package:bb_stats/src/collections/team/team.dart';
 import 'package:bb_stats/src/enums/FgResult.dart';
+import 'package:bb_stats/src/enums/Outcome.dart';
+import 'package:bb_stats/src/enums/PlayType.dart';
 import 'package:bb_stats/src/enums/ShotType.dart';
 import 'package:bb_stats/src/enums/ShotZone.dart';
 import 'package:isar/isar.dart';
@@ -18,50 +21,55 @@ class TeamStatRepository {
 
     final teamStat = TeamStat()
       ..game.value = game
-      ..fgmLayup = 0
-      ..fgaLayup = 0
-      ..tpmLayup = 0
-      ..tpaLayup = 0
+      ..fgmIsolation = 0
+      ..fgaIsolation = 0
+      ..tpmIsolation = 0
+      ..tpaIsolation = 0
 
-      ..fgmCatchAndShot = 0
-      ..fgaCatchAndShot = 0
-      ..tpmCatchAndShot = 0
-      ..tpaCatchAndShot = 0
+      ..fgmFastBreak = 0
+      ..fgaFastBreak = 0
+      ..tpmFastBreak = 0
+      ..tpaFastBreak = 0
 
-      ..fgmPullUp = 0
-      ..fgaPullUp = 0
-      ..tpmPullUp = 0
-      ..tpaPullUp = 0
+      ..fgmHandler = 0
+      ..fgaHandler = 0
+      ..tpmHandler = 0
+      ..tpaHandler = 0
 
-      ..fgmFloating = 0
-      ..fgaFloating = 0
-      ..tpmFloating = 0
-      ..tpaFloating = 0
+      ..fgmRoller = 0
+      ..fgaRoller = 0
+      ..tpmRoller = 0
+      ..tpaRoller = 0
 
-      ..fgmHook = 0
-      ..fgaHook = 0
-      ..tpmHook = 0
-      ..tpaHook = 0
+      ..fgmPostUp = 0
+      ..fgaPostUp = 0
+      ..tpmPostUp = 0
+      ..tpaPostUp = 0
 
-      ..fgmTip = 0
-      ..fgaTip = 0
-      ..tpmTip = 0
-      ..tpaTip = 0
+      ..fgmSpotUp = 0
+      ..fgaSpotUp = 0
+      ..tpmSpotUp = 0
+      ..tpaSpotUp = 0
 
-      ..fgmFadeAway = 0
-      ..fgaFadeAway = 0
-      ..tpmFadeAway = 0
-      ..tpaFadeAway = 0
+      ..fgmHandOff = 0
+      ..fgaHandOff = 0
+      ..tpmHandOff = 0
+      ..tpaHandOff = 0
 
-      ..fgmDunk = 0
-      ..fgaDunk = 0
-      ..tpmDunk = 0
-      ..tpaDunk = 0
+      ..fgmCut = 0
+      ..fgaCut = 0
+      ..tpmCut = 0
+      ..tpaCut = 0
 
-      ..fgmAlleyOop = 0
-      ..fgaAlleyOop = 0
-      ..tpmAlleyOop = 0
-      ..tpaAlleyOop = 0
+      ..fgmOffScreen = 0
+      ..fgaOffScreen = 0
+      ..tpmOffScreen = 0
+      ..tpaOffScreen = 0
+
+      ..fgmSecondChance = 0
+      ..fgaSecondChance = 0
+      ..tpmSecondChance = 0
+      ..tpaSecondChance = 0
 
       ..fgmZoneTop = 0
       ..fgaZoneTop = 0
@@ -97,7 +105,7 @@ class TeamStatRepository {
     return teamStat;
   }
 
-  void makeShot(int gameId, FgResult fgResult, ShotType shotType, ShotZone shotZone) {
+  void makeShot(int gameId, FgResult fgResult, PlayType playType, ShotZone shotZone) {
     if (!isar.isOpen) {
       return;
     }
@@ -107,151 +115,167 @@ class TeamStatRepository {
       return;
     }
 
-    switch(shotType){
-      case ShotType.NONE:
+    switch(playType){
+      case PlayType.NONE:
         break;
-      case ShotType.LAYUP:
+      case PlayType.ISOLATION:
         if (fgResult == FgResult.THREE_POINT_MADE) {
-          teamStat.tpmLayup = teamStat.tpmLayup + 1;
-          teamStat.tpaLayup = teamStat.tpaLayup + 1;
-          teamStat.fgmLayup = teamStat.fgmLayup + 1;
-          teamStat.fgaLayup = teamStat.fgaLayup + 1;
+          teamStat.tpmIsolation = teamStat.tpmIsolation + 1;
+          teamStat.tpaIsolation = teamStat.tpaIsolation + 1;
+          teamStat.fgmIsolation = teamStat.fgmIsolation + 1;
+          teamStat.fgaIsolation = teamStat.fgaIsolation + 1;
         } else if (fgResult == FgResult.THREE_POINT_MISS) {
-          teamStat.tpaLayup = teamStat.tpaLayup + 1;
-          teamStat.fgaLayup = teamStat.fgaLayup + 1;
+          teamStat.tpaIsolation = teamStat.tpaIsolation + 1;
+          teamStat.fgaIsolation = teamStat.fgaIsolation + 1;
         } else if (fgResult == FgResult.TWO_POINT_MADE) {
-          teamStat.fgmLayup = teamStat.fgmLayup + 1;
-          teamStat.fgaLayup = teamStat.fgaLayup + 1;
+          teamStat.fgmIsolation = teamStat.fgmIsolation + 1;
+          teamStat.fgaIsolation = teamStat.fgaIsolation + 1;
         } else if (fgResult == FgResult.TWO_POINT_MISS) {
-          teamStat.fgaLayup = teamStat.fgaLayup + 1;
+          teamStat.fgaIsolation = teamStat.fgaIsolation + 1;
         }
         break;
-      case ShotType.CATCH_AND_SHOT:
+      case PlayType.FASTBREAK:
         if (fgResult == FgResult.THREE_POINT_MADE) {
-          teamStat.tpmCatchAndShot = teamStat.tpmCatchAndShot + 1;
-          teamStat.tpaCatchAndShot = teamStat.tpaCatchAndShot + 1;
-          teamStat.fgmCatchAndShot = teamStat.fgmCatchAndShot + 1;
-          teamStat.fgaCatchAndShot = teamStat.fgaCatchAndShot + 1;
+          teamStat.tpmFastBreak = teamStat.tpmFastBreak + 1;
+          teamStat.tpaFastBreak = teamStat.tpaFastBreak + 1;
+          teamStat.fgmFastBreak = teamStat.fgmFastBreak + 1;
+          teamStat.fgaFastBreak = teamStat.fgaFastBreak + 1;
         } else if (fgResult == FgResult.THREE_POINT_MISS) {
-          teamStat.tpaCatchAndShot = teamStat.tpaCatchAndShot + 1;
-          teamStat.fgaCatchAndShot = teamStat.fgaCatchAndShot + 1;
+          teamStat.tpaFastBreak = teamStat.tpaFastBreak + 1;
+          teamStat.fgaFastBreak = teamStat.fgaFastBreak + 1;
         } else if (fgResult == FgResult.TWO_POINT_MADE) {
-          teamStat.fgmCatchAndShot = teamStat.fgmCatchAndShot + 1;
-          teamStat.fgaCatchAndShot = teamStat.fgaCatchAndShot + 1;
+          teamStat.fgmFastBreak = teamStat.fgmFastBreak + 1;
+          teamStat.fgaFastBreak = teamStat.fgaFastBreak + 1;
         } else if (fgResult == FgResult.TWO_POINT_MISS) {
-          teamStat.fgaCatchAndShot = teamStat.fgaCatchAndShot + 1;
+          teamStat.fgaFastBreak = teamStat.fgaFastBreak + 1;
         }
         break;
-      case ShotType.PULLUP:
+      case PlayType.PICK_AND_ROLL_BALL_HANDLER:
         if (fgResult == FgResult.THREE_POINT_MADE) {
-          teamStat.tpmPullUp = teamStat.tpmPullUp + 1;
-          teamStat.tpaPullUp = teamStat.tpaPullUp + 1;
-          teamStat.fgmPullUp = teamStat.fgmPullUp + 1;
-          teamStat.fgaPullUp = teamStat.fgaPullUp + 1;
+          teamStat.tpmHandler = teamStat.tpmHandler + 1;
+          teamStat.tpaHandler = teamStat.tpaHandler + 1;
+          teamStat.fgmHandler = teamStat.fgmHandler + 1;
+          teamStat.fgaHandler = teamStat.fgaHandler + 1;
         } else if (fgResult == FgResult.THREE_POINT_MISS) {
-          teamStat.tpaPullUp = teamStat.tpaPullUp + 1;
-          teamStat.fgaPullUp = teamStat.fgaPullUp + 1;
+          teamStat.tpaHandler = teamStat.tpaHandler + 1;
+          teamStat.fgaHandler = teamStat.fgaHandler + 1;
         } else if (fgResult == FgResult.TWO_POINT_MADE) {
-          teamStat.fgmPullUp = teamStat.fgmPullUp + 1;
-          teamStat.fgaPullUp = teamStat.fgaPullUp + 1;
+          teamStat.fgmHandler = teamStat.fgmHandler + 1;
+          teamStat.fgaHandler = teamStat.fgaHandler + 1;
         } else if (fgResult == FgResult.TWO_POINT_MISS) {
-          teamStat.fgaPullUp = teamStat.fgaPullUp + 1;
+          teamStat.fgaHandler = teamStat.fgaHandler + 1;
         }
         break;
-      case ShotType.FLOATING_SHOT:
+      case PlayType.PICK_AND_ROLL_ROLL_MAN:
         if (fgResult == FgResult.THREE_POINT_MADE) {
-          teamStat.tpmFloating = teamStat.tpmFloating + 1;
-          teamStat.tpaFloating = teamStat.tpaFloating + 1;
-          teamStat.fgmFloating = teamStat.fgmFloating + 1;
-          teamStat.fgaFloating = teamStat.fgaFloating + 1;
+          teamStat.tpmRoller = teamStat.tpmRoller + 1;
+          teamStat.tpaRoller = teamStat.tpaRoller + 1;
+          teamStat.fgmRoller = teamStat.fgmRoller + 1;
+          teamStat.fgaRoller = teamStat.fgaRoller + 1;
         } else if (fgResult == FgResult.THREE_POINT_MISS) {
-          teamStat.tpaFloating = teamStat.tpaFloating + 1;
-          teamStat.fgaFloating = teamStat.fgaFloating + 1;
+          teamStat.tpaRoller = teamStat.tpaRoller + 1;
+          teamStat.fgaRoller = teamStat.fgaRoller + 1;
         } else if (fgResult == FgResult.TWO_POINT_MADE) {
-          teamStat.fgmFloating = teamStat.fgmFloating + 1;
-          teamStat.fgaFloating = teamStat.fgaFloating + 1;
+          teamStat.fgmRoller = teamStat.fgmRoller + 1;
+          teamStat.fgaRoller = teamStat.fgaRoller + 1;
         } else if (fgResult == FgResult.TWO_POINT_MISS) {
-          teamStat.fgaFloating = teamStat.fgaFloating + 1;
+          teamStat.fgaRoller = teamStat.fgaRoller + 1;
         }
         break;
-      case ShotType.HOOK_SHOT:
+      case PlayType.POSTUP:
         if (fgResult == FgResult.THREE_POINT_MADE) {
-          teamStat.tpmHook = teamStat.tpmHook + 1;
-          teamStat.tpaHook = teamStat.tpaHook + 1;
-          teamStat.fgmHook = teamStat.fgmHook + 1;
-          teamStat.fgaHook = teamStat.fgaHook + 1;
+          teamStat.tpmPostUp = teamStat.tpmPostUp + 1;
+          teamStat.tpaPostUp = teamStat.tpaPostUp + 1;
+          teamStat.fgmPostUp = teamStat.fgmPostUp + 1;
+          teamStat.fgaPostUp = teamStat.fgaPostUp + 1;
         } else if (fgResult == FgResult.THREE_POINT_MISS) {
-          teamStat.tpaHook = teamStat.tpaHook + 1;
-          teamStat.fgaHook = teamStat.fgaHook + 1;
+          teamStat.tpaPostUp = teamStat.tpaPostUp + 1;
+          teamStat.fgaPostUp = teamStat.fgaPostUp + 1;
         } else if (fgResult == FgResult.TWO_POINT_MADE) {
-          teamStat.fgmHook = teamStat.fgmHook + 1;
-          teamStat.fgaHook = teamStat.fgaHook + 1;
+          teamStat.fgmPostUp = teamStat.fgmPostUp + 1;
+          teamStat.fgaPostUp = teamStat.fgaPostUp + 1;
         } else if (fgResult == FgResult.TWO_POINT_MISS) {
-          teamStat.fgaHook = teamStat.fgaHook + 1;
+          teamStat.fgaPostUp = teamStat.fgaPostUp + 1;
         }
         break;
-      case ShotType.TIP_SHOT:
+      case PlayType.SPOTUP:
         if (fgResult == FgResult.THREE_POINT_MADE) {
-          teamStat.tpmTip = teamStat.tpmTip + 1;
-          teamStat.tpaTip = teamStat.tpaTip + 1;
-          teamStat.fgmTip = teamStat.fgmTip + 1;
-          teamStat.fgaTip = teamStat.fgaTip + 1;
+          teamStat.tpmSpotUp = teamStat.tpmSpotUp + 1;
+          teamStat.tpaSpotUp = teamStat.tpaSpotUp + 1;
+          teamStat.fgmSpotUp = teamStat.fgmSpotUp + 1;
+          teamStat.fgaSpotUp = teamStat.fgaSpotUp + 1;
         } else if (fgResult == FgResult.THREE_POINT_MISS) {
-          teamStat.tpaTip = teamStat.tpaTip + 1;
-          teamStat.fgaTip = teamStat.fgaTip + 1;
+          teamStat.tpaSpotUp = teamStat.tpaSpotUp + 1;
+          teamStat.fgaSpotUp = teamStat.fgaSpotUp + 1;
         } else if (fgResult == FgResult.TWO_POINT_MADE) {
-          teamStat.fgmTip = teamStat.fgmTip + 1;
-          teamStat.fgaTip = teamStat.fgaTip + 1;
+          teamStat.fgmSpotUp = teamStat.fgmSpotUp + 1;
+          teamStat.fgaSpotUp = teamStat.fgaSpotUp + 1;
         } else if (fgResult == FgResult.TWO_POINT_MISS) {
-          teamStat.fgaTip = teamStat.fgaTip + 1;
+          teamStat.fgaSpotUp = teamStat.fgaSpotUp + 1;
         }
         break;
-      case ShotType.FADEAWAY:
+      case PlayType.HANDOFF:
         if (fgResult == FgResult.THREE_POINT_MADE) {
-          teamStat.tpmFadeAway = teamStat.tpmFadeAway + 1;
-          teamStat.tpaFadeAway = teamStat.tpaFadeAway + 1;
-          teamStat.fgmFadeAway = teamStat.fgmFadeAway + 1;
-          teamStat.fgaFadeAway = teamStat.fgaFadeAway + 1;
+          teamStat.tpmHandOff = teamStat.tpmHandOff + 1;
+          teamStat.tpaHandOff = teamStat.tpaHandOff + 1;
+          teamStat.fgmHandOff = teamStat.fgmHandOff + 1;
+          teamStat.fgaHandOff = teamStat.fgaHandOff + 1;
         } else if (fgResult == FgResult.THREE_POINT_MISS) {
-          teamStat.tpaFadeAway = teamStat.tpaFadeAway + 1;
-          teamStat.fgaFadeAway = teamStat.fgaFadeAway + 1;
+          teamStat.tpaHandOff = teamStat.tpaHandOff + 1;
+          teamStat.fgaHandOff = teamStat.fgaHandOff + 1;
         } else if (fgResult == FgResult.TWO_POINT_MADE) {
-          teamStat.fgmFadeAway = teamStat.fgmFadeAway + 1;
-          teamStat.fgaFadeAway = teamStat.fgaFadeAway + 1;
+          teamStat.fgmHandOff = teamStat.fgmHandOff + 1;
+          teamStat.fgaHandOff = teamStat.fgaHandOff + 1;
         } else if (fgResult == FgResult.TWO_POINT_MISS) {
-          teamStat.fgaFadeAway = teamStat.fgaFadeAway + 1;
+          teamStat.fgaHandOff = teamStat.fgaHandOff + 1;
         }
         break;
-      case ShotType.DUNK:
+      case PlayType.CUT:
         if (fgResult == FgResult.THREE_POINT_MADE) {
-          teamStat.tpmDunk = teamStat.tpmDunk + 1;
-          teamStat.tpaDunk = teamStat.tpaDunk + 1;
-          teamStat.fgmDunk = teamStat.fgmDunk + 1;
-          teamStat.fgaDunk = teamStat.fgaDunk + 1;
+          teamStat.tpmCut = teamStat.tpmCut + 1;
+          teamStat.tpaCut = teamStat.tpaCut + 1;
+          teamStat.fgmCut = teamStat.fgmCut + 1;
+          teamStat.fgaCut = teamStat.fgaCut + 1;
         } else if (fgResult == FgResult.THREE_POINT_MISS) {
-          teamStat.tpaDunk = teamStat.tpaDunk + 1;
-          teamStat.fgaDunk = teamStat.fgaDunk + 1;
+          teamStat.tpaCut = teamStat.tpaCut + 1;
+          teamStat.fgaCut = teamStat.fgaCut + 1;
         } else if (fgResult == FgResult.TWO_POINT_MADE) {
-          teamStat.fgmDunk = teamStat.fgmDunk + 1;
-          teamStat.fgaDunk = teamStat.fgaDunk + 1;
+          teamStat.fgmCut = teamStat.fgmCut + 1;
+          teamStat.fgaCut = teamStat.fgaCut + 1;
         } else if (fgResult == FgResult.TWO_POINT_MISS) {
-          teamStat.fgaDunk = teamStat.fgaDunk + 1;
+          teamStat.fgaCut = teamStat.fgaCut + 1;
         }
         break;
-      case ShotType.ALLEY_OOP:
+      case PlayType.OFF_SCREEN:
         if (fgResult == FgResult.THREE_POINT_MADE) {
-          teamStat.tpmAlleyOop = teamStat.tpmAlleyOop + 1;
-          teamStat.tpaAlleyOop = teamStat.tpaAlleyOop + 1;
-          teamStat.fgmAlleyOop = teamStat.fgmAlleyOop + 1;
-          teamStat.fgaAlleyOop = teamStat.fgaAlleyOop + 1;
+          teamStat.tpmOffScreen = teamStat.tpmOffScreen + 1;
+          teamStat.tpaOffScreen = teamStat.tpaOffScreen + 1;
+          teamStat.fgmOffScreen = teamStat.fgmOffScreen + 1;
+          teamStat.fgaOffScreen = teamStat.fgaOffScreen + 1;
         } else if (fgResult == FgResult.THREE_POINT_MISS) {
-          teamStat.tpaAlleyOop = teamStat.tpaAlleyOop + 1;
-          teamStat.fgaAlleyOop = teamStat.fgaAlleyOop + 1;
+          teamStat.tpaOffScreen = teamStat.tpaOffScreen + 1;
+          teamStat.fgaOffScreen = teamStat.fgaOffScreen + 1;
         } else if (fgResult == FgResult.TWO_POINT_MADE) {
-          teamStat.fgmAlleyOop = teamStat.fgmAlleyOop + 1;
-          teamStat.fgaAlleyOop = teamStat.fgaAlleyOop + 1;
+          teamStat.fgmOffScreen = teamStat.fgmOffScreen + 1;
+          teamStat.fgaOffScreen = teamStat.fgaOffScreen + 1;
         } else if (fgResult == FgResult.TWO_POINT_MISS) {
-          teamStat.fgaAlleyOop = teamStat.fgaAlleyOop + 1;
+          teamStat.fgaOffScreen = teamStat.fgaOffScreen + 1;
+        }
+        break;
+      case PlayType.SECOND_CHANCE:
+        if (fgResult == FgResult.THREE_POINT_MADE) {
+          teamStat.tpmSecondChance = teamStat.tpmSecondChance + 1;
+          teamStat.tpaSecondChance = teamStat.tpaSecondChance + 1;
+          teamStat.fgmSecondChance = teamStat.fgmSecondChance + 1;
+          teamStat.fgaSecondChance = teamStat.fgaSecondChance + 1;
+        } else if (fgResult == FgResult.THREE_POINT_MISS) {
+          teamStat.tpaSecondChance = teamStat.tpaSecondChance + 1;
+          teamStat.fgaSecondChance = teamStat.fgaSecondChance + 1;
+        } else if (fgResult == FgResult.TWO_POINT_MADE) {
+          teamStat.fgmSecondChance = teamStat.fgmSecondChance + 1;
+          teamStat.fgaSecondChance = teamStat.fgaSecondChance + 1;
+        } else if (fgResult == FgResult.TWO_POINT_MISS) {
+          teamStat.fgaSecondChance = teamStat.fgaSecondChance + 1;
         }
         break;
     }
@@ -348,7 +372,7 @@ class TeamStatRepository {
     });
   }
 
-  void modifyShot(int gameId, FgResult fgResult, ShotType shotType, ShotZone shotZone) {
+  void modifyShot(int gameId, FgResult fgResult, PlayType playType, ShotZone shotZone) {
     if (!isar.isOpen) {
       return;
     }
@@ -361,151 +385,167 @@ class TeamStatRepository {
       return;
     }
 
-    switch(shotType){
-      case ShotType.NONE:
+    switch(playType){
+      case PlayType.NONE:
         break;
-      case ShotType.LAYUP:
+      case PlayType.ISOLATION:
         if (fgResult == FgResult.THREE_POINT_MADE) {
-          teamStat.tpmLayup = teamStat.tpmLayup - 1;
-          teamStat.tpaLayup = teamStat.tpaLayup - 1;
-          teamStat.fgmLayup = teamStat.fgmLayup - 1;
-          teamStat.fgaLayup = teamStat.fgaLayup - 1;
+          teamStat.tpmIsolation = teamStat.tpmIsolation - 1;
+          teamStat.tpaIsolation = teamStat.tpaIsolation - 1;
+          teamStat.fgmIsolation = teamStat.fgmIsolation - 1;
+          teamStat.fgaIsolation = teamStat.fgaIsolation - 1;
         } else if (fgResult == FgResult.THREE_POINT_MISS) {
-          teamStat.tpaLayup = teamStat.tpaLayup - 1;
-          teamStat.fgaLayup = teamStat.fgaLayup - 1;
+          teamStat.tpaIsolation = teamStat.tpaIsolation - 1;
+          teamStat.fgaIsolation = teamStat.fgaIsolation - 1;
         } else if (fgResult == FgResult.TWO_POINT_MADE) {
-          teamStat.fgmLayup = teamStat.fgmLayup - 1;
-          teamStat.fgaLayup = teamStat.fgaLayup - 1;
+          teamStat.fgmIsolation = teamStat.fgmIsolation - 1;
+          teamStat.fgaIsolation = teamStat.fgaIsolation - 1;
         } else if (fgResult == FgResult.TWO_POINT_MISS) {
-          teamStat.fgaLayup = teamStat.fgaLayup - 1;
+          teamStat.fgaIsolation = teamStat.fgaIsolation - 1;
         }
         break;
-      case ShotType.CATCH_AND_SHOT:
+      case PlayType.FASTBREAK:
         if (fgResult == FgResult.THREE_POINT_MADE) {
-          teamStat.tpmCatchAndShot = teamStat.tpmCatchAndShot - 1;
-          teamStat.tpaCatchAndShot = teamStat.tpaCatchAndShot - 1;
-          teamStat.fgmCatchAndShot = teamStat.fgmCatchAndShot - 1;
-          teamStat.fgaCatchAndShot = teamStat.fgaCatchAndShot - 1;
+          teamStat.tpmFastBreak = teamStat.tpmFastBreak - 1;
+          teamStat.tpaFastBreak = teamStat.tpaFastBreak - 1;
+          teamStat.fgmFastBreak = teamStat.fgmFastBreak - 1;
+          teamStat.fgaFastBreak = teamStat.fgaFastBreak - 1;
         } else if (fgResult == FgResult.THREE_POINT_MISS) {
-          teamStat.tpaCatchAndShot = teamStat.tpaCatchAndShot - 1;
-          teamStat.fgaCatchAndShot = teamStat.fgaCatchAndShot - 1;
+          teamStat.tpaFastBreak = teamStat.tpaFastBreak - 1;
+          teamStat.fgaFastBreak = teamStat.fgaFastBreak - 1;
         } else if (fgResult == FgResult.TWO_POINT_MADE) {
-          teamStat.fgmCatchAndShot = teamStat.fgmCatchAndShot - 1;
-          teamStat.fgaCatchAndShot = teamStat.fgaCatchAndShot - 1;
+          teamStat.fgmFastBreak = teamStat.fgmFastBreak - 1;
+          teamStat.fgaFastBreak = teamStat.fgaFastBreak - 1;
         } else if (fgResult == FgResult.TWO_POINT_MISS) {
-          teamStat.fgaCatchAndShot = teamStat.fgaCatchAndShot - 1;
+          teamStat.fgaFastBreak = teamStat.fgaFastBreak - 1;
         }
         break;
-      case ShotType.PULLUP:
+      case PlayType.PICK_AND_ROLL_BALL_HANDLER:
         if (fgResult == FgResult.THREE_POINT_MADE) {
-          teamStat.tpmPullUp = teamStat.tpmPullUp - 1;
-          teamStat.tpaPullUp = teamStat.tpaPullUp - 1;
-          teamStat.fgmPullUp = teamStat.fgmPullUp - 1;
-          teamStat.fgaPullUp = teamStat.fgaPullUp - 1;
+          teamStat.tpmHandler = teamStat.tpmHandler - 1;
+          teamStat.tpaHandler = teamStat.tpaHandler - 1;
+          teamStat.fgmHandler = teamStat.fgmHandler - 1;
+          teamStat.fgaHandler = teamStat.fgaHandler - 1;
         } else if (fgResult == FgResult.THREE_POINT_MISS) {
-          teamStat.tpaPullUp = teamStat.tpaPullUp - 1;
-          teamStat.fgaPullUp = teamStat.fgaPullUp - 1;
+          teamStat.tpaHandler = teamStat.tpaHandler - 1;
+          teamStat.fgaHandler = teamStat.fgaHandler - 1;
         } else if (fgResult == FgResult.TWO_POINT_MADE) {
-          teamStat.fgmPullUp = teamStat.fgmPullUp - 1;
-          teamStat.fgaPullUp = teamStat.fgaPullUp - 1;
+          teamStat.fgmHandler = teamStat.fgmHandler - 1;
+          teamStat.fgaHandler = teamStat.fgaHandler - 1;
         } else if (fgResult == FgResult.TWO_POINT_MISS) {
-          teamStat.fgaPullUp = teamStat.fgaPullUp - 1;
+          teamStat.fgaHandler = teamStat.fgaHandler - 1;
         }
         break;
-      case ShotType.FLOATING_SHOT:
+      case PlayType.PICK_AND_ROLL_ROLL_MAN:
         if (fgResult == FgResult.THREE_POINT_MADE) {
-          teamStat.tpmFloating = teamStat.tpmFloating - 1;
-          teamStat.tpaFloating = teamStat.tpaFloating - 1;
-          teamStat.fgmFloating = teamStat.fgmFloating - 1;
-          teamStat.fgaFloating = teamStat.fgaFloating - 1;
+          teamStat.tpmRoller = teamStat.tpmRoller - 1;
+          teamStat.tpaRoller = teamStat.tpaRoller - 1;
+          teamStat.fgmRoller = teamStat.fgmRoller - 1;
+          teamStat.fgaRoller = teamStat.fgaRoller - 1;
         } else if (fgResult == FgResult.THREE_POINT_MISS) {
-          teamStat.tpaFloating = teamStat.tpaFloating - 1;
-          teamStat.fgaFloating = teamStat.fgaFloating - 1;
+          teamStat.tpaRoller = teamStat.tpaRoller - 1;
+          teamStat.fgaRoller = teamStat.fgaRoller - 1;
         } else if (fgResult == FgResult.TWO_POINT_MADE) {
-          teamStat.fgmFloating = teamStat.fgmFloating - 1;
-          teamStat.fgaFloating = teamStat.fgaFloating - 1;
+          teamStat.fgmRoller = teamStat.fgmRoller - 1;
+          teamStat.fgaRoller = teamStat.fgaRoller - 1;
         } else if (fgResult == FgResult.TWO_POINT_MISS) {
-          teamStat.fgaFloating = teamStat.fgaFloating - 1;
+          teamStat.fgaRoller = teamStat.fgaRoller - 1;
         }
         break;
-      case ShotType.HOOK_SHOT:
+      case PlayType.POSTUP:
         if (fgResult == FgResult.THREE_POINT_MADE) {
-          teamStat.tpmHook = teamStat.tpmHook - 1;
-          teamStat.tpaHook = teamStat.tpaHook - 1;
-          teamStat.fgmHook = teamStat.fgmHook - 1;
-          teamStat.fgaHook = teamStat.fgaHook - 1;
+          teamStat.tpmPostUp = teamStat.tpmPostUp - 1;
+          teamStat.tpaPostUp = teamStat.tpaPostUp - 1;
+          teamStat.fgmPostUp = teamStat.fgmPostUp - 1;
+          teamStat.fgaPostUp = teamStat.fgaPostUp - 1;
         } else if (fgResult == FgResult.THREE_POINT_MISS) {
-          teamStat.tpaHook = teamStat.tpaHook - 1;
-          teamStat.fgaHook = teamStat.fgaHook - 1;
+          teamStat.tpaPostUp = teamStat.tpaPostUp - 1;
+          teamStat.fgaPostUp = teamStat.fgaPostUp - 1;
         } else if (fgResult == FgResult.TWO_POINT_MADE) {
-          teamStat.fgmHook = teamStat.fgmHook - 1;
-          teamStat.fgaHook = teamStat.fgaHook - 1;
+          teamStat.fgmPostUp = teamStat.fgmPostUp - 1;
+          teamStat.fgaPostUp = teamStat.fgaPostUp - 1;
         } else if (fgResult == FgResult.TWO_POINT_MISS) {
-          teamStat.fgaHook = teamStat.fgaHook - 1;
+          teamStat.fgaPostUp = teamStat.fgaPostUp - 1;
         }
         break;
-      case ShotType.TIP_SHOT:
+      case PlayType.SPOTUP:
         if (fgResult == FgResult.THREE_POINT_MADE) {
-          teamStat.tpmTip = teamStat.tpmTip - 1;
-          teamStat.tpaTip = teamStat.tpaTip - 1;
-          teamStat.fgmTip = teamStat.fgmTip - 1;
-          teamStat.fgaTip = teamStat.fgaTip - 1;
+          teamStat.tpmSpotUp = teamStat.tpmSpotUp - 1;
+          teamStat.tpaSpotUp = teamStat.tpaSpotUp - 1;
+          teamStat.fgmSpotUp = teamStat.fgmSpotUp - 1;
+          teamStat.fgaSpotUp = teamStat.fgaSpotUp - 1;
         } else if (fgResult == FgResult.THREE_POINT_MISS) {
-          teamStat.tpaTip = teamStat.tpaTip - 1;
-          teamStat.fgaTip = teamStat.fgaTip - 1;
+          teamStat.tpaSpotUp = teamStat.tpaSpotUp - 1;
+          teamStat.fgaSpotUp = teamStat.fgaSpotUp - 1;
         } else if (fgResult == FgResult.TWO_POINT_MADE) {
-          teamStat.fgmTip = teamStat.fgmTip - 1;
-          teamStat.fgaTip = teamStat.fgaTip - 1;
+          teamStat.fgmSpotUp = teamStat.fgmSpotUp - 1;
+          teamStat.fgaSpotUp = teamStat.fgaSpotUp - 1;
         } else if (fgResult == FgResult.TWO_POINT_MISS) {
-          teamStat.fgaTip = teamStat.fgaTip - 1;
+          teamStat.fgaSpotUp = teamStat.fgaSpotUp - 1;
         }
         break;
-      case ShotType.FADEAWAY:
+      case PlayType.HANDOFF:
         if (fgResult == FgResult.THREE_POINT_MADE) {
-          teamStat.tpmFadeAway = teamStat.tpmFadeAway - 1;
-          teamStat.tpaFadeAway = teamStat.tpaFadeAway - 1;
-          teamStat.fgmFadeAway = teamStat.fgmFadeAway - 1;
-          teamStat.fgaFadeAway = teamStat.fgaFadeAway - 1;
+          teamStat.tpmHandOff = teamStat.tpmHandOff - 1;
+          teamStat.tpaHandOff = teamStat.tpaHandOff - 1;
+          teamStat.fgmHandOff = teamStat.fgmHandOff - 1;
+          teamStat.fgaHandOff = teamStat.fgaHandOff - 1;
         } else if (fgResult == FgResult.THREE_POINT_MISS) {
-          teamStat.tpaFadeAway = teamStat.tpaFadeAway - 1;
-          teamStat.fgaFadeAway = teamStat.fgaFadeAway - 1;
+          teamStat.tpaHandOff = teamStat.tpaHandOff - 1;
+          teamStat.fgaHandOff = teamStat.fgaHandOff - 1;
         } else if (fgResult == FgResult.TWO_POINT_MADE) {
-          teamStat.fgmFadeAway = teamStat.fgmFadeAway - 1;
-          teamStat.fgaFadeAway = teamStat.fgaFadeAway - 1;
+          teamStat.fgmHandOff = teamStat.fgmHandOff - 1;
+          teamStat.fgaHandOff = teamStat.fgaHandOff - 1;
         } else if (fgResult == FgResult.TWO_POINT_MISS) {
-          teamStat.fgaFadeAway = teamStat.fgaFadeAway - 1;
+          teamStat.fgaHandOff = teamStat.fgaHandOff - 1;
         }
         break;
-      case ShotType.DUNK:
+      case PlayType.CUT:
         if (fgResult == FgResult.THREE_POINT_MADE) {
-          teamStat.tpmDunk = teamStat.tpmDunk - 1;
-          teamStat.tpaDunk = teamStat.tpaDunk - 1;
-          teamStat.fgmDunk = teamStat.fgmDunk - 1;
-          teamStat.fgaDunk = teamStat.fgaDunk - 1;
+          teamStat.tpmCut = teamStat.tpmCut - 1;
+          teamStat.tpaCut = teamStat.tpaCut - 1;
+          teamStat.fgmCut = teamStat.fgmCut - 1;
+          teamStat.fgaCut = teamStat.fgaCut - 1;
         } else if (fgResult == FgResult.THREE_POINT_MISS) {
-          teamStat.tpaDunk = teamStat.tpaDunk - 1;
-          teamStat.fgaDunk = teamStat.fgaDunk - 1;
+          teamStat.tpaCut = teamStat.tpaCut - 1;
+          teamStat.fgaCut = teamStat.fgaCut - 1;
         } else if (fgResult == FgResult.TWO_POINT_MADE) {
-          teamStat.fgmDunk = teamStat.fgmDunk - 1;
-          teamStat.fgaDunk = teamStat.fgaDunk - 1;
+          teamStat.fgmCut = teamStat.fgmCut - 1;
+          teamStat.fgaCut = teamStat.fgaCut - 1;
         } else if (fgResult == FgResult.TWO_POINT_MISS) {
-          teamStat.fgaDunk = teamStat.fgaDunk - 1;
+          teamStat.fgaCut = teamStat.fgaCut - 1;
         }
         break;
-      case ShotType.ALLEY_OOP:
+      case PlayType.OFF_SCREEN:
         if (fgResult == FgResult.THREE_POINT_MADE) {
-          teamStat.tpmAlleyOop = teamStat.tpmAlleyOop - 1;
-          teamStat.tpaAlleyOop = teamStat.tpaAlleyOop - 1;
-          teamStat.fgmAlleyOop = teamStat.fgmAlleyOop - 1;
-          teamStat.fgaAlleyOop = teamStat.fgaAlleyOop - 1;
+          teamStat.tpmOffScreen = teamStat.tpmOffScreen - 1;
+          teamStat.tpaOffScreen = teamStat.tpaOffScreen - 1;
+          teamStat.fgmOffScreen = teamStat.fgmOffScreen - 1;
+          teamStat.fgaOffScreen = teamStat.fgaOffScreen - 1;
         } else if (fgResult == FgResult.THREE_POINT_MISS) {
-          teamStat.tpaAlleyOop = teamStat.tpaAlleyOop - 1;
-          teamStat.fgaAlleyOop = teamStat.fgaAlleyOop - 1;
+          teamStat.tpaOffScreen = teamStat.tpaOffScreen - 1;
+          teamStat.fgaOffScreen = teamStat.fgaOffScreen - 1;
         } else if (fgResult == FgResult.TWO_POINT_MADE) {
-          teamStat.fgmAlleyOop = teamStat.fgmAlleyOop - 1;
-          teamStat.fgaAlleyOop = teamStat.fgaAlleyOop - 1;
+          teamStat.fgmOffScreen = teamStat.fgmOffScreen - 1;
+          teamStat.fgaOffScreen = teamStat.fgaOffScreen - 1;
         } else if (fgResult == FgResult.TWO_POINT_MISS) {
-          teamStat.fgaAlleyOop = teamStat.fgaAlleyOop - 1;
+          teamStat.fgaOffScreen = teamStat.fgaOffScreen - 1;
+        }
+        break;
+      case PlayType.SECOND_CHANCE:
+        if (fgResult == FgResult.THREE_POINT_MADE) {
+          teamStat.tpmSecondChance = teamStat.tpmSecondChance - 1;
+          teamStat.tpaSecondChance = teamStat.tpaSecondChance - 1;
+          teamStat.fgmSecondChance = teamStat.fgmSecondChance - 1;
+          teamStat.fgaSecondChance = teamStat.fgaSecondChance - 1;
+        } else if (fgResult == FgResult.THREE_POINT_MISS) {
+          teamStat.tpaSecondChance = teamStat.tpaSecondChance - 1;
+          teamStat.fgaSecondChance = teamStat.fgaSecondChance - 1;
+        } else if (fgResult == FgResult.TWO_POINT_MADE) {
+          teamStat.fgmSecondChance = teamStat.fgmSecondChance - 1;
+          teamStat.fgaSecondChance = teamStat.fgaSecondChance - 1;
+        } else if (fgResult == FgResult.TWO_POINT_MISS) {
+          teamStat.fgaSecondChance = teamStat.fgaSecondChance - 1;
         }
         break;
     }
@@ -602,4 +642,97 @@ class TeamStatRepository {
     });
   }
 
+  List<List<dynamic>> getPlayTypeStats(int? opponentTeamId, int columnIndex, bool ascending) {
+    if (!isar.isOpen) {
+      return [];
+    }
+
+    // 勝敗が決まっている試合のスタッツのみで集計する
+    QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition> queryBuilder = isar.teamStats.filter().not().game((q) => q.outcomeEqualTo(Outcome.NONE));
+    if (opponentTeamId != null) {
+      queryBuilder = queryBuilder.game((q) => q.opponent((r) => r.idEqualTo(opponentTeamId)));
+    }
+
+    List<TeamStat> teamStats = queryBuilder.findAllSync();
+    int gameNum = queryBuilder.countSync();
+
+    int fgmIsolation = 0;
+    int fgaIsolation = 0;
+    double fgRatioIsolation = 0.0;
+    int tpmIsolation = 0;
+    int tpaIsolation = 0;
+    double tpRatioIsolation = 0.0;
+
+    int fgmFastBreak = 0;
+    int fgaFastBreak = 0;
+    double fgRatioFastBreak = 0.0;
+    int tpmFastBreak = 0;
+    int tpaFastBreak = 0;
+    double tpRatioFastBreak = 0.0;
+
+    int fgmHandler = 0;
+    int fgaHandler = 0;
+    double fgRatioHandler = 0.0;
+    int tpmHandler = 0;
+    int tpaHandler = 0;
+    double tpRatioHandler = 0.0;
+
+    int fgmRoller = 0;
+    int fgaRoller = 0;
+    double fgRatioRoller = 0.0;
+    int tpmRoller = 0;
+    int tpaRoller = 0;
+    double tpRatioRoller = 0.0;
+
+    int fgmPostUp = 0;
+    int fgaPostUp = 0;
+    double fgRatioPostUp = 0.0;
+    int tpmPostUp = 0;
+    int tpaPostUp = 0;
+    double tpRatioPostUp = 0.0;
+
+    int fgmSpotUp = 0;
+    int fgaSpotUp = 0;
+    double fgRatioSpotUp = 0.0;
+    int tpmSpotUp = 0;
+    int tpaSpotUp = 0;
+    double tpRatioSpotUp = 0.0;
+
+    int fgmHandOff = 0;
+    int fgaHandOff = 0;
+    double fgRatioHandOff = 0.0;
+    int tpmHandOff = 0;
+    int tpaHandOff = 0;
+    double tpRatioHandOff = 0.0;
+
+    int fgmCut = 0;
+    int fgaCut = 0;
+    double fgRatioCut = 0.0;
+    int tpmCut = 0;
+    int tpaCut = 0;
+    double tpRatioCut = 0.0;
+
+    int fgmOffScreen = 0;
+    int fgaOffScreen = 0;
+    double fgRatioOffScreen = 0.0;
+    int tpmOffScreen = 0;
+    int tpaOffScreen = 0;
+    double tpRatioOffScreen = 0.0;
+
+    int fgmSecondChance = 0;
+    int fgaSecondChance = 0;
+    double fgRatioSecondChance = 0.0;
+    int tpmSecondChance = 0;
+    int tpaSecondChance = 0;
+    double tpRatioSecondChance = 0.0;
+
+    for (var teamStat in teamStats) {
+      teamStat.fgmIsolation = teamStat.fgmIsolation;
+      teamStat.fgaIsolation = teamStat.fgaIsolation;
+      teamStat.tpmIsolation = teamStat.tpmIsolation;
+      teamStat.tpaIsolation = teamStat.tpaIsolation;
+    }
+
+    return [];
+  }
 }

@@ -17,283 +17,303 @@ const TeamStatSchema = CollectionSchema(
   name: r'TeamStat',
   id: 6943865517894194263,
   properties: {
-    r'fgaAlleyOop': PropertySchema(
+    r'fgaCut': PropertySchema(
       id: 0,
-      name: r'fgaAlleyOop',
+      name: r'fgaCut',
       type: IsarType.long,
     ),
-    r'fgaCatchAndShot': PropertySchema(
+    r'fgaFastBreak': PropertySchema(
       id: 1,
-      name: r'fgaCatchAndShot',
+      name: r'fgaFastBreak',
       type: IsarType.long,
     ),
-    r'fgaDunk': PropertySchema(
+    r'fgaHandOff': PropertySchema(
       id: 2,
-      name: r'fgaDunk',
+      name: r'fgaHandOff',
       type: IsarType.long,
     ),
-    r'fgaFadeAway': PropertySchema(
+    r'fgaHandler': PropertySchema(
       id: 3,
-      name: r'fgaFadeAway',
+      name: r'fgaHandler',
       type: IsarType.long,
     ),
-    r'fgaFloating': PropertySchema(
+    r'fgaIsolation': PropertySchema(
       id: 4,
-      name: r'fgaFloating',
+      name: r'fgaIsolation',
       type: IsarType.long,
     ),
-    r'fgaHook': PropertySchema(
+    r'fgaOffScreen': PropertySchema(
       id: 5,
-      name: r'fgaHook',
+      name: r'fgaOffScreen',
       type: IsarType.long,
     ),
-    r'fgaLayup': PropertySchema(
+    r'fgaPostUp': PropertySchema(
       id: 6,
-      name: r'fgaLayup',
+      name: r'fgaPostUp',
       type: IsarType.long,
     ),
-    r'fgaPullUp': PropertySchema(
+    r'fgaRoller': PropertySchema(
       id: 7,
-      name: r'fgaPullUp',
+      name: r'fgaRoller',
       type: IsarType.long,
     ),
-    r'fgaTip': PropertySchema(
+    r'fgaSecondChance': PropertySchema(
       id: 8,
-      name: r'fgaTip',
+      name: r'fgaSecondChance',
+      type: IsarType.long,
+    ),
+    r'fgaSpotUp': PropertySchema(
+      id: 9,
+      name: r'fgaSpotUp',
       type: IsarType.long,
     ),
     r'fgaZoneLeft': PropertySchema(
-      id: 9,
+      id: 10,
       name: r'fgaZoneLeft',
       type: IsarType.long,
     ),
     r'fgaZoneMiddle': PropertySchema(
-      id: 10,
+      id: 11,
       name: r'fgaZoneMiddle',
       type: IsarType.long,
     ),
     r'fgaZonePaint': PropertySchema(
-      id: 11,
+      id: 12,
       name: r'fgaZonePaint',
       type: IsarType.long,
     ),
     r'fgaZoneRight': PropertySchema(
-      id: 12,
+      id: 13,
       name: r'fgaZoneRight',
       type: IsarType.long,
     ),
     r'fgaZoneTop': PropertySchema(
-      id: 13,
+      id: 14,
       name: r'fgaZoneTop',
       type: IsarType.long,
     ),
-    r'fgmAlleyOop': PropertySchema(
-      id: 14,
-      name: r'fgmAlleyOop',
-      type: IsarType.long,
-    ),
-    r'fgmCatchAndShot': PropertySchema(
+    r'fgmCut': PropertySchema(
       id: 15,
-      name: r'fgmCatchAndShot',
+      name: r'fgmCut',
       type: IsarType.long,
     ),
-    r'fgmDunk': PropertySchema(
+    r'fgmFastBreak': PropertySchema(
       id: 16,
-      name: r'fgmDunk',
+      name: r'fgmFastBreak',
       type: IsarType.long,
     ),
-    r'fgmFadeAway': PropertySchema(
+    r'fgmHandOff': PropertySchema(
       id: 17,
-      name: r'fgmFadeAway',
+      name: r'fgmHandOff',
       type: IsarType.long,
     ),
-    r'fgmFloating': PropertySchema(
+    r'fgmHandler': PropertySchema(
       id: 18,
-      name: r'fgmFloating',
+      name: r'fgmHandler',
       type: IsarType.long,
     ),
-    r'fgmHook': PropertySchema(
+    r'fgmIsolation': PropertySchema(
       id: 19,
-      name: r'fgmHook',
+      name: r'fgmIsolation',
       type: IsarType.long,
     ),
-    r'fgmLayup': PropertySchema(
+    r'fgmOffScreen': PropertySchema(
       id: 20,
-      name: r'fgmLayup',
+      name: r'fgmOffScreen',
       type: IsarType.long,
     ),
-    r'fgmPullUp': PropertySchema(
+    r'fgmPostUp': PropertySchema(
       id: 21,
-      name: r'fgmPullUp',
+      name: r'fgmPostUp',
       type: IsarType.long,
     ),
-    r'fgmTip': PropertySchema(
+    r'fgmRoller': PropertySchema(
       id: 22,
-      name: r'fgmTip',
+      name: r'fgmRoller',
+      type: IsarType.long,
+    ),
+    r'fgmSecondChance': PropertySchema(
+      id: 23,
+      name: r'fgmSecondChance',
+      type: IsarType.long,
+    ),
+    r'fgmSpotUp': PropertySchema(
+      id: 24,
+      name: r'fgmSpotUp',
       type: IsarType.long,
     ),
     r'fgmZoneLeft': PropertySchema(
-      id: 23,
+      id: 25,
       name: r'fgmZoneLeft',
       type: IsarType.long,
     ),
     r'fgmZoneMiddle': PropertySchema(
-      id: 24,
+      id: 26,
       name: r'fgmZoneMiddle',
       type: IsarType.long,
     ),
     r'fgmZonePaint': PropertySchema(
-      id: 25,
+      id: 27,
       name: r'fgmZonePaint',
       type: IsarType.long,
     ),
     r'fgmZoneRight': PropertySchema(
-      id: 26,
+      id: 28,
       name: r'fgmZoneRight',
       type: IsarType.long,
     ),
     r'fgmZoneTop': PropertySchema(
-      id: 27,
+      id: 29,
       name: r'fgmZoneTop',
       type: IsarType.long,
     ),
-    r'tpaAlleyOop': PropertySchema(
-      id: 28,
-      name: r'tpaAlleyOop',
-      type: IsarType.long,
-    ),
-    r'tpaCatchAndShot': PropertySchema(
-      id: 29,
-      name: r'tpaCatchAndShot',
-      type: IsarType.long,
-    ),
-    r'tpaDunk': PropertySchema(
+    r'tpaCut': PropertySchema(
       id: 30,
-      name: r'tpaDunk',
+      name: r'tpaCut',
       type: IsarType.long,
     ),
-    r'tpaFadeAway': PropertySchema(
+    r'tpaFastBreak': PropertySchema(
       id: 31,
-      name: r'tpaFadeAway',
+      name: r'tpaFastBreak',
       type: IsarType.long,
     ),
-    r'tpaFloating': PropertySchema(
+    r'tpaHandOff': PropertySchema(
       id: 32,
-      name: r'tpaFloating',
+      name: r'tpaHandOff',
       type: IsarType.long,
     ),
-    r'tpaHook': PropertySchema(
+    r'tpaHandler': PropertySchema(
       id: 33,
-      name: r'tpaHook',
+      name: r'tpaHandler',
       type: IsarType.long,
     ),
-    r'tpaLayup': PropertySchema(
+    r'tpaIsolation': PropertySchema(
       id: 34,
-      name: r'tpaLayup',
+      name: r'tpaIsolation',
       type: IsarType.long,
     ),
-    r'tpaPullUp': PropertySchema(
+    r'tpaOffScreen': PropertySchema(
       id: 35,
-      name: r'tpaPullUp',
+      name: r'tpaOffScreen',
       type: IsarType.long,
     ),
-    r'tpaTip': PropertySchema(
+    r'tpaPostUp': PropertySchema(
       id: 36,
-      name: r'tpaTip',
+      name: r'tpaPostUp',
+      type: IsarType.long,
+    ),
+    r'tpaRoller': PropertySchema(
+      id: 37,
+      name: r'tpaRoller',
+      type: IsarType.long,
+    ),
+    r'tpaSecondChance': PropertySchema(
+      id: 38,
+      name: r'tpaSecondChance',
+      type: IsarType.long,
+    ),
+    r'tpaSpotUp': PropertySchema(
+      id: 39,
+      name: r'tpaSpotUp',
       type: IsarType.long,
     ),
     r'tpaZoneLeft': PropertySchema(
-      id: 37,
+      id: 40,
       name: r'tpaZoneLeft',
       type: IsarType.long,
     ),
     r'tpaZoneMiddle': PropertySchema(
-      id: 38,
+      id: 41,
       name: r'tpaZoneMiddle',
       type: IsarType.long,
     ),
     r'tpaZonePaint': PropertySchema(
-      id: 39,
+      id: 42,
       name: r'tpaZonePaint',
       type: IsarType.long,
     ),
     r'tpaZoneRight': PropertySchema(
-      id: 40,
+      id: 43,
       name: r'tpaZoneRight',
       type: IsarType.long,
     ),
     r'tpaZoneTop': PropertySchema(
-      id: 41,
+      id: 44,
       name: r'tpaZoneTop',
       type: IsarType.long,
     ),
-    r'tpmAlleyOop': PropertySchema(
-      id: 42,
-      name: r'tpmAlleyOop',
-      type: IsarType.long,
-    ),
-    r'tpmCatchAndShot': PropertySchema(
-      id: 43,
-      name: r'tpmCatchAndShot',
-      type: IsarType.long,
-    ),
-    r'tpmDunk': PropertySchema(
-      id: 44,
-      name: r'tpmDunk',
-      type: IsarType.long,
-    ),
-    r'tpmFadeAway': PropertySchema(
+    r'tpmCut': PropertySchema(
       id: 45,
-      name: r'tpmFadeAway',
+      name: r'tpmCut',
       type: IsarType.long,
     ),
-    r'tpmFloating': PropertySchema(
+    r'tpmFastBreak': PropertySchema(
       id: 46,
-      name: r'tpmFloating',
+      name: r'tpmFastBreak',
       type: IsarType.long,
     ),
-    r'tpmHook': PropertySchema(
+    r'tpmHandOff': PropertySchema(
       id: 47,
-      name: r'tpmHook',
+      name: r'tpmHandOff',
       type: IsarType.long,
     ),
-    r'tpmLayup': PropertySchema(
+    r'tpmHandler': PropertySchema(
       id: 48,
-      name: r'tpmLayup',
+      name: r'tpmHandler',
       type: IsarType.long,
     ),
-    r'tpmPullUp': PropertySchema(
+    r'tpmIsolation': PropertySchema(
       id: 49,
-      name: r'tpmPullUp',
+      name: r'tpmIsolation',
       type: IsarType.long,
     ),
-    r'tpmTip': PropertySchema(
+    r'tpmOffScreen': PropertySchema(
       id: 50,
-      name: r'tpmTip',
+      name: r'tpmOffScreen',
+      type: IsarType.long,
+    ),
+    r'tpmPostUp': PropertySchema(
+      id: 51,
+      name: r'tpmPostUp',
+      type: IsarType.long,
+    ),
+    r'tpmRoller': PropertySchema(
+      id: 52,
+      name: r'tpmRoller',
+      type: IsarType.long,
+    ),
+    r'tpmSecondChance': PropertySchema(
+      id: 53,
+      name: r'tpmSecondChance',
+      type: IsarType.long,
+    ),
+    r'tpmSpotUp': PropertySchema(
+      id: 54,
+      name: r'tpmSpotUp',
       type: IsarType.long,
     ),
     r'tpmZoneLeft': PropertySchema(
-      id: 51,
+      id: 55,
       name: r'tpmZoneLeft',
       type: IsarType.long,
     ),
     r'tpmZoneMiddle': PropertySchema(
-      id: 52,
+      id: 56,
       name: r'tpmZoneMiddle',
       type: IsarType.long,
     ),
     r'tpmZonePaint': PropertySchema(
-      id: 53,
+      id: 57,
       name: r'tpmZonePaint',
       type: IsarType.long,
     ),
     r'tpmZoneRight': PropertySchema(
-      id: 54,
+      id: 58,
       name: r'tpmZoneRight',
       type: IsarType.long,
     ),
     r'tpmZoneTop': PropertySchema(
-      id: 55,
+      id: 59,
       name: r'tpmZoneTop',
       type: IsarType.long,
     )
@@ -335,62 +355,66 @@ void _teamStatSerialize(
   List<int> offsets,
   Map<Type, List<int>> allOffsets,
 ) {
-  writer.writeLong(offsets[0], object.fgaAlleyOop);
-  writer.writeLong(offsets[1], object.fgaCatchAndShot);
-  writer.writeLong(offsets[2], object.fgaDunk);
-  writer.writeLong(offsets[3], object.fgaFadeAway);
-  writer.writeLong(offsets[4], object.fgaFloating);
-  writer.writeLong(offsets[5], object.fgaHook);
-  writer.writeLong(offsets[6], object.fgaLayup);
-  writer.writeLong(offsets[7], object.fgaPullUp);
-  writer.writeLong(offsets[8], object.fgaTip);
-  writer.writeLong(offsets[9], object.fgaZoneLeft);
-  writer.writeLong(offsets[10], object.fgaZoneMiddle);
-  writer.writeLong(offsets[11], object.fgaZonePaint);
-  writer.writeLong(offsets[12], object.fgaZoneRight);
-  writer.writeLong(offsets[13], object.fgaZoneTop);
-  writer.writeLong(offsets[14], object.fgmAlleyOop);
-  writer.writeLong(offsets[15], object.fgmCatchAndShot);
-  writer.writeLong(offsets[16], object.fgmDunk);
-  writer.writeLong(offsets[17], object.fgmFadeAway);
-  writer.writeLong(offsets[18], object.fgmFloating);
-  writer.writeLong(offsets[19], object.fgmHook);
-  writer.writeLong(offsets[20], object.fgmLayup);
-  writer.writeLong(offsets[21], object.fgmPullUp);
-  writer.writeLong(offsets[22], object.fgmTip);
-  writer.writeLong(offsets[23], object.fgmZoneLeft);
-  writer.writeLong(offsets[24], object.fgmZoneMiddle);
-  writer.writeLong(offsets[25], object.fgmZonePaint);
-  writer.writeLong(offsets[26], object.fgmZoneRight);
-  writer.writeLong(offsets[27], object.fgmZoneTop);
-  writer.writeLong(offsets[28], object.tpaAlleyOop);
-  writer.writeLong(offsets[29], object.tpaCatchAndShot);
-  writer.writeLong(offsets[30], object.tpaDunk);
-  writer.writeLong(offsets[31], object.tpaFadeAway);
-  writer.writeLong(offsets[32], object.tpaFloating);
-  writer.writeLong(offsets[33], object.tpaHook);
-  writer.writeLong(offsets[34], object.tpaLayup);
-  writer.writeLong(offsets[35], object.tpaPullUp);
-  writer.writeLong(offsets[36], object.tpaTip);
-  writer.writeLong(offsets[37], object.tpaZoneLeft);
-  writer.writeLong(offsets[38], object.tpaZoneMiddle);
-  writer.writeLong(offsets[39], object.tpaZonePaint);
-  writer.writeLong(offsets[40], object.tpaZoneRight);
-  writer.writeLong(offsets[41], object.tpaZoneTop);
-  writer.writeLong(offsets[42], object.tpmAlleyOop);
-  writer.writeLong(offsets[43], object.tpmCatchAndShot);
-  writer.writeLong(offsets[44], object.tpmDunk);
-  writer.writeLong(offsets[45], object.tpmFadeAway);
-  writer.writeLong(offsets[46], object.tpmFloating);
-  writer.writeLong(offsets[47], object.tpmHook);
-  writer.writeLong(offsets[48], object.tpmLayup);
-  writer.writeLong(offsets[49], object.tpmPullUp);
-  writer.writeLong(offsets[50], object.tpmTip);
-  writer.writeLong(offsets[51], object.tpmZoneLeft);
-  writer.writeLong(offsets[52], object.tpmZoneMiddle);
-  writer.writeLong(offsets[53], object.tpmZonePaint);
-  writer.writeLong(offsets[54], object.tpmZoneRight);
-  writer.writeLong(offsets[55], object.tpmZoneTop);
+  writer.writeLong(offsets[0], object.fgaCut);
+  writer.writeLong(offsets[1], object.fgaFastBreak);
+  writer.writeLong(offsets[2], object.fgaHandOff);
+  writer.writeLong(offsets[3], object.fgaHandler);
+  writer.writeLong(offsets[4], object.fgaIsolation);
+  writer.writeLong(offsets[5], object.fgaOffScreen);
+  writer.writeLong(offsets[6], object.fgaPostUp);
+  writer.writeLong(offsets[7], object.fgaRoller);
+  writer.writeLong(offsets[8], object.fgaSecondChance);
+  writer.writeLong(offsets[9], object.fgaSpotUp);
+  writer.writeLong(offsets[10], object.fgaZoneLeft);
+  writer.writeLong(offsets[11], object.fgaZoneMiddle);
+  writer.writeLong(offsets[12], object.fgaZonePaint);
+  writer.writeLong(offsets[13], object.fgaZoneRight);
+  writer.writeLong(offsets[14], object.fgaZoneTop);
+  writer.writeLong(offsets[15], object.fgmCut);
+  writer.writeLong(offsets[16], object.fgmFastBreak);
+  writer.writeLong(offsets[17], object.fgmHandOff);
+  writer.writeLong(offsets[18], object.fgmHandler);
+  writer.writeLong(offsets[19], object.fgmIsolation);
+  writer.writeLong(offsets[20], object.fgmOffScreen);
+  writer.writeLong(offsets[21], object.fgmPostUp);
+  writer.writeLong(offsets[22], object.fgmRoller);
+  writer.writeLong(offsets[23], object.fgmSecondChance);
+  writer.writeLong(offsets[24], object.fgmSpotUp);
+  writer.writeLong(offsets[25], object.fgmZoneLeft);
+  writer.writeLong(offsets[26], object.fgmZoneMiddle);
+  writer.writeLong(offsets[27], object.fgmZonePaint);
+  writer.writeLong(offsets[28], object.fgmZoneRight);
+  writer.writeLong(offsets[29], object.fgmZoneTop);
+  writer.writeLong(offsets[30], object.tpaCut);
+  writer.writeLong(offsets[31], object.tpaFastBreak);
+  writer.writeLong(offsets[32], object.tpaHandOff);
+  writer.writeLong(offsets[33], object.tpaHandler);
+  writer.writeLong(offsets[34], object.tpaIsolation);
+  writer.writeLong(offsets[35], object.tpaOffScreen);
+  writer.writeLong(offsets[36], object.tpaPostUp);
+  writer.writeLong(offsets[37], object.tpaRoller);
+  writer.writeLong(offsets[38], object.tpaSecondChance);
+  writer.writeLong(offsets[39], object.tpaSpotUp);
+  writer.writeLong(offsets[40], object.tpaZoneLeft);
+  writer.writeLong(offsets[41], object.tpaZoneMiddle);
+  writer.writeLong(offsets[42], object.tpaZonePaint);
+  writer.writeLong(offsets[43], object.tpaZoneRight);
+  writer.writeLong(offsets[44], object.tpaZoneTop);
+  writer.writeLong(offsets[45], object.tpmCut);
+  writer.writeLong(offsets[46], object.tpmFastBreak);
+  writer.writeLong(offsets[47], object.tpmHandOff);
+  writer.writeLong(offsets[48], object.tpmHandler);
+  writer.writeLong(offsets[49], object.tpmIsolation);
+  writer.writeLong(offsets[50], object.tpmOffScreen);
+  writer.writeLong(offsets[51], object.tpmPostUp);
+  writer.writeLong(offsets[52], object.tpmRoller);
+  writer.writeLong(offsets[53], object.tpmSecondChance);
+  writer.writeLong(offsets[54], object.tpmSpotUp);
+  writer.writeLong(offsets[55], object.tpmZoneLeft);
+  writer.writeLong(offsets[56], object.tpmZoneMiddle);
+  writer.writeLong(offsets[57], object.tpmZonePaint);
+  writer.writeLong(offsets[58], object.tpmZoneRight);
+  writer.writeLong(offsets[59], object.tpmZoneTop);
 }
 
 TeamStat _teamStatDeserialize(
@@ -400,63 +424,67 @@ TeamStat _teamStatDeserialize(
   Map<Type, List<int>> allOffsets,
 ) {
   final object = TeamStat();
-  object.fgaAlleyOop = reader.readLong(offsets[0]);
-  object.fgaCatchAndShot = reader.readLong(offsets[1]);
-  object.fgaDunk = reader.readLong(offsets[2]);
-  object.fgaFadeAway = reader.readLong(offsets[3]);
-  object.fgaFloating = reader.readLong(offsets[4]);
-  object.fgaHook = reader.readLong(offsets[5]);
-  object.fgaLayup = reader.readLong(offsets[6]);
-  object.fgaPullUp = reader.readLong(offsets[7]);
-  object.fgaTip = reader.readLong(offsets[8]);
-  object.fgaZoneLeft = reader.readLong(offsets[9]);
-  object.fgaZoneMiddle = reader.readLong(offsets[10]);
-  object.fgaZonePaint = reader.readLong(offsets[11]);
-  object.fgaZoneRight = reader.readLong(offsets[12]);
-  object.fgaZoneTop = reader.readLong(offsets[13]);
-  object.fgmAlleyOop = reader.readLong(offsets[14]);
-  object.fgmCatchAndShot = reader.readLong(offsets[15]);
-  object.fgmDunk = reader.readLong(offsets[16]);
-  object.fgmFadeAway = reader.readLong(offsets[17]);
-  object.fgmFloating = reader.readLong(offsets[18]);
-  object.fgmHook = reader.readLong(offsets[19]);
-  object.fgmLayup = reader.readLong(offsets[20]);
-  object.fgmPullUp = reader.readLong(offsets[21]);
-  object.fgmTip = reader.readLong(offsets[22]);
-  object.fgmZoneLeft = reader.readLong(offsets[23]);
-  object.fgmZoneMiddle = reader.readLong(offsets[24]);
-  object.fgmZonePaint = reader.readLong(offsets[25]);
-  object.fgmZoneRight = reader.readLong(offsets[26]);
-  object.fgmZoneTop = reader.readLong(offsets[27]);
+  object.fgaCut = reader.readLong(offsets[0]);
+  object.fgaFastBreak = reader.readLong(offsets[1]);
+  object.fgaHandOff = reader.readLong(offsets[2]);
+  object.fgaHandler = reader.readLong(offsets[3]);
+  object.fgaIsolation = reader.readLong(offsets[4]);
+  object.fgaOffScreen = reader.readLong(offsets[5]);
+  object.fgaPostUp = reader.readLong(offsets[6]);
+  object.fgaRoller = reader.readLong(offsets[7]);
+  object.fgaSecondChance = reader.readLong(offsets[8]);
+  object.fgaSpotUp = reader.readLong(offsets[9]);
+  object.fgaZoneLeft = reader.readLong(offsets[10]);
+  object.fgaZoneMiddle = reader.readLong(offsets[11]);
+  object.fgaZonePaint = reader.readLong(offsets[12]);
+  object.fgaZoneRight = reader.readLong(offsets[13]);
+  object.fgaZoneTop = reader.readLong(offsets[14]);
+  object.fgmCut = reader.readLong(offsets[15]);
+  object.fgmFastBreak = reader.readLong(offsets[16]);
+  object.fgmHandOff = reader.readLong(offsets[17]);
+  object.fgmHandler = reader.readLong(offsets[18]);
+  object.fgmIsolation = reader.readLong(offsets[19]);
+  object.fgmOffScreen = reader.readLong(offsets[20]);
+  object.fgmPostUp = reader.readLong(offsets[21]);
+  object.fgmRoller = reader.readLong(offsets[22]);
+  object.fgmSecondChance = reader.readLong(offsets[23]);
+  object.fgmSpotUp = reader.readLong(offsets[24]);
+  object.fgmZoneLeft = reader.readLong(offsets[25]);
+  object.fgmZoneMiddle = reader.readLong(offsets[26]);
+  object.fgmZonePaint = reader.readLong(offsets[27]);
+  object.fgmZoneRight = reader.readLong(offsets[28]);
+  object.fgmZoneTop = reader.readLong(offsets[29]);
   object.id = id;
-  object.tpaAlleyOop = reader.readLong(offsets[28]);
-  object.tpaCatchAndShot = reader.readLong(offsets[29]);
-  object.tpaDunk = reader.readLong(offsets[30]);
-  object.tpaFadeAway = reader.readLong(offsets[31]);
-  object.tpaFloating = reader.readLong(offsets[32]);
-  object.tpaHook = reader.readLong(offsets[33]);
-  object.tpaLayup = reader.readLong(offsets[34]);
-  object.tpaPullUp = reader.readLong(offsets[35]);
-  object.tpaTip = reader.readLong(offsets[36]);
-  object.tpaZoneLeft = reader.readLong(offsets[37]);
-  object.tpaZoneMiddle = reader.readLong(offsets[38]);
-  object.tpaZonePaint = reader.readLong(offsets[39]);
-  object.tpaZoneRight = reader.readLong(offsets[40]);
-  object.tpaZoneTop = reader.readLong(offsets[41]);
-  object.tpmAlleyOop = reader.readLong(offsets[42]);
-  object.tpmCatchAndShot = reader.readLong(offsets[43]);
-  object.tpmDunk = reader.readLong(offsets[44]);
-  object.tpmFadeAway = reader.readLong(offsets[45]);
-  object.tpmFloating = reader.readLong(offsets[46]);
-  object.tpmHook = reader.readLong(offsets[47]);
-  object.tpmLayup = reader.readLong(offsets[48]);
-  object.tpmPullUp = reader.readLong(offsets[49]);
-  object.tpmTip = reader.readLong(offsets[50]);
-  object.tpmZoneLeft = reader.readLong(offsets[51]);
-  object.tpmZoneMiddle = reader.readLong(offsets[52]);
-  object.tpmZonePaint = reader.readLong(offsets[53]);
-  object.tpmZoneRight = reader.readLong(offsets[54]);
-  object.tpmZoneTop = reader.readLong(offsets[55]);
+  object.tpaCut = reader.readLong(offsets[30]);
+  object.tpaFastBreak = reader.readLong(offsets[31]);
+  object.tpaHandOff = reader.readLong(offsets[32]);
+  object.tpaHandler = reader.readLong(offsets[33]);
+  object.tpaIsolation = reader.readLong(offsets[34]);
+  object.tpaOffScreen = reader.readLong(offsets[35]);
+  object.tpaPostUp = reader.readLong(offsets[36]);
+  object.tpaRoller = reader.readLong(offsets[37]);
+  object.tpaSecondChance = reader.readLong(offsets[38]);
+  object.tpaSpotUp = reader.readLong(offsets[39]);
+  object.tpaZoneLeft = reader.readLong(offsets[40]);
+  object.tpaZoneMiddle = reader.readLong(offsets[41]);
+  object.tpaZonePaint = reader.readLong(offsets[42]);
+  object.tpaZoneRight = reader.readLong(offsets[43]);
+  object.tpaZoneTop = reader.readLong(offsets[44]);
+  object.tpmCut = reader.readLong(offsets[45]);
+  object.tpmFastBreak = reader.readLong(offsets[46]);
+  object.tpmHandOff = reader.readLong(offsets[47]);
+  object.tpmHandler = reader.readLong(offsets[48]);
+  object.tpmIsolation = reader.readLong(offsets[49]);
+  object.tpmOffScreen = reader.readLong(offsets[50]);
+  object.tpmPostUp = reader.readLong(offsets[51]);
+  object.tpmRoller = reader.readLong(offsets[52]);
+  object.tpmSecondChance = reader.readLong(offsets[53]);
+  object.tpmSpotUp = reader.readLong(offsets[54]);
+  object.tpmZoneLeft = reader.readLong(offsets[55]);
+  object.tpmZoneMiddle = reader.readLong(offsets[56]);
+  object.tpmZonePaint = reader.readLong(offsets[57]);
+  object.tpmZoneRight = reader.readLong(offsets[58]);
+  object.tpmZoneTop = reader.readLong(offsets[59]);
   return object;
 }
 
@@ -579,6 +607,14 @@ P _teamStatDeserializeProp<P>(
       return (reader.readLong(offset)) as P;
     case 55:
       return (reader.readLong(offset)) as P;
+    case 56:
+      return (reader.readLong(offset)) as P;
+    case 57:
+      return (reader.readLong(offset)) as P;
+    case 58:
+      return (reader.readLong(offset)) as P;
+    case 59:
+      return (reader.readLong(offset)) as P;
     default:
       throw IsarError('Unknown property with id $propertyId');
   }
@@ -674,44 +710,97 @@ extension TeamStatQueryWhere on QueryBuilder<TeamStat, TeamStat, QWhereClause> {
 
 extension TeamStatQueryFilter
     on QueryBuilder<TeamStat, TeamStat, QFilterCondition> {
-  QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition> fgaAlleyOopEqualTo(
+  QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition> fgaCutEqualTo(
       int value) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.equalTo(
-        property: r'fgaAlleyOop',
+        property: r'fgaCut',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition> fgaCutGreaterThan(
+    int value, {
+    bool include = false,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        include: include,
+        property: r'fgaCut',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition> fgaCutLessThan(
+    int value, {
+    bool include = false,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.lessThan(
+        include: include,
+        property: r'fgaCut',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition> fgaCutBetween(
+    int lower,
+    int upper, {
+    bool includeLower = true,
+    bool includeUpper = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.between(
+        property: r'fgaCut',
+        lower: lower,
+        includeLower: includeLower,
+        upper: upper,
+        includeUpper: includeUpper,
+      ));
+    });
+  }
+
+  QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition> fgaFastBreakEqualTo(
+      int value) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'fgaFastBreak',
         value: value,
       ));
     });
   }
 
   QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition>
-      fgaAlleyOopGreaterThan(
+      fgaFastBreakGreaterThan(
     int value, {
     bool include = false,
   }) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.greaterThan(
         include: include,
-        property: r'fgaAlleyOop',
+        property: r'fgaFastBreak',
         value: value,
       ));
     });
   }
 
-  QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition> fgaAlleyOopLessThan(
+  QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition> fgaFastBreakLessThan(
     int value, {
     bool include = false,
   }) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.lessThan(
         include: include,
-        property: r'fgaAlleyOop',
+        property: r'fgaFastBreak',
         value: value,
       ));
     });
   }
 
-  QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition> fgaAlleyOopBetween(
+  QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition> fgaFastBreakBetween(
     int lower,
     int upper, {
     bool includeLower = true,
@@ -719,7 +808,327 @@ extension TeamStatQueryFilter
   }) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.between(
-        property: r'fgaAlleyOop',
+        property: r'fgaFastBreak',
+        lower: lower,
+        includeLower: includeLower,
+        upper: upper,
+        includeUpper: includeUpper,
+      ));
+    });
+  }
+
+  QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition> fgaHandOffEqualTo(
+      int value) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'fgaHandOff',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition> fgaHandOffGreaterThan(
+    int value, {
+    bool include = false,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        include: include,
+        property: r'fgaHandOff',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition> fgaHandOffLessThan(
+    int value, {
+    bool include = false,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.lessThan(
+        include: include,
+        property: r'fgaHandOff',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition> fgaHandOffBetween(
+    int lower,
+    int upper, {
+    bool includeLower = true,
+    bool includeUpper = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.between(
+        property: r'fgaHandOff',
+        lower: lower,
+        includeLower: includeLower,
+        upper: upper,
+        includeUpper: includeUpper,
+      ));
+    });
+  }
+
+  QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition> fgaHandlerEqualTo(
+      int value) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'fgaHandler',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition> fgaHandlerGreaterThan(
+    int value, {
+    bool include = false,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        include: include,
+        property: r'fgaHandler',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition> fgaHandlerLessThan(
+    int value, {
+    bool include = false,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.lessThan(
+        include: include,
+        property: r'fgaHandler',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition> fgaHandlerBetween(
+    int lower,
+    int upper, {
+    bool includeLower = true,
+    bool includeUpper = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.between(
+        property: r'fgaHandler',
+        lower: lower,
+        includeLower: includeLower,
+        upper: upper,
+        includeUpper: includeUpper,
+      ));
+    });
+  }
+
+  QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition> fgaIsolationEqualTo(
+      int value) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'fgaIsolation',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition>
+      fgaIsolationGreaterThan(
+    int value, {
+    bool include = false,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        include: include,
+        property: r'fgaIsolation',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition> fgaIsolationLessThan(
+    int value, {
+    bool include = false,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.lessThan(
+        include: include,
+        property: r'fgaIsolation',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition> fgaIsolationBetween(
+    int lower,
+    int upper, {
+    bool includeLower = true,
+    bool includeUpper = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.between(
+        property: r'fgaIsolation',
+        lower: lower,
+        includeLower: includeLower,
+        upper: upper,
+        includeUpper: includeUpper,
+      ));
+    });
+  }
+
+  QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition> fgaOffScreenEqualTo(
+      int value) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'fgaOffScreen',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition>
+      fgaOffScreenGreaterThan(
+    int value, {
+    bool include = false,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        include: include,
+        property: r'fgaOffScreen',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition> fgaOffScreenLessThan(
+    int value, {
+    bool include = false,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.lessThan(
+        include: include,
+        property: r'fgaOffScreen',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition> fgaOffScreenBetween(
+    int lower,
+    int upper, {
+    bool includeLower = true,
+    bool includeUpper = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.between(
+        property: r'fgaOffScreen',
+        lower: lower,
+        includeLower: includeLower,
+        upper: upper,
+        includeUpper: includeUpper,
+      ));
+    });
+  }
+
+  QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition> fgaPostUpEqualTo(
+      int value) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'fgaPostUp',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition> fgaPostUpGreaterThan(
+    int value, {
+    bool include = false,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        include: include,
+        property: r'fgaPostUp',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition> fgaPostUpLessThan(
+    int value, {
+    bool include = false,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.lessThan(
+        include: include,
+        property: r'fgaPostUp',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition> fgaPostUpBetween(
+    int lower,
+    int upper, {
+    bool includeLower = true,
+    bool includeUpper = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.between(
+        property: r'fgaPostUp',
+        lower: lower,
+        includeLower: includeLower,
+        upper: upper,
+        includeUpper: includeUpper,
+      ));
+    });
+  }
+
+  QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition> fgaRollerEqualTo(
+      int value) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'fgaRoller',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition> fgaRollerGreaterThan(
+    int value, {
+    bool include = false,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        include: include,
+        property: r'fgaRoller',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition> fgaRollerLessThan(
+    int value, {
+    bool include = false,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.lessThan(
+        include: include,
+        property: r'fgaRoller',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition> fgaRollerBetween(
+    int lower,
+    int upper, {
+    bool includeLower = true,
+    bool includeUpper = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.between(
+        property: r'fgaRoller',
         lower: lower,
         includeLower: includeLower,
         upper: upper,
@@ -729,45 +1138,45 @@ extension TeamStatQueryFilter
   }
 
   QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition>
-      fgaCatchAndShotEqualTo(int value) {
+      fgaSecondChanceEqualTo(int value) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.equalTo(
-        property: r'fgaCatchAndShot',
+        property: r'fgaSecondChance',
         value: value,
       ));
     });
   }
 
   QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition>
-      fgaCatchAndShotGreaterThan(
+      fgaSecondChanceGreaterThan(
     int value, {
     bool include = false,
   }) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.greaterThan(
         include: include,
-        property: r'fgaCatchAndShot',
+        property: r'fgaSecondChance',
         value: value,
       ));
     });
   }
 
   QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition>
-      fgaCatchAndShotLessThan(
+      fgaSecondChanceLessThan(
     int value, {
     bool include = false,
   }) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.lessThan(
         include: include,
-        property: r'fgaCatchAndShot',
+        property: r'fgaSecondChance',
         value: value,
       ));
     });
   }
 
   QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition>
-      fgaCatchAndShotBetween(
+      fgaSecondChanceBetween(
     int lower,
     int upper, {
     bool includeLower = true,
@@ -775,7 +1184,7 @@ extension TeamStatQueryFilter
   }) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.between(
-        property: r'fgaCatchAndShot',
+        property: r'fgaSecondChance',
         lower: lower,
         includeLower: includeLower,
         upper: upper,
@@ -784,43 +1193,43 @@ extension TeamStatQueryFilter
     });
   }
 
-  QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition> fgaDunkEqualTo(
+  QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition> fgaSpotUpEqualTo(
       int value) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.equalTo(
-        property: r'fgaDunk',
+        property: r'fgaSpotUp',
         value: value,
       ));
     });
   }
 
-  QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition> fgaDunkGreaterThan(
+  QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition> fgaSpotUpGreaterThan(
     int value, {
     bool include = false,
   }) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.greaterThan(
         include: include,
-        property: r'fgaDunk',
+        property: r'fgaSpotUp',
         value: value,
       ));
     });
   }
 
-  QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition> fgaDunkLessThan(
+  QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition> fgaSpotUpLessThan(
     int value, {
     bool include = false,
   }) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.lessThan(
         include: include,
-        property: r'fgaDunk',
+        property: r'fgaSpotUp',
         value: value,
       ));
     });
   }
 
-  QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition> fgaDunkBetween(
+  QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition> fgaSpotUpBetween(
     int lower,
     int upper, {
     bool includeLower = true,
@@ -828,327 +1237,7 @@ extension TeamStatQueryFilter
   }) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.between(
-        property: r'fgaDunk',
-        lower: lower,
-        includeLower: includeLower,
-        upper: upper,
-        includeUpper: includeUpper,
-      ));
-    });
-  }
-
-  QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition> fgaFadeAwayEqualTo(
-      int value) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.equalTo(
-        property: r'fgaFadeAway',
-        value: value,
-      ));
-    });
-  }
-
-  QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition>
-      fgaFadeAwayGreaterThan(
-    int value, {
-    bool include = false,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.greaterThan(
-        include: include,
-        property: r'fgaFadeAway',
-        value: value,
-      ));
-    });
-  }
-
-  QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition> fgaFadeAwayLessThan(
-    int value, {
-    bool include = false,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.lessThan(
-        include: include,
-        property: r'fgaFadeAway',
-        value: value,
-      ));
-    });
-  }
-
-  QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition> fgaFadeAwayBetween(
-    int lower,
-    int upper, {
-    bool includeLower = true,
-    bool includeUpper = true,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.between(
-        property: r'fgaFadeAway',
-        lower: lower,
-        includeLower: includeLower,
-        upper: upper,
-        includeUpper: includeUpper,
-      ));
-    });
-  }
-
-  QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition> fgaFloatingEqualTo(
-      int value) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.equalTo(
-        property: r'fgaFloating',
-        value: value,
-      ));
-    });
-  }
-
-  QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition>
-      fgaFloatingGreaterThan(
-    int value, {
-    bool include = false,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.greaterThan(
-        include: include,
-        property: r'fgaFloating',
-        value: value,
-      ));
-    });
-  }
-
-  QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition> fgaFloatingLessThan(
-    int value, {
-    bool include = false,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.lessThan(
-        include: include,
-        property: r'fgaFloating',
-        value: value,
-      ));
-    });
-  }
-
-  QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition> fgaFloatingBetween(
-    int lower,
-    int upper, {
-    bool includeLower = true,
-    bool includeUpper = true,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.between(
-        property: r'fgaFloating',
-        lower: lower,
-        includeLower: includeLower,
-        upper: upper,
-        includeUpper: includeUpper,
-      ));
-    });
-  }
-
-  QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition> fgaHookEqualTo(
-      int value) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.equalTo(
-        property: r'fgaHook',
-        value: value,
-      ));
-    });
-  }
-
-  QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition> fgaHookGreaterThan(
-    int value, {
-    bool include = false,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.greaterThan(
-        include: include,
-        property: r'fgaHook',
-        value: value,
-      ));
-    });
-  }
-
-  QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition> fgaHookLessThan(
-    int value, {
-    bool include = false,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.lessThan(
-        include: include,
-        property: r'fgaHook',
-        value: value,
-      ));
-    });
-  }
-
-  QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition> fgaHookBetween(
-    int lower,
-    int upper, {
-    bool includeLower = true,
-    bool includeUpper = true,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.between(
-        property: r'fgaHook',
-        lower: lower,
-        includeLower: includeLower,
-        upper: upper,
-        includeUpper: includeUpper,
-      ));
-    });
-  }
-
-  QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition> fgaLayupEqualTo(
-      int value) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.equalTo(
-        property: r'fgaLayup',
-        value: value,
-      ));
-    });
-  }
-
-  QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition> fgaLayupGreaterThan(
-    int value, {
-    bool include = false,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.greaterThan(
-        include: include,
-        property: r'fgaLayup',
-        value: value,
-      ));
-    });
-  }
-
-  QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition> fgaLayupLessThan(
-    int value, {
-    bool include = false,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.lessThan(
-        include: include,
-        property: r'fgaLayup',
-        value: value,
-      ));
-    });
-  }
-
-  QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition> fgaLayupBetween(
-    int lower,
-    int upper, {
-    bool includeLower = true,
-    bool includeUpper = true,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.between(
-        property: r'fgaLayup',
-        lower: lower,
-        includeLower: includeLower,
-        upper: upper,
-        includeUpper: includeUpper,
-      ));
-    });
-  }
-
-  QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition> fgaPullUpEqualTo(
-      int value) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.equalTo(
-        property: r'fgaPullUp',
-        value: value,
-      ));
-    });
-  }
-
-  QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition> fgaPullUpGreaterThan(
-    int value, {
-    bool include = false,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.greaterThan(
-        include: include,
-        property: r'fgaPullUp',
-        value: value,
-      ));
-    });
-  }
-
-  QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition> fgaPullUpLessThan(
-    int value, {
-    bool include = false,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.lessThan(
-        include: include,
-        property: r'fgaPullUp',
-        value: value,
-      ));
-    });
-  }
-
-  QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition> fgaPullUpBetween(
-    int lower,
-    int upper, {
-    bool includeLower = true,
-    bool includeUpper = true,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.between(
-        property: r'fgaPullUp',
-        lower: lower,
-        includeLower: includeLower,
-        upper: upper,
-        includeUpper: includeUpper,
-      ));
-    });
-  }
-
-  QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition> fgaTipEqualTo(
-      int value) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.equalTo(
-        property: r'fgaTip',
-        value: value,
-      ));
-    });
-  }
-
-  QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition> fgaTipGreaterThan(
-    int value, {
-    bool include = false,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.greaterThan(
-        include: include,
-        property: r'fgaTip',
-        value: value,
-      ));
-    });
-  }
-
-  QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition> fgaTipLessThan(
-    int value, {
-    bool include = false,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.lessThan(
-        include: include,
-        property: r'fgaTip',
-        value: value,
-      ));
-    });
-  }
-
-  QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition> fgaTipBetween(
-    int lower,
-    int upper, {
-    bool includeLower = true,
-    bool includeUpper = true,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.between(
-        property: r'fgaTip',
+        property: r'fgaSpotUp',
         lower: lower,
         includeLower: includeLower,
         upper: upper,
@@ -1426,44 +1515,97 @@ extension TeamStatQueryFilter
     });
   }
 
-  QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition> fgmAlleyOopEqualTo(
+  QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition> fgmCutEqualTo(
       int value) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.equalTo(
-        property: r'fgmAlleyOop',
+        property: r'fgmCut',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition> fgmCutGreaterThan(
+    int value, {
+    bool include = false,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        include: include,
+        property: r'fgmCut',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition> fgmCutLessThan(
+    int value, {
+    bool include = false,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.lessThan(
+        include: include,
+        property: r'fgmCut',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition> fgmCutBetween(
+    int lower,
+    int upper, {
+    bool includeLower = true,
+    bool includeUpper = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.between(
+        property: r'fgmCut',
+        lower: lower,
+        includeLower: includeLower,
+        upper: upper,
+        includeUpper: includeUpper,
+      ));
+    });
+  }
+
+  QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition> fgmFastBreakEqualTo(
+      int value) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'fgmFastBreak',
         value: value,
       ));
     });
   }
 
   QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition>
-      fgmAlleyOopGreaterThan(
+      fgmFastBreakGreaterThan(
     int value, {
     bool include = false,
   }) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.greaterThan(
         include: include,
-        property: r'fgmAlleyOop',
+        property: r'fgmFastBreak',
         value: value,
       ));
     });
   }
 
-  QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition> fgmAlleyOopLessThan(
+  QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition> fgmFastBreakLessThan(
     int value, {
     bool include = false,
   }) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.lessThan(
         include: include,
-        property: r'fgmAlleyOop',
+        property: r'fgmFastBreak',
         value: value,
       ));
     });
   }
 
-  QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition> fgmAlleyOopBetween(
+  QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition> fgmFastBreakBetween(
     int lower,
     int upper, {
     bool includeLower = true,
@@ -1471,7 +1613,327 @@ extension TeamStatQueryFilter
   }) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.between(
-        property: r'fgmAlleyOop',
+        property: r'fgmFastBreak',
+        lower: lower,
+        includeLower: includeLower,
+        upper: upper,
+        includeUpper: includeUpper,
+      ));
+    });
+  }
+
+  QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition> fgmHandOffEqualTo(
+      int value) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'fgmHandOff',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition> fgmHandOffGreaterThan(
+    int value, {
+    bool include = false,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        include: include,
+        property: r'fgmHandOff',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition> fgmHandOffLessThan(
+    int value, {
+    bool include = false,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.lessThan(
+        include: include,
+        property: r'fgmHandOff',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition> fgmHandOffBetween(
+    int lower,
+    int upper, {
+    bool includeLower = true,
+    bool includeUpper = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.between(
+        property: r'fgmHandOff',
+        lower: lower,
+        includeLower: includeLower,
+        upper: upper,
+        includeUpper: includeUpper,
+      ));
+    });
+  }
+
+  QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition> fgmHandlerEqualTo(
+      int value) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'fgmHandler',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition> fgmHandlerGreaterThan(
+    int value, {
+    bool include = false,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        include: include,
+        property: r'fgmHandler',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition> fgmHandlerLessThan(
+    int value, {
+    bool include = false,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.lessThan(
+        include: include,
+        property: r'fgmHandler',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition> fgmHandlerBetween(
+    int lower,
+    int upper, {
+    bool includeLower = true,
+    bool includeUpper = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.between(
+        property: r'fgmHandler',
+        lower: lower,
+        includeLower: includeLower,
+        upper: upper,
+        includeUpper: includeUpper,
+      ));
+    });
+  }
+
+  QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition> fgmIsolationEqualTo(
+      int value) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'fgmIsolation',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition>
+      fgmIsolationGreaterThan(
+    int value, {
+    bool include = false,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        include: include,
+        property: r'fgmIsolation',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition> fgmIsolationLessThan(
+    int value, {
+    bool include = false,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.lessThan(
+        include: include,
+        property: r'fgmIsolation',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition> fgmIsolationBetween(
+    int lower,
+    int upper, {
+    bool includeLower = true,
+    bool includeUpper = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.between(
+        property: r'fgmIsolation',
+        lower: lower,
+        includeLower: includeLower,
+        upper: upper,
+        includeUpper: includeUpper,
+      ));
+    });
+  }
+
+  QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition> fgmOffScreenEqualTo(
+      int value) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'fgmOffScreen',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition>
+      fgmOffScreenGreaterThan(
+    int value, {
+    bool include = false,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        include: include,
+        property: r'fgmOffScreen',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition> fgmOffScreenLessThan(
+    int value, {
+    bool include = false,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.lessThan(
+        include: include,
+        property: r'fgmOffScreen',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition> fgmOffScreenBetween(
+    int lower,
+    int upper, {
+    bool includeLower = true,
+    bool includeUpper = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.between(
+        property: r'fgmOffScreen',
+        lower: lower,
+        includeLower: includeLower,
+        upper: upper,
+        includeUpper: includeUpper,
+      ));
+    });
+  }
+
+  QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition> fgmPostUpEqualTo(
+      int value) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'fgmPostUp',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition> fgmPostUpGreaterThan(
+    int value, {
+    bool include = false,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        include: include,
+        property: r'fgmPostUp',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition> fgmPostUpLessThan(
+    int value, {
+    bool include = false,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.lessThan(
+        include: include,
+        property: r'fgmPostUp',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition> fgmPostUpBetween(
+    int lower,
+    int upper, {
+    bool includeLower = true,
+    bool includeUpper = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.between(
+        property: r'fgmPostUp',
+        lower: lower,
+        includeLower: includeLower,
+        upper: upper,
+        includeUpper: includeUpper,
+      ));
+    });
+  }
+
+  QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition> fgmRollerEqualTo(
+      int value) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'fgmRoller',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition> fgmRollerGreaterThan(
+    int value, {
+    bool include = false,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        include: include,
+        property: r'fgmRoller',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition> fgmRollerLessThan(
+    int value, {
+    bool include = false,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.lessThan(
+        include: include,
+        property: r'fgmRoller',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition> fgmRollerBetween(
+    int lower,
+    int upper, {
+    bool includeLower = true,
+    bool includeUpper = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.between(
+        property: r'fgmRoller',
         lower: lower,
         includeLower: includeLower,
         upper: upper,
@@ -1481,45 +1943,45 @@ extension TeamStatQueryFilter
   }
 
   QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition>
-      fgmCatchAndShotEqualTo(int value) {
+      fgmSecondChanceEqualTo(int value) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.equalTo(
-        property: r'fgmCatchAndShot',
+        property: r'fgmSecondChance',
         value: value,
       ));
     });
   }
 
   QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition>
-      fgmCatchAndShotGreaterThan(
+      fgmSecondChanceGreaterThan(
     int value, {
     bool include = false,
   }) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.greaterThan(
         include: include,
-        property: r'fgmCatchAndShot',
+        property: r'fgmSecondChance',
         value: value,
       ));
     });
   }
 
   QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition>
-      fgmCatchAndShotLessThan(
+      fgmSecondChanceLessThan(
     int value, {
     bool include = false,
   }) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.lessThan(
         include: include,
-        property: r'fgmCatchAndShot',
+        property: r'fgmSecondChance',
         value: value,
       ));
     });
   }
 
   QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition>
-      fgmCatchAndShotBetween(
+      fgmSecondChanceBetween(
     int lower,
     int upper, {
     bool includeLower = true,
@@ -1527,7 +1989,7 @@ extension TeamStatQueryFilter
   }) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.between(
-        property: r'fgmCatchAndShot',
+        property: r'fgmSecondChance',
         lower: lower,
         includeLower: includeLower,
         upper: upper,
@@ -1536,43 +1998,43 @@ extension TeamStatQueryFilter
     });
   }
 
-  QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition> fgmDunkEqualTo(
+  QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition> fgmSpotUpEqualTo(
       int value) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.equalTo(
-        property: r'fgmDunk',
+        property: r'fgmSpotUp',
         value: value,
       ));
     });
   }
 
-  QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition> fgmDunkGreaterThan(
+  QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition> fgmSpotUpGreaterThan(
     int value, {
     bool include = false,
   }) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.greaterThan(
         include: include,
-        property: r'fgmDunk',
+        property: r'fgmSpotUp',
         value: value,
       ));
     });
   }
 
-  QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition> fgmDunkLessThan(
+  QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition> fgmSpotUpLessThan(
     int value, {
     bool include = false,
   }) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.lessThan(
         include: include,
-        property: r'fgmDunk',
+        property: r'fgmSpotUp',
         value: value,
       ));
     });
   }
 
-  QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition> fgmDunkBetween(
+  QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition> fgmSpotUpBetween(
     int lower,
     int upper, {
     bool includeLower = true,
@@ -1580,327 +2042,7 @@ extension TeamStatQueryFilter
   }) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.between(
-        property: r'fgmDunk',
-        lower: lower,
-        includeLower: includeLower,
-        upper: upper,
-        includeUpper: includeUpper,
-      ));
-    });
-  }
-
-  QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition> fgmFadeAwayEqualTo(
-      int value) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.equalTo(
-        property: r'fgmFadeAway',
-        value: value,
-      ));
-    });
-  }
-
-  QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition>
-      fgmFadeAwayGreaterThan(
-    int value, {
-    bool include = false,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.greaterThan(
-        include: include,
-        property: r'fgmFadeAway',
-        value: value,
-      ));
-    });
-  }
-
-  QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition> fgmFadeAwayLessThan(
-    int value, {
-    bool include = false,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.lessThan(
-        include: include,
-        property: r'fgmFadeAway',
-        value: value,
-      ));
-    });
-  }
-
-  QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition> fgmFadeAwayBetween(
-    int lower,
-    int upper, {
-    bool includeLower = true,
-    bool includeUpper = true,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.between(
-        property: r'fgmFadeAway',
-        lower: lower,
-        includeLower: includeLower,
-        upper: upper,
-        includeUpper: includeUpper,
-      ));
-    });
-  }
-
-  QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition> fgmFloatingEqualTo(
-      int value) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.equalTo(
-        property: r'fgmFloating',
-        value: value,
-      ));
-    });
-  }
-
-  QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition>
-      fgmFloatingGreaterThan(
-    int value, {
-    bool include = false,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.greaterThan(
-        include: include,
-        property: r'fgmFloating',
-        value: value,
-      ));
-    });
-  }
-
-  QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition> fgmFloatingLessThan(
-    int value, {
-    bool include = false,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.lessThan(
-        include: include,
-        property: r'fgmFloating',
-        value: value,
-      ));
-    });
-  }
-
-  QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition> fgmFloatingBetween(
-    int lower,
-    int upper, {
-    bool includeLower = true,
-    bool includeUpper = true,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.between(
-        property: r'fgmFloating',
-        lower: lower,
-        includeLower: includeLower,
-        upper: upper,
-        includeUpper: includeUpper,
-      ));
-    });
-  }
-
-  QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition> fgmHookEqualTo(
-      int value) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.equalTo(
-        property: r'fgmHook',
-        value: value,
-      ));
-    });
-  }
-
-  QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition> fgmHookGreaterThan(
-    int value, {
-    bool include = false,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.greaterThan(
-        include: include,
-        property: r'fgmHook',
-        value: value,
-      ));
-    });
-  }
-
-  QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition> fgmHookLessThan(
-    int value, {
-    bool include = false,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.lessThan(
-        include: include,
-        property: r'fgmHook',
-        value: value,
-      ));
-    });
-  }
-
-  QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition> fgmHookBetween(
-    int lower,
-    int upper, {
-    bool includeLower = true,
-    bool includeUpper = true,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.between(
-        property: r'fgmHook',
-        lower: lower,
-        includeLower: includeLower,
-        upper: upper,
-        includeUpper: includeUpper,
-      ));
-    });
-  }
-
-  QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition> fgmLayupEqualTo(
-      int value) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.equalTo(
-        property: r'fgmLayup',
-        value: value,
-      ));
-    });
-  }
-
-  QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition> fgmLayupGreaterThan(
-    int value, {
-    bool include = false,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.greaterThan(
-        include: include,
-        property: r'fgmLayup',
-        value: value,
-      ));
-    });
-  }
-
-  QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition> fgmLayupLessThan(
-    int value, {
-    bool include = false,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.lessThan(
-        include: include,
-        property: r'fgmLayup',
-        value: value,
-      ));
-    });
-  }
-
-  QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition> fgmLayupBetween(
-    int lower,
-    int upper, {
-    bool includeLower = true,
-    bool includeUpper = true,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.between(
-        property: r'fgmLayup',
-        lower: lower,
-        includeLower: includeLower,
-        upper: upper,
-        includeUpper: includeUpper,
-      ));
-    });
-  }
-
-  QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition> fgmPullUpEqualTo(
-      int value) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.equalTo(
-        property: r'fgmPullUp',
-        value: value,
-      ));
-    });
-  }
-
-  QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition> fgmPullUpGreaterThan(
-    int value, {
-    bool include = false,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.greaterThan(
-        include: include,
-        property: r'fgmPullUp',
-        value: value,
-      ));
-    });
-  }
-
-  QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition> fgmPullUpLessThan(
-    int value, {
-    bool include = false,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.lessThan(
-        include: include,
-        property: r'fgmPullUp',
-        value: value,
-      ));
-    });
-  }
-
-  QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition> fgmPullUpBetween(
-    int lower,
-    int upper, {
-    bool includeLower = true,
-    bool includeUpper = true,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.between(
-        property: r'fgmPullUp',
-        lower: lower,
-        includeLower: includeLower,
-        upper: upper,
-        includeUpper: includeUpper,
-      ));
-    });
-  }
-
-  QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition> fgmTipEqualTo(
-      int value) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.equalTo(
-        property: r'fgmTip',
-        value: value,
-      ));
-    });
-  }
-
-  QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition> fgmTipGreaterThan(
-    int value, {
-    bool include = false,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.greaterThan(
-        include: include,
-        property: r'fgmTip',
-        value: value,
-      ));
-    });
-  }
-
-  QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition> fgmTipLessThan(
-    int value, {
-    bool include = false,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.lessThan(
-        include: include,
-        property: r'fgmTip',
-        value: value,
-      ));
-    });
-  }
-
-  QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition> fgmTipBetween(
-    int lower,
-    int upper, {
-    bool includeLower = true,
-    bool includeUpper = true,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.between(
-        property: r'fgmTip',
+        property: r'fgmSpotUp',
         lower: lower,
         includeLower: includeLower,
         upper: upper,
@@ -2230,44 +2372,97 @@ extension TeamStatQueryFilter
     });
   }
 
-  QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition> tpaAlleyOopEqualTo(
+  QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition> tpaCutEqualTo(
       int value) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.equalTo(
-        property: r'tpaAlleyOop',
+        property: r'tpaCut',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition> tpaCutGreaterThan(
+    int value, {
+    bool include = false,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        include: include,
+        property: r'tpaCut',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition> tpaCutLessThan(
+    int value, {
+    bool include = false,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.lessThan(
+        include: include,
+        property: r'tpaCut',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition> tpaCutBetween(
+    int lower,
+    int upper, {
+    bool includeLower = true,
+    bool includeUpper = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.between(
+        property: r'tpaCut',
+        lower: lower,
+        includeLower: includeLower,
+        upper: upper,
+        includeUpper: includeUpper,
+      ));
+    });
+  }
+
+  QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition> tpaFastBreakEqualTo(
+      int value) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'tpaFastBreak',
         value: value,
       ));
     });
   }
 
   QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition>
-      tpaAlleyOopGreaterThan(
+      tpaFastBreakGreaterThan(
     int value, {
     bool include = false,
   }) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.greaterThan(
         include: include,
-        property: r'tpaAlleyOop',
+        property: r'tpaFastBreak',
         value: value,
       ));
     });
   }
 
-  QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition> tpaAlleyOopLessThan(
+  QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition> tpaFastBreakLessThan(
     int value, {
     bool include = false,
   }) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.lessThan(
         include: include,
-        property: r'tpaAlleyOop',
+        property: r'tpaFastBreak',
         value: value,
       ));
     });
   }
 
-  QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition> tpaAlleyOopBetween(
+  QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition> tpaFastBreakBetween(
     int lower,
     int upper, {
     bool includeLower = true,
@@ -2275,7 +2470,327 @@ extension TeamStatQueryFilter
   }) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.between(
-        property: r'tpaAlleyOop',
+        property: r'tpaFastBreak',
+        lower: lower,
+        includeLower: includeLower,
+        upper: upper,
+        includeUpper: includeUpper,
+      ));
+    });
+  }
+
+  QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition> tpaHandOffEqualTo(
+      int value) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'tpaHandOff',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition> tpaHandOffGreaterThan(
+    int value, {
+    bool include = false,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        include: include,
+        property: r'tpaHandOff',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition> tpaHandOffLessThan(
+    int value, {
+    bool include = false,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.lessThan(
+        include: include,
+        property: r'tpaHandOff',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition> tpaHandOffBetween(
+    int lower,
+    int upper, {
+    bool includeLower = true,
+    bool includeUpper = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.between(
+        property: r'tpaHandOff',
+        lower: lower,
+        includeLower: includeLower,
+        upper: upper,
+        includeUpper: includeUpper,
+      ));
+    });
+  }
+
+  QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition> tpaHandlerEqualTo(
+      int value) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'tpaHandler',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition> tpaHandlerGreaterThan(
+    int value, {
+    bool include = false,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        include: include,
+        property: r'tpaHandler',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition> tpaHandlerLessThan(
+    int value, {
+    bool include = false,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.lessThan(
+        include: include,
+        property: r'tpaHandler',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition> tpaHandlerBetween(
+    int lower,
+    int upper, {
+    bool includeLower = true,
+    bool includeUpper = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.between(
+        property: r'tpaHandler',
+        lower: lower,
+        includeLower: includeLower,
+        upper: upper,
+        includeUpper: includeUpper,
+      ));
+    });
+  }
+
+  QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition> tpaIsolationEqualTo(
+      int value) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'tpaIsolation',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition>
+      tpaIsolationGreaterThan(
+    int value, {
+    bool include = false,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        include: include,
+        property: r'tpaIsolation',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition> tpaIsolationLessThan(
+    int value, {
+    bool include = false,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.lessThan(
+        include: include,
+        property: r'tpaIsolation',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition> tpaIsolationBetween(
+    int lower,
+    int upper, {
+    bool includeLower = true,
+    bool includeUpper = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.between(
+        property: r'tpaIsolation',
+        lower: lower,
+        includeLower: includeLower,
+        upper: upper,
+        includeUpper: includeUpper,
+      ));
+    });
+  }
+
+  QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition> tpaOffScreenEqualTo(
+      int value) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'tpaOffScreen',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition>
+      tpaOffScreenGreaterThan(
+    int value, {
+    bool include = false,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        include: include,
+        property: r'tpaOffScreen',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition> tpaOffScreenLessThan(
+    int value, {
+    bool include = false,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.lessThan(
+        include: include,
+        property: r'tpaOffScreen',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition> tpaOffScreenBetween(
+    int lower,
+    int upper, {
+    bool includeLower = true,
+    bool includeUpper = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.between(
+        property: r'tpaOffScreen',
+        lower: lower,
+        includeLower: includeLower,
+        upper: upper,
+        includeUpper: includeUpper,
+      ));
+    });
+  }
+
+  QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition> tpaPostUpEqualTo(
+      int value) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'tpaPostUp',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition> tpaPostUpGreaterThan(
+    int value, {
+    bool include = false,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        include: include,
+        property: r'tpaPostUp',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition> tpaPostUpLessThan(
+    int value, {
+    bool include = false,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.lessThan(
+        include: include,
+        property: r'tpaPostUp',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition> tpaPostUpBetween(
+    int lower,
+    int upper, {
+    bool includeLower = true,
+    bool includeUpper = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.between(
+        property: r'tpaPostUp',
+        lower: lower,
+        includeLower: includeLower,
+        upper: upper,
+        includeUpper: includeUpper,
+      ));
+    });
+  }
+
+  QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition> tpaRollerEqualTo(
+      int value) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'tpaRoller',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition> tpaRollerGreaterThan(
+    int value, {
+    bool include = false,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        include: include,
+        property: r'tpaRoller',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition> tpaRollerLessThan(
+    int value, {
+    bool include = false,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.lessThan(
+        include: include,
+        property: r'tpaRoller',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition> tpaRollerBetween(
+    int lower,
+    int upper, {
+    bool includeLower = true,
+    bool includeUpper = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.between(
+        property: r'tpaRoller',
         lower: lower,
         includeLower: includeLower,
         upper: upper,
@@ -2285,45 +2800,45 @@ extension TeamStatQueryFilter
   }
 
   QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition>
-      tpaCatchAndShotEqualTo(int value) {
+      tpaSecondChanceEqualTo(int value) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.equalTo(
-        property: r'tpaCatchAndShot',
+        property: r'tpaSecondChance',
         value: value,
       ));
     });
   }
 
   QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition>
-      tpaCatchAndShotGreaterThan(
+      tpaSecondChanceGreaterThan(
     int value, {
     bool include = false,
   }) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.greaterThan(
         include: include,
-        property: r'tpaCatchAndShot',
+        property: r'tpaSecondChance',
         value: value,
       ));
     });
   }
 
   QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition>
-      tpaCatchAndShotLessThan(
+      tpaSecondChanceLessThan(
     int value, {
     bool include = false,
   }) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.lessThan(
         include: include,
-        property: r'tpaCatchAndShot',
+        property: r'tpaSecondChance',
         value: value,
       ));
     });
   }
 
   QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition>
-      tpaCatchAndShotBetween(
+      tpaSecondChanceBetween(
     int lower,
     int upper, {
     bool includeLower = true,
@@ -2331,7 +2846,7 @@ extension TeamStatQueryFilter
   }) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.between(
-        property: r'tpaCatchAndShot',
+        property: r'tpaSecondChance',
         lower: lower,
         includeLower: includeLower,
         upper: upper,
@@ -2340,43 +2855,43 @@ extension TeamStatQueryFilter
     });
   }
 
-  QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition> tpaDunkEqualTo(
+  QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition> tpaSpotUpEqualTo(
       int value) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.equalTo(
-        property: r'tpaDunk',
+        property: r'tpaSpotUp',
         value: value,
       ));
     });
   }
 
-  QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition> tpaDunkGreaterThan(
+  QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition> tpaSpotUpGreaterThan(
     int value, {
     bool include = false,
   }) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.greaterThan(
         include: include,
-        property: r'tpaDunk',
+        property: r'tpaSpotUp',
         value: value,
       ));
     });
   }
 
-  QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition> tpaDunkLessThan(
+  QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition> tpaSpotUpLessThan(
     int value, {
     bool include = false,
   }) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.lessThan(
         include: include,
-        property: r'tpaDunk',
+        property: r'tpaSpotUp',
         value: value,
       ));
     });
   }
 
-  QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition> tpaDunkBetween(
+  QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition> tpaSpotUpBetween(
     int lower,
     int upper, {
     bool includeLower = true,
@@ -2384,327 +2899,7 @@ extension TeamStatQueryFilter
   }) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.between(
-        property: r'tpaDunk',
-        lower: lower,
-        includeLower: includeLower,
-        upper: upper,
-        includeUpper: includeUpper,
-      ));
-    });
-  }
-
-  QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition> tpaFadeAwayEqualTo(
-      int value) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.equalTo(
-        property: r'tpaFadeAway',
-        value: value,
-      ));
-    });
-  }
-
-  QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition>
-      tpaFadeAwayGreaterThan(
-    int value, {
-    bool include = false,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.greaterThan(
-        include: include,
-        property: r'tpaFadeAway',
-        value: value,
-      ));
-    });
-  }
-
-  QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition> tpaFadeAwayLessThan(
-    int value, {
-    bool include = false,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.lessThan(
-        include: include,
-        property: r'tpaFadeAway',
-        value: value,
-      ));
-    });
-  }
-
-  QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition> tpaFadeAwayBetween(
-    int lower,
-    int upper, {
-    bool includeLower = true,
-    bool includeUpper = true,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.between(
-        property: r'tpaFadeAway',
-        lower: lower,
-        includeLower: includeLower,
-        upper: upper,
-        includeUpper: includeUpper,
-      ));
-    });
-  }
-
-  QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition> tpaFloatingEqualTo(
-      int value) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.equalTo(
-        property: r'tpaFloating',
-        value: value,
-      ));
-    });
-  }
-
-  QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition>
-      tpaFloatingGreaterThan(
-    int value, {
-    bool include = false,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.greaterThan(
-        include: include,
-        property: r'tpaFloating',
-        value: value,
-      ));
-    });
-  }
-
-  QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition> tpaFloatingLessThan(
-    int value, {
-    bool include = false,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.lessThan(
-        include: include,
-        property: r'tpaFloating',
-        value: value,
-      ));
-    });
-  }
-
-  QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition> tpaFloatingBetween(
-    int lower,
-    int upper, {
-    bool includeLower = true,
-    bool includeUpper = true,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.between(
-        property: r'tpaFloating',
-        lower: lower,
-        includeLower: includeLower,
-        upper: upper,
-        includeUpper: includeUpper,
-      ));
-    });
-  }
-
-  QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition> tpaHookEqualTo(
-      int value) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.equalTo(
-        property: r'tpaHook',
-        value: value,
-      ));
-    });
-  }
-
-  QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition> tpaHookGreaterThan(
-    int value, {
-    bool include = false,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.greaterThan(
-        include: include,
-        property: r'tpaHook',
-        value: value,
-      ));
-    });
-  }
-
-  QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition> tpaHookLessThan(
-    int value, {
-    bool include = false,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.lessThan(
-        include: include,
-        property: r'tpaHook',
-        value: value,
-      ));
-    });
-  }
-
-  QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition> tpaHookBetween(
-    int lower,
-    int upper, {
-    bool includeLower = true,
-    bool includeUpper = true,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.between(
-        property: r'tpaHook',
-        lower: lower,
-        includeLower: includeLower,
-        upper: upper,
-        includeUpper: includeUpper,
-      ));
-    });
-  }
-
-  QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition> tpaLayupEqualTo(
-      int value) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.equalTo(
-        property: r'tpaLayup',
-        value: value,
-      ));
-    });
-  }
-
-  QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition> tpaLayupGreaterThan(
-    int value, {
-    bool include = false,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.greaterThan(
-        include: include,
-        property: r'tpaLayup',
-        value: value,
-      ));
-    });
-  }
-
-  QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition> tpaLayupLessThan(
-    int value, {
-    bool include = false,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.lessThan(
-        include: include,
-        property: r'tpaLayup',
-        value: value,
-      ));
-    });
-  }
-
-  QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition> tpaLayupBetween(
-    int lower,
-    int upper, {
-    bool includeLower = true,
-    bool includeUpper = true,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.between(
-        property: r'tpaLayup',
-        lower: lower,
-        includeLower: includeLower,
-        upper: upper,
-        includeUpper: includeUpper,
-      ));
-    });
-  }
-
-  QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition> tpaPullUpEqualTo(
-      int value) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.equalTo(
-        property: r'tpaPullUp',
-        value: value,
-      ));
-    });
-  }
-
-  QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition> tpaPullUpGreaterThan(
-    int value, {
-    bool include = false,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.greaterThan(
-        include: include,
-        property: r'tpaPullUp',
-        value: value,
-      ));
-    });
-  }
-
-  QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition> tpaPullUpLessThan(
-    int value, {
-    bool include = false,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.lessThan(
-        include: include,
-        property: r'tpaPullUp',
-        value: value,
-      ));
-    });
-  }
-
-  QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition> tpaPullUpBetween(
-    int lower,
-    int upper, {
-    bool includeLower = true,
-    bool includeUpper = true,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.between(
-        property: r'tpaPullUp',
-        lower: lower,
-        includeLower: includeLower,
-        upper: upper,
-        includeUpper: includeUpper,
-      ));
-    });
-  }
-
-  QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition> tpaTipEqualTo(
-      int value) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.equalTo(
-        property: r'tpaTip',
-        value: value,
-      ));
-    });
-  }
-
-  QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition> tpaTipGreaterThan(
-    int value, {
-    bool include = false,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.greaterThan(
-        include: include,
-        property: r'tpaTip',
-        value: value,
-      ));
-    });
-  }
-
-  QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition> tpaTipLessThan(
-    int value, {
-    bool include = false,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.lessThan(
-        include: include,
-        property: r'tpaTip',
-        value: value,
-      ));
-    });
-  }
-
-  QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition> tpaTipBetween(
-    int lower,
-    int upper, {
-    bool includeLower = true,
-    bool includeUpper = true,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.between(
-        property: r'tpaTip',
+        property: r'tpaSpotUp',
         lower: lower,
         includeLower: includeLower,
         upper: upper,
@@ -2982,44 +3177,97 @@ extension TeamStatQueryFilter
     });
   }
 
-  QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition> tpmAlleyOopEqualTo(
+  QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition> tpmCutEqualTo(
       int value) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.equalTo(
-        property: r'tpmAlleyOop',
+        property: r'tpmCut',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition> tpmCutGreaterThan(
+    int value, {
+    bool include = false,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        include: include,
+        property: r'tpmCut',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition> tpmCutLessThan(
+    int value, {
+    bool include = false,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.lessThan(
+        include: include,
+        property: r'tpmCut',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition> tpmCutBetween(
+    int lower,
+    int upper, {
+    bool includeLower = true,
+    bool includeUpper = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.between(
+        property: r'tpmCut',
+        lower: lower,
+        includeLower: includeLower,
+        upper: upper,
+        includeUpper: includeUpper,
+      ));
+    });
+  }
+
+  QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition> tpmFastBreakEqualTo(
+      int value) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'tpmFastBreak',
         value: value,
       ));
     });
   }
 
   QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition>
-      tpmAlleyOopGreaterThan(
+      tpmFastBreakGreaterThan(
     int value, {
     bool include = false,
   }) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.greaterThan(
         include: include,
-        property: r'tpmAlleyOop',
+        property: r'tpmFastBreak',
         value: value,
       ));
     });
   }
 
-  QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition> tpmAlleyOopLessThan(
+  QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition> tpmFastBreakLessThan(
     int value, {
     bool include = false,
   }) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.lessThan(
         include: include,
-        property: r'tpmAlleyOop',
+        property: r'tpmFastBreak',
         value: value,
       ));
     });
   }
 
-  QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition> tpmAlleyOopBetween(
+  QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition> tpmFastBreakBetween(
     int lower,
     int upper, {
     bool includeLower = true,
@@ -3027,7 +3275,327 @@ extension TeamStatQueryFilter
   }) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.between(
-        property: r'tpmAlleyOop',
+        property: r'tpmFastBreak',
+        lower: lower,
+        includeLower: includeLower,
+        upper: upper,
+        includeUpper: includeUpper,
+      ));
+    });
+  }
+
+  QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition> tpmHandOffEqualTo(
+      int value) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'tpmHandOff',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition> tpmHandOffGreaterThan(
+    int value, {
+    bool include = false,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        include: include,
+        property: r'tpmHandOff',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition> tpmHandOffLessThan(
+    int value, {
+    bool include = false,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.lessThan(
+        include: include,
+        property: r'tpmHandOff',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition> tpmHandOffBetween(
+    int lower,
+    int upper, {
+    bool includeLower = true,
+    bool includeUpper = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.between(
+        property: r'tpmHandOff',
+        lower: lower,
+        includeLower: includeLower,
+        upper: upper,
+        includeUpper: includeUpper,
+      ));
+    });
+  }
+
+  QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition> tpmHandlerEqualTo(
+      int value) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'tpmHandler',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition> tpmHandlerGreaterThan(
+    int value, {
+    bool include = false,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        include: include,
+        property: r'tpmHandler',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition> tpmHandlerLessThan(
+    int value, {
+    bool include = false,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.lessThan(
+        include: include,
+        property: r'tpmHandler',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition> tpmHandlerBetween(
+    int lower,
+    int upper, {
+    bool includeLower = true,
+    bool includeUpper = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.between(
+        property: r'tpmHandler',
+        lower: lower,
+        includeLower: includeLower,
+        upper: upper,
+        includeUpper: includeUpper,
+      ));
+    });
+  }
+
+  QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition> tpmIsolationEqualTo(
+      int value) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'tpmIsolation',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition>
+      tpmIsolationGreaterThan(
+    int value, {
+    bool include = false,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        include: include,
+        property: r'tpmIsolation',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition> tpmIsolationLessThan(
+    int value, {
+    bool include = false,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.lessThan(
+        include: include,
+        property: r'tpmIsolation',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition> tpmIsolationBetween(
+    int lower,
+    int upper, {
+    bool includeLower = true,
+    bool includeUpper = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.between(
+        property: r'tpmIsolation',
+        lower: lower,
+        includeLower: includeLower,
+        upper: upper,
+        includeUpper: includeUpper,
+      ));
+    });
+  }
+
+  QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition> tpmOffScreenEqualTo(
+      int value) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'tpmOffScreen',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition>
+      tpmOffScreenGreaterThan(
+    int value, {
+    bool include = false,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        include: include,
+        property: r'tpmOffScreen',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition> tpmOffScreenLessThan(
+    int value, {
+    bool include = false,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.lessThan(
+        include: include,
+        property: r'tpmOffScreen',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition> tpmOffScreenBetween(
+    int lower,
+    int upper, {
+    bool includeLower = true,
+    bool includeUpper = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.between(
+        property: r'tpmOffScreen',
+        lower: lower,
+        includeLower: includeLower,
+        upper: upper,
+        includeUpper: includeUpper,
+      ));
+    });
+  }
+
+  QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition> tpmPostUpEqualTo(
+      int value) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'tpmPostUp',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition> tpmPostUpGreaterThan(
+    int value, {
+    bool include = false,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        include: include,
+        property: r'tpmPostUp',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition> tpmPostUpLessThan(
+    int value, {
+    bool include = false,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.lessThan(
+        include: include,
+        property: r'tpmPostUp',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition> tpmPostUpBetween(
+    int lower,
+    int upper, {
+    bool includeLower = true,
+    bool includeUpper = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.between(
+        property: r'tpmPostUp',
+        lower: lower,
+        includeLower: includeLower,
+        upper: upper,
+        includeUpper: includeUpper,
+      ));
+    });
+  }
+
+  QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition> tpmRollerEqualTo(
+      int value) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'tpmRoller',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition> tpmRollerGreaterThan(
+    int value, {
+    bool include = false,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        include: include,
+        property: r'tpmRoller',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition> tpmRollerLessThan(
+    int value, {
+    bool include = false,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.lessThan(
+        include: include,
+        property: r'tpmRoller',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition> tpmRollerBetween(
+    int lower,
+    int upper, {
+    bool includeLower = true,
+    bool includeUpper = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.between(
+        property: r'tpmRoller',
         lower: lower,
         includeLower: includeLower,
         upper: upper,
@@ -3037,45 +3605,45 @@ extension TeamStatQueryFilter
   }
 
   QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition>
-      tpmCatchAndShotEqualTo(int value) {
+      tpmSecondChanceEqualTo(int value) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.equalTo(
-        property: r'tpmCatchAndShot',
+        property: r'tpmSecondChance',
         value: value,
       ));
     });
   }
 
   QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition>
-      tpmCatchAndShotGreaterThan(
+      tpmSecondChanceGreaterThan(
     int value, {
     bool include = false,
   }) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.greaterThan(
         include: include,
-        property: r'tpmCatchAndShot',
+        property: r'tpmSecondChance',
         value: value,
       ));
     });
   }
 
   QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition>
-      tpmCatchAndShotLessThan(
+      tpmSecondChanceLessThan(
     int value, {
     bool include = false,
   }) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.lessThan(
         include: include,
-        property: r'tpmCatchAndShot',
+        property: r'tpmSecondChance',
         value: value,
       ));
     });
   }
 
   QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition>
-      tpmCatchAndShotBetween(
+      tpmSecondChanceBetween(
     int lower,
     int upper, {
     bool includeLower = true,
@@ -3083,7 +3651,7 @@ extension TeamStatQueryFilter
   }) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.between(
-        property: r'tpmCatchAndShot',
+        property: r'tpmSecondChance',
         lower: lower,
         includeLower: includeLower,
         upper: upper,
@@ -3092,43 +3660,43 @@ extension TeamStatQueryFilter
     });
   }
 
-  QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition> tpmDunkEqualTo(
+  QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition> tpmSpotUpEqualTo(
       int value) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.equalTo(
-        property: r'tpmDunk',
+        property: r'tpmSpotUp',
         value: value,
       ));
     });
   }
 
-  QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition> tpmDunkGreaterThan(
+  QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition> tpmSpotUpGreaterThan(
     int value, {
     bool include = false,
   }) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.greaterThan(
         include: include,
-        property: r'tpmDunk',
+        property: r'tpmSpotUp',
         value: value,
       ));
     });
   }
 
-  QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition> tpmDunkLessThan(
+  QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition> tpmSpotUpLessThan(
     int value, {
     bool include = false,
   }) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.lessThan(
         include: include,
-        property: r'tpmDunk',
+        property: r'tpmSpotUp',
         value: value,
       ));
     });
   }
 
-  QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition> tpmDunkBetween(
+  QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition> tpmSpotUpBetween(
     int lower,
     int upper, {
     bool includeLower = true,
@@ -3136,327 +3704,7 @@ extension TeamStatQueryFilter
   }) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.between(
-        property: r'tpmDunk',
-        lower: lower,
-        includeLower: includeLower,
-        upper: upper,
-        includeUpper: includeUpper,
-      ));
-    });
-  }
-
-  QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition> tpmFadeAwayEqualTo(
-      int value) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.equalTo(
-        property: r'tpmFadeAway',
-        value: value,
-      ));
-    });
-  }
-
-  QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition>
-      tpmFadeAwayGreaterThan(
-    int value, {
-    bool include = false,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.greaterThan(
-        include: include,
-        property: r'tpmFadeAway',
-        value: value,
-      ));
-    });
-  }
-
-  QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition> tpmFadeAwayLessThan(
-    int value, {
-    bool include = false,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.lessThan(
-        include: include,
-        property: r'tpmFadeAway',
-        value: value,
-      ));
-    });
-  }
-
-  QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition> tpmFadeAwayBetween(
-    int lower,
-    int upper, {
-    bool includeLower = true,
-    bool includeUpper = true,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.between(
-        property: r'tpmFadeAway',
-        lower: lower,
-        includeLower: includeLower,
-        upper: upper,
-        includeUpper: includeUpper,
-      ));
-    });
-  }
-
-  QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition> tpmFloatingEqualTo(
-      int value) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.equalTo(
-        property: r'tpmFloating',
-        value: value,
-      ));
-    });
-  }
-
-  QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition>
-      tpmFloatingGreaterThan(
-    int value, {
-    bool include = false,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.greaterThan(
-        include: include,
-        property: r'tpmFloating',
-        value: value,
-      ));
-    });
-  }
-
-  QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition> tpmFloatingLessThan(
-    int value, {
-    bool include = false,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.lessThan(
-        include: include,
-        property: r'tpmFloating',
-        value: value,
-      ));
-    });
-  }
-
-  QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition> tpmFloatingBetween(
-    int lower,
-    int upper, {
-    bool includeLower = true,
-    bool includeUpper = true,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.between(
-        property: r'tpmFloating',
-        lower: lower,
-        includeLower: includeLower,
-        upper: upper,
-        includeUpper: includeUpper,
-      ));
-    });
-  }
-
-  QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition> tpmHookEqualTo(
-      int value) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.equalTo(
-        property: r'tpmHook',
-        value: value,
-      ));
-    });
-  }
-
-  QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition> tpmHookGreaterThan(
-    int value, {
-    bool include = false,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.greaterThan(
-        include: include,
-        property: r'tpmHook',
-        value: value,
-      ));
-    });
-  }
-
-  QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition> tpmHookLessThan(
-    int value, {
-    bool include = false,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.lessThan(
-        include: include,
-        property: r'tpmHook',
-        value: value,
-      ));
-    });
-  }
-
-  QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition> tpmHookBetween(
-    int lower,
-    int upper, {
-    bool includeLower = true,
-    bool includeUpper = true,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.between(
-        property: r'tpmHook',
-        lower: lower,
-        includeLower: includeLower,
-        upper: upper,
-        includeUpper: includeUpper,
-      ));
-    });
-  }
-
-  QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition> tpmLayupEqualTo(
-      int value) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.equalTo(
-        property: r'tpmLayup',
-        value: value,
-      ));
-    });
-  }
-
-  QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition> tpmLayupGreaterThan(
-    int value, {
-    bool include = false,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.greaterThan(
-        include: include,
-        property: r'tpmLayup',
-        value: value,
-      ));
-    });
-  }
-
-  QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition> tpmLayupLessThan(
-    int value, {
-    bool include = false,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.lessThan(
-        include: include,
-        property: r'tpmLayup',
-        value: value,
-      ));
-    });
-  }
-
-  QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition> tpmLayupBetween(
-    int lower,
-    int upper, {
-    bool includeLower = true,
-    bool includeUpper = true,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.between(
-        property: r'tpmLayup',
-        lower: lower,
-        includeLower: includeLower,
-        upper: upper,
-        includeUpper: includeUpper,
-      ));
-    });
-  }
-
-  QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition> tpmPullUpEqualTo(
-      int value) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.equalTo(
-        property: r'tpmPullUp',
-        value: value,
-      ));
-    });
-  }
-
-  QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition> tpmPullUpGreaterThan(
-    int value, {
-    bool include = false,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.greaterThan(
-        include: include,
-        property: r'tpmPullUp',
-        value: value,
-      ));
-    });
-  }
-
-  QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition> tpmPullUpLessThan(
-    int value, {
-    bool include = false,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.lessThan(
-        include: include,
-        property: r'tpmPullUp',
-        value: value,
-      ));
-    });
-  }
-
-  QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition> tpmPullUpBetween(
-    int lower,
-    int upper, {
-    bool includeLower = true,
-    bool includeUpper = true,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.between(
-        property: r'tpmPullUp',
-        lower: lower,
-        includeLower: includeLower,
-        upper: upper,
-        includeUpper: includeUpper,
-      ));
-    });
-  }
-
-  QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition> tpmTipEqualTo(
-      int value) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.equalTo(
-        property: r'tpmTip',
-        value: value,
-      ));
-    });
-  }
-
-  QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition> tpmTipGreaterThan(
-    int value, {
-    bool include = false,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.greaterThan(
-        include: include,
-        property: r'tpmTip',
-        value: value,
-      ));
-    });
-  }
-
-  QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition> tpmTipLessThan(
-    int value, {
-    bool include = false,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.lessThan(
-        include: include,
-        property: r'tpmTip',
-        value: value,
-      ));
-    });
-  }
-
-  QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition> tpmTipBetween(
-    int lower,
-    int upper, {
-    bool includeLower = true,
-    bool includeUpper = true,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.between(
-        property: r'tpmTip',
+        property: r'tpmSpotUp',
         lower: lower,
         includeLower: includeLower,
         upper: upper,
@@ -3755,111 +4003,123 @@ extension TeamStatQueryLinks
 }
 
 extension TeamStatQuerySortBy on QueryBuilder<TeamStat, TeamStat, QSortBy> {
-  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> sortByFgaAlleyOop() {
+  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> sortByFgaCut() {
     return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'fgaAlleyOop', Sort.asc);
+      return query.addSortBy(r'fgaCut', Sort.asc);
     });
   }
 
-  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> sortByFgaAlleyOopDesc() {
+  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> sortByFgaCutDesc() {
     return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'fgaAlleyOop', Sort.desc);
+      return query.addSortBy(r'fgaCut', Sort.desc);
     });
   }
 
-  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> sortByFgaCatchAndShot() {
+  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> sortByFgaFastBreak() {
     return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'fgaCatchAndShot', Sort.asc);
+      return query.addSortBy(r'fgaFastBreak', Sort.asc);
     });
   }
 
-  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> sortByFgaCatchAndShotDesc() {
+  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> sortByFgaFastBreakDesc() {
     return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'fgaCatchAndShot', Sort.desc);
+      return query.addSortBy(r'fgaFastBreak', Sort.desc);
     });
   }
 
-  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> sortByFgaDunk() {
+  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> sortByFgaHandOff() {
     return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'fgaDunk', Sort.asc);
+      return query.addSortBy(r'fgaHandOff', Sort.asc);
     });
   }
 
-  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> sortByFgaDunkDesc() {
+  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> sortByFgaHandOffDesc() {
     return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'fgaDunk', Sort.desc);
+      return query.addSortBy(r'fgaHandOff', Sort.desc);
     });
   }
 
-  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> sortByFgaFadeAway() {
+  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> sortByFgaHandler() {
     return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'fgaFadeAway', Sort.asc);
+      return query.addSortBy(r'fgaHandler', Sort.asc);
     });
   }
 
-  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> sortByFgaFadeAwayDesc() {
+  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> sortByFgaHandlerDesc() {
     return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'fgaFadeAway', Sort.desc);
+      return query.addSortBy(r'fgaHandler', Sort.desc);
     });
   }
 
-  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> sortByFgaFloating() {
+  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> sortByFgaIsolation() {
     return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'fgaFloating', Sort.asc);
+      return query.addSortBy(r'fgaIsolation', Sort.asc);
     });
   }
 
-  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> sortByFgaFloatingDesc() {
+  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> sortByFgaIsolationDesc() {
     return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'fgaFloating', Sort.desc);
+      return query.addSortBy(r'fgaIsolation', Sort.desc);
     });
   }
 
-  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> sortByFgaHook() {
+  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> sortByFgaOffScreen() {
     return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'fgaHook', Sort.asc);
+      return query.addSortBy(r'fgaOffScreen', Sort.asc);
     });
   }
 
-  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> sortByFgaHookDesc() {
+  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> sortByFgaOffScreenDesc() {
     return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'fgaHook', Sort.desc);
+      return query.addSortBy(r'fgaOffScreen', Sort.desc);
     });
   }
 
-  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> sortByFgaLayup() {
+  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> sortByFgaPostUp() {
     return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'fgaLayup', Sort.asc);
+      return query.addSortBy(r'fgaPostUp', Sort.asc);
     });
   }
 
-  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> sortByFgaLayupDesc() {
+  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> sortByFgaPostUpDesc() {
     return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'fgaLayup', Sort.desc);
+      return query.addSortBy(r'fgaPostUp', Sort.desc);
     });
   }
 
-  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> sortByFgaPullUp() {
+  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> sortByFgaRoller() {
     return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'fgaPullUp', Sort.asc);
+      return query.addSortBy(r'fgaRoller', Sort.asc);
     });
   }
 
-  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> sortByFgaPullUpDesc() {
+  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> sortByFgaRollerDesc() {
     return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'fgaPullUp', Sort.desc);
+      return query.addSortBy(r'fgaRoller', Sort.desc);
     });
   }
 
-  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> sortByFgaTip() {
+  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> sortByFgaSecondChance() {
     return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'fgaTip', Sort.asc);
+      return query.addSortBy(r'fgaSecondChance', Sort.asc);
     });
   }
 
-  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> sortByFgaTipDesc() {
+  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> sortByFgaSecondChanceDesc() {
     return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'fgaTip', Sort.desc);
+      return query.addSortBy(r'fgaSecondChance', Sort.desc);
+    });
+  }
+
+  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> sortByFgaSpotUp() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'fgaSpotUp', Sort.asc);
+    });
+  }
+
+  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> sortByFgaSpotUpDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'fgaSpotUp', Sort.desc);
     });
   }
 
@@ -3923,111 +4183,123 @@ extension TeamStatQuerySortBy on QueryBuilder<TeamStat, TeamStat, QSortBy> {
     });
   }
 
-  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> sortByFgmAlleyOop() {
+  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> sortByFgmCut() {
     return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'fgmAlleyOop', Sort.asc);
+      return query.addSortBy(r'fgmCut', Sort.asc);
     });
   }
 
-  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> sortByFgmAlleyOopDesc() {
+  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> sortByFgmCutDesc() {
     return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'fgmAlleyOop', Sort.desc);
+      return query.addSortBy(r'fgmCut', Sort.desc);
     });
   }
 
-  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> sortByFgmCatchAndShot() {
+  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> sortByFgmFastBreak() {
     return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'fgmCatchAndShot', Sort.asc);
+      return query.addSortBy(r'fgmFastBreak', Sort.asc);
     });
   }
 
-  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> sortByFgmCatchAndShotDesc() {
+  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> sortByFgmFastBreakDesc() {
     return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'fgmCatchAndShot', Sort.desc);
+      return query.addSortBy(r'fgmFastBreak', Sort.desc);
     });
   }
 
-  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> sortByFgmDunk() {
+  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> sortByFgmHandOff() {
     return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'fgmDunk', Sort.asc);
+      return query.addSortBy(r'fgmHandOff', Sort.asc);
     });
   }
 
-  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> sortByFgmDunkDesc() {
+  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> sortByFgmHandOffDesc() {
     return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'fgmDunk', Sort.desc);
+      return query.addSortBy(r'fgmHandOff', Sort.desc);
     });
   }
 
-  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> sortByFgmFadeAway() {
+  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> sortByFgmHandler() {
     return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'fgmFadeAway', Sort.asc);
+      return query.addSortBy(r'fgmHandler', Sort.asc);
     });
   }
 
-  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> sortByFgmFadeAwayDesc() {
+  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> sortByFgmHandlerDesc() {
     return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'fgmFadeAway', Sort.desc);
+      return query.addSortBy(r'fgmHandler', Sort.desc);
     });
   }
 
-  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> sortByFgmFloating() {
+  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> sortByFgmIsolation() {
     return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'fgmFloating', Sort.asc);
+      return query.addSortBy(r'fgmIsolation', Sort.asc);
     });
   }
 
-  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> sortByFgmFloatingDesc() {
+  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> sortByFgmIsolationDesc() {
     return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'fgmFloating', Sort.desc);
+      return query.addSortBy(r'fgmIsolation', Sort.desc);
     });
   }
 
-  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> sortByFgmHook() {
+  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> sortByFgmOffScreen() {
     return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'fgmHook', Sort.asc);
+      return query.addSortBy(r'fgmOffScreen', Sort.asc);
     });
   }
 
-  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> sortByFgmHookDesc() {
+  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> sortByFgmOffScreenDesc() {
     return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'fgmHook', Sort.desc);
+      return query.addSortBy(r'fgmOffScreen', Sort.desc);
     });
   }
 
-  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> sortByFgmLayup() {
+  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> sortByFgmPostUp() {
     return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'fgmLayup', Sort.asc);
+      return query.addSortBy(r'fgmPostUp', Sort.asc);
     });
   }
 
-  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> sortByFgmLayupDesc() {
+  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> sortByFgmPostUpDesc() {
     return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'fgmLayup', Sort.desc);
+      return query.addSortBy(r'fgmPostUp', Sort.desc);
     });
   }
 
-  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> sortByFgmPullUp() {
+  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> sortByFgmRoller() {
     return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'fgmPullUp', Sort.asc);
+      return query.addSortBy(r'fgmRoller', Sort.asc);
     });
   }
 
-  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> sortByFgmPullUpDesc() {
+  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> sortByFgmRollerDesc() {
     return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'fgmPullUp', Sort.desc);
+      return query.addSortBy(r'fgmRoller', Sort.desc);
     });
   }
 
-  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> sortByFgmTip() {
+  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> sortByFgmSecondChance() {
     return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'fgmTip', Sort.asc);
+      return query.addSortBy(r'fgmSecondChance', Sort.asc);
     });
   }
 
-  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> sortByFgmTipDesc() {
+  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> sortByFgmSecondChanceDesc() {
     return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'fgmTip', Sort.desc);
+      return query.addSortBy(r'fgmSecondChance', Sort.desc);
+    });
+  }
+
+  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> sortByFgmSpotUp() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'fgmSpotUp', Sort.asc);
+    });
+  }
+
+  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> sortByFgmSpotUpDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'fgmSpotUp', Sort.desc);
     });
   }
 
@@ -4091,111 +4363,123 @@ extension TeamStatQuerySortBy on QueryBuilder<TeamStat, TeamStat, QSortBy> {
     });
   }
 
-  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> sortByTpaAlleyOop() {
+  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> sortByTpaCut() {
     return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'tpaAlleyOop', Sort.asc);
+      return query.addSortBy(r'tpaCut', Sort.asc);
     });
   }
 
-  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> sortByTpaAlleyOopDesc() {
+  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> sortByTpaCutDesc() {
     return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'tpaAlleyOop', Sort.desc);
+      return query.addSortBy(r'tpaCut', Sort.desc);
     });
   }
 
-  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> sortByTpaCatchAndShot() {
+  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> sortByTpaFastBreak() {
     return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'tpaCatchAndShot', Sort.asc);
+      return query.addSortBy(r'tpaFastBreak', Sort.asc);
     });
   }
 
-  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> sortByTpaCatchAndShotDesc() {
+  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> sortByTpaFastBreakDesc() {
     return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'tpaCatchAndShot', Sort.desc);
+      return query.addSortBy(r'tpaFastBreak', Sort.desc);
     });
   }
 
-  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> sortByTpaDunk() {
+  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> sortByTpaHandOff() {
     return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'tpaDunk', Sort.asc);
+      return query.addSortBy(r'tpaHandOff', Sort.asc);
     });
   }
 
-  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> sortByTpaDunkDesc() {
+  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> sortByTpaHandOffDesc() {
     return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'tpaDunk', Sort.desc);
+      return query.addSortBy(r'tpaHandOff', Sort.desc);
     });
   }
 
-  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> sortByTpaFadeAway() {
+  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> sortByTpaHandler() {
     return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'tpaFadeAway', Sort.asc);
+      return query.addSortBy(r'tpaHandler', Sort.asc);
     });
   }
 
-  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> sortByTpaFadeAwayDesc() {
+  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> sortByTpaHandlerDesc() {
     return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'tpaFadeAway', Sort.desc);
+      return query.addSortBy(r'tpaHandler', Sort.desc);
     });
   }
 
-  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> sortByTpaFloating() {
+  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> sortByTpaIsolation() {
     return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'tpaFloating', Sort.asc);
+      return query.addSortBy(r'tpaIsolation', Sort.asc);
     });
   }
 
-  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> sortByTpaFloatingDesc() {
+  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> sortByTpaIsolationDesc() {
     return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'tpaFloating', Sort.desc);
+      return query.addSortBy(r'tpaIsolation', Sort.desc);
     });
   }
 
-  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> sortByTpaHook() {
+  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> sortByTpaOffScreen() {
     return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'tpaHook', Sort.asc);
+      return query.addSortBy(r'tpaOffScreen', Sort.asc);
     });
   }
 
-  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> sortByTpaHookDesc() {
+  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> sortByTpaOffScreenDesc() {
     return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'tpaHook', Sort.desc);
+      return query.addSortBy(r'tpaOffScreen', Sort.desc);
     });
   }
 
-  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> sortByTpaLayup() {
+  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> sortByTpaPostUp() {
     return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'tpaLayup', Sort.asc);
+      return query.addSortBy(r'tpaPostUp', Sort.asc);
     });
   }
 
-  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> sortByTpaLayupDesc() {
+  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> sortByTpaPostUpDesc() {
     return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'tpaLayup', Sort.desc);
+      return query.addSortBy(r'tpaPostUp', Sort.desc);
     });
   }
 
-  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> sortByTpaPullUp() {
+  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> sortByTpaRoller() {
     return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'tpaPullUp', Sort.asc);
+      return query.addSortBy(r'tpaRoller', Sort.asc);
     });
   }
 
-  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> sortByTpaPullUpDesc() {
+  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> sortByTpaRollerDesc() {
     return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'tpaPullUp', Sort.desc);
+      return query.addSortBy(r'tpaRoller', Sort.desc);
     });
   }
 
-  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> sortByTpaTip() {
+  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> sortByTpaSecondChance() {
     return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'tpaTip', Sort.asc);
+      return query.addSortBy(r'tpaSecondChance', Sort.asc);
     });
   }
 
-  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> sortByTpaTipDesc() {
+  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> sortByTpaSecondChanceDesc() {
     return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'tpaTip', Sort.desc);
+      return query.addSortBy(r'tpaSecondChance', Sort.desc);
+    });
+  }
+
+  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> sortByTpaSpotUp() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'tpaSpotUp', Sort.asc);
+    });
+  }
+
+  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> sortByTpaSpotUpDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'tpaSpotUp', Sort.desc);
     });
   }
 
@@ -4259,111 +4543,123 @@ extension TeamStatQuerySortBy on QueryBuilder<TeamStat, TeamStat, QSortBy> {
     });
   }
 
-  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> sortByTpmAlleyOop() {
+  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> sortByTpmCut() {
     return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'tpmAlleyOop', Sort.asc);
+      return query.addSortBy(r'tpmCut', Sort.asc);
     });
   }
 
-  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> sortByTpmAlleyOopDesc() {
+  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> sortByTpmCutDesc() {
     return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'tpmAlleyOop', Sort.desc);
+      return query.addSortBy(r'tpmCut', Sort.desc);
     });
   }
 
-  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> sortByTpmCatchAndShot() {
+  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> sortByTpmFastBreak() {
     return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'tpmCatchAndShot', Sort.asc);
+      return query.addSortBy(r'tpmFastBreak', Sort.asc);
     });
   }
 
-  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> sortByTpmCatchAndShotDesc() {
+  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> sortByTpmFastBreakDesc() {
     return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'tpmCatchAndShot', Sort.desc);
+      return query.addSortBy(r'tpmFastBreak', Sort.desc);
     });
   }
 
-  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> sortByTpmDunk() {
+  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> sortByTpmHandOff() {
     return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'tpmDunk', Sort.asc);
+      return query.addSortBy(r'tpmHandOff', Sort.asc);
     });
   }
 
-  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> sortByTpmDunkDesc() {
+  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> sortByTpmHandOffDesc() {
     return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'tpmDunk', Sort.desc);
+      return query.addSortBy(r'tpmHandOff', Sort.desc);
     });
   }
 
-  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> sortByTpmFadeAway() {
+  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> sortByTpmHandler() {
     return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'tpmFadeAway', Sort.asc);
+      return query.addSortBy(r'tpmHandler', Sort.asc);
     });
   }
 
-  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> sortByTpmFadeAwayDesc() {
+  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> sortByTpmHandlerDesc() {
     return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'tpmFadeAway', Sort.desc);
+      return query.addSortBy(r'tpmHandler', Sort.desc);
     });
   }
 
-  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> sortByTpmFloating() {
+  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> sortByTpmIsolation() {
     return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'tpmFloating', Sort.asc);
+      return query.addSortBy(r'tpmIsolation', Sort.asc);
     });
   }
 
-  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> sortByTpmFloatingDesc() {
+  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> sortByTpmIsolationDesc() {
     return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'tpmFloating', Sort.desc);
+      return query.addSortBy(r'tpmIsolation', Sort.desc);
     });
   }
 
-  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> sortByTpmHook() {
+  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> sortByTpmOffScreen() {
     return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'tpmHook', Sort.asc);
+      return query.addSortBy(r'tpmOffScreen', Sort.asc);
     });
   }
 
-  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> sortByTpmHookDesc() {
+  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> sortByTpmOffScreenDesc() {
     return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'tpmHook', Sort.desc);
+      return query.addSortBy(r'tpmOffScreen', Sort.desc);
     });
   }
 
-  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> sortByTpmLayup() {
+  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> sortByTpmPostUp() {
     return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'tpmLayup', Sort.asc);
+      return query.addSortBy(r'tpmPostUp', Sort.asc);
     });
   }
 
-  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> sortByTpmLayupDesc() {
+  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> sortByTpmPostUpDesc() {
     return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'tpmLayup', Sort.desc);
+      return query.addSortBy(r'tpmPostUp', Sort.desc);
     });
   }
 
-  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> sortByTpmPullUp() {
+  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> sortByTpmRoller() {
     return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'tpmPullUp', Sort.asc);
+      return query.addSortBy(r'tpmRoller', Sort.asc);
     });
   }
 
-  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> sortByTpmPullUpDesc() {
+  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> sortByTpmRollerDesc() {
     return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'tpmPullUp', Sort.desc);
+      return query.addSortBy(r'tpmRoller', Sort.desc);
     });
   }
 
-  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> sortByTpmTip() {
+  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> sortByTpmSecondChance() {
     return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'tpmTip', Sort.asc);
+      return query.addSortBy(r'tpmSecondChance', Sort.asc);
     });
   }
 
-  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> sortByTpmTipDesc() {
+  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> sortByTpmSecondChanceDesc() {
     return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'tpmTip', Sort.desc);
+      return query.addSortBy(r'tpmSecondChance', Sort.desc);
+    });
+  }
+
+  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> sortByTpmSpotUp() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'tpmSpotUp', Sort.asc);
+    });
+  }
+
+  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> sortByTpmSpotUpDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'tpmSpotUp', Sort.desc);
     });
   }
 
@@ -4430,111 +4726,123 @@ extension TeamStatQuerySortBy on QueryBuilder<TeamStat, TeamStat, QSortBy> {
 
 extension TeamStatQuerySortThenBy
     on QueryBuilder<TeamStat, TeamStat, QSortThenBy> {
-  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> thenByFgaAlleyOop() {
+  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> thenByFgaCut() {
     return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'fgaAlleyOop', Sort.asc);
+      return query.addSortBy(r'fgaCut', Sort.asc);
     });
   }
 
-  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> thenByFgaAlleyOopDesc() {
+  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> thenByFgaCutDesc() {
     return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'fgaAlleyOop', Sort.desc);
+      return query.addSortBy(r'fgaCut', Sort.desc);
     });
   }
 
-  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> thenByFgaCatchAndShot() {
+  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> thenByFgaFastBreak() {
     return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'fgaCatchAndShot', Sort.asc);
+      return query.addSortBy(r'fgaFastBreak', Sort.asc);
     });
   }
 
-  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> thenByFgaCatchAndShotDesc() {
+  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> thenByFgaFastBreakDesc() {
     return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'fgaCatchAndShot', Sort.desc);
+      return query.addSortBy(r'fgaFastBreak', Sort.desc);
     });
   }
 
-  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> thenByFgaDunk() {
+  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> thenByFgaHandOff() {
     return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'fgaDunk', Sort.asc);
+      return query.addSortBy(r'fgaHandOff', Sort.asc);
     });
   }
 
-  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> thenByFgaDunkDesc() {
+  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> thenByFgaHandOffDesc() {
     return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'fgaDunk', Sort.desc);
+      return query.addSortBy(r'fgaHandOff', Sort.desc);
     });
   }
 
-  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> thenByFgaFadeAway() {
+  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> thenByFgaHandler() {
     return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'fgaFadeAway', Sort.asc);
+      return query.addSortBy(r'fgaHandler', Sort.asc);
     });
   }
 
-  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> thenByFgaFadeAwayDesc() {
+  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> thenByFgaHandlerDesc() {
     return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'fgaFadeAway', Sort.desc);
+      return query.addSortBy(r'fgaHandler', Sort.desc);
     });
   }
 
-  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> thenByFgaFloating() {
+  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> thenByFgaIsolation() {
     return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'fgaFloating', Sort.asc);
+      return query.addSortBy(r'fgaIsolation', Sort.asc);
     });
   }
 
-  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> thenByFgaFloatingDesc() {
+  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> thenByFgaIsolationDesc() {
     return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'fgaFloating', Sort.desc);
+      return query.addSortBy(r'fgaIsolation', Sort.desc);
     });
   }
 
-  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> thenByFgaHook() {
+  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> thenByFgaOffScreen() {
     return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'fgaHook', Sort.asc);
+      return query.addSortBy(r'fgaOffScreen', Sort.asc);
     });
   }
 
-  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> thenByFgaHookDesc() {
+  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> thenByFgaOffScreenDesc() {
     return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'fgaHook', Sort.desc);
+      return query.addSortBy(r'fgaOffScreen', Sort.desc);
     });
   }
 
-  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> thenByFgaLayup() {
+  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> thenByFgaPostUp() {
     return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'fgaLayup', Sort.asc);
+      return query.addSortBy(r'fgaPostUp', Sort.asc);
     });
   }
 
-  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> thenByFgaLayupDesc() {
+  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> thenByFgaPostUpDesc() {
     return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'fgaLayup', Sort.desc);
+      return query.addSortBy(r'fgaPostUp', Sort.desc);
     });
   }
 
-  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> thenByFgaPullUp() {
+  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> thenByFgaRoller() {
     return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'fgaPullUp', Sort.asc);
+      return query.addSortBy(r'fgaRoller', Sort.asc);
     });
   }
 
-  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> thenByFgaPullUpDesc() {
+  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> thenByFgaRollerDesc() {
     return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'fgaPullUp', Sort.desc);
+      return query.addSortBy(r'fgaRoller', Sort.desc);
     });
   }
 
-  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> thenByFgaTip() {
+  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> thenByFgaSecondChance() {
     return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'fgaTip', Sort.asc);
+      return query.addSortBy(r'fgaSecondChance', Sort.asc);
     });
   }
 
-  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> thenByFgaTipDesc() {
+  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> thenByFgaSecondChanceDesc() {
     return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'fgaTip', Sort.desc);
+      return query.addSortBy(r'fgaSecondChance', Sort.desc);
+    });
+  }
+
+  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> thenByFgaSpotUp() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'fgaSpotUp', Sort.asc);
+    });
+  }
+
+  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> thenByFgaSpotUpDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'fgaSpotUp', Sort.desc);
     });
   }
 
@@ -4598,111 +4906,123 @@ extension TeamStatQuerySortThenBy
     });
   }
 
-  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> thenByFgmAlleyOop() {
+  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> thenByFgmCut() {
     return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'fgmAlleyOop', Sort.asc);
+      return query.addSortBy(r'fgmCut', Sort.asc);
     });
   }
 
-  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> thenByFgmAlleyOopDesc() {
+  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> thenByFgmCutDesc() {
     return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'fgmAlleyOop', Sort.desc);
+      return query.addSortBy(r'fgmCut', Sort.desc);
     });
   }
 
-  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> thenByFgmCatchAndShot() {
+  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> thenByFgmFastBreak() {
     return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'fgmCatchAndShot', Sort.asc);
+      return query.addSortBy(r'fgmFastBreak', Sort.asc);
     });
   }
 
-  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> thenByFgmCatchAndShotDesc() {
+  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> thenByFgmFastBreakDesc() {
     return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'fgmCatchAndShot', Sort.desc);
+      return query.addSortBy(r'fgmFastBreak', Sort.desc);
     });
   }
 
-  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> thenByFgmDunk() {
+  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> thenByFgmHandOff() {
     return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'fgmDunk', Sort.asc);
+      return query.addSortBy(r'fgmHandOff', Sort.asc);
     });
   }
 
-  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> thenByFgmDunkDesc() {
+  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> thenByFgmHandOffDesc() {
     return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'fgmDunk', Sort.desc);
+      return query.addSortBy(r'fgmHandOff', Sort.desc);
     });
   }
 
-  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> thenByFgmFadeAway() {
+  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> thenByFgmHandler() {
     return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'fgmFadeAway', Sort.asc);
+      return query.addSortBy(r'fgmHandler', Sort.asc);
     });
   }
 
-  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> thenByFgmFadeAwayDesc() {
+  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> thenByFgmHandlerDesc() {
     return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'fgmFadeAway', Sort.desc);
+      return query.addSortBy(r'fgmHandler', Sort.desc);
     });
   }
 
-  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> thenByFgmFloating() {
+  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> thenByFgmIsolation() {
     return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'fgmFloating', Sort.asc);
+      return query.addSortBy(r'fgmIsolation', Sort.asc);
     });
   }
 
-  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> thenByFgmFloatingDesc() {
+  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> thenByFgmIsolationDesc() {
     return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'fgmFloating', Sort.desc);
+      return query.addSortBy(r'fgmIsolation', Sort.desc);
     });
   }
 
-  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> thenByFgmHook() {
+  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> thenByFgmOffScreen() {
     return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'fgmHook', Sort.asc);
+      return query.addSortBy(r'fgmOffScreen', Sort.asc);
     });
   }
 
-  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> thenByFgmHookDesc() {
+  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> thenByFgmOffScreenDesc() {
     return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'fgmHook', Sort.desc);
+      return query.addSortBy(r'fgmOffScreen', Sort.desc);
     });
   }
 
-  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> thenByFgmLayup() {
+  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> thenByFgmPostUp() {
     return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'fgmLayup', Sort.asc);
+      return query.addSortBy(r'fgmPostUp', Sort.asc);
     });
   }
 
-  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> thenByFgmLayupDesc() {
+  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> thenByFgmPostUpDesc() {
     return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'fgmLayup', Sort.desc);
+      return query.addSortBy(r'fgmPostUp', Sort.desc);
     });
   }
 
-  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> thenByFgmPullUp() {
+  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> thenByFgmRoller() {
     return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'fgmPullUp', Sort.asc);
+      return query.addSortBy(r'fgmRoller', Sort.asc);
     });
   }
 
-  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> thenByFgmPullUpDesc() {
+  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> thenByFgmRollerDesc() {
     return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'fgmPullUp', Sort.desc);
+      return query.addSortBy(r'fgmRoller', Sort.desc);
     });
   }
 
-  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> thenByFgmTip() {
+  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> thenByFgmSecondChance() {
     return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'fgmTip', Sort.asc);
+      return query.addSortBy(r'fgmSecondChance', Sort.asc);
     });
   }
 
-  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> thenByFgmTipDesc() {
+  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> thenByFgmSecondChanceDesc() {
     return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'fgmTip', Sort.desc);
+      return query.addSortBy(r'fgmSecondChance', Sort.desc);
+    });
+  }
+
+  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> thenByFgmSpotUp() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'fgmSpotUp', Sort.asc);
+    });
+  }
+
+  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> thenByFgmSpotUpDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'fgmSpotUp', Sort.desc);
     });
   }
 
@@ -4778,111 +5098,123 @@ extension TeamStatQuerySortThenBy
     });
   }
 
-  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> thenByTpaAlleyOop() {
+  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> thenByTpaCut() {
     return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'tpaAlleyOop', Sort.asc);
+      return query.addSortBy(r'tpaCut', Sort.asc);
     });
   }
 
-  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> thenByTpaAlleyOopDesc() {
+  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> thenByTpaCutDesc() {
     return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'tpaAlleyOop', Sort.desc);
+      return query.addSortBy(r'tpaCut', Sort.desc);
     });
   }
 
-  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> thenByTpaCatchAndShot() {
+  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> thenByTpaFastBreak() {
     return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'tpaCatchAndShot', Sort.asc);
+      return query.addSortBy(r'tpaFastBreak', Sort.asc);
     });
   }
 
-  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> thenByTpaCatchAndShotDesc() {
+  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> thenByTpaFastBreakDesc() {
     return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'tpaCatchAndShot', Sort.desc);
+      return query.addSortBy(r'tpaFastBreak', Sort.desc);
     });
   }
 
-  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> thenByTpaDunk() {
+  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> thenByTpaHandOff() {
     return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'tpaDunk', Sort.asc);
+      return query.addSortBy(r'tpaHandOff', Sort.asc);
     });
   }
 
-  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> thenByTpaDunkDesc() {
+  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> thenByTpaHandOffDesc() {
     return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'tpaDunk', Sort.desc);
+      return query.addSortBy(r'tpaHandOff', Sort.desc);
     });
   }
 
-  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> thenByTpaFadeAway() {
+  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> thenByTpaHandler() {
     return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'tpaFadeAway', Sort.asc);
+      return query.addSortBy(r'tpaHandler', Sort.asc);
     });
   }
 
-  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> thenByTpaFadeAwayDesc() {
+  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> thenByTpaHandlerDesc() {
     return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'tpaFadeAway', Sort.desc);
+      return query.addSortBy(r'tpaHandler', Sort.desc);
     });
   }
 
-  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> thenByTpaFloating() {
+  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> thenByTpaIsolation() {
     return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'tpaFloating', Sort.asc);
+      return query.addSortBy(r'tpaIsolation', Sort.asc);
     });
   }
 
-  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> thenByTpaFloatingDesc() {
+  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> thenByTpaIsolationDesc() {
     return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'tpaFloating', Sort.desc);
+      return query.addSortBy(r'tpaIsolation', Sort.desc);
     });
   }
 
-  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> thenByTpaHook() {
+  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> thenByTpaOffScreen() {
     return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'tpaHook', Sort.asc);
+      return query.addSortBy(r'tpaOffScreen', Sort.asc);
     });
   }
 
-  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> thenByTpaHookDesc() {
+  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> thenByTpaOffScreenDesc() {
     return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'tpaHook', Sort.desc);
+      return query.addSortBy(r'tpaOffScreen', Sort.desc);
     });
   }
 
-  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> thenByTpaLayup() {
+  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> thenByTpaPostUp() {
     return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'tpaLayup', Sort.asc);
+      return query.addSortBy(r'tpaPostUp', Sort.asc);
     });
   }
 
-  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> thenByTpaLayupDesc() {
+  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> thenByTpaPostUpDesc() {
     return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'tpaLayup', Sort.desc);
+      return query.addSortBy(r'tpaPostUp', Sort.desc);
     });
   }
 
-  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> thenByTpaPullUp() {
+  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> thenByTpaRoller() {
     return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'tpaPullUp', Sort.asc);
+      return query.addSortBy(r'tpaRoller', Sort.asc);
     });
   }
 
-  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> thenByTpaPullUpDesc() {
+  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> thenByTpaRollerDesc() {
     return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'tpaPullUp', Sort.desc);
+      return query.addSortBy(r'tpaRoller', Sort.desc);
     });
   }
 
-  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> thenByTpaTip() {
+  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> thenByTpaSecondChance() {
     return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'tpaTip', Sort.asc);
+      return query.addSortBy(r'tpaSecondChance', Sort.asc);
     });
   }
 
-  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> thenByTpaTipDesc() {
+  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> thenByTpaSecondChanceDesc() {
     return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'tpaTip', Sort.desc);
+      return query.addSortBy(r'tpaSecondChance', Sort.desc);
+    });
+  }
+
+  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> thenByTpaSpotUp() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'tpaSpotUp', Sort.asc);
+    });
+  }
+
+  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> thenByTpaSpotUpDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'tpaSpotUp', Sort.desc);
     });
   }
 
@@ -4946,111 +5278,123 @@ extension TeamStatQuerySortThenBy
     });
   }
 
-  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> thenByTpmAlleyOop() {
+  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> thenByTpmCut() {
     return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'tpmAlleyOop', Sort.asc);
+      return query.addSortBy(r'tpmCut', Sort.asc);
     });
   }
 
-  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> thenByTpmAlleyOopDesc() {
+  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> thenByTpmCutDesc() {
     return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'tpmAlleyOop', Sort.desc);
+      return query.addSortBy(r'tpmCut', Sort.desc);
     });
   }
 
-  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> thenByTpmCatchAndShot() {
+  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> thenByTpmFastBreak() {
     return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'tpmCatchAndShot', Sort.asc);
+      return query.addSortBy(r'tpmFastBreak', Sort.asc);
     });
   }
 
-  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> thenByTpmCatchAndShotDesc() {
+  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> thenByTpmFastBreakDesc() {
     return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'tpmCatchAndShot', Sort.desc);
+      return query.addSortBy(r'tpmFastBreak', Sort.desc);
     });
   }
 
-  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> thenByTpmDunk() {
+  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> thenByTpmHandOff() {
     return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'tpmDunk', Sort.asc);
+      return query.addSortBy(r'tpmHandOff', Sort.asc);
     });
   }
 
-  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> thenByTpmDunkDesc() {
+  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> thenByTpmHandOffDesc() {
     return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'tpmDunk', Sort.desc);
+      return query.addSortBy(r'tpmHandOff', Sort.desc);
     });
   }
 
-  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> thenByTpmFadeAway() {
+  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> thenByTpmHandler() {
     return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'tpmFadeAway', Sort.asc);
+      return query.addSortBy(r'tpmHandler', Sort.asc);
     });
   }
 
-  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> thenByTpmFadeAwayDesc() {
+  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> thenByTpmHandlerDesc() {
     return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'tpmFadeAway', Sort.desc);
+      return query.addSortBy(r'tpmHandler', Sort.desc);
     });
   }
 
-  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> thenByTpmFloating() {
+  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> thenByTpmIsolation() {
     return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'tpmFloating', Sort.asc);
+      return query.addSortBy(r'tpmIsolation', Sort.asc);
     });
   }
 
-  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> thenByTpmFloatingDesc() {
+  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> thenByTpmIsolationDesc() {
     return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'tpmFloating', Sort.desc);
+      return query.addSortBy(r'tpmIsolation', Sort.desc);
     });
   }
 
-  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> thenByTpmHook() {
+  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> thenByTpmOffScreen() {
     return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'tpmHook', Sort.asc);
+      return query.addSortBy(r'tpmOffScreen', Sort.asc);
     });
   }
 
-  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> thenByTpmHookDesc() {
+  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> thenByTpmOffScreenDesc() {
     return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'tpmHook', Sort.desc);
+      return query.addSortBy(r'tpmOffScreen', Sort.desc);
     });
   }
 
-  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> thenByTpmLayup() {
+  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> thenByTpmPostUp() {
     return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'tpmLayup', Sort.asc);
+      return query.addSortBy(r'tpmPostUp', Sort.asc);
     });
   }
 
-  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> thenByTpmLayupDesc() {
+  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> thenByTpmPostUpDesc() {
     return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'tpmLayup', Sort.desc);
+      return query.addSortBy(r'tpmPostUp', Sort.desc);
     });
   }
 
-  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> thenByTpmPullUp() {
+  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> thenByTpmRoller() {
     return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'tpmPullUp', Sort.asc);
+      return query.addSortBy(r'tpmRoller', Sort.asc);
     });
   }
 
-  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> thenByTpmPullUpDesc() {
+  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> thenByTpmRollerDesc() {
     return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'tpmPullUp', Sort.desc);
+      return query.addSortBy(r'tpmRoller', Sort.desc);
     });
   }
 
-  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> thenByTpmTip() {
+  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> thenByTpmSecondChance() {
     return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'tpmTip', Sort.asc);
+      return query.addSortBy(r'tpmSecondChance', Sort.asc);
     });
   }
 
-  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> thenByTpmTipDesc() {
+  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> thenByTpmSecondChanceDesc() {
     return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'tpmTip', Sort.desc);
+      return query.addSortBy(r'tpmSecondChance', Sort.desc);
+    });
+  }
+
+  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> thenByTpmSpotUp() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'tpmSpotUp', Sort.asc);
+    });
+  }
+
+  QueryBuilder<TeamStat, TeamStat, QAfterSortBy> thenByTpmSpotUpDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'tpmSpotUp', Sort.desc);
     });
   }
 
@@ -5117,57 +5461,63 @@ extension TeamStatQuerySortThenBy
 
 extension TeamStatQueryWhereDistinct
     on QueryBuilder<TeamStat, TeamStat, QDistinct> {
-  QueryBuilder<TeamStat, TeamStat, QDistinct> distinctByFgaAlleyOop() {
+  QueryBuilder<TeamStat, TeamStat, QDistinct> distinctByFgaCut() {
     return QueryBuilder.apply(this, (query) {
-      return query.addDistinctBy(r'fgaAlleyOop');
+      return query.addDistinctBy(r'fgaCut');
     });
   }
 
-  QueryBuilder<TeamStat, TeamStat, QDistinct> distinctByFgaCatchAndShot() {
+  QueryBuilder<TeamStat, TeamStat, QDistinct> distinctByFgaFastBreak() {
     return QueryBuilder.apply(this, (query) {
-      return query.addDistinctBy(r'fgaCatchAndShot');
+      return query.addDistinctBy(r'fgaFastBreak');
     });
   }
 
-  QueryBuilder<TeamStat, TeamStat, QDistinct> distinctByFgaDunk() {
+  QueryBuilder<TeamStat, TeamStat, QDistinct> distinctByFgaHandOff() {
     return QueryBuilder.apply(this, (query) {
-      return query.addDistinctBy(r'fgaDunk');
+      return query.addDistinctBy(r'fgaHandOff');
     });
   }
 
-  QueryBuilder<TeamStat, TeamStat, QDistinct> distinctByFgaFadeAway() {
+  QueryBuilder<TeamStat, TeamStat, QDistinct> distinctByFgaHandler() {
     return QueryBuilder.apply(this, (query) {
-      return query.addDistinctBy(r'fgaFadeAway');
+      return query.addDistinctBy(r'fgaHandler');
     });
   }
 
-  QueryBuilder<TeamStat, TeamStat, QDistinct> distinctByFgaFloating() {
+  QueryBuilder<TeamStat, TeamStat, QDistinct> distinctByFgaIsolation() {
     return QueryBuilder.apply(this, (query) {
-      return query.addDistinctBy(r'fgaFloating');
+      return query.addDistinctBy(r'fgaIsolation');
     });
   }
 
-  QueryBuilder<TeamStat, TeamStat, QDistinct> distinctByFgaHook() {
+  QueryBuilder<TeamStat, TeamStat, QDistinct> distinctByFgaOffScreen() {
     return QueryBuilder.apply(this, (query) {
-      return query.addDistinctBy(r'fgaHook');
+      return query.addDistinctBy(r'fgaOffScreen');
     });
   }
 
-  QueryBuilder<TeamStat, TeamStat, QDistinct> distinctByFgaLayup() {
+  QueryBuilder<TeamStat, TeamStat, QDistinct> distinctByFgaPostUp() {
     return QueryBuilder.apply(this, (query) {
-      return query.addDistinctBy(r'fgaLayup');
+      return query.addDistinctBy(r'fgaPostUp');
     });
   }
 
-  QueryBuilder<TeamStat, TeamStat, QDistinct> distinctByFgaPullUp() {
+  QueryBuilder<TeamStat, TeamStat, QDistinct> distinctByFgaRoller() {
     return QueryBuilder.apply(this, (query) {
-      return query.addDistinctBy(r'fgaPullUp');
+      return query.addDistinctBy(r'fgaRoller');
     });
   }
 
-  QueryBuilder<TeamStat, TeamStat, QDistinct> distinctByFgaTip() {
+  QueryBuilder<TeamStat, TeamStat, QDistinct> distinctByFgaSecondChance() {
     return QueryBuilder.apply(this, (query) {
-      return query.addDistinctBy(r'fgaTip');
+      return query.addDistinctBy(r'fgaSecondChance');
+    });
+  }
+
+  QueryBuilder<TeamStat, TeamStat, QDistinct> distinctByFgaSpotUp() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addDistinctBy(r'fgaSpotUp');
     });
   }
 
@@ -5201,57 +5551,63 @@ extension TeamStatQueryWhereDistinct
     });
   }
 
-  QueryBuilder<TeamStat, TeamStat, QDistinct> distinctByFgmAlleyOop() {
+  QueryBuilder<TeamStat, TeamStat, QDistinct> distinctByFgmCut() {
     return QueryBuilder.apply(this, (query) {
-      return query.addDistinctBy(r'fgmAlleyOop');
+      return query.addDistinctBy(r'fgmCut');
     });
   }
 
-  QueryBuilder<TeamStat, TeamStat, QDistinct> distinctByFgmCatchAndShot() {
+  QueryBuilder<TeamStat, TeamStat, QDistinct> distinctByFgmFastBreak() {
     return QueryBuilder.apply(this, (query) {
-      return query.addDistinctBy(r'fgmCatchAndShot');
+      return query.addDistinctBy(r'fgmFastBreak');
     });
   }
 
-  QueryBuilder<TeamStat, TeamStat, QDistinct> distinctByFgmDunk() {
+  QueryBuilder<TeamStat, TeamStat, QDistinct> distinctByFgmHandOff() {
     return QueryBuilder.apply(this, (query) {
-      return query.addDistinctBy(r'fgmDunk');
+      return query.addDistinctBy(r'fgmHandOff');
     });
   }
 
-  QueryBuilder<TeamStat, TeamStat, QDistinct> distinctByFgmFadeAway() {
+  QueryBuilder<TeamStat, TeamStat, QDistinct> distinctByFgmHandler() {
     return QueryBuilder.apply(this, (query) {
-      return query.addDistinctBy(r'fgmFadeAway');
+      return query.addDistinctBy(r'fgmHandler');
     });
   }
 
-  QueryBuilder<TeamStat, TeamStat, QDistinct> distinctByFgmFloating() {
+  QueryBuilder<TeamStat, TeamStat, QDistinct> distinctByFgmIsolation() {
     return QueryBuilder.apply(this, (query) {
-      return query.addDistinctBy(r'fgmFloating');
+      return query.addDistinctBy(r'fgmIsolation');
     });
   }
 
-  QueryBuilder<TeamStat, TeamStat, QDistinct> distinctByFgmHook() {
+  QueryBuilder<TeamStat, TeamStat, QDistinct> distinctByFgmOffScreen() {
     return QueryBuilder.apply(this, (query) {
-      return query.addDistinctBy(r'fgmHook');
+      return query.addDistinctBy(r'fgmOffScreen');
     });
   }
 
-  QueryBuilder<TeamStat, TeamStat, QDistinct> distinctByFgmLayup() {
+  QueryBuilder<TeamStat, TeamStat, QDistinct> distinctByFgmPostUp() {
     return QueryBuilder.apply(this, (query) {
-      return query.addDistinctBy(r'fgmLayup');
+      return query.addDistinctBy(r'fgmPostUp');
     });
   }
 
-  QueryBuilder<TeamStat, TeamStat, QDistinct> distinctByFgmPullUp() {
+  QueryBuilder<TeamStat, TeamStat, QDistinct> distinctByFgmRoller() {
     return QueryBuilder.apply(this, (query) {
-      return query.addDistinctBy(r'fgmPullUp');
+      return query.addDistinctBy(r'fgmRoller');
     });
   }
 
-  QueryBuilder<TeamStat, TeamStat, QDistinct> distinctByFgmTip() {
+  QueryBuilder<TeamStat, TeamStat, QDistinct> distinctByFgmSecondChance() {
     return QueryBuilder.apply(this, (query) {
-      return query.addDistinctBy(r'fgmTip');
+      return query.addDistinctBy(r'fgmSecondChance');
+    });
+  }
+
+  QueryBuilder<TeamStat, TeamStat, QDistinct> distinctByFgmSpotUp() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addDistinctBy(r'fgmSpotUp');
     });
   }
 
@@ -5285,57 +5641,63 @@ extension TeamStatQueryWhereDistinct
     });
   }
 
-  QueryBuilder<TeamStat, TeamStat, QDistinct> distinctByTpaAlleyOop() {
+  QueryBuilder<TeamStat, TeamStat, QDistinct> distinctByTpaCut() {
     return QueryBuilder.apply(this, (query) {
-      return query.addDistinctBy(r'tpaAlleyOop');
+      return query.addDistinctBy(r'tpaCut');
     });
   }
 
-  QueryBuilder<TeamStat, TeamStat, QDistinct> distinctByTpaCatchAndShot() {
+  QueryBuilder<TeamStat, TeamStat, QDistinct> distinctByTpaFastBreak() {
     return QueryBuilder.apply(this, (query) {
-      return query.addDistinctBy(r'tpaCatchAndShot');
+      return query.addDistinctBy(r'tpaFastBreak');
     });
   }
 
-  QueryBuilder<TeamStat, TeamStat, QDistinct> distinctByTpaDunk() {
+  QueryBuilder<TeamStat, TeamStat, QDistinct> distinctByTpaHandOff() {
     return QueryBuilder.apply(this, (query) {
-      return query.addDistinctBy(r'tpaDunk');
+      return query.addDistinctBy(r'tpaHandOff');
     });
   }
 
-  QueryBuilder<TeamStat, TeamStat, QDistinct> distinctByTpaFadeAway() {
+  QueryBuilder<TeamStat, TeamStat, QDistinct> distinctByTpaHandler() {
     return QueryBuilder.apply(this, (query) {
-      return query.addDistinctBy(r'tpaFadeAway');
+      return query.addDistinctBy(r'tpaHandler');
     });
   }
 
-  QueryBuilder<TeamStat, TeamStat, QDistinct> distinctByTpaFloating() {
+  QueryBuilder<TeamStat, TeamStat, QDistinct> distinctByTpaIsolation() {
     return QueryBuilder.apply(this, (query) {
-      return query.addDistinctBy(r'tpaFloating');
+      return query.addDistinctBy(r'tpaIsolation');
     });
   }
 
-  QueryBuilder<TeamStat, TeamStat, QDistinct> distinctByTpaHook() {
+  QueryBuilder<TeamStat, TeamStat, QDistinct> distinctByTpaOffScreen() {
     return QueryBuilder.apply(this, (query) {
-      return query.addDistinctBy(r'tpaHook');
+      return query.addDistinctBy(r'tpaOffScreen');
     });
   }
 
-  QueryBuilder<TeamStat, TeamStat, QDistinct> distinctByTpaLayup() {
+  QueryBuilder<TeamStat, TeamStat, QDistinct> distinctByTpaPostUp() {
     return QueryBuilder.apply(this, (query) {
-      return query.addDistinctBy(r'tpaLayup');
+      return query.addDistinctBy(r'tpaPostUp');
     });
   }
 
-  QueryBuilder<TeamStat, TeamStat, QDistinct> distinctByTpaPullUp() {
+  QueryBuilder<TeamStat, TeamStat, QDistinct> distinctByTpaRoller() {
     return QueryBuilder.apply(this, (query) {
-      return query.addDistinctBy(r'tpaPullUp');
+      return query.addDistinctBy(r'tpaRoller');
     });
   }
 
-  QueryBuilder<TeamStat, TeamStat, QDistinct> distinctByTpaTip() {
+  QueryBuilder<TeamStat, TeamStat, QDistinct> distinctByTpaSecondChance() {
     return QueryBuilder.apply(this, (query) {
-      return query.addDistinctBy(r'tpaTip');
+      return query.addDistinctBy(r'tpaSecondChance');
+    });
+  }
+
+  QueryBuilder<TeamStat, TeamStat, QDistinct> distinctByTpaSpotUp() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addDistinctBy(r'tpaSpotUp');
     });
   }
 
@@ -5369,57 +5731,63 @@ extension TeamStatQueryWhereDistinct
     });
   }
 
-  QueryBuilder<TeamStat, TeamStat, QDistinct> distinctByTpmAlleyOop() {
+  QueryBuilder<TeamStat, TeamStat, QDistinct> distinctByTpmCut() {
     return QueryBuilder.apply(this, (query) {
-      return query.addDistinctBy(r'tpmAlleyOop');
+      return query.addDistinctBy(r'tpmCut');
     });
   }
 
-  QueryBuilder<TeamStat, TeamStat, QDistinct> distinctByTpmCatchAndShot() {
+  QueryBuilder<TeamStat, TeamStat, QDistinct> distinctByTpmFastBreak() {
     return QueryBuilder.apply(this, (query) {
-      return query.addDistinctBy(r'tpmCatchAndShot');
+      return query.addDistinctBy(r'tpmFastBreak');
     });
   }
 
-  QueryBuilder<TeamStat, TeamStat, QDistinct> distinctByTpmDunk() {
+  QueryBuilder<TeamStat, TeamStat, QDistinct> distinctByTpmHandOff() {
     return QueryBuilder.apply(this, (query) {
-      return query.addDistinctBy(r'tpmDunk');
+      return query.addDistinctBy(r'tpmHandOff');
     });
   }
 
-  QueryBuilder<TeamStat, TeamStat, QDistinct> distinctByTpmFadeAway() {
+  QueryBuilder<TeamStat, TeamStat, QDistinct> distinctByTpmHandler() {
     return QueryBuilder.apply(this, (query) {
-      return query.addDistinctBy(r'tpmFadeAway');
+      return query.addDistinctBy(r'tpmHandler');
     });
   }
 
-  QueryBuilder<TeamStat, TeamStat, QDistinct> distinctByTpmFloating() {
+  QueryBuilder<TeamStat, TeamStat, QDistinct> distinctByTpmIsolation() {
     return QueryBuilder.apply(this, (query) {
-      return query.addDistinctBy(r'tpmFloating');
+      return query.addDistinctBy(r'tpmIsolation');
     });
   }
 
-  QueryBuilder<TeamStat, TeamStat, QDistinct> distinctByTpmHook() {
+  QueryBuilder<TeamStat, TeamStat, QDistinct> distinctByTpmOffScreen() {
     return QueryBuilder.apply(this, (query) {
-      return query.addDistinctBy(r'tpmHook');
+      return query.addDistinctBy(r'tpmOffScreen');
     });
   }
 
-  QueryBuilder<TeamStat, TeamStat, QDistinct> distinctByTpmLayup() {
+  QueryBuilder<TeamStat, TeamStat, QDistinct> distinctByTpmPostUp() {
     return QueryBuilder.apply(this, (query) {
-      return query.addDistinctBy(r'tpmLayup');
+      return query.addDistinctBy(r'tpmPostUp');
     });
   }
 
-  QueryBuilder<TeamStat, TeamStat, QDistinct> distinctByTpmPullUp() {
+  QueryBuilder<TeamStat, TeamStat, QDistinct> distinctByTpmRoller() {
     return QueryBuilder.apply(this, (query) {
-      return query.addDistinctBy(r'tpmPullUp');
+      return query.addDistinctBy(r'tpmRoller');
     });
   }
 
-  QueryBuilder<TeamStat, TeamStat, QDistinct> distinctByTpmTip() {
+  QueryBuilder<TeamStat, TeamStat, QDistinct> distinctByTpmSecondChance() {
     return QueryBuilder.apply(this, (query) {
-      return query.addDistinctBy(r'tpmTip');
+      return query.addDistinctBy(r'tpmSecondChance');
+    });
+  }
+
+  QueryBuilder<TeamStat, TeamStat, QDistinct> distinctByTpmSpotUp() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addDistinctBy(r'tpmSpotUp');
     });
   }
 
@@ -5462,57 +5830,63 @@ extension TeamStatQueryProperty
     });
   }
 
-  QueryBuilder<TeamStat, int, QQueryOperations> fgaAlleyOopProperty() {
+  QueryBuilder<TeamStat, int, QQueryOperations> fgaCutProperty() {
     return QueryBuilder.apply(this, (query) {
-      return query.addPropertyName(r'fgaAlleyOop');
+      return query.addPropertyName(r'fgaCut');
     });
   }
 
-  QueryBuilder<TeamStat, int, QQueryOperations> fgaCatchAndShotProperty() {
+  QueryBuilder<TeamStat, int, QQueryOperations> fgaFastBreakProperty() {
     return QueryBuilder.apply(this, (query) {
-      return query.addPropertyName(r'fgaCatchAndShot');
+      return query.addPropertyName(r'fgaFastBreak');
     });
   }
 
-  QueryBuilder<TeamStat, int, QQueryOperations> fgaDunkProperty() {
+  QueryBuilder<TeamStat, int, QQueryOperations> fgaHandOffProperty() {
     return QueryBuilder.apply(this, (query) {
-      return query.addPropertyName(r'fgaDunk');
+      return query.addPropertyName(r'fgaHandOff');
     });
   }
 
-  QueryBuilder<TeamStat, int, QQueryOperations> fgaFadeAwayProperty() {
+  QueryBuilder<TeamStat, int, QQueryOperations> fgaHandlerProperty() {
     return QueryBuilder.apply(this, (query) {
-      return query.addPropertyName(r'fgaFadeAway');
+      return query.addPropertyName(r'fgaHandler');
     });
   }
 
-  QueryBuilder<TeamStat, int, QQueryOperations> fgaFloatingProperty() {
+  QueryBuilder<TeamStat, int, QQueryOperations> fgaIsolationProperty() {
     return QueryBuilder.apply(this, (query) {
-      return query.addPropertyName(r'fgaFloating');
+      return query.addPropertyName(r'fgaIsolation');
     });
   }
 
-  QueryBuilder<TeamStat, int, QQueryOperations> fgaHookProperty() {
+  QueryBuilder<TeamStat, int, QQueryOperations> fgaOffScreenProperty() {
     return QueryBuilder.apply(this, (query) {
-      return query.addPropertyName(r'fgaHook');
+      return query.addPropertyName(r'fgaOffScreen');
     });
   }
 
-  QueryBuilder<TeamStat, int, QQueryOperations> fgaLayupProperty() {
+  QueryBuilder<TeamStat, int, QQueryOperations> fgaPostUpProperty() {
     return QueryBuilder.apply(this, (query) {
-      return query.addPropertyName(r'fgaLayup');
+      return query.addPropertyName(r'fgaPostUp');
     });
   }
 
-  QueryBuilder<TeamStat, int, QQueryOperations> fgaPullUpProperty() {
+  QueryBuilder<TeamStat, int, QQueryOperations> fgaRollerProperty() {
     return QueryBuilder.apply(this, (query) {
-      return query.addPropertyName(r'fgaPullUp');
+      return query.addPropertyName(r'fgaRoller');
     });
   }
 
-  QueryBuilder<TeamStat, int, QQueryOperations> fgaTipProperty() {
+  QueryBuilder<TeamStat, int, QQueryOperations> fgaSecondChanceProperty() {
     return QueryBuilder.apply(this, (query) {
-      return query.addPropertyName(r'fgaTip');
+      return query.addPropertyName(r'fgaSecondChance');
+    });
+  }
+
+  QueryBuilder<TeamStat, int, QQueryOperations> fgaSpotUpProperty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addPropertyName(r'fgaSpotUp');
     });
   }
 
@@ -5546,57 +5920,63 @@ extension TeamStatQueryProperty
     });
   }
 
-  QueryBuilder<TeamStat, int, QQueryOperations> fgmAlleyOopProperty() {
+  QueryBuilder<TeamStat, int, QQueryOperations> fgmCutProperty() {
     return QueryBuilder.apply(this, (query) {
-      return query.addPropertyName(r'fgmAlleyOop');
+      return query.addPropertyName(r'fgmCut');
     });
   }
 
-  QueryBuilder<TeamStat, int, QQueryOperations> fgmCatchAndShotProperty() {
+  QueryBuilder<TeamStat, int, QQueryOperations> fgmFastBreakProperty() {
     return QueryBuilder.apply(this, (query) {
-      return query.addPropertyName(r'fgmCatchAndShot');
+      return query.addPropertyName(r'fgmFastBreak');
     });
   }
 
-  QueryBuilder<TeamStat, int, QQueryOperations> fgmDunkProperty() {
+  QueryBuilder<TeamStat, int, QQueryOperations> fgmHandOffProperty() {
     return QueryBuilder.apply(this, (query) {
-      return query.addPropertyName(r'fgmDunk');
+      return query.addPropertyName(r'fgmHandOff');
     });
   }
 
-  QueryBuilder<TeamStat, int, QQueryOperations> fgmFadeAwayProperty() {
+  QueryBuilder<TeamStat, int, QQueryOperations> fgmHandlerProperty() {
     return QueryBuilder.apply(this, (query) {
-      return query.addPropertyName(r'fgmFadeAway');
+      return query.addPropertyName(r'fgmHandler');
     });
   }
 
-  QueryBuilder<TeamStat, int, QQueryOperations> fgmFloatingProperty() {
+  QueryBuilder<TeamStat, int, QQueryOperations> fgmIsolationProperty() {
     return QueryBuilder.apply(this, (query) {
-      return query.addPropertyName(r'fgmFloating');
+      return query.addPropertyName(r'fgmIsolation');
     });
   }
 
-  QueryBuilder<TeamStat, int, QQueryOperations> fgmHookProperty() {
+  QueryBuilder<TeamStat, int, QQueryOperations> fgmOffScreenProperty() {
     return QueryBuilder.apply(this, (query) {
-      return query.addPropertyName(r'fgmHook');
+      return query.addPropertyName(r'fgmOffScreen');
     });
   }
 
-  QueryBuilder<TeamStat, int, QQueryOperations> fgmLayupProperty() {
+  QueryBuilder<TeamStat, int, QQueryOperations> fgmPostUpProperty() {
     return QueryBuilder.apply(this, (query) {
-      return query.addPropertyName(r'fgmLayup');
+      return query.addPropertyName(r'fgmPostUp');
     });
   }
 
-  QueryBuilder<TeamStat, int, QQueryOperations> fgmPullUpProperty() {
+  QueryBuilder<TeamStat, int, QQueryOperations> fgmRollerProperty() {
     return QueryBuilder.apply(this, (query) {
-      return query.addPropertyName(r'fgmPullUp');
+      return query.addPropertyName(r'fgmRoller');
     });
   }
 
-  QueryBuilder<TeamStat, int, QQueryOperations> fgmTipProperty() {
+  QueryBuilder<TeamStat, int, QQueryOperations> fgmSecondChanceProperty() {
     return QueryBuilder.apply(this, (query) {
-      return query.addPropertyName(r'fgmTip');
+      return query.addPropertyName(r'fgmSecondChance');
+    });
+  }
+
+  QueryBuilder<TeamStat, int, QQueryOperations> fgmSpotUpProperty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addPropertyName(r'fgmSpotUp');
     });
   }
 
@@ -5630,57 +6010,63 @@ extension TeamStatQueryProperty
     });
   }
 
-  QueryBuilder<TeamStat, int, QQueryOperations> tpaAlleyOopProperty() {
+  QueryBuilder<TeamStat, int, QQueryOperations> tpaCutProperty() {
     return QueryBuilder.apply(this, (query) {
-      return query.addPropertyName(r'tpaAlleyOop');
+      return query.addPropertyName(r'tpaCut');
     });
   }
 
-  QueryBuilder<TeamStat, int, QQueryOperations> tpaCatchAndShotProperty() {
+  QueryBuilder<TeamStat, int, QQueryOperations> tpaFastBreakProperty() {
     return QueryBuilder.apply(this, (query) {
-      return query.addPropertyName(r'tpaCatchAndShot');
+      return query.addPropertyName(r'tpaFastBreak');
     });
   }
 
-  QueryBuilder<TeamStat, int, QQueryOperations> tpaDunkProperty() {
+  QueryBuilder<TeamStat, int, QQueryOperations> tpaHandOffProperty() {
     return QueryBuilder.apply(this, (query) {
-      return query.addPropertyName(r'tpaDunk');
+      return query.addPropertyName(r'tpaHandOff');
     });
   }
 
-  QueryBuilder<TeamStat, int, QQueryOperations> tpaFadeAwayProperty() {
+  QueryBuilder<TeamStat, int, QQueryOperations> tpaHandlerProperty() {
     return QueryBuilder.apply(this, (query) {
-      return query.addPropertyName(r'tpaFadeAway');
+      return query.addPropertyName(r'tpaHandler');
     });
   }
 
-  QueryBuilder<TeamStat, int, QQueryOperations> tpaFloatingProperty() {
+  QueryBuilder<TeamStat, int, QQueryOperations> tpaIsolationProperty() {
     return QueryBuilder.apply(this, (query) {
-      return query.addPropertyName(r'tpaFloating');
+      return query.addPropertyName(r'tpaIsolation');
     });
   }
 
-  QueryBuilder<TeamStat, int, QQueryOperations> tpaHookProperty() {
+  QueryBuilder<TeamStat, int, QQueryOperations> tpaOffScreenProperty() {
     return QueryBuilder.apply(this, (query) {
-      return query.addPropertyName(r'tpaHook');
+      return query.addPropertyName(r'tpaOffScreen');
     });
   }
 
-  QueryBuilder<TeamStat, int, QQueryOperations> tpaLayupProperty() {
+  QueryBuilder<TeamStat, int, QQueryOperations> tpaPostUpProperty() {
     return QueryBuilder.apply(this, (query) {
-      return query.addPropertyName(r'tpaLayup');
+      return query.addPropertyName(r'tpaPostUp');
     });
   }
 
-  QueryBuilder<TeamStat, int, QQueryOperations> tpaPullUpProperty() {
+  QueryBuilder<TeamStat, int, QQueryOperations> tpaRollerProperty() {
     return QueryBuilder.apply(this, (query) {
-      return query.addPropertyName(r'tpaPullUp');
+      return query.addPropertyName(r'tpaRoller');
     });
   }
 
-  QueryBuilder<TeamStat, int, QQueryOperations> tpaTipProperty() {
+  QueryBuilder<TeamStat, int, QQueryOperations> tpaSecondChanceProperty() {
     return QueryBuilder.apply(this, (query) {
-      return query.addPropertyName(r'tpaTip');
+      return query.addPropertyName(r'tpaSecondChance');
+    });
+  }
+
+  QueryBuilder<TeamStat, int, QQueryOperations> tpaSpotUpProperty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addPropertyName(r'tpaSpotUp');
     });
   }
 
@@ -5714,57 +6100,63 @@ extension TeamStatQueryProperty
     });
   }
 
-  QueryBuilder<TeamStat, int, QQueryOperations> tpmAlleyOopProperty() {
+  QueryBuilder<TeamStat, int, QQueryOperations> tpmCutProperty() {
     return QueryBuilder.apply(this, (query) {
-      return query.addPropertyName(r'tpmAlleyOop');
+      return query.addPropertyName(r'tpmCut');
     });
   }
 
-  QueryBuilder<TeamStat, int, QQueryOperations> tpmCatchAndShotProperty() {
+  QueryBuilder<TeamStat, int, QQueryOperations> tpmFastBreakProperty() {
     return QueryBuilder.apply(this, (query) {
-      return query.addPropertyName(r'tpmCatchAndShot');
+      return query.addPropertyName(r'tpmFastBreak');
     });
   }
 
-  QueryBuilder<TeamStat, int, QQueryOperations> tpmDunkProperty() {
+  QueryBuilder<TeamStat, int, QQueryOperations> tpmHandOffProperty() {
     return QueryBuilder.apply(this, (query) {
-      return query.addPropertyName(r'tpmDunk');
+      return query.addPropertyName(r'tpmHandOff');
     });
   }
 
-  QueryBuilder<TeamStat, int, QQueryOperations> tpmFadeAwayProperty() {
+  QueryBuilder<TeamStat, int, QQueryOperations> tpmHandlerProperty() {
     return QueryBuilder.apply(this, (query) {
-      return query.addPropertyName(r'tpmFadeAway');
+      return query.addPropertyName(r'tpmHandler');
     });
   }
 
-  QueryBuilder<TeamStat, int, QQueryOperations> tpmFloatingProperty() {
+  QueryBuilder<TeamStat, int, QQueryOperations> tpmIsolationProperty() {
     return QueryBuilder.apply(this, (query) {
-      return query.addPropertyName(r'tpmFloating');
+      return query.addPropertyName(r'tpmIsolation');
     });
   }
 
-  QueryBuilder<TeamStat, int, QQueryOperations> tpmHookProperty() {
+  QueryBuilder<TeamStat, int, QQueryOperations> tpmOffScreenProperty() {
     return QueryBuilder.apply(this, (query) {
-      return query.addPropertyName(r'tpmHook');
+      return query.addPropertyName(r'tpmOffScreen');
     });
   }
 
-  QueryBuilder<TeamStat, int, QQueryOperations> tpmLayupProperty() {
+  QueryBuilder<TeamStat, int, QQueryOperations> tpmPostUpProperty() {
     return QueryBuilder.apply(this, (query) {
-      return query.addPropertyName(r'tpmLayup');
+      return query.addPropertyName(r'tpmPostUp');
     });
   }
 
-  QueryBuilder<TeamStat, int, QQueryOperations> tpmPullUpProperty() {
+  QueryBuilder<TeamStat, int, QQueryOperations> tpmRollerProperty() {
     return QueryBuilder.apply(this, (query) {
-      return query.addPropertyName(r'tpmPullUp');
+      return query.addPropertyName(r'tpmRoller');
     });
   }
 
-  QueryBuilder<TeamStat, int, QQueryOperations> tpmTipProperty() {
+  QueryBuilder<TeamStat, int, QQueryOperations> tpmSecondChanceProperty() {
     return QueryBuilder.apply(this, (query) {
-      return query.addPropertyName(r'tpmTip');
+      return query.addPropertyName(r'tpmSecondChance');
+    });
+  }
+
+  QueryBuilder<TeamStat, int, QQueryOperations> tpmSpotUpProperty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addPropertyName(r'tpmSpotUp');
     });
   }
 

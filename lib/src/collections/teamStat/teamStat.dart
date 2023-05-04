@@ -12,77 +12,55 @@ class TeamStat {
   @Backlink(to: 'teamStat')
   final game = IsarLink<Game>();
 
-  late int fgmLayup;
+  late int fgmIsolation;
+  late int fgaIsolation;
+  late int tpmIsolation;
+  late int tpaIsolation;
 
-  late int fgaLayup;
+  late int fgmFastBreak;
+  late int fgaFastBreak;
+  late int tpmFastBreak;
+  late int tpaFastBreak;
 
-  late int tpmLayup;
+  late int fgmHandler;
+  late int fgaHandler;
+  late int tpmHandler;
+  late int tpaHandler;
 
-  late int tpaLayup;
+  late int fgmRoller;
+  late int fgaRoller;
+  late int tpmRoller;
+  late int tpaRoller;
 
-  late int fgmCatchAndShot;
+  late int fgmPostUp;
+  late int fgaPostUp;
+  late int tpmPostUp;
+  late int tpaPostUp;
 
-  late int fgaCatchAndShot;
+  late int fgmSpotUp;
+  late int fgaSpotUp;
+  late int tpmSpotUp;
+  late int tpaSpotUp;
 
-  late int tpmCatchAndShot;
+  late int fgmHandOff;
+  late int fgaHandOff;
+  late int tpmHandOff;
+  late int tpaHandOff;
 
-  late int tpaCatchAndShot;
+  late int fgmCut;
+  late int fgaCut;
+  late int tpmCut;
+  late int tpaCut;
 
-  late int fgmPullUp;
+  late int fgmOffScreen;
+  late int fgaOffScreen;
+  late int tpmOffScreen;
+  late int tpaOffScreen;
 
-  late int fgaPullUp;
-
-  late int tpmPullUp;
-
-  late int tpaPullUp;
-
-  late int fgmFloating;
-
-  late int fgaFloating;
-
-  late int tpmFloating;
-
-  late int tpaFloating;
-
-  late int fgmHook;
-
-  late int fgaHook;
-
-  late int tpmHook;
-
-  late int tpaHook;
-
-  late int fgmTip;
-
-  late int fgaTip;
-
-  late int tpmTip;
-
-  late int tpaTip;
-
-  late int fgmFadeAway;
-
-  late int fgaFadeAway;
-
-  late int tpmFadeAway;
-
-  late int tpaFadeAway;
-
-  late int fgmDunk;
-
-  late int fgaDunk;
-
-  late int tpmDunk;
-
-  late int tpaDunk;
-
-  late int fgmAlleyOop;
-
-  late int fgaAlleyOop;
-
-  late int tpmAlleyOop;
-
-  late int tpaAlleyOop;
+  late int fgmSecondChance;
+  late int fgaSecondChance;
+  late int tpmSecondChance;
+  late int tpaSecondChance;
 
   //　Zone
 
