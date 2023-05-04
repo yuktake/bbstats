@@ -3,7 +3,6 @@ import 'package:bb_stats/src/collections/team/team.dart';
 import 'package:bb_stats/src/enums/FgResult.dart';
 import 'package:bb_stats/src/enums/Outcome.dart';
 import 'package:bb_stats/src/enums/PlayType.dart';
-import 'package:bb_stats/src/enums/ShotType.dart';
 import 'package:bb_stats/src/enums/ShotZone.dart';
 import 'package:isar/isar.dart';
 
@@ -656,83 +655,445 @@ class TeamStatRepository {
     List<TeamStat> teamStats = queryBuilder.findAllSync();
     int gameNum = queryBuilder.countSync();
 
-    int fgmIsolation = 0;
-    int fgaIsolation = 0;
+    if (gameNum == 0) {
+      return [
+        ["ISOLATION", 0, 0, 0.0, 0, 0, 0.0],
+        ["FAST BREAK", 0, 0, 0.0, 0, 0, 0.0],
+        ["P&R BALLER", 0, 0, 0.0, 0, 0, 0.0],
+        ["P&R ROLLER", 0, 0, 0.0, 0, 0, 0.0],
+        ["POST UP", 0, 0, 0.0, 0, 0, 0.0],
+        ["SPOT UP", 0, 0, 0.0, 0, 0, 0.0],
+        ["HAND OFF", 0, 0, 0.0, 0, 0, 0.0],
+        ["CUT", 0, 0, 0.0, 0, 0, 0.0],
+        ["OFF SCREEN", 0, 0, 0.0, 0, 0, 0.0],
+        ["SECOND CHANCE", 0, 0, 0.0, 0, 0, 0.0],
+      ];
+    }
+
+    int fgmIsolationSum = 0;
+    int fgaIsolationSum = 0;
     double fgRatioIsolation = 0.0;
-    int tpmIsolation = 0;
-    int tpaIsolation = 0;
+    int tpmIsolationSum = 0;
+    int tpaIsolationSum = 0;
     double tpRatioIsolation = 0.0;
 
-    int fgmFastBreak = 0;
-    int fgaFastBreak = 0;
+    int fgmFastBreakSum = 0;
+    int fgaFastBreakSum = 0;
     double fgRatioFastBreak = 0.0;
-    int tpmFastBreak = 0;
-    int tpaFastBreak = 0;
+    int tpmFastBreakSum = 0;
+    int tpaFastBreakSum = 0;
     double tpRatioFastBreak = 0.0;
 
-    int fgmHandler = 0;
-    int fgaHandler = 0;
+    int fgmHandlerSum = 0;
+    int fgaHandlerSum = 0;
     double fgRatioHandler = 0.0;
-    int tpmHandler = 0;
-    int tpaHandler = 0;
+    int tpmHandlerSum = 0;
+    int tpaHandlerSum = 0;
     double tpRatioHandler = 0.0;
 
-    int fgmRoller = 0;
-    int fgaRoller = 0;
+    int fgmRollerSum = 0;
+    int fgaRollerSum = 0;
     double fgRatioRoller = 0.0;
-    int tpmRoller = 0;
-    int tpaRoller = 0;
+    int tpmRollerSum = 0;
+    int tpaRollerSum = 0;
     double tpRatioRoller = 0.0;
 
-    int fgmPostUp = 0;
-    int fgaPostUp = 0;
+    int fgmPostUpSum = 0;
+    int fgaPostUpSum = 0;
     double fgRatioPostUp = 0.0;
-    int tpmPostUp = 0;
-    int tpaPostUp = 0;
+    int tpmPostUpSum = 0;
+    int tpaPostUpSum = 0;
     double tpRatioPostUp = 0.0;
 
-    int fgmSpotUp = 0;
-    int fgaSpotUp = 0;
+    int fgmSpotUpSum = 0;
+    int fgaSpotUpSum = 0;
     double fgRatioSpotUp = 0.0;
-    int tpmSpotUp = 0;
-    int tpaSpotUp = 0;
+    int tpmSpotUpSum = 0;
+    int tpaSpotUpSum = 0;
     double tpRatioSpotUp = 0.0;
 
-    int fgmHandOff = 0;
-    int fgaHandOff = 0;
+    int fgmHandOffSum = 0;
+    int fgaHandOffSum = 0;
     double fgRatioHandOff = 0.0;
-    int tpmHandOff = 0;
-    int tpaHandOff = 0;
+    int tpmHandOffSum = 0;
+    int tpaHandOffSum = 0;
     double tpRatioHandOff = 0.0;
 
-    int fgmCut = 0;
-    int fgaCut = 0;
+    int fgmCutSum = 0;
+    int fgaCutSum = 0;
     double fgRatioCut = 0.0;
-    int tpmCut = 0;
-    int tpaCut = 0;
+    int tpmCutSum = 0;
+    int tpaCutSum = 0;
     double tpRatioCut = 0.0;
 
-    int fgmOffScreen = 0;
-    int fgaOffScreen = 0;
+    int fgmOffScreenSum = 0;
+    int fgaOffScreenSum = 0;
     double fgRatioOffScreen = 0.0;
-    int tpmOffScreen = 0;
-    int tpaOffScreen = 0;
+    int tpmOffScreenSum = 0;
+    int tpaOffScreenSum = 0;
     double tpRatioOffScreen = 0.0;
 
-    int fgmSecondChance = 0;
-    int fgaSecondChance = 0;
+    int fgmSecondChanceSum = 0;
+    int fgaSecondChanceSum = 0;
     double fgRatioSecondChance = 0.0;
-    int tpmSecondChance = 0;
-    int tpaSecondChance = 0;
+    int tpmSecondChanceSum = 0;
+    int tpaSecondChanceSum = 0;
     double tpRatioSecondChance = 0.0;
 
     for (var teamStat in teamStats) {
-      teamStat.fgmIsolation = teamStat.fgmIsolation;
-      teamStat.fgaIsolation = teamStat.fgaIsolation;
-      teamStat.tpmIsolation = teamStat.tpmIsolation;
-      teamStat.tpaIsolation = teamStat.tpaIsolation;
+      fgmIsolationSum = fgmIsolationSum + teamStat.fgmIsolation;
+      fgaIsolationSum = fgaIsolationSum + teamStat.fgaIsolation;
+      tpmIsolationSum = tpmIsolationSum + teamStat.tpmIsolation;
+      tpaIsolationSum = tpaIsolationSum + teamStat.tpaIsolation;
+
+      fgmFastBreakSum = fgmFastBreakSum + teamStat.fgmFastBreak;
+      fgaFastBreakSum = fgaFastBreakSum + teamStat.fgaFastBreak;
+      tpmFastBreakSum = tpmFastBreakSum + teamStat.tpmFastBreak;
+      tpaFastBreakSum = tpaFastBreakSum + teamStat.tpaFastBreak;
+
+      fgmHandlerSum = fgmHandlerSum + teamStat.fgmHandler;
+      fgaHandlerSum = fgaHandlerSum + teamStat.fgaHandler;
+      tpmHandlerSum = tpmHandlerSum + teamStat.tpmHandler;
+      tpaHandlerSum = tpaHandlerSum + teamStat.tpaHandler;
+
+      fgmRollerSum = fgmRollerSum + teamStat.fgmRoller;
+      fgaRollerSum = fgaRollerSum + teamStat.fgaRoller;
+      tpmRollerSum = tpmRollerSum + teamStat.tpmRoller;
+      tpaRollerSum = tpaRollerSum + teamStat.tpaRoller;
+
+      fgmPostUpSum = fgmPostUpSum + teamStat.fgmPostUp;
+      fgaPostUpSum = fgaPostUpSum + teamStat.fgaPostUp;
+      tpmPostUpSum = tpmPostUpSum + teamStat.tpmPostUp;
+      tpaPostUpSum = tpaPostUpSum + teamStat.tpaPostUp;
+
+      fgmSpotUpSum = fgmSpotUpSum + teamStat.fgmSpotUp;
+      fgaSpotUpSum = fgaSpotUpSum + teamStat.fgaSpotUp;
+      tpmSpotUpSum = tpmSpotUpSum + teamStat.tpmSpotUp;
+      tpaSpotUpSum = tpaSpotUpSum + teamStat.tpaSpotUp;
+
+      fgmHandOffSum = fgmHandOffSum + teamStat.fgmHandOff;
+      fgaHandOffSum = fgaHandOffSum + teamStat.fgaHandOff;
+      tpmHandOffSum = tpmHandOffSum + teamStat.tpmHandOff;
+      tpaHandOffSum = tpaHandOffSum + teamStat.tpaHandOff;
+
+      fgmCutSum = fgmCutSum + teamStat.fgmCut;
+      fgaCutSum = fgaCutSum + teamStat.fgaCut;
+      tpmCutSum = tpmCutSum + teamStat.tpmCut;
+      tpaCutSum = tpaCutSum + teamStat.tpaCut;
+
+      fgmOffScreenSum = fgmOffScreenSum + teamStat.fgmOffScreen;
+      fgaOffScreenSum = fgaOffScreenSum + teamStat.fgaOffScreen;
+      tpmOffScreenSum = tpmOffScreenSum + teamStat.tpmOffScreen;
+      tpaOffScreenSum = tpaOffScreenSum + teamStat.tpaOffScreen;
+
+      fgmSecondChanceSum = fgmSecondChanceSum + teamStat.fgmSecondChance;
+      fgaSecondChanceSum = fgaSecondChanceSum + teamStat.fgaSecondChance;
+      tpmSecondChanceSum = tpmSecondChanceSum + teamStat.tpmSecondChance;
+      tpaSecondChanceSum = tpaSecondChanceSum + teamStat.tpaSecondChance;
     }
 
-    return [];
+    double fgmIsolationAvg = ((fgmIsolationSum/gameNum) * 10).round() / 10;
+    double fgaIsolationAvg = ((fgaIsolationSum/gameNum) * 10).round() / 10;
+    double tpmIsolationAvg = ((tpmIsolationSum/gameNum) * 10).round() / 10;
+    double tpaIsolationAvg = ((tpaIsolationSum/gameNum) * 10).round() / 10;
+    if (fgaIsolationSum != 0) {
+      fgRatioIsolation = ((fgmIsolationSum/fgaIsolationSum) * 100 * 10).round() / 10;
+    }
+    if (tpaIsolationSum != 0) {
+      tpRatioIsolation = ((tpmIsolationSum/tpaIsolationSum) * 100 * 10).round() / 10;
+    }
+    List<dynamic> isolationStats = ["ISOLATION", fgmIsolationAvg, fgaIsolationAvg, fgRatioIsolation, tpmIsolationAvg, tpaIsolationAvg, tpRatioIsolation];
+
+    double fgmFastBreakAvg = ((fgmFastBreakSum/gameNum) * 10).round() / 10;
+    double fgaFastBreakAvg = ((fgaFastBreakSum/gameNum) * 10).round() / 10;
+    double tpmFastBreakAvg = ((tpmFastBreakSum/gameNum) * 10).round() / 10;
+    double tpaFastBreakAvg = ((tpaFastBreakSum/gameNum) * 10).round() / 10;
+    if (fgaFastBreakSum != 0) {
+      fgRatioFastBreak = ((fgmFastBreakSum/fgaFastBreakSum) * 100 * 10).round() / 10;
+    }
+    if (tpaFastBreakSum != 0) {
+      tpRatioFastBreak = ((tpmFastBreakSum/tpaFastBreakSum) * 100 * 10).round() / 10;
+    }
+    List<dynamic> fastBreakStats = ["FAST BREAK", fgmFastBreakAvg, fgaFastBreakAvg, fgRatioFastBreak, tpmFastBreakAvg, tpaFastBreakAvg, tpRatioFastBreak];
+
+    double fgmHandlerAvg = ((fgmHandlerSum/gameNum) * 10).round() / 10;
+    double fgaHandlerAvg = ((fgaHandlerSum/gameNum) * 10).round() / 10;
+    double tpmHandlerAvg = ((tpmHandlerSum/gameNum) * 10).round() / 10;
+    double tpaHandlerAvg = ((tpaHandlerSum/gameNum) * 10).round() / 10;
+    if (fgaHandlerSum != 0) {
+      fgRatioHandler = ((fgmHandlerSum/fgaHandlerSum) * 100 * 10).round() / 10;
+    }
+    if (tpaHandlerSum != 0) {
+      tpRatioHandler = ((tpmHandlerSum/tpaHandlerSum) * 100 * 10).round() / 10;
+    }
+    List<dynamic> handlerStats = ["P&R HANDLER", fgmHandlerAvg, fgaHandlerAvg, fgRatioHandler, tpmHandlerAvg, tpaHandlerAvg, tpRatioHandler];
+
+    double fgmRollerAvg = ((fgmRollerSum/gameNum) * 10).round() / 10;
+    double fgaRollerAvg = ((fgaRollerSum/gameNum) * 10).round() / 10;
+    double tpmRollerAvg = ((tpmRollerSum/gameNum) * 10).round() / 10;
+    double tpaRollerAvg = ((tpaRollerSum/gameNum) * 10).round() / 10;
+    if (fgaRollerSum != 0) {
+      fgRatioRoller = ((fgmRollerSum/fgaRollerSum) * 100 * 10).round() / 10;
+    }
+    if (tpaRollerSum != 0) {
+      tpRatioRoller = ((tpmRollerSum/tpaRollerSum) * 100 * 10).round() / 10;
+    }
+    List<dynamic> rollerStats = ["P&R ROLLER", fgmRollerAvg, fgaRollerAvg, fgRatioRoller, tpmRollerAvg, tpaRollerAvg, tpRatioRoller];
+
+    double fgmPostUpAvg = ((fgmPostUpSum/gameNum) * 10).round() / 10;
+    double fgaPostUpAvg = ((fgaPostUpSum/gameNum) * 10).round() / 10;
+    double tpmPostUpAvg = ((tpmPostUpSum/gameNum) * 10).round() / 10;
+    double tpaPostUpAvg = ((tpaPostUpSum/gameNum) * 10).round() / 10;
+    if (fgaPostUpSum != 0) {
+      fgRatioPostUp = ((fgmPostUpSum/fgaPostUpSum) * 100 * 10).round() / 10;
+    }
+    if (tpaPostUpSum != 0) {
+      tpRatioPostUp = ((tpmPostUpSum/tpaPostUpSum) * 100 * 10).round() / 10;
+    }
+    List<dynamic> postUpStats = ["POST UP", fgmPostUpAvg, fgaPostUpAvg, fgRatioPostUp, tpmPostUpAvg, tpaPostUpAvg, tpRatioPostUp];
+
+    double fgmSpotUpAvg = ((fgmSpotUpSum/gameNum) * 10).round() / 10;
+    double fgaSpotUpAvg = ((fgaSpotUpSum/gameNum) * 10).round() / 10;
+    double tpmSpotUpAvg = ((tpmSpotUpSum/gameNum) * 10).round() / 10;
+    double tpaSpotUpAvg = ((tpaSpotUpSum/gameNum) * 10).round() / 10;
+    if (fgaSpotUpSum != 0) {
+      fgRatioSpotUp = ((fgmSpotUpSum/fgaSpotUpSum) * 100 * 10).round() / 10;
+    }
+    if (tpaSpotUpSum != 0) {
+      tpRatioSpotUp = ((tpmSpotUpSum/tpaSpotUpSum) * 100 * 10).round() / 10;
+    }
+    List<dynamic> spotUpStats = ["SPOT UP", fgmSpotUpAvg, fgaSpotUpAvg, fgRatioSpotUp, tpmSpotUpAvg, tpaSpotUpAvg, tpRatioSpotUp];
+
+    double fgmHandOffAvg = ((fgmHandOffSum/gameNum) * 10).round() / 10;
+    double fgaHandOffAvg = ((fgaHandOffSum/gameNum) * 10).round() / 10;
+    double tpmHandOffAvg = ((tpmHandOffSum/gameNum) * 10).round() / 10;
+    double tpaHandOffAvg = ((tpaHandOffSum/gameNum) * 10).round() / 10;
+    if (fgaHandOffSum != 0) {
+      fgRatioHandOff = ((fgmHandOffSum/fgaHandOffSum) * 100 * 10).round() / 10;
+    }
+    if (tpaHandOffSum != 0) {
+      tpRatioHandOff = ((tpmHandOffSum/tpaHandOffSum) * 100 * 10).round() / 10;
+    }
+    List<dynamic> handOffStats = ["HAND OFF", fgmHandOffAvg, fgaHandOffAvg, fgRatioHandOff, tpmHandOffAvg, tpaHandOffAvg, tpRatioHandOff];
+
+    double fgmCutAvg = ((fgmCutSum/gameNum) * 10).round() / 10;
+    double fgaCutAvg = ((fgaCutSum/gameNum) * 10).round() / 10;
+    double tpmCutAvg = ((tpmCutSum/gameNum) * 10).round() / 10;
+    double tpaCutAvg = ((tpaCutSum/gameNum) * 10).round() / 10;
+    if (fgaCutSum != 0) {
+      fgRatioCut = ((fgmCutSum/fgaCutSum) * 100 * 10).round() / 10;
+    }
+    if (tpaCutSum != 0) {
+      tpRatioCut = ((tpmCutSum/tpaCutSum) * 100 * 10).round() / 10;
+    }
+    List<dynamic> cutStats = ["CUT", fgmCutAvg, fgaCutAvg, fgRatioCut, tpmCutAvg, tpaCutAvg, tpRatioCut];
+
+    double fgmOffScreenAvg = ((fgmOffScreenSum/gameNum) * 10).round() / 10;
+    double fgaOffScreenAvg = ((fgaOffScreenSum/gameNum) * 10).round() / 10;
+    double tpmOffScreenAvg = ((tpmOffScreenSum/gameNum) * 10).round() / 10;
+    double tpaOffScreenAvg = ((tpaOffScreenSum/gameNum) * 10).round() / 10;
+    if (fgaOffScreenSum != 0) {
+      fgRatioOffScreen = ((fgmOffScreenSum/fgaOffScreenSum) * 100 * 10).round() / 10;
+    }
+    if (tpaOffScreenSum != 0) {
+      tpRatioOffScreen = ((tpmOffScreenSum/tpaOffScreenSum) * 100 * 10).round() / 10;
+    }
+    List<dynamic> offScreenStats = ["OFF SCREEN", fgmOffScreenAvg, fgaOffScreenAvg, fgRatioOffScreen, tpmOffScreenAvg, tpaOffScreenAvg, tpRatioOffScreen];
+
+    double fgmSecondChanceAvg = ((fgmSecondChanceSum/gameNum) * 10).round() / 10;
+    double fgaSecondChanceAvg = ((fgaSecondChanceSum/gameNum) * 10).round() / 10;
+    double tpmSecondChanceAvg = ((tpmSecondChanceSum/gameNum) * 10).round() / 10;
+    double tpaSecondChanceAvg = ((tpaSecondChanceSum/gameNum) * 10).round() / 10;
+    if (fgaSecondChanceSum != 0) {
+      fgRatioSecondChance = ((fgmSecondChanceSum/fgaSecondChanceSum) * 100 * 10).round() / 10;
+    }
+    if (tpaCutSum != 0) {
+      tpRatioSecondChance = ((tpmSecondChanceSum/tpaSecondChanceSum) * 100 * 10).round() / 10;
+    }
+    List<dynamic> secondChanceStats = ["SECOND CHANCE", fgmSecondChanceAvg, fgaSecondChanceAvg, fgRatioSecondChance, tpmSecondChanceAvg, tpaSecondChanceAvg, tpRatioSecondChance];
+
+    List<List<dynamic>> playTypeStats = [
+      isolationStats,
+      fastBreakStats,
+      handlerStats,
+      rollerStats,
+      postUpStats,
+      spotUpStats,
+      handOffStats,
+      cutStats,
+      offScreenStats,
+      secondChanceStats,
+    ];
+
+    if (ascending) {
+      playTypeStats.sort((a, b) => a[columnIndex].compareTo(b[columnIndex]));
+    } else {
+      playTypeStats.sort((a, b) => b[columnIndex].compareTo(a[columnIndex]));
+    }
+
+    return playTypeStats;
+  }
+
+  List<List<dynamic>> getShotZoneStats(int? opponentTeamId, int columnIndex, bool ascending) {
+    if (!isar.isOpen) {
+      return [];
+    }
+
+    // 勝敗が決まっている試合のスタッツのみで集計する
+    QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition> queryBuilder = isar.teamStats.filter().not().game((q) => q.outcomeEqualTo(Outcome.NONE));
+    if (opponentTeamId != null) {
+      queryBuilder = queryBuilder.game((q) => q.opponent((r) => r.idEqualTo(opponentTeamId)));
+    }
+
+    List<TeamStat> teamStats = queryBuilder.findAllSync();
+    int gameNum = queryBuilder.countSync();
+
+    if (gameNum == 0) {
+      return [
+        ["IN THE PAINT", 0, 0, 0.0, 0, 0, 0.0],
+        ["MIDDLE AREA", 0, 0, 0.0, 0, 0, 0.0],
+        ["AROUND TOP THREE", 0, 0, 0.0, 0, 0, 0.0],
+        ["LEFT CORNER THREE", 0, 0, 0.0, 0, 0, 0.0],
+        ["RIGHT CORNER THREE", 0, 0, 0.0, 0, 0, 0.0],
+      ];
+    }
+
+    int fgmZoneTopSum = 0;
+    int fgaZoneTopSum = 0;
+    double fgRatioZoneTop = 0.0;
+    int tpmZoneTopSum = 0;
+    int tpaZoneTopSum = 0;
+    double tpRatioZoneTop = 0.0;
+
+    int fgmZoneLeftSum = 0;
+    int fgaZoneLeftSum = 0;
+    double fgRatioZoneLeft = 0.0;
+    int tpmZoneLeftSum = 0;
+    int tpaZoneLeftSum = 0;
+    double tpRatioZoneLeft = 0.0;
+
+    int fgmZoneRightSum = 0;
+    int fgaZoneRightSum = 0;
+    double fgRatioZoneRight = 0.0;
+    int tpmZoneRightSum = 0;
+    int tpaZoneRightSum = 0;
+    double tpRatioZoneRight = 0.0;
+
+    int fgmZoneMiddleSum = 0;
+    int fgaZoneMiddleSum = 0;
+    double fgRatioZoneMiddle = 0.0;
+    int tpmZoneMiddleSum = 0;
+    int tpaZoneMiddleSum = 0;
+    double tpRatioZoneMiddle = 0.0;
+
+    int fgmZonePaintSum = 0;
+    int fgaZonePaintSum = 0;
+    double fgRatioZonePaint = 0.0;
+    int tpmZonePaintSum = 0;
+    int tpaZonePaintSum = 0;
+    double tpRatioZonePaint = 0.0;
+
+    for (var teamStat in teamStats) {
+      fgmZoneTopSum = fgmZoneTopSum + teamStat.fgmZoneTop;
+      fgaZoneTopSum = fgaZoneTopSum + teamStat.fgaZoneTop;
+      tpmZoneTopSum = tpmZoneTopSum + teamStat.tpmZoneTop;
+      tpaZoneTopSum = tpaZoneTopSum + teamStat.tpaZoneTop;
+
+      fgmZoneLeftSum = fgmZoneLeftSum + teamStat.fgmZoneLeft;
+      fgaZoneLeftSum = fgaZoneLeftSum + teamStat.fgaZoneLeft;
+      tpmZoneLeftSum = tpmZoneLeftSum + teamStat.tpmZoneLeft;
+      tpaZoneLeftSum = tpaZoneLeftSum + teamStat.tpaZoneLeft;
+
+      fgmZoneRightSum = fgmZoneRightSum + teamStat.fgmZoneRight;
+      fgaZoneRightSum = fgaZoneRightSum + teamStat.fgaZoneRight;
+      tpmZoneRightSum = tpmZoneRightSum + teamStat.tpmZoneRight;
+      tpaZoneRightSum = tpaZoneRightSum + teamStat.tpaZoneRight;
+
+      fgmZoneMiddleSum = fgmZoneMiddleSum + teamStat.fgmZoneMiddle;
+      fgaZoneMiddleSum = fgaZoneMiddleSum + teamStat.fgaZoneMiddle;
+      tpmZoneMiddleSum = tpmZoneMiddleSum + teamStat.tpmZoneMiddle;
+      tpaZoneMiddleSum = tpaZoneMiddleSum + teamStat.tpaZoneMiddle;
+
+      fgmZonePaintSum = fgmZonePaintSum + teamStat.fgmZonePaint;
+      fgaZonePaintSum = fgaZonePaintSum + teamStat.fgaZonePaint;
+      tpmZonePaintSum = tpmZonePaintSum + teamStat.tpmZonePaint;
+      tpaZonePaintSum = tpaZonePaintSum + teamStat.tpaZonePaint;
+    }
+
+    double fgmZoneTopAvg = ((fgmZoneTopSum/gameNum) * 10).round() / 10;
+    double fgaZoneTopAvg = ((fgaZoneTopSum/gameNum) * 10).round() / 10;
+    double tpmZoneTopAvg = ((tpmZoneTopSum/gameNum) * 10).round() / 10;
+    double tpaZoneTopAvg = ((tpaZoneTopSum/gameNum) * 10).round() / 10;
+    if (fgaZoneTopSum != 0) {
+      fgRatioZoneTop = ((fgmZoneTopSum/fgaZoneTopSum) * 100 * 10).round() / 10;
+    }
+    if (tpaZoneTopSum != 0) {
+      tpRatioZoneTop = ((tpmZoneTopSum/tpaZoneTopSum) * 100 * 10).round() / 10;
+    }
+    List<dynamic> zoneTopStats = ["AROUND TOP THREE", fgmZoneTopAvg, fgaZoneTopAvg, fgRatioZoneTop, tpmZoneTopAvg, tpaZoneTopAvg, tpRatioZoneTop];
+
+    double fgmZoneLeftAvg = ((fgmZoneLeftSum/gameNum) * 10).round() / 10;
+    double fgaZoneLeftAvg = ((fgaZoneLeftSum/gameNum) * 10).round() / 10;
+    double tpmZoneLeftAvg = ((tpmZoneLeftSum/gameNum) * 10).round() / 10;
+    double tpaZoneLeftAvg = ((tpaZoneLeftSum/gameNum) * 10).round() / 10;
+    if (fgaZoneLeftSum != 0) {
+      fgRatioZoneLeft = ((fgmZoneLeftSum/fgaZoneLeftSum) * 100 * 10).round() / 10;
+    }
+    if (tpaZoneLeftSum != 0) {
+      tpRatioZoneLeft = ((tpmZoneLeftSum/tpaZoneLeftSum) * 100 * 10).round() / 10;
+    }
+    List<dynamic> zoneLeftStats = ["LEFT CORNER THREE", fgmZoneLeftAvg, fgaZoneLeftAvg, fgRatioZoneLeft, tpmZoneLeftAvg, tpaZoneLeftAvg, tpRatioZoneLeft];
+
+    double fgmZoneRightAvg = ((fgmZoneRightSum/gameNum) * 10).round() / 10;
+    double fgaZoneRightAvg = ((fgaZoneRightSum/gameNum) * 10).round() / 10;
+    double tpmZoneRightAvg = ((tpmZoneRightSum/gameNum) * 10).round() / 10;
+    double tpaZoneRightAvg = ((tpaZoneRightSum/gameNum) * 10).round() / 10;
+    if (fgaZoneRightSum != 0) {
+      fgRatioZoneRight = ((fgmZoneRightSum/fgaZoneRightSum) * 100 * 10).round() / 10;
+    }
+    if (tpaZoneRightSum != 0) {
+      tpRatioZoneRight = ((tpmZoneRightSum/tpaZoneRightSum) * 100 * 10).round() / 10;
+    }
+    List<dynamic> zoneRightStats = ["RIGHT CORNER THREE", fgmZoneRightAvg, fgaZoneRightAvg, fgRatioZoneRight, tpmZoneRightAvg, tpaZoneRightAvg, tpRatioZoneRight];
+
+    double fgmZoneMiddleAvg = ((fgmZoneMiddleSum/gameNum) * 10).round() / 10;
+    double fgaZoneMiddleAvg = ((fgaZoneMiddleSum/gameNum) * 10).round() / 10;
+    double tpmZoneMiddleAvg = ((tpmZoneMiddleSum/gameNum) * 10).round() / 10;
+    double tpaZoneMiddleAvg = ((tpaZoneMiddleSum/gameNum) * 10).round() / 10;
+    if (fgaZoneMiddleSum != 0) {
+      fgRatioZoneMiddle = ((fgmZoneMiddleSum/fgaZoneMiddleSum) * 100 * 10).round() / 10;
+    }
+    if (tpaZoneMiddleSum != 0) {
+      tpRatioZoneMiddle = ((tpmZoneMiddleSum/tpaZoneMiddleSum) * 100 * 10).round() / 10;
+    }
+    List<dynamic> zoneMiddleStats = ["MIDDLE AREA", fgmZoneMiddleAvg, fgaZoneMiddleAvg, fgRatioZoneMiddle, tpmZoneMiddleAvg, tpaZoneMiddleAvg, tpRatioZoneMiddle];
+
+    double fgmZonePaintAvg = ((fgmZonePaintSum/gameNum) * 10).round() / 10;
+    double fgaZonePaintAvg = ((fgaZonePaintSum/gameNum) * 10).round() / 10;
+    double tpmZonePaintAvg = ((tpmZonePaintSum/gameNum) * 10).round() / 10;
+    double tpaZonePaintAvg = ((tpaZonePaintSum/gameNum) * 10).round() / 10;
+    if (fgaZonePaintSum != 0) {
+      fgRatioZonePaint = ((fgmZonePaintSum/fgaZonePaintSum) * 100 * 10).round() / 10;
+    }
+    if (tpaZonePaintSum != 0) {
+      tpRatioZonePaint = ((tpmZonePaintSum/tpaZonePaintSum) * 100 * 10).round() / 10;
+    }
+    List<dynamic> zonePaintStats = ["IN THE PAINT", fgmZonePaintAvg, fgaZonePaintAvg, fgRatioZonePaint, tpmZonePaintAvg, tpaZonePaintAvg, tpRatioZonePaint];
+
+    List<List<dynamic>> shotZoneStats = [
+      zoneTopStats,
+      zoneLeftStats,
+      zoneRightStats,
+      zoneMiddleStats,
+      zonePaintStats,
+    ];
+
+    if (ascending) {
+      shotZoneStats.sort((a, b) => a[columnIndex].compareTo(b[columnIndex]));
+    } else {
+      shotZoneStats.sort((a, b) => b[columnIndex].compareTo(a[columnIndex]));
+    }
+
+    return shotZoneStats;
   }
 }
