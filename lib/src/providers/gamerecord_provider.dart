@@ -4,6 +4,7 @@ import 'package:bb_stats/src/enums/RecordType.dart';
 import 'package:bb_stats/src/repositories/boxscore_repository.dart';
 import 'package:bb_stats/src/repositories/game_repository.dart';
 import 'package:bb_stats/src/repositories/pbp_repository.dart';
+import 'package:bb_stats/src/repositories/teamStatRepository.php.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -18,6 +19,7 @@ class GameRecordStateNotifier extends StateNotifier<GameRecordModel> {
       this.gameId,
       this.playerRepository,
       this.gameRepository,
+      this.teamStatRepository,
       this.boxScoreRepository,
       this.pbpRepository
   ) : super (GameRecordModel(
@@ -54,6 +56,7 @@ class GameRecordStateNotifier extends StateNotifier<GameRecordModel> {
   final int gameId;
   final PlayerRepository playerRepository;
   final GameRepository gameRepository;
+  final TeamStatRepository teamStatRepository;
   final BoxscoreRepository boxScoreRepository;
   final PbpRepository pbpRepository;
 
@@ -313,6 +316,7 @@ class GameRecordStateNotifier extends StateNotifier<GameRecordModel> {
         } else {
           Boxscore boxScore = boxScoreRepository.findOneByGameAndPlayer(gameId, pbp.player.value!.id)!;
           gameRepository.modifyShot(gameId, pbp.supportedPlayerId, RecordType.TWO_POINT_MADE, boxScore.starter);
+          // TODO:: teamStat
           boxScoreRepository.modifyShot(gameId, pbp.player.value!.id, true, 2, pbp.supportedPlayerId);
         }
         break;

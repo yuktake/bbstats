@@ -173,6 +173,7 @@ final gameRecordProvider = StateNotifierProvider.family<GameRecordStateNotifier,
       id,
       ref.watch(playerRepositoryProvider),
       ref.watch(gameRepositoryProvider),
+      ref.watch(teamStatRepositoryProvider),
       ref.watch(boxscoreRepositoryProvider),
       ref.watch(pbpRepositoryProvider)
   );
