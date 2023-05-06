@@ -907,7 +907,8 @@ class GameRepository {
   List<dynamic> getOverallStats(DateTime? start, DateTime? end, int? opponentTeamId) {
     QueryBuilder<Game, Game, QAfterFilterCondition> queryBuilder;
 
-    queryBuilder = isar.games.filter().not().outcomeEqualTo(Outcome.NONE);
+    // queryBuilderを初期化するための意味のないクエリ
+    queryBuilder = isar.games.filter().not().idEqualTo(0);
 
     if (start != null) {
       queryBuilder = queryBuilder.gameDateGreaterThan(start, include: true);

@@ -817,13 +817,16 @@ class PbpRepository {
   }
 
   // 対象のplayerが誰にどれくらいアシストされたのか
-  List<List<dynamic>> getAssistPlayerStats(int playerId, int columnIndex, bool ascending) {
+  List<List<dynamic>> getAssistPlayerStats(DateTime? start, DateTime? end, int playerId, int columnIndex, bool ascending) {
     List<Player> players = isar.players.filter().not().idEqualTo(playerId).findAllSync();
     Map<int,int> maps = {};
     for (var player in players) {
       maps[player.id] = 0;
     }
-    List<Pbp> pbps = isar.pbps.filter()
+
+    QueryBuilder<Pbp, Pbp, QAfterFilterCondition> queryBuilder;
+
+    queryBuilder = isar.pbps.filter()
         .player((q) => q.idEqualTo(playerId))
         .and()
         .supportedPlayerIdIsNotNull()
@@ -834,8 +837,17 @@ class PbpRepository {
           .typeEqualTo(RecordType.TWO_POINT_MADE)
         )
         .and()
-        .shotPositionIsNotNull()
-        .findAllSync();
+        .shotPositionIsNotNull();
+
+    if (start != null) {
+      queryBuilder = queryBuilder.game((q) => q.gameDateGreaterThan(start, include: true));
+    }
+
+    if (end != null) {
+      queryBuilder = queryBuilder.game((q) => q.gameDateLessThan(end,include: true));
+    }
+
+    List<Pbp> pbps = queryBuilder.findAllSync();
 
     for (var pbp in pbps) {
       maps[pbp.supportedPlayerId!] = maps[pbp.supportedPlayerId]!+1;

@@ -241,7 +241,8 @@ class PlayerProfile extends ConsumerWidget {
                         minTime: DateTime(1950, 1, 1),
                         maxTime: DateTime.now(),
                         onConfirm: (date) {
-                          playerDetail.updateStartDate(date);
+                          DateTime dateTime = DateTime(date.year,date.month,date.day,0,0,0);
+                          playerDetail.updateStartDate(dateTime);
                         },
                         currentTime: playerDetailInfo.start,
                         locale: LocaleType.jp
@@ -257,7 +258,8 @@ class PlayerProfile extends ConsumerWidget {
                           minTime: DateTime(1950, 1, 1),
                           maxTime: DateTime.now(),
                           onConfirm: (date) {
-                            playerDetail.updateEndDate(date);
+                            DateTime dateTime = DateTime(date.year,date.month,date.day,23,59,59);
+                            playerDetail.updateEndDate(dateTime);
                           },
                           currentTime: playerDetailInfo.end,
                           locale: LocaleType.jp

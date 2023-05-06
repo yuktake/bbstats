@@ -1624,13 +1624,20 @@ class BoxscoreRepository {
     return seasonStats;
   }
 
-  // TODO:: 期間指定に対応する
-  List<List<dynamic>> getShotTypeStatsByPlayer(int playerId, int columnIndex, bool ascending) {
+  List<List<dynamic>> getShotTypeStatsByPlayer(DateTime? start, DateTime? end, int playerId, int columnIndex, bool ascending) {
     if (!isar.isOpen) {
       return [];
     }
 
     QueryBuilder<Boxscore, Boxscore, QAfterFilterCondition> queryBuilder = isar.boxscores.filter().player((q) => q.idEqualTo(playerId));
+
+    if (start != null) {
+      queryBuilder = queryBuilder.game((q) => q.gameDateGreaterThan(start, include: true));
+    }
+
+    if (end != null) {
+      queryBuilder = queryBuilder.game((q) => q.gameDateLessThan(end, include: true));
+    }
 
     List<Boxscore> boxScores = queryBuilder.findAllSync();
     int gameNum = queryBuilder.countSync();
@@ -1893,12 +1900,20 @@ class BoxscoreRepository {
     return shotTypeStats;
   }
   
-  List<List<dynamic>> getPlayTypeStatsByPlayer(int playerId, int columnIndex, bool ascending) {
+  List<List<dynamic>> getPlayTypeStatsByPlayer(DateTime? start, DateTime? end, int playerId, int columnIndex, bool ascending) {
     if (!isar.isOpen) {
       return [];
     }
 
     QueryBuilder<Boxscore, Boxscore, QAfterFilterCondition> queryBuilder = isar.boxscores.filter().player((q) => q.idEqualTo(playerId));
+
+    if (start != null) {
+      queryBuilder = queryBuilder.game((q) => q.gameDateGreaterThan(start, include: true));
+    }
+
+    if (end != null) {
+      queryBuilder = queryBuilder.game((q) => q.gameDateLessThan(end, include: true));
+    }
 
     List<Boxscore> boxScores = queryBuilder.findAllSync();
     int gameNum = queryBuilder.countSync();

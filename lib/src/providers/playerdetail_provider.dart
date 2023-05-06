@@ -15,13 +15,13 @@ class PlayerDetailStateNotifier extends StateNotifier<PlayerDetailModel> {
       start: null,
       end: null,
       seasonStats: boxScoreRepository.getSeasonStats(playerId, null, null),
-      shotTypeStats: boxScoreRepository.getShotTypeStatsByPlayer(playerId, 0, true),
+      shotTypeStats: boxScoreRepository.getShotTypeStatsByPlayer(null, null, playerId, 0, true),
       shotTypeSortTargetIndex: 0,
       shotTypeAscending: true,
-      playTypeStats: boxScoreRepository.getPlayTypeStatsByPlayer(playerId, 0, true),
+      playTypeStats: boxScoreRepository.getPlayTypeStatsByPlayer(null, null, playerId, 0, true),
       playTypeSortTargetIndex: 0,
       playTypeAscending: true,
-      assistPlayerStats: pbpRepository.getAssistPlayerStats(playerId, 0, true),
+      assistPlayerStats: pbpRepository.getAssistPlayerStats(null, null, playerId, 0, true),
       assistSortTargetIndex: 0,
       assistAscending: true,
     )
@@ -31,26 +31,23 @@ class PlayerDetailStateNotifier extends StateNotifier<PlayerDetailModel> {
   final PbpRepository pbpRepository;
 
   List<dynamic> getSeasonStats() {
-    return boxScoreRepository.getSeasonStats(playerId, null, null);
+    return boxScoreRepository.getSeasonStats(playerId, state.start, state.end);
   }
 
   List<List<dynamic>> getShotTypeStats(int index, bool ascending) {
-    return boxScoreRepository.getShotTypeStatsByPlayer(playerId, index, ascending);
+    return boxScoreRepository.getShotTypeStatsByPlayer(state.start, state.end, playerId, index, ascending);
   }
 
   List<List<dynamic>> getPlayTypeStats(int index, bool ascending) {
-    return boxScoreRepository.getPlayTypeStatsByPlayer(playerId, index, ascending);
+    return boxScoreRepository.getPlayTypeStatsByPlayer(state.start, state.end, playerId, index, ascending);
   }
 
   List<List<dynamic>> getAssistPlayerStats(int index, bool ascending) {
-    return pbpRepository.getAssistPlayerStats(playerId, index, ascending);
+    return pbpRepository.getAssistPlayerStats(state.start, state.end, playerId, index, ascending);
   }
 
   void updateStartDate(DateTime start) {
-    List<dynamic> seasonStats = state.seasonStats;
-    if (state.end != null) {
-      seasonStats = boxScoreRepository.getSeasonStats(playerId, start, state.end);
-    }
+    List<dynamic> seasonStats = boxScoreRepository.getSeasonStats(playerId, start, state.end);
 
     state = state.copyWith(
       start: start,
@@ -71,7 +68,7 @@ class PlayerDetailStateNotifier extends StateNotifier<PlayerDetailModel> {
   }
 
   void updateShotTypeSortTargetIndex(int index, bool ascending) {
-    List<List<dynamic>> shotTypeStats = boxScoreRepository.getShotTypeStatsByPlayer(playerId, index, ascending);
+    List<List<dynamic>> shotTypeStats = boxScoreRepository.getShotTypeStatsByPlayer(state.start, state.end, playerId, index, ascending);
 
     state = state.copyWith(
       shotTypeStats: shotTypeStats,
@@ -81,7 +78,7 @@ class PlayerDetailStateNotifier extends StateNotifier<PlayerDetailModel> {
   }
 
   void updatePlayTypeSortTargetIndex(int index, bool ascending) {
-    List<List<dynamic>> playTypeStats = boxScoreRepository.getPlayTypeStatsByPlayer(playerId, index, ascending);
+    List<List<dynamic>> playTypeStats = boxScoreRepository.getPlayTypeStatsByPlayer(state.start, state.end, playerId, index, ascending);
 
     state = state.copyWith(
       playTypeStats: playTypeStats,
@@ -91,7 +88,7 @@ class PlayerDetailStateNotifier extends StateNotifier<PlayerDetailModel> {
   }
 
   void updateAssistSortTargetIndex(int index, bool ascending) {
-    List<List<dynamic>> assistPlayerStats = pbpRepository.getAssistPlayerStats(playerId, index, ascending);
+    List<List<dynamic>> assistPlayerStats = pbpRepository.getAssistPlayerStats(state.start, state.end, playerId, index, ascending);
 
     state = state.copyWith(
       assistPlayerStats: assistPlayerStats,
