@@ -59,7 +59,7 @@ class Shot extends ConsumerWidget {
             ),
             const Text('Make or Miss'),
             Padding(
-              padding: EdgeInsets.only(top: 16, left: 16, right: 16),
+              padding: const EdgeInsets.only(top: 16, left: 16, right: 16),
               child: Row(
                 children: [
                   Expanded(
@@ -104,7 +104,7 @@ class Shot extends ConsumerWidget {
             ),
             const Text('Points'),
             Padding(
-              padding: EdgeInsets.all(16),
+              padding: const EdgeInsets.all(16),
               child: Row(
                 children: [
                   Expanded(
@@ -139,23 +139,23 @@ class Shot extends ConsumerWidget {
                     ),
                     DropdownMenuItem(
                       value: PlayType.FASTBREAK,
-                      child: Text('FASTBREAK'),
+                      child: Text('FAST BREAK'),
                     ),
                     DropdownMenuItem(
                       value: PlayType.PICK_AND_ROLL_BALL_HANDLER,
-                      child: Text('P&R BALLMAN'),
+                      child: Text('P&R BALLER'),
                     ),
                     DropdownMenuItem(
                       value: PlayType.PICK_AND_ROLL_ROLL_MAN,
-                      child: Text('P&R ROLLMAN'),
+                      child: Text('P&R ROLLER'),
                     ),
                     DropdownMenuItem(
                       value: PlayType.POSTUP,
-                      child: Text('POSTUP'),
+                      child: Text('POST UP'),
                     ),
                     DropdownMenuItem(
                       value: PlayType.SPOTUP,
-                      child: Text('SPOTUP'),
+                      child: Text('SPOT UP'),
                     ),
                     DropdownMenuItem(
                       value: PlayType.HANDOFF,
@@ -324,25 +324,25 @@ class Shot extends ConsumerWidget {
       return CircleAvatar(
         radius: radius,
         backgroundColor: Colors.blue,
-        child: Text('None'),
+        child: const Text('None'),
       );
     } else {
       if(selectedId == player.id) {
         return Container(
-          padding: const EdgeInsets.all(5.0), // borde width
+          padding: const EdgeInsets.all(5.0),
           decoration: const BoxDecoration(
             color: Colors.red, // border color
             shape: BoxShape.circle,
           ),
           child: CircleAvatar(
             radius: radius,
-            backgroundImage: AssetImage("${documentPath}/players/${player.id}.jpg"),
+            backgroundImage: AssetImage("$documentPath/players/${player.id}.jpg"),
           )
         );
       } else {
         return CircleAvatar(
           radius: radius,
-          backgroundImage: AssetImage("${documentPath}/players/${player.id}.jpg"),
+          backgroundImage: AssetImage("$documentPath/players/${player.id}.jpg"),
         );
       }
     }
