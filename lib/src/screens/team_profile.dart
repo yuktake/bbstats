@@ -131,7 +131,8 @@ class TeamProfile extends ConsumerWidget {
                           minTime: DateTime(1950, 1, 1),
                           maxTime: DateTime.now(),
                           onConfirm: (date) {
-                            teamDetail.updateStartDate(date);
+                            DateTime dateTime = DateTime(date.year,date.month,date.day,0,0,0);
+                            teamDetail.updateStartDate(dateTime);
                           },
                           currentTime: teamDetailInfo.start,
                           locale: LocaleType.jp
@@ -147,7 +148,8 @@ class TeamProfile extends ConsumerWidget {
                           minTime: DateTime(1950, 1, 1),
                           maxTime: DateTime.now(),
                           onConfirm: (date) {
-                            teamDetail.updateEndDate(date);
+                            DateTime dateTime = DateTime(date.year,date.month,date.day,23,59,59);
+                            teamDetail.updateEndDate(dateTime);
                           },
                           currentTime: teamDetailInfo.end,
                           locale: LocaleType.jp

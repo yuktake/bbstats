@@ -641,14 +641,24 @@ class TeamStatRepository {
     });
   }
 
-  // TODO:: 期間指定に対応する
-  List<List<dynamic>> getPlayTypeStats(int? opponentTeamId, int columnIndex, bool ascending) {
+  List<List<dynamic>> getPlayTypeStats(DateTime? start, DateTime? end, int? opponentTeamId, int columnIndex, bool ascending) {
     if (!isar.isOpen) {
       return [];
     }
 
-    // 勝敗が決まっている試合のスタッツのみで集計する
-    QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition> queryBuilder = isar.teamStats.filter().not().game((q) => q.outcomeEqualTo(Outcome.NONE));
+    QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition> queryBuilder;
+
+    // queryBuilderを初期化するための意味のないクエリ
+    queryBuilder = isar.teamStats.filter().not().game((q) => q.idEqualTo(0));
+
+    if (start != null) {
+      queryBuilder = queryBuilder.game((q) => q.gameDateGreaterThan(start, include: true));
+    }
+
+    if (end != null) {
+      queryBuilder = queryBuilder.game((q) => q.gameDateLessThan(end, include: true));
+    }
+
     if (opponentTeamId != null) {
       queryBuilder = queryBuilder.game((q) => q.opponent((r) => r.idEqualTo(opponentTeamId)));
     }
@@ -935,15 +945,25 @@ class TeamStatRepository {
     return playTypeStats;
   }
 
-  List<List<dynamic>> getShotZoneStats(int? opponentTeamId, int columnIndex, bool ascending) {
+  List<List<dynamic>> getShotZoneStats(DateTime? start, DateTime? end, int? opponentTeamId, int columnIndex, bool ascending) {
     if (!isar.isOpen) {
       return [];
     }
 
-    // 勝敗が決まっている試合のスタッツのみで集計する
-    QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition> queryBuilder = isar.teamStats.filter().not().game((q) => q.outcomeEqualTo(Outcome.NONE));
+    QueryBuilder<TeamStat, TeamStat, QAfterFilterCondition> queryBuilder;
+    // queryBuilderを初期化するための意味のないクエリ
+    queryBuilder = isar.teamStats.filter().not().game((q) => q.idEqualTo(0));
+
     if (opponentTeamId != null) {
       queryBuilder = queryBuilder.game((q) => q.opponent((r) => r.idEqualTo(opponentTeamId)));
+    }
+
+    if (start != null) {
+      queryBuilder = queryBuilder.game((q) => q.gameDateGreaterThan(start, include: true));
+    }
+
+    if (end != null) {
+      queryBuilder = queryBuilder.game((q) => q.gameDateLessThan(end, include: true));
     }
 
     List<TeamStat> teamStats = queryBuilder.findAllSync();
