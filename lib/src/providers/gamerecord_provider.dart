@@ -319,7 +319,7 @@ class GameRecordStateNotifier extends StateNotifier<GameRecordModel> {
           Boxscore boxScore = boxScoreRepository.findOneByGameAndPlayer(gameId, pbp.player.value!.id)!;
           gameRepository.modifyShot(gameId, pbp.supportedPlayerId, RecordType.TWO_POINT_MADE, boxScore.starter);
           teamStatRepository.modifyShot(gameId, FgResult.TWO_POINT_MADE, pbp.shotPosition!.playType, pbp.shotPosition!.shotZone);
-          boxScoreRepository.modifyShot(gameId, pbp.player.value!.id, FgResult.TWO_POINT_MADE, pbp.supportedPlayerId);
+          boxScoreRepository.modifyShot(boxScore, FgResult.TWO_POINT_MADE, pbp.supportedPlayerId, pbp.shotPosition!.playType, pbp.shotPosition!.shotType, pbp.shotPosition!.shotZone);
         }
         break;
       case RecordType.TWO_POINT_MISS:
@@ -329,7 +329,7 @@ class GameRecordStateNotifier extends StateNotifier<GameRecordModel> {
           Boxscore boxScore = boxScoreRepository.findOneByGameAndPlayer(gameId, pbp.player.value!.id)!;
           gameRepository.modifyShot(gameId, pbp.supportedPlayerId, RecordType.TWO_POINT_MISS, boxScore.starter);
           teamStatRepository.modifyShot(gameId, FgResult.TWO_POINT_MISS, pbp.shotPosition!.playType, pbp.shotPosition!.shotZone);
-          boxScoreRepository.modifyShot(gameId, pbp.player.value!.id, FgResult.TWO_POINT_MISS, pbp.supportedPlayerId);
+          boxScoreRepository.modifyShot(boxScore, FgResult.TWO_POINT_MISS, pbp.supportedPlayerId, pbp.shotPosition!.playType, pbp.shotPosition!.shotType, pbp.shotPosition!.shotZone);
         }
         break;
       case RecordType.THREE_POINT_MADE:
@@ -339,7 +339,7 @@ class GameRecordStateNotifier extends StateNotifier<GameRecordModel> {
           Boxscore boxScore = boxScoreRepository.findOneByGameAndPlayer(gameId, pbp.player.value!.id)!;
           gameRepository.modifyShot(gameId, pbp.supportedPlayerId, RecordType.THREE_POINT_MADE, boxScore.starter);
           teamStatRepository.modifyShot(gameId, FgResult.THREE_POINT_MADE, pbp.shotPosition!.playType, pbp.shotPosition!.shotZone);
-          boxScoreRepository.modifyShot(gameId, pbp.player.value!.id, FgResult.THREE_POINT_MADE, pbp.supportedPlayerId);
+          boxScoreRepository.modifyShot(boxScore, FgResult.THREE_POINT_MADE, pbp.supportedPlayerId, pbp.shotPosition!.playType, pbp.shotPosition!.shotType, pbp.shotPosition!.shotZone);
         }
         break;
       case RecordType.THREE_POINT_MISS:
@@ -349,7 +349,7 @@ class GameRecordStateNotifier extends StateNotifier<GameRecordModel> {
           Boxscore boxScore = boxScoreRepository.findOneByGameAndPlayer(gameId, pbp.player.value!.id)!;
           gameRepository.modifyShot(gameId, pbp.supportedPlayerId, RecordType.THREE_POINT_MISS, boxScore.starter);
           teamStatRepository.modifyShot(gameId, FgResult.THREE_POINT_MISS, pbp.shotPosition!.playType, pbp.shotPosition!.shotZone);
-          boxScoreRepository.modifyShot(gameId, pbp.player.value!.id, FgResult.THREE_POINT_MISS, pbp.supportedPlayerId);
+          boxScoreRepository.modifyShot(boxScore, FgResult.THREE_POINT_MISS, pbp.supportedPlayerId, pbp.shotPosition!.playType, pbp.shotPosition!.shotType, pbp.shotPosition!.shotZone);
         }
         break;
       case RecordType.FT_MADE:
