@@ -1569,7 +1569,7 @@ class BoxscoreRepository {
       fgaSum = fgaSum + boxScore.fga;
       tpmSum = tpmSum + boxScore.tpm;
       tpaSum = tpaSum + boxScore.tpa;
-      ftmSum = ftmSum + boxScore.tpa;
+      ftmSum = ftmSum + boxScore.ftm;
       ftaSum = ftaSum + boxScore.fta;
       oRebSum = oRebSum + boxScore.oReb;
       dRebSum = dRebSum + boxScore.dReb;

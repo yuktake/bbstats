@@ -952,7 +952,7 @@ class GameRepository {
       fgaSum = fgaSum + game.fga;
       tpmSum = tpmSum + game.tpm;
       tpaSum = tpaSum + game.tpa;
-      ftmSum = ftmSum + game.tpa;
+      ftmSum = ftmSum + game.ftm;
       ftaSum = ftaSum + game.fta;
       oRebSum = oRebSum + game.oReb;
       dRebSum = dRebSum + game.dReb;
