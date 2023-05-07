@@ -570,29 +570,34 @@ Future<dynamic> reboundDialog(BuildContext context, int gameId, Player? player) 
             title: const Text('Confirm'),
             content: const Text('Rebound'),
             actions: [
-              SimpleDialogOption(
-                onPressed: () => {
-                  gameRecord.updateBoxScore(player, RecordType.OFFENCE_REBOUND),
-                  gameRecord.addPlayAction(player != null ? player.id : 0, RecordType.OFFENCE_REBOUND, gameRecordInfo.currentQuarter, null, null, myTeamPlay),
-                  gameSummary.update(),
-                  Navigator.of(context).pop(true),
-                  gameRecord.scrollDown()
-                },
-                child: const Text('OFFENCE'),
-              ),
-              SimpleDialogOption(
-                onPressed: () => {
-                  gameRecord.updateBoxScore(player, RecordType.DEFENCE_REBOUND),
-                  gameRecord.addPlayAction(player != null ? player.id : 0, RecordType.DEFENCE_REBOUND, gameRecordInfo.currentQuarter, null, null, myTeamPlay),
-                  gameSummary.update(),
-                  Navigator.of(context).pop(true),
-                  gameRecord.scrollDown()
-                },
-                child: const Text('DEFENCE'),
-              ),
-              SimpleDialogOption(
-                onPressed: () => Navigator.of(context).pop(false),
-                child: const Text('Cancel'),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  SimpleDialogOption(
+                    onPressed: () => {
+                      gameRecord.updateBoxScore(player, RecordType.OFFENCE_REBOUND),
+                      gameRecord.addPlayAction(player != null ? player.id : 0, RecordType.OFFENCE_REBOUND, gameRecordInfo.currentQuarter, null, null, myTeamPlay),
+                      gameSummary.update(),
+                      Navigator.of(context).pop(true),
+                      gameRecord.scrollDown()
+                    },
+                    child: const Text('OFF'),
+                  ),
+                  SimpleDialogOption(
+                    onPressed: () => {
+                      gameRecord.updateBoxScore(player, RecordType.DEFENCE_REBOUND),
+                      gameRecord.addPlayAction(player != null ? player.id : 0, RecordType.DEFENCE_REBOUND, gameRecordInfo.currentQuarter, null, null, myTeamPlay),
+                      gameSummary.update(),
+                      Navigator.of(context).pop(true),
+                      gameRecord.scrollDown()
+                    },
+                    child: const Text('DEF'),
+                  ),
+                  SimpleDialogOption(
+                    onPressed: () => Navigator.of(context).pop(false),
+                    child: const Text('Cancel'),
+                  ),
+                ],
               ),
             ],
           );
