@@ -72,7 +72,8 @@ class GameRecordStateNotifier extends StateNotifier<GameRecordModel> {
 
   void scrollDown() {
     state.controller.animateTo(
-      state.controller.position.maxScrollExtent,
+      // 多めに設定しておくことでControllerが最新の最下部値を取得できていなくても対応できる
+      state.controller.position.maxScrollExtent+100,
       duration: const Duration(seconds: 1),
       curve: Curves.fastOutSlowIn,
     );
