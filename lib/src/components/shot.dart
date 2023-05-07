@@ -79,7 +79,8 @@ class Shot extends ConsumerWidget {
               ),
             ),
             // change depend on support type
-            Text(shotInfo.result ? 'Assisted By' : 'rebounded by'),
+            Text(shotInfo.result ? 'Assisted By' : ''),
+            shotInfo.result ?
             SizedBox(
               height: 100,
               child: ListView(
@@ -101,7 +102,8 @@ class Shot extends ConsumerWidget {
                     )
                 ],
               ),
-            ),
+            ) : Container(),
+
             const Text('Points'),
             Padding(
               padding: const EdgeInsets.all(16),

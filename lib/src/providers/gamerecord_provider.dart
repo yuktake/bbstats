@@ -300,7 +300,7 @@ class GameRecordStateNotifier extends StateNotifier<GameRecordModel> {
         recordTypeArg: recordType,
         quarter: quarter,
         shotPosition: shotPosition,
-        supportPlayerId: supportedPlayerId,
+        supportPlayer: player,
         myTeamPlay: myTeamPlay,
     );
     List<Pbp> pbps = pbpRepository.getPbpByQuarter(gameId, state.currentQuarter);

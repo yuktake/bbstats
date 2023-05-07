@@ -648,7 +648,7 @@ class PbpRepository {
     required RecordType recordTypeArg,
     required int quarter,
     required ShotPosition? shotPosition,
-    required int? supportPlayerId,
+    required Player? supportPlayer,
     required bool myTeamPlay,
   }) async {
     if (!isar.isOpen) {
@@ -662,62 +662,153 @@ class PbpRepository {
     switch(recordTypeArg) {
       case RecordType.TWO_POINT_MADE:
         recordType = RecordType.TWO_POINT_MADE;
-        description = '$playerName 2 point made';
+        if (supportPlayer != null) {
+          description = "$playerName 2 point made assisted by ${supportPlayer.name} \n";
+        } else {
+          description = "$playerName 2 point made \n";
+        }
         break;
       case RecordType.TWO_POINT_MISS:
         recordType = RecordType.TWO_POINT_MISS;
-        description = '$playerName 2 point missed';
+        description = "$playerName 2 point missed \n";
         break;
       case RecordType.THREE_POINT_MADE:
         recordType = RecordType.THREE_POINT_MADE;
-        description = '$playerName 3 point made';
+        if (supportPlayer != null) {
+          description = "$playerName 3 point made assisted by ${supportPlayer.name} \n";
+        } else {
+          description = "$playerName 3 point made \n";
+        }
         break;
       case RecordType.THREE_POINT_MISS:
         recordType = RecordType.THREE_POINT_MISS;
-        description = '$playerName 3 point missed';
+        description = "$playerName 3 point missed \n";
         break;
       case RecordType.FT_MISS:
         recordType = RecordType.FT_MISS;
-        description = '$playerName free throw misses';
+        description = "$playerName free throw misses \n";
         break;
       case RecordType.FT_MADE:
         recordType = RecordType.FT_MADE;
-        description = '$playerName free throw made';
+        description = "$playerName free throw made \n";
         break;
       case RecordType.OFFENCE_REBOUND:
         recordType = RecordType.OFFENCE_REBOUND;
-        description = '$playerName offence rebound';
+        description = "$playerName offence rebound \n";
         break;
       case RecordType.DEFENCE_REBOUND:
         recordType = RecordType.DEFENCE_REBOUND;
-        description = '$playerName defence rebound';
+        description = "$playerName defence rebound \n";
         break;
       case RecordType.BLOCK:
         recordType = RecordType.BLOCK;
-        description = '$playerName blocked';
+        description = "$playerName blocked \n";
         break;
       case RecordType.STEAL:
         recordType = RecordType.STEAL;
-        description = '$playerName stealed';
+        description = "$playerName stole \n";
         break;
       case RecordType.ASSIST:
-        recordType = RecordType.ASSIST;
-        description = '$playerName assisted';
         break;
       case RecordType.TURNOVER:
         recordType = RecordType.TURNOVER;
-        description = '$playerName turnover';
+        description = "$playerName turnover \n";
         break;
       case RecordType.FOUL:
         recordType = RecordType.FOUL;
-        description = '$playerName fouled';
+        description = "$playerName fouled \n";
         break;
       case RecordType.SUBSTITUTE:
-        recordType = RecordType.SUBSTITUTE;
-        description = '$playerName fouled';
         break;
       default:
         break;
+    }
+
+    if (shotPosition != null) {
+      switch(shotPosition.shotType){
+        case ShotType.NONE:
+          break;
+        case ShotType.LAYUP:
+          description = '$description LayUp /';
+          break;
+        case ShotType.CATCH_AND_SHOT:
+          description = '$description Catch&Shot /';
+          break;
+        case ShotType.PULLUP:
+          description = '$description PullUp /';
+          break;
+        case ShotType.FLOATING_SHOT:
+          description = '$description FloatingShot /';
+          break;
+        case ShotType.HOOK_SHOT:
+          description = '$description HookShot /';
+          break;
+        case ShotType.TIP_SHOT:
+          description = '$description TipShot /';
+          break;
+        case ShotType.FADEAWAY:
+          description = '$description FadeAway /';
+          break;
+        case ShotType.DUNK:
+          description = '$description Dunk /';
+          break;
+        case ShotType.ALLEY_OOP:
+          description = '$description AlleyOop /';
+          break;
+      }
+      switch(shotPosition.playType){
+        case PlayType.NONE:
+          break;
+        case PlayType.ISOLATION:
+          description = '$description Isolation /';
+          break;
+        case PlayType.FASTBREAK:
+          description = '$description FastBreak /';
+          break;
+        case PlayType.PICK_AND_ROLL_BALL_HANDLER:
+          description = '$description P&R Handler /';
+          break;
+        case PlayType.PICK_AND_ROLL_ROLL_MAN:
+          description = '$description P&R Roller /';
+          break;
+        case PlayType.POSTUP:
+          description = '$description PostUp /';
+          break;
+        case PlayType.SPOTUP:
+          description = '$description SpotUp /';
+          break;
+        case PlayType.HANDOFF:
+          description = '$description HandOff /';
+          break;
+        case PlayType.CUT:
+          description = '$description Cut /';
+          break;
+        case PlayType.OFF_SCREEN:
+          description = '$description OffScreen /';
+          break;
+        case PlayType.SECOND_CHANCE:
+          description = '$description SecondChance /';
+          break;
+      }
+      switch(shotPosition.shotZone){
+        case ShotZone.ALL:
+          break;
+        case ShotZone.IN_THE_PAINT:
+          description = '$description IN_THE_PAINT /';
+          break;
+        case ShotZone.MIDDLE_AREA:
+          description = '$description MIDDLE_AREA /';
+          break;
+        case ShotZone.AROUND_TOP_THREE:
+          description = '$description AROUND_TOP_THREE /';
+          break;
+        case ShotZone.LEFT_CORNER_THREE:
+          description = '$description LEFT_CORNER_THREE /';
+          break;
+        case ShotZone.RIGHT_CORNER_THREE:
+          description = '$description RIGHT_CORNER_THREE /';
+          break;
+      }
     }
 
     if (recordType == RecordType.NONE || description == '') {
@@ -730,9 +821,9 @@ class PbpRepository {
       ..playAt = playAt
       ..type = recordType
       ..quarter = quarter
-      ..description = '${quarter}Q: $time $description'
+      ..description = "${quarter}Q: $time\n $description"
       ..shotPosition = shotPosition
-      ..supportedPlayerId = supportPlayerId
+      ..supportedPlayerId = supportPlayer?.id
       ..myTeamPlay = myTeamPlay
     ;
 
