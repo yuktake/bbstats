@@ -4,7 +4,6 @@ import 'package:bb_stats/src/collections/shot/shot_model.dart';
 import 'package:bb_stats/src/collections/shot/shot_parameter.dart';
 import 'package:bb_stats/src/enums/FgResult.dart';
 import 'package:bb_stats/src/enums/PlayType.dart';
-import 'package:bb_stats/src/enums/PointType.dart';
 import 'package:bb_stats/src/enums/RecordType.dart';
 import 'package:bb_stats/src/enums/ShotType.dart';
 import 'package:bb_stats/src/enums/ShotZone.dart';
@@ -50,6 +49,20 @@ class ShotStateNotifier extends StateNotifier<ShotModel> {
   final TeamStatRepository teamStatRepository;
   final BoxscoreRepository boxScoreRepository;
   final ShotParameter shotParameter;
+
+  void resetState() {
+    prepareImageProvider();
+    state = state.copyWith(
+      positionX: null,
+      positionY: null,
+      result: false,
+      supportPlayerId: null,
+      playType: PlayType.NONE,
+      shotType: ShotType.NONE,
+      shotZone: ShotZone.IN_THE_PAINT,
+      point: 2
+    );
+  }
 
   void prepareImageProvider() async {
     String courtAsset = "assets/others/court.png"; //path to asset

@@ -14,6 +14,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_time_picker_spinner/flutter_time_picker_spinner.dart';
 
 import '../collections/player/player.dart';
+import '../collections/shot/shot_parameter.dart';
 
 class GameRecordScreen extends ConsumerWidget {
   const GameRecordScreen(this.id,{Key? key}) : super(key: key);
@@ -380,6 +381,7 @@ Widget _buildCircleAvatar(int gameId, Player player, String img, int index) {
 
       return Consumer(builder: (context, ref, _) {
         final gameRecordInfo = ref.watch(gameRecordProvider(gameId));
+        final shot = ref.watch(shotProvider(ShotParameter(gameId: gameId, playerId: player.id)).notifier);
 
         return Column(
             children: [
@@ -391,6 +393,7 @@ Widget _buildCircleAvatar(int gameId, Player player, String img, int index) {
                   }
                   switch(value) {
                     case PlayerAction.SHOT:
+                      shot.resetState();
                       Navigator.push(
                         context,
                         MaterialPageRoute(
