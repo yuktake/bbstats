@@ -1247,6 +1247,7 @@ class BoxscoreRepository {
 
     switch (ftResult) {
       case FtResult.FT_MADE:
+        boxScore.pts-=1;
         boxScore.ftm-=1;
         boxScore.fta-=1;
         if (boxScore.fta == 0) {
