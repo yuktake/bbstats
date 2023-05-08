@@ -70,7 +70,6 @@ class Shot extends ConsumerWidget {
                         },
                         groupValue: shotInfo.result ? 1 : 0,
                         onValueChanged: (int value) {
-                          // update result state
                           shot.updateResult(value);
                         }
                     ),
@@ -84,7 +83,6 @@ class Shot extends ConsumerWidget {
             SizedBox(
               height: 100,
               child: ListView(
-                // This next line does the trick.
                 scrollDirection: Axis.horizontal,
                 children: [
                   GestureDetector(
@@ -219,7 +217,7 @@ class Shot extends ConsumerWidget {
                     ),
                     DropdownMenuItem(
                       value: ShotType.FADEAWAY,
-                      child: Text('FADEAWAY'),
+                      child: Text('FADE AWAY'),
                     ),
                     DropdownMenuItem(
                       value: ShotType.DUNK,
@@ -279,7 +277,7 @@ class Shot extends ConsumerWidget {
                 backgroundColor: Colors.blue,
                 onPressed: () {
                   if (shotInfo.positionX == null || shotInfo.positionY == null) {
-                    // TODO:: ALERT
+                    noShotPositionDialog(context);
                     return;
                   }
                   shot.confirm(gameId, playerId);
@@ -349,4 +347,22 @@ class Shot extends ConsumerWidget {
       }
     }
   }
+}
+
+Future<dynamic> noShotPositionDialog(BuildContext context) {
+  return showDialog(
+    context: context,
+    builder: (context) {
+      return AlertDialog(
+        title: const Text('Shot Position'),
+        content: const Text('No shot position has been entered'),
+        actions : [
+          SimpleDialogOption(
+            onPressed: () => Navigator.of(context).pop(false),
+            child: const Text('OK'),
+          ),
+        ]
+      );
+    }
+  );
 }
