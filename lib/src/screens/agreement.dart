@@ -1,5 +1,3 @@
-import 'package:bb_stats/src/components/english_about.dart';
-import 'package:bb_stats/src/components/japanese_about.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
