@@ -325,9 +325,7 @@ class GameScreen extends ConsumerWidget {
                   onPressed: !gamePreparationInfo.startable ? null : () async {
                     int? gameId;
                     if (onGame) {
-                      gameId = gamePreparation
-                          .getOnGame()
-                          ?.id;
+                      gameId = gamePreparation.getOnGame()?.id;
                     } else {
                       gameId = await gamePreparation.startGame();
                       onGameNotifier.change(true);

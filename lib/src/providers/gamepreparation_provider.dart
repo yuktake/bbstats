@@ -34,6 +34,20 @@ class GamePreparationStateNotifier extends StateNotifier<GamePreparationModel> {
         startable: false,
       )
   ){
+    constructor();
+  }
+
+  final TeamRepository teamRepository;
+  final TeamStatRepository teamStatRepository;
+  final PlayerRepository playerRepository;
+  final GameRepository gameRepository;
+  final BoxscoreRepository boxScoreRepository;
+
+  static const quarterMinPrefsKey = 'quarterMin';
+
+  SharedPreferences? prefs;
+
+  void constructor() {
     // onGame=trueのGameのstarter5人を代入後、全てnull出なければstartable=trueにする
     Game? game = gameRepository.findOnGame();
     Team? opponent = game?.opponent.value;
@@ -58,16 +72,6 @@ class GamePreparationStateNotifier extends StateNotifier<GamePreparationModel> {
       startable: true,
     );
   }
-
-  final TeamRepository teamRepository;
-  final TeamStatRepository teamStatRepository;
-  final PlayerRepository playerRepository;
-  final GameRepository gameRepository;
-  final BoxscoreRepository boxScoreRepository;
-
-  static const quarterMinPrefsKey = 'quarterMin';
-
-  SharedPreferences? prefs;
 
   Future initialize() async {
     final quarterMin = await _quarterMinStatus;
@@ -137,7 +141,6 @@ class GamePreparationStateNotifier extends StateNotifier<GamePreparationModel> {
   }
 
   Future<int?> startGame() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
     final gameId = await gameRepository.createGame(state.opponentTeam!, state.gameDate, state.quarterMin);
 
     Game? game = gameRepository.findGame(gameId);
@@ -163,7 +166,6 @@ class GamePreparationStateNotifier extends StateNotifier<GamePreparationModel> {
 
     await gameRepository.addBoxScores(game, boxScores);
     await teamStatRepository.createTeamStat(game);
-    prefs.setBool('onGame', true);
 
     return gameId;
   }
