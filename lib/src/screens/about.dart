@@ -4,6 +4,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class AboutPage extends StatefulWidget {
+  const AboutPage({Key? key}) : super(key: key);
+
   @override
   State<StatefulWidget> createState() {
     return AboutPageState();
@@ -13,8 +15,8 @@ class AboutPage extends StatefulWidget {
 class AboutPageState extends State<AboutPage> {
 
   final _screens = [
-    JapaneseAbout(),
-    EnglishAbout(),
+    const JapaneseAbout(),
+    const EnglishAbout(),
   ];
 
   int _selectedIndex = 0;
