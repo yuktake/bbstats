@@ -62,6 +62,7 @@ dependencies:
   image_gallery_saver: ^1.5.0
   flutter_overboard: 2.0.1
   flutter_native_splash: ^2.2.9
+  google_mobile_ads: ^3.0.0
 
 dependency_overrides:
   analyzer: ">=4.2.0 <5.0.0"

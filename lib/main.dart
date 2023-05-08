@@ -6,9 +6,9 @@ import 'package:bb_stats/src/collections/pbp/pbp.dart';
 import 'package:bb_stats/src/collections/player/player.dart';
 import 'package:bb_stats/src/collections/team/team.dart';
 import 'package:bb_stats/src/collections/teamStat/teamStat.dart';
-import 'package:bb_stats/src/common.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:isar/isar.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -17,6 +17,7 @@ import 'package:flutter_native_splash/flutter_native_splash.dart';
 
 Future<void> main() async {
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
+  MobileAds.instance.initialize();
   FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
   final dir = await getApplicationSupportDirectory();
   var path = dir.path;
