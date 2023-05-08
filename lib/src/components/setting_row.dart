@@ -1,4 +1,5 @@
 import 'package:bb_stats/src/screens/about.dart';
+import 'package:bb_stats/src/screens/agreement.dart';
 import 'package:bb_stats/src/screens/players.dart';
 import 'package:bb_stats/src/screens/setting_details.dart';
 import 'package:flutter/material.dart';
@@ -141,7 +142,7 @@ var sidebarItems = [
       Icons.handshake,
       color: Colors.white,
     ),
-    screen: const SettingDetailsScreen(),
+    screen: const AgreementPage(),
   ),
 
   SidebarItem(
