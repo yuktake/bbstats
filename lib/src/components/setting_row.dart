@@ -3,6 +3,7 @@ import 'package:bb_stats/src/screens/agreement.dart';
 import 'package:bb_stats/src/screens/players.dart';
 import 'package:bb_stats/src/screens/setting_details.dart';
 import 'package:flutter/material.dart';
+import '../screens/purchase.dart';
 import '../screens/team_profile.dart';
 
 class SidebarRow extends StatelessWidget {
@@ -130,7 +131,7 @@ var sidebarItems = [
       Icons.lock,
       color: Colors.white,
     ),
-    screen: const SettingDetailsScreen(),
+    screen: const PurchaseScreen(),
   ),
   SidebarItem(
     title: "Agreement",
