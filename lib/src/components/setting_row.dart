@@ -1,8 +1,7 @@
+import 'package:bb_stats/src/screens/about.dart';
 import 'package:bb_stats/src/screens/players.dart';
 import 'package:bb_stats/src/screens/setting_details.dart';
 import 'package:flutter/material.dart';
-
-import '../screens/export.dart';
 import '../screens/team_profile.dart';
 
 class SidebarRow extends StatelessWidget {
@@ -13,7 +12,7 @@ class SidebarRow extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-        padding: const EdgeInsets.symmetric(vertical: 16.0),
+        padding: const EdgeInsets.symmetric(vertical: 8.0),
         child: GestureDetector(
           onTap: (){
             Navigator.push(
@@ -119,43 +118,43 @@ var sidebarItems = [
   //   ),
   //   screen: const PlayersScreen(),
   // ),
-  // SidebarItem(
-  //   title: "Data Export",
-  //   background: const LinearGradient(
-  //       begin: Alignment.topLeft,
-  //       end: Alignment.bottomRight,
-  //       colors: [Color(0xFFFAD64A), Color(0xFFEA880F)]),
-  //   icon: const Icon(
-  //     Icons.import_export,
-  //     color: Colors.white,
-  //   ),
-  //   screen: ExportScreen(),
-  // ),
   SidebarItem(
-    title: "Setting Details",
+    title: "CSV Export",
     background: const LinearGradient(
       begin: Alignment.topLeft,
       end: Alignment.bottomRight,
       colors: [Colors.orangeAccent, Colors.deepOrangeAccent],
     ),
     icon: const Icon(
-      Icons.settings,
+      Icons.lock,
+      color: Colors.white,
+    ),
+    screen: const SettingDetailsScreen(),
+  ),
+  SidebarItem(
+    title: "Agreement",
+    background: const LinearGradient(
+        begin: Alignment.topLeft,
+        end: Alignment.bottomRight,
+        colors: [Color(0xFFFAD64A), Color(0xFFEA880F)]),
+    icon: const Icon(
+      Icons.handshake,
       color: Colors.white,
     ),
     screen: const SettingDetailsScreen(),
   ),
 
-  // SidebarItem(
-  //   title: "Agreement",
-  //   background: const LinearGradient(
-  //     begin: Alignment.topLeft,
-  //     end: Alignment.bottomRight,
-  //     colors: [Color(0xFF4E62CC), Color(0xFF202A78)],
-  //   ),
-  //   icon: const Icon(
-  //     Icons.article,
-  //     color: Colors.white,
-  //   ),
-  //   screen: const PlayersScreen(),
-  // ),
+  SidebarItem(
+    title: "About This App",
+    background: const LinearGradient(
+      begin: Alignment.topLeft,
+      end: Alignment.bottomRight,
+      colors: [Color(0xFF4E62CC), Color(0xFF202A78)],
+    ),
+    icon: const Icon(
+      Icons.article,
+      color: Colors.white,
+    ),
+    screen: AboutPage(),
+  ),
 ];
