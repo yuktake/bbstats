@@ -1,5 +1,4 @@
 import 'package:bb_stats/src/collections/pbp/pbp.dart';
-import 'package:bb_stats/src/enums/PlayType.dart';
 import 'package:bb_stats/src/enums/RecordType.dart';
 import 'package:bb_stats/src/providers/isar_provider.dart';
 import 'package:flutter/cupertino.dart';
@@ -47,39 +46,9 @@ class PlayByPlayScreen extends ConsumerWidget {
               child: ListView.builder(
                 itemCount: gamePbpInfo.pbps.length,
                 itemBuilder: (context, index) {
-                  return Dismissible(
-                    key: UniqueKey(),
-                    onDismissed: (direction) {
-                      // gamePbp.deletePbp(gamePbpInfo.pbps.elementAt(index));
-                    },
-                    confirmDismiss: (direction) async {
-                      return await showDialog(
-                        context: context,
-                        builder: (context) {
-                          return AlertDialog(
-                            title: const Text('確認'),
-                            content: const Text('削除しますか'),
-                            actions: [
-                              SimpleDialogOption(
-                                onPressed: () => Navigator.of(context).pop(true),
-                                child: const Text('はい'),
-                              ),
-                              SimpleDialogOption(
-                                onPressed: () => Navigator.of(context).pop(false),
-                                child: const Text('いいえ'),
-                              ),
-                            ],
-                          );
-                        },
-                      );
-                    },
-                    background: Container(
-                      color: Colors.red,
-                    ),
-                    child: Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 16),
-                        child: gamePbpInfo.pbps.elementAt(index).player.value == null ? pbpOpponentRow(gamePbpInfo.pbps.elementAt(index), documentPath.value!, gamePbpInfo.game.opponent.value!.id) : pbpRow(gamePbpInfo.pbps.elementAt(index), documentPath.value!)
-                    ),
+                  return Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 16),
+                      child: gamePbpInfo.pbps.elementAt(index).player.value == null ? pbpOpponentRow(gamePbpInfo.pbps.elementAt(index), documentPath.value!, gamePbpInfo.game.opponent.value!.id) : pbpRow(gamePbpInfo.pbps.elementAt(index), documentPath.value!)
                   );
                 },
               ),
