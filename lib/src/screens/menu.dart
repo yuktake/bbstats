@@ -1,10 +1,11 @@
+import 'package:bb_stats/src/screens/setting_details.dart';
 import 'package:flutter/material.dart';
 
 import '../components/setting_row.dart';
 
-class SettingScreen extends StatelessWidget {
+class MenuScreen extends StatelessWidget {
 
-  const SettingScreen({
+  const MenuScreen({
     super.key,
   });
 
@@ -12,34 +13,35 @@ class SettingScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Settings'),
+        title: const Text('Menu'),
+        actions: [
+          IconButton(
+            icon: const Icon(
+                Icons.settings,
+              ),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) =>
+                    const SettingDetailsScreen(),
+                  ),
+                );
+              },
+          )
+        ],
       ),
       body: Padding(
         padding: const EdgeInsets.only(top: 16.0, left: 16.0, right: 16.0),
         child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Container(
-                alignment: Alignment.centerLeft,
-                width: MediaQuery.of(context).size.width,
-                height: 100,
-                child: const Text(
-                    "General",
-                    style: TextStyle(
-                      fontSize: 32.0,
-                      fontWeight: FontWeight.w800,
-                      color: Color(0xFF242629),
-                    ),
-                )
-              ),
-
               for(int i = 0; i < sidebarItems.length; i++) ... {
                 sidebarItems.last == sidebarItems[i] ? const Spacer() : Container(),
                 SidebarRow(item: sidebarItems[i])
               }
             ],
           ),
-
       )
     );
   }

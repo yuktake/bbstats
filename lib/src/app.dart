@@ -7,7 +7,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'screens/home.dart';
 import 'screens/game.dart';
 import 'screens/history.dart';
-import 'screens/settings.dart';
+import 'screens/menu.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({
@@ -50,10 +50,10 @@ class MyStatefulWidget extends StatefulWidget {
 class _MyStatefulWidgetState extends State<MyStatefulWidget> {
 
   final _screens = [
-    HomeScreen(),
+    const HomeScreen(),
     const GameScreen(),
     const HistoryScreen(),
-    const SettingScreen(),
+    const MenuScreen(),
   ];
 
   int _selectedIndex = 0;
@@ -75,7 +75,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
             BottomNavigationBarItem(icon: Icon(Icons.home), label: 'HOME'),
             BottomNavigationBarItem(icon: Icon(Icons.sports_basketball), label: 'GAME'),
             BottomNavigationBarItem(icon: Icon(Icons.history), label: 'HISTORY'),
-            BottomNavigationBarItem(icon: Icon(Icons.settings), label: 'SETTINGS'),
+            BottomNavigationBarItem(icon: Icon(Icons.menu), label: 'MENU'),
           ],
           type: BottomNavigationBarType.fixed,
         ));
