@@ -29,6 +29,10 @@ class GamePbpStateNotifier extends StateNotifier<GamePbpModel> {
     final BoxscoreRepository boxScoreRepository;
     final PbpRepository pbpRepository;
 
+    void editGame() {
+      gameRepository.editGame(gameId);
+    }
+
     void updateQuarter(int quarter) {
       state = state.copyWith(
         quarter: quarter,

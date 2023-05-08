@@ -1163,6 +1163,16 @@ class GameRepository {
     return comparisonStats;
   }
 
+  void editGame(int gameId) {
+    Game game = isar.games.filter().idEqualTo(gameId).findFirstSync()!;
+    game.onGame = true;
+    game.outcome = Outcome.NONE;
+
+    isar.writeTxnSync(() {
+      isar.games.putSync(game);
+    });
+  }
+
   void gameSet() {
     final game = isar.games.filter().onGameEqualTo(true).findFirstSync();
     if (game == null) {

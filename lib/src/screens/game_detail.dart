@@ -105,12 +105,38 @@ class GameDetailScreen extends ConsumerWidget {
           IconButton(
             icon: const Icon(Icons.edit),
             onPressed: () => {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => GameRecordScreen(id),
-                ),
-              )
+              showDialog(
+                context: context,
+                builder: (context) {
+                  return AlertDialog(
+                    title: const Text('Confirm'),
+                    content: const Text('この試合を再度編集しますか？'),
+                    actions: [
+                      SimpleDialogOption(
+                        onPressed: () {
+                          onGameNotifier.change(true);
+                          gamePbp.editGame();
+                          Navigator.of(context).pop(true);
+                          Navigator.of(context).pop(true);
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => GameRecordScreen(id),
+                            ),
+                          );
+                        },
+                        child: const Text('はい'),
+                      ),
+                      SimpleDialogOption(
+                        onPressed: () {
+                          Navigator.of(context).pop(true);
+                        },
+                        child: const Text('いいえ'),
+                      ),
+                    ],
+                  );
+                },
+              ),
             },
           ) : Container(),
 
