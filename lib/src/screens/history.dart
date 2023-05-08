@@ -16,6 +16,7 @@ class HistoryScreen extends ConsumerWidget {
     final gameListInfo = ref.watch(gameListProvider);
     final documentPath = ref.watch(documentPathProvider);
     var formatter = DateFormat('yyyy/MM/dd(E)', "ja_JP");
+    var cardComponentWidth = (MediaQuery.of(context).size.width - 42) / 3;
 
     var width = MediaQuery.of(context).size.width / 10;
 
@@ -24,7 +25,7 @@ class HistoryScreen extends ConsumerWidget {
         title: const Text('GAME'),
       ),
       body: Padding(
-        padding: const EdgeInsets.all(16.0,),
+        padding: const EdgeInsets.all(8.0),
         child: Column(
           children: [
             Text(DateFormat('MMMM yyyy').format(gameListInfo.dateTime)),
@@ -66,18 +67,21 @@ class HistoryScreen extends ConsumerWidget {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Padding(
-                              padding: const EdgeInsets.symmetric(horizontal: 16),
+                              padding: const EdgeInsets.symmetric(horizontal: 8),
                               child: Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                                 children: [
-                                  Column(
-                                    children: [
-                                      CircleAvatar(
-                                        backgroundImage: AssetImage('${documentPath.value}/teams/1.jpg'),
-                                        radius: width,
-                                      ),
-                                      Text(teamInfo.name),
-                                    ],
+                                  SizedBox(
+                                    width: cardComponentWidth,
+                                    child: Column(
+                                      children: [
+                                        CircleAvatar(
+                                          backgroundImage: AssetImage('${documentPath.value}/teams/1.jpg'),
+                                          radius: width,
+                                        ),
+                                        Text(teamInfo.name),
+                                      ],
+                                    ),
                                   ),
                                   Expanded(
                                     child: Column(
@@ -88,11 +92,14 @@ class HistoryScreen extends ConsumerWidget {
                                       ],
                                     ),
                                   ),
-                                  Column(
-                                    children: [
-                                      showOpponentImage("${documentPath.value}/teams/${gameListInfo.games[index].opponent.value?.id}.jpg", width),
-                                      Text(gameListInfo.games[index].opponent.value!.name),
-                                    ],
+                                  SizedBox(
+                                    width: cardComponentWidth,
+                                    child: Column(
+                                      children: [
+                                        showOpponentImage("${documentPath.value}/teams/${gameListInfo.games[index].opponent.value?.id}.jpg", width),
+                                        Text(gameListInfo.games[index].opponent.value!.name),
+                                      ],
+                                    ),
                                   ),
                                 ],
                               ),
