@@ -1,7 +1,6 @@
 import 'package:bb_stats/src/consts/CsvColumns.dart';
 import 'package:bb_stats/src/consts/TeamStatColumns.dart';
 import 'package:bb_stats/src/providers/isar_provider.dart';
-import 'package:bb_stats/src/screens/tutorial.dart';
 import 'package:data_table_2/data_table_2.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
@@ -9,7 +8,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:share_plus/share_plus.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'dart:io';
 
 class HomeScreen extends ConsumerWidget {
@@ -21,7 +19,6 @@ class HomeScreen extends ConsumerWidget {
     final homeInfo = ref.watch(homeProvider);
     final documentPath = ref.watch(documentPathProvider);
     final bool purchase = ref.watch(purchaseProvider);
-    _showTutorial(context);
 
     return Scaffold(
       appBar: AppBar(
@@ -273,21 +270,6 @@ class HomeScreen extends ConsumerWidget {
           ),
         ),
     );
-  }
-
-  void _showTutorial(BuildContext context) async {
-    final preference = await SharedPreferences.getInstance();
-    // 最初の起動ならチュートリアル表示
-    bool tutorialDone = preference.getBool("tutorial") ?? false;
-    if (!tutorialDone) {
-      Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (context) => TutorialPage(),
-        ),
-      );
-      preference.setBool('tutorial', true);
-    }
   }
 
   Widget playerColumn(String name, String path) {
