@@ -33,28 +33,30 @@ class AboutPageState extends State<AboutPage> {
         appBar: AppBar(
           title: const Text('About'),
         ),
-        body: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Column(
-            children: [
-              Row(
-                children: [
-                  Expanded(
-                      child: CupertinoSegmentedControl(
-                          children: const {
-                            0: Text('日本語'),
-                            1: Text('English'),
-                          },
-                          groupValue: _selectedIndex,
-                          onValueChanged: (int value) {
-                            _onItemTapped(value);
-                          }
-                      ),
-                  )
-                ],
-              ),
-              _screens[_selectedIndex],
-            ],
+        body: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Column(
+              children: [
+                Row(
+                  children: [
+                    Expanded(
+                        child: CupertinoSegmentedControl(
+                            children: const {
+                              0: Text('日本語'),
+                              1: Text('English'),
+                            },
+                            groupValue: _selectedIndex,
+                            onValueChanged: (int value) {
+                              _onItemTapped(value);
+                            }
+                        ),
+                    )
+                  ],
+                ),
+                _screens[_selectedIndex],
+              ],
+            ),
           ),
         )
     );
