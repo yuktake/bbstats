@@ -100,7 +100,7 @@ class GameDetailScreen extends ConsumerWidget {
                 return;
               }
               final csvFile = File('${(await getApplicationDocumentsDirectory()).path}/csvs/box-scores.csv');
-              String csvString = boxScoreList.getBoxScoresString(id);
+              String csvString = boxScoreList.getBoxScoresString();
               await csvFile.writeAsString(csvString);
               Share.shareXFiles([XFile('${documentPath.value}/csvs/box-scores.csv', name: 'box-scores.csv')], subject: 'Export', text: 'Output BoxScores');
             },

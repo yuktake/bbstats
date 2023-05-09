@@ -24,7 +24,7 @@ class  BoxScoreListStateNotifier extends StateNotifier<BoxScoreListModel> {
 
   }
 
-  String getBoxScoresString(int gameId) {
+  String getBoxScoresString() {
     List<String> boxScores = [
       CsvColumns.boxScoreColumnList.join(','),
     ];

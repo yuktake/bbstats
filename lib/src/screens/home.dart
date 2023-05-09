@@ -7,7 +7,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
+import 'package:path_provider/path_provider.dart';
+import 'package:share_plus/share_plus.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'dart:io';
 
 class HomeScreen extends ConsumerWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -32,11 +35,26 @@ class HomeScreen extends ConsumerWidget {
     final home = ref.watch(homeProvider.notifier);
     final homeInfo = ref.watch(homeProvider);
     final documentPath = ref.watch(documentPathProvider);
+    final bool purchase = ref.watch(purchaseProvider);
     _showTutorial(context);
 
     return Scaffold(
       appBar: AppBar(
         title: const Text('Home'),
+        actions: [
+          IconButton(
+            icon: Icon(Icons.download, color: purchase ? Colors.white : Colors.black12,),
+            onPressed: () async {
+              if (!purchase) {
+                return;
+              }
+              final csvFile = File('${(await getApplicationDocumentsDirectory()).path}/csvs/home.csv');
+              String csvString = home.getBoxScoresString();
+              await csvFile.writeAsString(csvString);
+              Share.shareXFiles([XFile('${documentPath.value}/csvs/home.csv', name: 'boxScores.csv')], subject: 'Export', text: 'Output Overall BoxScores');
+            },
+          )
+        ],
       ),
       body: SingleChildScrollView(
           scrollDirection: Axis.vertical,
