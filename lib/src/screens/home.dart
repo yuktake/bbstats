@@ -15,21 +15,6 @@ import 'dart:io';
 class HomeScreen extends ConsumerWidget {
   const HomeScreen({Key? key}) : super(key: key);
 
-  void _showTutorial(BuildContext context) async {
-    final preference = await SharedPreferences.getInstance();
-    // 最初の起動ならチュートリアル表示
-    bool tutorialDone = preference.getBool("tutorial") ?? false;
-    if (!tutorialDone) {
-      Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (context) => TutorialPage(),
-        ),
-      );
-      preference.setBool('tutorial', true);
-    }
-  }
-
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final home = ref.watch(homeProvider.notifier);
@@ -287,8 +272,22 @@ class HomeScreen extends ConsumerWidget {
             ],
           ),
         ),
-
     );
+  }
+
+  void _showTutorial(BuildContext context) async {
+    final preference = await SharedPreferences.getInstance();
+    // 最初の起動ならチュートリアル表示
+    bool tutorialDone = preference.getBool("tutorial") ?? false;
+    if (!tutorialDone) {
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => TutorialPage(),
+        ),
+      );
+      preference.setBool('tutorial', true);
+    }
   }
 
   Widget playerColumn(String name, String path) {
