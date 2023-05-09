@@ -25,6 +25,7 @@ class GameDetailScreen extends ConsumerWidget {
     final documentPath = ref.watch(documentPathProvider);
     final bool onGame = ref.watch(onGameProvider);
     final onGameNotifier = ref.watch(onGameProvider.notifier);
+    final bool purchase = ref.watch(purchaseProvider);
 
     final game = ref.watch(gameProvider(id).notifier);
     final gameInfo = ref.watch(gameProvider(id));
@@ -93,7 +94,11 @@ class GameDetailScreen extends ConsumerWidget {
           gameInfo.page == 1 ?
           IconButton(
             icon: const Icon(Icons.download),
+            color: purchase ? Colors.white : Colors.black12,
             onPressed: () async {
+              if (!purchase) {
+                return;
+              }
               final csvFile = File('${(await getApplicationDocumentsDirectory()).path}/csvs/box-scores.csv');
               String csvString = boxScoreList.getBoxScoresString(id);
               await csvFile.writeAsString(csvString);
@@ -143,7 +148,11 @@ class GameDetailScreen extends ConsumerWidget {
           gameInfo.page == 3 ?
           IconButton(
             icon: const Icon(Icons.download),
+            color: purchase ? Colors.white : Colors.black12,
             onPressed: () async {
+              if (!purchase) {
+                return;
+              }
               final csvFile = File('${(await getApplicationDocumentsDirectory()).path}/csvs/pbp.csv');
               String csvString = gamePbp.getPbpString(id);
               await csvFile.writeAsString(csvString);

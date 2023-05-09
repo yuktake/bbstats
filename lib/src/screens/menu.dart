@@ -1,18 +1,19 @@
 import 'package:bb_stats/src/screens/setting_details.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 
 import '../components/setting_row.dart';
+import '../providers/isar_provider.dart';
 
-class MenuScreen extends StatelessWidget {
-
-  const MenuScreen({
-    super.key,
-  });
+class MenuScreen extends ConsumerWidget {
+  const MenuScreen({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
-    final aaa = test();
+  Widget build(BuildContext context, WidgetRef ref) {
+    final bool purchase = ref.watch(purchaseProvider);
+    final adWidget = createAd();
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('Menu'),
@@ -38,11 +39,12 @@ class MenuScreen extends StatelessWidget {
         child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              purchase ? Container() :
               Container(
                 alignment: Alignment.center,
                 width: MediaQuery.of(context).size.width,
                 height: 100.0,
-                child: aaa,
+                child: adWidget,
               ),
 
               for(int i = 0; i < sidebarItems.length; i++) ... {
@@ -56,7 +58,7 @@ class MenuScreen extends StatelessWidget {
   }
 }
 
-AdWidget test() {
+AdWidget createAd() {
   final BannerAd myBanner = BannerAd(
     adUnitId: 'ca-app-pub-3940256099942544/2934735716',
     size: AdSize.banner,

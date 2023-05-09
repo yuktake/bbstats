@@ -31,13 +31,19 @@ class TeamProfile extends ConsumerWidget {
     final teamDetailInfo = ref.watch(teamDetailProvider);
     final documentPath = ref.watch(documentPathProvider);
 
+    final bool purchase = ref.watch(purchaseProvider);
+
     return Scaffold(
         appBar: AppBar(
           title: const Text('Team Profile'),
           actions: [
             IconButton(
               icon: const Icon(Icons.download),
+              color: purchase ? Colors.white : Colors.black12,
               onPressed: () async {
+                if (!purchase) {
+                  return;
+                }
                 final csvFile = File('${(await getApplicationDocumentsDirectory()).path}/csvs/team.csv');
                 String csvString = teamDetail.getStatsString(id);
                 await csvFile.writeAsString(csvString);
