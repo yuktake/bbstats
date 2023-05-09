@@ -21,7 +21,7 @@ class EnglishAbout extends StatelessWidget {
           ),
           const Text("This application is intended to record game data of your (supporting) team."),
           const Text(
-            '※Currently, this application does not have a data transfer function, so data can only be retrieved using the CSV output function.',
+            '※Please note that currently, the app does not have a data transfer feature. However, you can extract data using the CSV export feature (available for a fee).',
             style: TextStyle(
                 color: Colors.red
             ),
