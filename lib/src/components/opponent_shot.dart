@@ -136,23 +136,23 @@ class OpponentShot extends ConsumerWidget {
                     ),
                     DropdownMenuItem(
                       value: PlayType.FASTBREAK,
-                      child: Text('FASTBREAK'),
+                      child: Text('FAST BREAK'),
                     ),
                     DropdownMenuItem(
                       value: PlayType.PICK_AND_ROLL_BALL_HANDLER,
-                      child: Text('P&R BALLMAN'),
+                      child: Text('P&R BALL MAN'),
                     ),
                     DropdownMenuItem(
                       value: PlayType.PICK_AND_ROLL_ROLL_MAN,
-                      child: Text('P&R ROLLMAN'),
+                      child: Text('P&R ROLL MAN'),
                     ),
                     DropdownMenuItem(
                       value: PlayType.POSTUP,
-                      child: Text('POSTUP'),
+                      child: Text('POST UP'),
                     ),
                     DropdownMenuItem(
                       value: PlayType.SPOTUP,
-                      child: Text('SPOTUP'),
+                      child: Text('SPOT UP'),
                     ),
                     DropdownMenuItem(
                       value: PlayType.HANDOFF,
@@ -198,7 +198,7 @@ class OpponentShot extends ConsumerWidget {
                     ),
                     DropdownMenuItem(
                       value: ShotType.PULLUP,
-                      child: Text('PULLUP'),
+                      child: Text('PULL UP'),
                     ),
                     DropdownMenuItem(
                       value: ShotType.FLOATING_SHOT,
@@ -214,7 +214,7 @@ class OpponentShot extends ConsumerWidget {
                     ),
                     DropdownMenuItem(
                       value: ShotType.FADEAWAY,
-                      child: Text('FADEAWAY'),
+                      child: Text('FADE AWAY'),
                     ),
                     DropdownMenuItem(
                       value: ShotType.DUNK,
