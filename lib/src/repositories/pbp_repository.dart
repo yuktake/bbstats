@@ -709,6 +709,8 @@ class PbpRepository {
         description = "$playerName stole \n";
         break;
       case RecordType.ASSIST:
+        recordType = RecordType.ASSIST;
+        description = "$playerName assisted \n";
         break;
       case RecordType.TURNOVER:
         recordType = RecordType.TURNOVER;

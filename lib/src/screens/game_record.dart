@@ -499,7 +499,14 @@ Future<dynamic> confirmDialog(BuildContext context, String title, int gameId, Pl
               SimpleDialogOption(
                 onPressed: () => {
                   gameRecord.updateBoxScore(player, recordType),
-                  gameRecord.addPlayAction(player != null ? player.id : 0, recordType, gameRecordInfo.currentQuarter, null, null, myTeamPlay),
+                  gameRecord.addPlayAction(
+                      player != null ? player.id : 0,
+                      recordType,
+                      gameRecordInfo.currentQuarter,
+                      null,
+                      null,
+                      myTeamPlay
+                  ),
                   gameSummary.update(),
                   Navigator.of(context).pop(true),
                   gameRecord.scrollDown()

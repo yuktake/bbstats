@@ -293,6 +293,7 @@ class GameRecordStateNotifier extends StateNotifier<GameRecordModel> {
       bool myTeamPlay,
     ) {
     Player? player = playerRepository.getPlayer(playerId);
+    Player? supportPlayer = playerRepository.getPlayer(supportedPlayerId ?? 0);
     Game? game = gameRepository.findGame(gameId);
     pbpRepository.addPlayerAction(
         game: game!,
@@ -301,7 +302,7 @@ class GameRecordStateNotifier extends StateNotifier<GameRecordModel> {
         recordTypeArg: recordType,
         quarter: quarter,
         shotPosition: shotPosition,
-        supportPlayer: player,
+        supportPlayer: supportPlayer,
         myTeamPlay: myTeamPlay,
     );
     List<Pbp> pbps = pbpRepository.getPbpByQuarter(gameId, state.currentQuarter);
