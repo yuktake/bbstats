@@ -4,14 +4,12 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 
 import '../components/setting_row.dart';
-import '../providers/isar_provider.dart';
 
 class MenuScreen extends ConsumerWidget {
   const MenuScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final bool purchase = ref.watch(purchaseProvider);
     final adWidget = createAd();
 
     return Scaffold(
@@ -39,7 +37,6 @@ class MenuScreen extends ConsumerWidget {
         child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              purchase ? Container() :
               Container(
                 alignment: Alignment.center,
                 width: MediaQuery.of(context).size.width,

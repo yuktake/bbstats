@@ -1,6 +1,4 @@
-import 'package:bb_stats/src/providers/isar_provider.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class PurchaseScreen extends ConsumerWidget {
@@ -8,9 +6,6 @@ class PurchaseScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final bool purchase = ref.watch(purchaseProvider);
-    final purchaseNotifier = ref.watch(purchaseProvider.notifier);
-
     return Scaffold(
         appBar: AppBar(
             title: const Text('Advantages For Purchasing'),
@@ -25,18 +20,6 @@ class PurchaseScreen extends ConsumerWidget {
                 const Padding(
                   padding: EdgeInsets.symmetric(vertical: 8.0),
                   child: Text(
-                    '・No Advertisement',
-                    style: TextStyle(
-                      fontSize: 32.0,
-                      fontWeight: FontWeight.w800,
-                      color: Color(0xFF242629),
-                    ),
-                  ),
-                ),
-                const Text("You don't have to look at advertisements."),
-                const Padding(
-                  padding: EdgeInsets.symmetric(vertical: 8.0),
-                  child: Text(
                     '・Export CSV',
                     style: TextStyle(
                       fontSize: 32.0,
@@ -48,7 +31,10 @@ class PurchaseScreen extends ConsumerWidget {
                 const Text('You can output stats in CSV format for team, player, and game.'),
                 const Padding(
                   padding: EdgeInsets.only(top: 8.0),
-                  child: Text('Team stats: ', style: TextStyle(fontWeight: FontWeight.w800, color: Color(0xFF242629)))
+                  child: Text(
+                      'Team stats: (Our Team Screen)',
+                      style: TextStyle(fontWeight: FontWeight.w800, color: Color(0xFF242629))
+                  )
                 ),
                 const Text('・Overall stats'),
                 const Text('・Stats by wins and losses'),
@@ -75,37 +61,34 @@ class PurchaseScreen extends ConsumerWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: const [
                       Text(
-                        "Price: 500 yen / 5 dollars",
+                        "この機能は有料化の予定です",
                         style: TextStyle(
                           fontWeight: FontWeight.w800,
-                          color: Color(0xFF242629),
+                          color: Colors.red,
                         ),
                       ),
                     ],
                   ),
                 ),
+
                 Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 16.0),
+                  padding: const EdgeInsets.symmetric(vertical: 8.0),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      FloatingActionButton.extended(
-                        icon: const Icon(Icons.shopping_basket),
-                        label: Text(purchase ? "Already Purchased" : "Purchase"),
-                        backgroundColor: purchase ? Colors.black12 : Colors.blue,
-                        onPressed: () {
-                          // if (purchase) {
-                          //   return;
-                          // }
-                          purchaseNotifier.change(!purchase);
-                        },
+                    children: const [
+                      Text(
+                        "This feature is scheduled to be paid for",
+                        style: TextStyle(
+                          fontWeight: FontWeight.w800,
+                          color: Colors.red,
+                        ),
                       ),
                     ],
                   ),
-                )
-              ],
-            ),
-          ),
+                ),
+              ]
+            )
+          )
         )
     );
   }

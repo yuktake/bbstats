@@ -29,8 +29,6 @@ class PlayerProfile extends ConsumerWidget {
     final players = ref.watch(playerListProvider.notifier);
     final documentPath = ref.watch(documentPathProvider);
 
-    final bool purchase = ref.watch(purchaseProvider);
-
     return Scaffold(
       appBar: AppBar(
         title: const Text('Player Profile'),
@@ -96,11 +94,8 @@ class PlayerProfile extends ConsumerWidget {
             ),
           IconButton(
             icon: const Icon(Icons.download),
-            color: purchase ? Colors.white : Colors.black12,
+            color: Colors.white,
             onPressed: () async {
-              if (!purchase) {
-                return;
-              }
               final csvFile = File('${(await getApplicationDocumentsDirectory()).path}/csvs/player.csv');
               String csvString = playerDetail.getStatsString(id);
               await csvFile.writeAsString(csvString);

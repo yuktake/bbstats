@@ -18,18 +18,14 @@ class HomeScreen extends ConsumerWidget {
     final home = ref.watch(homeProvider.notifier);
     final homeInfo = ref.watch(homeProvider);
     final documentPath = ref.watch(documentPathProvider);
-    final bool purchase = ref.watch(purchaseProvider);
 
     return Scaffold(
       appBar: AppBar(
         title: const Text('Home'),
         actions: [
           IconButton(
-            icon: Icon(Icons.download, color: purchase ? Colors.white : Colors.black12,),
+            icon: const Icon(Icons.download, color: Colors.white),
             onPressed: () async {
-              if (!purchase) {
-                return;
-              }
               final csvFile = File('${(await getApplicationDocumentsDirectory()).path}/csvs/home.csv');
               String csvString = home.getBoxScoresString();
               await csvFile.writeAsString(csvString);
