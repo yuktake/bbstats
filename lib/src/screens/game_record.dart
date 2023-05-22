@@ -29,6 +29,7 @@ class GameRecordScreen extends ConsumerWidget {
     final gameRecordInfo = ref.watch(gameRecordProvider(id));
     final gameStat = ref.watch(gameStatProvider(id).notifier);
     final gameSummary = ref.watch(gameSummaryProvider(id).notifier);
+    final opponentShot = ref.watch(opponentShotProvider(ShotParameter(gameId: id, playerId: 0)).notifier);
     final documentPath = ref.watch(documentPathProvider);
 
     return Scaffold(
@@ -148,6 +149,7 @@ class GameRecordScreen extends ConsumerWidget {
                                 }
                                 switch(value) {
                                   case PlayerAction.SHOT:
+                                    opponentShot.resetState();
                                     Navigator.push(
                                       context,
                                       MaterialPageRoute(

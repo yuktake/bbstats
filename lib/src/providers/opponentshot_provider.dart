@@ -45,6 +45,21 @@ class OpponentShotStateNotifier extends StateNotifier<OpponentShotModel> {
   final BoxscoreRepository boxScoreRepository;
   final ShotParameter shotParameter;
 
+  void resetState() {
+    prepareImageProvider();
+    state = state.copyWith(
+        positionX: null,
+        positionY: null,
+        players: playerRepository.getOnCourtPlayersExceptMe(shotParameter.gameId, shotParameter.playerId),
+        result: false,
+        defencePlayerId: null,
+        playType: PlayType.NONE,
+        shotType: ShotType.NONE,
+        shotZone: ShotZone.IN_THE_PAINT,
+        point: 2
+    );
+  }
+
   void prepareImageProvider() async {
     String courtAsset = "assets/others/court.png"; //path to asset
     ByteData bytes = await rootBundle.load(courtAsset); //load sound from assets
@@ -77,9 +92,16 @@ class OpponentShotStateNotifier extends StateNotifier<OpponentShotModel> {
   }
 
   void updatePoint(int point) {
-    state = state.copyWith(
-        point: point
-    );
+    if (point == 3) {
+      state = state.copyWith(
+          point: point,
+          shotZone: ShotZone.AROUND_TOP_THREE,
+      );
+    } else {
+      state = state.copyWith(
+          point: point
+      );
+    }
   }
 
   void updatePlayType(PlayType playType) {

@@ -55,6 +55,7 @@ class ShotStateNotifier extends StateNotifier<ShotModel> {
     state = state.copyWith(
       positionX: null,
       positionY: null,
+      players: playerRepository.getOnCourtPlayersExceptMe(shotParameter.gameId, shotParameter.playerId),
       result: false,
       supportPlayerId: null,
       playType: PlayType.NONE,
@@ -96,9 +97,17 @@ class ShotStateNotifier extends StateNotifier<ShotModel> {
   }
 
   void updatePoint(int point) {
-    state = state.copyWith(
-        point: point
-    );
+    if (point == 3) {
+      state = state.copyWith(
+          point: point,
+          shotZone: ShotZone.AROUND_TOP_THREE
+      );
+    } else {
+      state = state.copyWith(
+          point: point
+      );
+    }
+
   }
 
   void updatePlayType(PlayType playType) {
