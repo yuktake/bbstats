@@ -6,6 +6,6 @@ part 'setting_details_model.freezed.dart';
 class SettingDetailsModel with _$SettingDetailsModel {
   const factory SettingDetailsModel({
     required int quarterMin,
-
+    required int overtimeQuarterMin,
   }) = _SettingDetailsModel;
 }

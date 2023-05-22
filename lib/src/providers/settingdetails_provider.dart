@@ -6,24 +6,28 @@ class SettingDetailsStateNotifier extends StateNotifier<SettingDetailsModel> {
   SettingDetailsStateNotifier() : super (
     const SettingDetailsModel(
       quarterMin: 10,
+      overtimeQuarterMin: 5,
     )
   ){
     initialize();
   }
 
   static const quarterMinPrefsKey = 'quarterMin';
+  static const overtimeQuarterMinPrefsKey = 'overtimeQuarterMin';
 
   SharedPreferences? prefs;
 
   Future initialize() async {
+    prefs = await SharedPreferences.getInstance();
     final quarterMin = await _quarterMinStatus;
+    final overtimeQuarterMin = await _overtimeQuarterMinStatus;
     state = state.copyWith(
-      quarterMin: quarterMin
+      quarterMin: quarterMin,
+      overtimeQuarterMin: overtimeQuarterMin,
     );
   }
 
   Future<int> get _quarterMinStatus async {
-    prefs = await SharedPreferences.getInstance();
     return prefs!.getInt(quarterMinPrefsKey) ?? 10;
   }
 
@@ -33,8 +37,21 @@ class SettingDetailsStateNotifier extends StateNotifier<SettingDetailsModel> {
     );
   }
 
-  void save() {
+  Future<int> get _overtimeQuarterMinStatus async {
+    return prefs!.getInt(overtimeQuarterMinPrefsKey) ?? 5;
+  }
+
+  void updateOvertimeQuarterMinState(int overtimeQuarterMin) {
+    state = state.copyWith(
+        overtimeQuarterMin: overtimeQuarterMin
+    );
+  }
+
+  bool save() {
     prefs!.setInt(quarterMinPrefsKey, state.quarterMin);
+    prefs!.setInt(overtimeQuarterMinPrefsKey, state.overtimeQuarterMin);
+
+    return true;
   }
 
 }

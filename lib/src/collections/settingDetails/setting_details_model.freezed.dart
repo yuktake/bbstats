@@ -17,6 +17,7 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$SettingDetailsModel {
   int get quarterMin => throw _privateConstructorUsedError;
+  int get overtimeQuarterMin => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $SettingDetailsModelCopyWith<SettingDetailsModel> get copyWith =>
@@ -28,7 +29,7 @@ abstract class $SettingDetailsModelCopyWith<$Res> {
   factory $SettingDetailsModelCopyWith(
           SettingDetailsModel value, $Res Function(SettingDetailsModel) then) =
       _$SettingDetailsModelCopyWithImpl<$Res>;
-  $Res call({int quarterMin});
+  $Res call({int quarterMin, int overtimeQuarterMin});
 }
 
 /// @nodoc
@@ -43,11 +44,16 @@ class _$SettingDetailsModelCopyWithImpl<$Res>
   @override
   $Res call({
     Object? quarterMin = freezed,
+    Object? overtimeQuarterMin = freezed,
   }) {
     return _then(_value.copyWith(
       quarterMin: quarterMin == freezed
           ? _value.quarterMin
           : quarterMin // ignore: cast_nullable_to_non_nullable
+              as int,
+      overtimeQuarterMin: overtimeQuarterMin == freezed
+          ? _value.overtimeQuarterMin
+          : overtimeQuarterMin // ignore: cast_nullable_to_non_nullable
               as int,
     ));
   }
@@ -60,7 +66,7 @@ abstract class _$$_SettingDetailsModelCopyWith<$Res>
           $Res Function(_$_SettingDetailsModel) then) =
       __$$_SettingDetailsModelCopyWithImpl<$Res>;
   @override
-  $Res call({int quarterMin});
+  $Res call({int quarterMin, int overtimeQuarterMin});
 }
 
 /// @nodoc
@@ -77,11 +83,16 @@ class __$$_SettingDetailsModelCopyWithImpl<$Res>
   @override
   $Res call({
     Object? quarterMin = freezed,
+    Object? overtimeQuarterMin = freezed,
   }) {
     return _then(_$_SettingDetailsModel(
       quarterMin: quarterMin == freezed
           ? _value.quarterMin
           : quarterMin // ignore: cast_nullable_to_non_nullable
+              as int,
+      overtimeQuarterMin: overtimeQuarterMin == freezed
+          ? _value.overtimeQuarterMin
+          : overtimeQuarterMin // ignore: cast_nullable_to_non_nullable
               as int,
     ));
   }
@@ -90,14 +101,17 @@ class __$$_SettingDetailsModelCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_SettingDetailsModel implements _SettingDetailsModel {
-  const _$_SettingDetailsModel({required this.quarterMin});
+  const _$_SettingDetailsModel(
+      {required this.quarterMin, required this.overtimeQuarterMin});
 
   @override
   final int quarterMin;
+  @override
+  final int overtimeQuarterMin;
 
   @override
   String toString() {
-    return 'SettingDetailsModel(quarterMin: $quarterMin)';
+    return 'SettingDetailsModel(quarterMin: $quarterMin, overtimeQuarterMin: $overtimeQuarterMin)';
   }
 
   @override
@@ -106,12 +120,16 @@ class _$_SettingDetailsModel implements _SettingDetailsModel {
         (other.runtimeType == runtimeType &&
             other is _$_SettingDetailsModel &&
             const DeepCollectionEquality()
-                .equals(other.quarterMin, quarterMin));
+                .equals(other.quarterMin, quarterMin) &&
+            const DeepCollectionEquality()
+                .equals(other.overtimeQuarterMin, overtimeQuarterMin));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(quarterMin));
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(quarterMin),
+      const DeepCollectionEquality().hash(overtimeQuarterMin));
 
   @JsonKey(ignore: true)
   @override
@@ -121,11 +139,14 @@ class _$_SettingDetailsModel implements _SettingDetailsModel {
 }
 
 abstract class _SettingDetailsModel implements SettingDetailsModel {
-  const factory _SettingDetailsModel({required final int quarterMin}) =
-      _$_SettingDetailsModel;
+  const factory _SettingDetailsModel(
+      {required final int quarterMin,
+      required final int overtimeQuarterMin}) = _$_SettingDetailsModel;
 
   @override
   int get quarterMin;
+  @override
+  int get overtimeQuarterMin;
   @override
   @JsonKey(ignore: true)
   _$$_SettingDetailsModelCopyWith<_$_SettingDetailsModel> get copyWith =>

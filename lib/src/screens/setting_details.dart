@@ -17,7 +17,23 @@ class SettingDetailsScreen extends ConsumerWidget {
             IconButton(
               icon: const Icon(Icons.save),
               onPressed: () => {
-                settingDetails.save()
+                if(settingDetails.save()) {
+                  showDialog(
+                    context: context,
+                    builder: (context) {
+                      return AlertDialog(
+                          title: const Text('Updated'),
+                          content: const Text('Settings have been changed'),
+                          actions: [
+                            SimpleDialogOption(
+                              onPressed: () => Navigator.of(context).pop(false),
+                              child: const Text('Done'),
+                            ),
+                          ]
+                      );
+                    }
+                  )
+                }
               },
             )
           ],
@@ -45,7 +61,27 @@ class SettingDetailsScreen extends ConsumerWidget {
                     value: settingDetailsInfo.quarterMin,
                   ),
                 ],
-              )
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  const Text("Overtime Minutes"),
+                  DropdownButton(
+                    items: [
+                      for(int i = 24; i > 0; i--) ... {
+                        DropdownMenuItem(
+                          value:  i,
+                          child: Text(i.toString()),
+                        )
+                      }
+                    ],
+                    onChanged: (int? value) {
+                      settingDetails.updateOvertimeQuarterMinState(value!);
+                    },
+                    value: settingDetailsInfo.overtimeQuarterMin,
+                  ),
+                ],
+              ),
             ],
           ),
         ),
