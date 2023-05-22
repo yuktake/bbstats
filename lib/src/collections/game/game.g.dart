@@ -187,54 +187,64 @@ const GameSchema = CollectionSchema(
       name: r'opponentTpm',
       type: IsarType.long,
     ),
-    r'outcome': PropertySchema(
+    r'otNum': PropertySchema(
       id: 34,
+      name: r'otNum',
+      type: IsarType.long,
+    ),
+    r'outcome': PropertySchema(
+      id: 35,
       name: r'outcome',
       type: IsarType.byte,
       enumMap: _GameoutcomeEnumValueMap,
     ),
+    r'overtimeQuarterMin': PropertySchema(
+      id: 36,
+      name: r'overtimeQuarterMin',
+      type: IsarType.long,
+    ),
     r'pf': PropertySchema(
-      id: 35,
+      id: 37,
       name: r'pf',
       type: IsarType.long,
     ),
     r'quarterMin': PropertySchema(
-      id: 36,
+      id: 38,
       name: r'quarterMin',
       type: IsarType.long,
     ),
     r'reb': PropertySchema(
-      id: 37,
+      id: 39,
       name: r'reb',
       type: IsarType.long,
     ),
     r'stl': PropertySchema(
-      id: 38,
+      id: 40,
       name: r'stl',
       type: IsarType.long,
     ),
     r'to': PropertySchema(
-      id: 39,
+      id: 41,
       name: r'to',
       type: IsarType.long,
     ),
     r'tpRatio': PropertySchema(
-      id: 40,
+      id: 42,
       name: r'tpRatio',
       type: IsarType.double,
     ),
     r'tpa': PropertySchema(
-      id: 41,
+      id: 43,
       name: r'tpa',
       type: IsarType.long,
     ),
     r'tpm': PropertySchema(
-      id: 42,
+      id: 44,
       name: r'tpm',
       type: IsarType.long,
     ),
     r'updatedAt': PropertySchema(
-      id: 43,
+      id: 45,
       name: r'updatedAt',
       type: IsarType.dateTime,
     )
@@ -328,16 +338,18 @@ void _gameSerialize(
   writer.writeDouble(offsets[31], object.opponentTpRatio);
   writer.writeLong(offsets[32], object.opponentTpa);
   writer.writeLong(offsets[33], object.opponentTpm);
-  writer.writeByte(offsets[34], object.outcome.index);
-  writer.writeLong(offsets[35], object.pf);
-  writer.writeLong(offsets[36], object.quarterMin);
-  writer.writeLong(offsets[37], object.reb);
-  writer.writeLong(offsets[38], object.stl);
-  writer.writeLong(offsets[39], object.to);
-  writer.writeDouble(offsets[40], object.tpRatio);
-  writer.writeLong(offsets[41], object.tpa);
-  writer.writeLong(offsets[42], object.tpm);
-  writer.writeDateTime(offsets[43], object.updatedAt);
+  writer.writeLong(offsets[34], object.otNum);
+  writer.writeByte(offsets[35], object.outcome.index);
+  writer.writeLong(offsets[36], object.overtimeQuarterMin);
+  writer.writeLong(offsets[37], object.pf);
+  writer.writeLong(offsets[38], object.quarterMin);
+  writer.writeLong(offsets[39], object.reb);
+  writer.writeLong(offsets[40], object.stl);
+  writer.writeLong(offsets[41], object.to);
+  writer.writeDouble(offsets[42], object.tpRatio);
+  writer.writeLong(offsets[43], object.tpa);
+  writer.writeLong(offsets[44], object.tpm);
+  writer.writeDateTime(offsets[45], object.updatedAt);
 }
 
 Game _gameDeserialize(
@@ -382,18 +394,20 @@ Game _gameDeserialize(
   object.opponentTpRatio = reader.readDouble(offsets[31]);
   object.opponentTpa = reader.readLong(offsets[32]);
   object.opponentTpm = reader.readLong(offsets[33]);
+  object.otNum = reader.readLong(offsets[34]);
   object.outcome =
-      _GameoutcomeValueEnumMap[reader.readByteOrNull(offsets[34])] ??
+      _GameoutcomeValueEnumMap[reader.readByteOrNull(offsets[35])] ??
           Outcome.NONE;
-  object.pf = reader.readLong(offsets[35]);
-  object.quarterMin = reader.readLong(offsets[36]);
-  object.reb = reader.readLong(offsets[37]);
-  object.stl = reader.readLong(offsets[38]);
-  object.to = reader.readLong(offsets[39]);
-  object.tpRatio = reader.readDouble(offsets[40]);
-  object.tpa = reader.readLong(offsets[41]);
-  object.tpm = reader.readLong(offsets[42]);
-  object.updatedAt = reader.readDateTime(offsets[43]);
+  object.overtimeQuarterMin = reader.readLong(offsets[36]);
+  object.pf = reader.readLong(offsets[37]);
+  object.quarterMin = reader.readLong(offsets[38]);
+  object.reb = reader.readLong(offsets[39]);
+  object.stl = reader.readLong(offsets[40]);
+  object.to = reader.readLong(offsets[41]);
+  object.tpRatio = reader.readDouble(offsets[42]);
+  object.tpa = reader.readLong(offsets[43]);
+  object.tpm = reader.readLong(offsets[44]);
+  object.updatedAt = reader.readDateTime(offsets[45]);
   return object;
 }
 
@@ -473,10 +487,10 @@ P _gameDeserializeProp<P>(
     case 33:
       return (reader.readLong(offset)) as P;
     case 34:
+      return (reader.readLong(offset)) as P;
+    case 35:
       return (_GameoutcomeValueEnumMap[reader.readByteOrNull(offset)] ??
           Outcome.NONE) as P;
-    case 35:
-      return (reader.readLong(offset)) as P;
     case 36:
       return (reader.readLong(offset)) as P;
     case 37:
@@ -486,12 +500,16 @@ P _gameDeserializeProp<P>(
     case 39:
       return (reader.readLong(offset)) as P;
     case 40:
-      return (reader.readDouble(offset)) as P;
+      return (reader.readLong(offset)) as P;
     case 41:
       return (reader.readLong(offset)) as P;
     case 42:
-      return (reader.readLong(offset)) as P;
+      return (reader.readDouble(offset)) as P;
     case 43:
+      return (reader.readLong(offset)) as P;
+    case 44:
+      return (reader.readLong(offset)) as P;
+    case 45:
       return (reader.readDateTime(offset)) as P;
     default:
       throw IsarError('Unknown property with id $propertyId');
@@ -2447,6 +2465,58 @@ extension GameQueryFilter on QueryBuilder<Game, Game, QFilterCondition> {
     });
   }
 
+  QueryBuilder<Game, Game, QAfterFilterCondition> otNumEqualTo(int value) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'otNum',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<Game, Game, QAfterFilterCondition> otNumGreaterThan(
+    int value, {
+    bool include = false,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        include: include,
+        property: r'otNum',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<Game, Game, QAfterFilterCondition> otNumLessThan(
+    int value, {
+    bool include = false,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.lessThan(
+        include: include,
+        property: r'otNum',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<Game, Game, QAfterFilterCondition> otNumBetween(
+    int lower,
+    int upper, {
+    bool includeLower = true,
+    bool includeUpper = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.between(
+        property: r'otNum',
+        lower: lower,
+        includeLower: includeLower,
+        upper: upper,
+        includeUpper: includeUpper,
+      ));
+    });
+  }
+
   QueryBuilder<Game, Game, QAfterFilterCondition> outcomeEqualTo(
       Outcome value) {
     return QueryBuilder.apply(this, (query) {
@@ -2492,6 +2562,59 @@ extension GameQueryFilter on QueryBuilder<Game, Game, QFilterCondition> {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.between(
         property: r'outcome',
+        lower: lower,
+        includeLower: includeLower,
+        upper: upper,
+        includeUpper: includeUpper,
+      ));
+    });
+  }
+
+  QueryBuilder<Game, Game, QAfterFilterCondition> overtimeQuarterMinEqualTo(
+      int value) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'overtimeQuarterMin',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<Game, Game, QAfterFilterCondition> overtimeQuarterMinGreaterThan(
+    int value, {
+    bool include = false,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        include: include,
+        property: r'overtimeQuarterMin',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<Game, Game, QAfterFilterCondition> overtimeQuarterMinLessThan(
+    int value, {
+    bool include = false,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.lessThan(
+        include: include,
+        property: r'overtimeQuarterMin',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<Game, Game, QAfterFilterCondition> overtimeQuarterMinBetween(
+    int lower,
+    int upper, {
+    bool includeLower = true,
+    bool includeUpper = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.between(
+        property: r'overtimeQuarterMin',
         lower: lower,
         includeLower: includeLower,
         upper: upper,
@@ -3530,6 +3653,18 @@ extension GameQuerySortBy on QueryBuilder<Game, Game, QSortBy> {
     });
   }
 
+  QueryBuilder<Game, Game, QAfterSortBy> sortByOtNum() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'otNum', Sort.asc);
+    });
+  }
+
+  QueryBuilder<Game, Game, QAfterSortBy> sortByOtNumDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'otNum', Sort.desc);
+    });
+  }
+
   QueryBuilder<Game, Game, QAfterSortBy> sortByOutcome() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'outcome', Sort.asc);
@@ -3539,6 +3674,18 @@ extension GameQuerySortBy on QueryBuilder<Game, Game, QSortBy> {
   QueryBuilder<Game, Game, QAfterSortBy> sortByOutcomeDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'outcome', Sort.desc);
+    });
+  }
+
+  QueryBuilder<Game, Game, QAfterSortBy> sortByOvertimeQuarterMin() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'overtimeQuarterMin', Sort.asc);
+    });
+  }
+
+  QueryBuilder<Game, Game, QAfterSortBy> sortByOvertimeQuarterMinDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'overtimeQuarterMin', Sort.desc);
     });
   }
 
@@ -4072,6 +4219,18 @@ extension GameQuerySortThenBy on QueryBuilder<Game, Game, QSortThenBy> {
     });
   }
 
+  QueryBuilder<Game, Game, QAfterSortBy> thenByOtNum() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'otNum', Sort.asc);
+    });
+  }
+
+  QueryBuilder<Game, Game, QAfterSortBy> thenByOtNumDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'otNum', Sort.desc);
+    });
+  }
+
   QueryBuilder<Game, Game, QAfterSortBy> thenByOutcome() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'outcome', Sort.asc);
@@ -4081,6 +4240,18 @@ extension GameQuerySortThenBy on QueryBuilder<Game, Game, QSortThenBy> {
   QueryBuilder<Game, Game, QAfterSortBy> thenByOutcomeDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'outcome', Sort.desc);
+    });
+  }
+
+  QueryBuilder<Game, Game, QAfterSortBy> thenByOvertimeQuarterMin() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'overtimeQuarterMin', Sort.asc);
+    });
+  }
+
+  QueryBuilder<Game, Game, QAfterSortBy> thenByOvertimeQuarterMinDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'overtimeQuarterMin', Sort.desc);
     });
   }
 
@@ -4398,9 +4569,21 @@ extension GameQueryWhereDistinct on QueryBuilder<Game, Game, QDistinct> {
     });
   }
 
+  QueryBuilder<Game, Game, QDistinct> distinctByOtNum() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addDistinctBy(r'otNum');
+    });
+  }
+
   QueryBuilder<Game, Game, QDistinct> distinctByOutcome() {
     return QueryBuilder.apply(this, (query) {
       return query.addDistinctBy(r'outcome');
+    });
+  }
+
+  QueryBuilder<Game, Game, QDistinct> distinctByOvertimeQuarterMin() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addDistinctBy(r'overtimeQuarterMin');
     });
   }
 
@@ -4670,9 +4853,21 @@ extension GameQueryProperty on QueryBuilder<Game, Game, QQueryProperty> {
     });
   }
 
+  QueryBuilder<Game, int, QQueryOperations> otNumProperty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addPropertyName(r'otNum');
+    });
+  }
+
   QueryBuilder<Game, Outcome, QQueryOperations> outcomeProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'outcome');
+    });
+  }
+
+  QueryBuilder<Game, int, QQueryOperations> overtimeQuarterMinProperty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addPropertyName(r'overtimeQuarterMin');
     });
   }
 

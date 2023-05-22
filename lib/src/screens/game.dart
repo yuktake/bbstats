@@ -29,6 +29,8 @@ class GameScreen extends ConsumerWidget {
     final onGameNotifier = ref.watch(onGameProvider.notifier);
     var formatter = DateFormat('yyyy/MM/dd(E)', "ja_JP");
 
+    double iconRadius = MediaQuery.of(context).size.height * 0.07;
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('Game'),
@@ -38,88 +40,116 @@ class GameScreen extends ConsumerWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Container(
-            height: 100,
+            height: MediaQuery.of(context).size.height*0.25,
             decoration: const BoxDecoration(
               color: Colors.blueGrey,
             ),
-            child: Column(
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    CircleAvatar(
-                      backgroundImage: AssetImage('${documentPath.value}/teams/1.jpg'),
-                      radius: 50.0,
-                    ),
-                    Expanded(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          onGame ? Text(
-                              DateFormat('yyyy-MM-dd').format(gamePreparationInfo.gameDate),
-                              style: const TextStyle(color: Colors.black)
-                          ) :
-                          TextButton(
-                            onPressed: () {
-                              DatePicker.showDatePicker(context,
-                                  showTitleActions: true,
-                                  minTime: DateTime(1950, 1, 1),
-                                  maxTime: DateTime.now(),
-                                  onConfirm: (date) {
-                                    gamePreparation.updateGameDate(date);
-                                  },
-                                  currentTime: gamePreparationInfo.gameDate,
-                                  locale: LocaleType.jp
-                              );
-                            },
-                            child: Text(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 8.0),
+              child: Column(
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      CircleAvatar(
+                        backgroundImage: AssetImage('${documentPath.value}/teams/1.jpg'),
+                        radius: iconRadius,
+                      ),
+                      Expanded(
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.stretch,
+                          children: [
+                            onGame ? Text(
                                 DateFormat('yyyy-MM-dd').format(gamePreparationInfo.gameDate),
                                 style: const TextStyle(color: Colors.black)
-                            ),
-                          ),
-                          onGame ? Text("${gamePreparationInfo.quarterMin} Min Per Quarter", style: const TextStyle(color: Colors.black)) :
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              DropdownButton(
-                                items: [
-                                  for(int i = 24; i > 0; i--) ... {
-                                    DropdownMenuItem(
-                                      value:  i,
-                                      child: Text(i.toString()),
-                                    )
-                                  }
-                                ],
-                                onChanged: (int? value) {
-                                  settingDetails.updateQuarterMinState(value!);
-                                },
-                                value: settingDetailsInfo.quarterMin,
+                            ) :
+                            TextButton(
+                              onPressed: () {
+                                DatePicker.showDatePicker(context,
+                                    showTitleActions: true,
+                                    minTime: DateTime(1950, 1, 1),
+                                    maxTime: DateTime.now(),
+                                    onConfirm: (date) {
+                                      gamePreparation.updateGameDate(date);
+                                    },
+                                    currentTime: gamePreparationInfo.gameDate,
+                                    locale: LocaleType.jp
+                                );
+                              },
+                              child: Text(
+                                  DateFormat('yyyy-MM-dd').format(gamePreparationInfo.gameDate),
+                                  style: const TextStyle(color: Colors.black)
                               ),
-                              const Text('Min Per Quarter'),
-                            ],
-                          ),
-                        ],
-                      ),
-                    ),
-                    GestureDetector(
-                      onTap: () {
-                        if (!onGame) {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => const TeamsSelectScreen(),
                             ),
-                          );
-                        }
-                      },
-                      child: teamImage(
-                        gamePreparationInfo.opponentTeam,
-                        documentPath.value,
+                            onGame ? Text("${gamePreparationInfo.quarterMin} Min Per Quarter", style: const TextStyle(color: Colors.black)) :
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                DropdownButton(
+                                  items: [
+                                    for(int i = 24; i > 0; i--) ... {
+                                      DropdownMenuItem(
+                                        value:  i,
+                                        child: Text(i.toString()),
+                                      )
+                                    }
+                                  ],
+                                  onChanged: (int? value) {
+                                    settingDetails.updateQuarterMinState(value!);
+                                  },
+                                  value: settingDetailsInfo.quarterMin,
+                                ),
+                                const Text('Min Per Quarter'),
+                              ],
+                            ),
+
+                            onGame ? Text("OT ${gamePreparationInfo.overtimeQuarterMin} Minutes", style: const TextStyle(color: Colors.black)) :
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                const Text('OT: '),
+                                DropdownButton(
+                                  items: [
+                                    for(int i = 24; i > 0; i--) ... {
+                                      DropdownMenuItem(
+                                        value:  i,
+                                        child: Text(i.toString()),
+                                      )
+                                    }
+                                  ],
+                                  onChanged: (int? value) {
+                                    settingDetails.updateOvertimeQuarterMinState(value!);
+                                  },
+                                  value: settingDetailsInfo.overtimeQuarterMin,
+                                ),
+                                const Text('Minutes'),
+                              ],
+                            ),
+                          ],
+                        ),
                       ),
-                    ),
-                  ],
-                ),
-              ],
+                      GestureDetector(
+                        onTap: () {
+                          if (!onGame) {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => const TeamsSelectScreen(),
+                              ),
+                            );
+                          }
+                        },
+                        child: teamImage(
+                          iconRadius,
+                          gamePreparationInfo.opponentTeam,
+                          documentPath.value,
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
             ),
           ),
 
@@ -376,17 +406,17 @@ CircleAvatar avatarImage(double radius, Player? player, String? documentPath) {
   }
 }
 
-CircleAvatar teamImage(Team? team, String? documentPath) {
+CircleAvatar teamImage(double radius, Team? team, String? documentPath) {
 
   if (team == null) {
-    return const CircleAvatar(
-      radius: 50,
+    return CircleAvatar(
+      radius: radius,
       backgroundColor: Colors.blue,
-      child: Text('?'),
+      child: const Text('?'),
     );
   } else {
     return CircleAvatar(
-      radius: 50,
+      radius: radius,
       backgroundImage: AssetImage("$documentPath/teams/${team.id}.jpg"),
     );
   }

@@ -11,6 +11,7 @@ class GamePreparationModel with _$GamePreparationModel {
   const factory GamePreparationModel({
     required DateTime gameDate,
     required int quarterMin,
+    required int overtimeQuarterMin,
     required Team myTeam,
     required Team? opponentTeam,
     required Player? pg,

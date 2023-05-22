@@ -23,6 +23,7 @@ class GamePreparationStateNotifier extends StateNotifier<GamePreparationModel> {
       GamePreparationModel(
         gameDate: DateTime.now(),
         quarterMin: 10,
+        overtimeQuarterMin: 5,
         myTeam: teamRepository.findTeam(1)!,
         opponentTeam: null,
         pg: null,
@@ -45,6 +46,8 @@ class GamePreparationStateNotifier extends StateNotifier<GamePreparationModel> {
 
   static const quarterMinPrefsKey = 'quarterMin';
 
+  static const overtimeQuarterMinPrefsKey = 'overtimeQuarterMin';
+
   SharedPreferences? prefs;
 
   void constructor() {
@@ -63,6 +66,7 @@ class GamePreparationStateNotifier extends StateNotifier<GamePreparationModel> {
       gameDate: game.gameDate,
       opponentTeam: opponent,
       quarterMin: game.quarterMin,
+      overtimeQuarterMin: game.overtimeQuarterMin,
       pg: boxScores.elementAt(0).player.value,
       sg: boxScores.elementAt(1).player.value,
       sf: boxScores.elementAt(2).player.value,
@@ -75,8 +79,10 @@ class GamePreparationStateNotifier extends StateNotifier<GamePreparationModel> {
 
   Future initialize() async {
     final quarterMin = await _quarterMinStatus;
+    final overtimeQuarterMin = await _overtimeQuarterMinStatus;
     state = state.copyWith(
-        quarterMin: quarterMin
+        quarterMin: quarterMin,
+        overtimeQuarterMin: overtimeQuarterMin,
     );
   }
 
@@ -88,6 +94,17 @@ class GamePreparationStateNotifier extends StateNotifier<GamePreparationModel> {
   void updateQuarterMinState(int quarterMin) {
     state = state.copyWith(
         quarterMin: quarterMin
+    );
+  }
+
+  Future<int> get _overtimeQuarterMinStatus async {
+    prefs = await SharedPreferences.getInstance();
+    return prefs!.getInt(overtimeQuarterMinPrefsKey) ?? 5;
+  }
+
+  void updateOvertimeQuarterMinState(int overtimeQuarterMin) {
+    state = state.copyWith(
+        overtimeQuarterMin: overtimeQuarterMin
     );
   }
 
@@ -141,7 +158,7 @@ class GamePreparationStateNotifier extends StateNotifier<GamePreparationModel> {
   }
 
   Future<int?> startGame() async {
-    final gameId = await gameRepository.createGame(state.opponentTeam!, state.gameDate, state.quarterMin);
+    final gameId = await gameRepository.createGame(state.opponentTeam!, state.gameDate, state.quarterMin, state.overtimeQuarterMin);
 
     Game? game = gameRepository.findGame(gameId);
     if (game == null) {

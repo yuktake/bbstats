@@ -14,6 +14,10 @@ class Game {
 
   late int quarterMin;
 
+  late int overtimeQuarterMin;
+
+  late int otNum;
+
   final opponent = IsarLink<Team>();
 
   final boxscores = IsarLinks<Boxscore>();
