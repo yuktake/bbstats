@@ -23,8 +23,6 @@ class GameRecordScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final onGame = ref.watch(onGameProvider.notifier);
-    final gamePreparation = ref.watch(gamePreparationProvider.notifier);
     final gameRecord = ref.watch(gameRecordProvider(id).notifier);
     final gameRecordInfo = ref.watch(gameRecordProvider(id));
     final gameStat = ref.watch(gameStatProvider(id).notifier);
@@ -39,56 +37,10 @@ class GameRecordScreen extends ConsumerWidget {
             IconButton(
               icon: const Icon(Icons.settings),
               onPressed: () => {
-                quarterChangeDialog(context,  id)
+                quarterChangeDialog(context, id)
               },
             ),
-            PopupMenuButton(
-              onSelected: (GameAction value) {
-                if (value == GameAction.GAMESET) {
-                  showDialog(
-                    context: context,
-                    builder: (context) {
-                      return AlertDialog(
-                        title: const Text('Confirm'),
-                        content: const Text('GameSet??'),
-                        actions: [
-                          SimpleDialogOption(
-                            onPressed: () {
-                              gameRecord.gameSet();
-                              onGame.change(false);
-                              gamePreparation.initState();
-                              Navigator.of(context).pop();
-                              Navigator.of(context).pop();
-                            },
-                            child: const Text('はい'),
-                          ),
-                          SimpleDialogOption(
-                            onPressed: () => Navigator.of(context).pop(false),
-                            child: const Text('いいえ'),
-                          ),
-                        ],
-                      );
-                    }
-                  );
-                } else {
-                  gameActionDialog(context, id, value);
-                }
-              },
-              itemBuilder: (context) => [
-                const PopupMenuItem(
-                    value: GameAction.SHOT_CLOCK_TURNOVER,
-                    child: Text('Shot Clock TurnOver')
-                ),
-                const PopupMenuItem(
-                    value: GameAction.TIMEOUT,
-                    child: Text('Timeout')
-                ),
-                const PopupMenuItem(
-                    value: GameAction.GAMESET,
-                    child: Text('GameSet')
-                ),
-              ]
-            )
+            showGameOperation(context, id),
           ],
         ),
         body: Column(
@@ -118,23 +70,30 @@ class GameRecordScreen extends ConsumerWidget {
                               radius: 25.0,
                             ),
                             DropdownButton(
-                              items: const [
-                                DropdownMenuItem(
+                              items: [
+                                const DropdownMenuItem(
                                   value: 1,
                                   child: Text('1Q'),
                                 ),
-                                DropdownMenuItem(
+                                const DropdownMenuItem(
                                   value: 2,
                                   child: Text('2Q'),
                                 ),
-                                DropdownMenuItem(
+                                const DropdownMenuItem(
                                   value: 3,
                                   child: Text('3Q'),
                                 ),
-                                DropdownMenuItem(
+                                const DropdownMenuItem(
                                   value: 4,
                                   child: Text('4Q'),
                                 ),
+
+                                for(int i = 1; i <= gameRecord.getOtNum(); i++) ... {
+                                  DropdownMenuItem(
+                                      value: i+4,
+                                      child: Text('OT$i'),
+                                  )
+                                }
                               ],
                               onChanged: (int? value) {
                                 gameRecord.updateQuarter(value!);
@@ -143,7 +102,7 @@ class GameRecordScreen extends ConsumerWidget {
                             ),
                             PopupMenuButton(
                               onSelected: (PlayerAction value) {
-                                if (!validateTime(gameRecordInfo.game.quarterMin, gameRecordInfo.time)) {
+                                if (!validateTime(gameRecordInfo.currentQuarter, gameRecordInfo.game.quarterMin, gameRecordInfo.game.overtimeQuarterMin, gameRecordInfo.time)) {
                                   timeAlertSnackBar(context);
                                   return;
                                 }
@@ -389,7 +348,7 @@ Widget _buildCircleAvatar(int gameId, Player player, String img, int index) {
             children: [
               PopupMenuButton(
                 onSelected: (PlayerAction value) {
-                  if (!validateTime(gameRecordInfo.game.quarterMin, gameRecordInfo.time)) {
+                  if (!validateTime(gameRecordInfo.currentQuarter, gameRecordInfo.game.quarterMin, gameRecordInfo.game.overtimeQuarterMin, gameRecordInfo.time)) {
                     timeAlertSnackBar(context);
                     return;
                   }
@@ -644,7 +603,7 @@ Future<dynamic> gameActionDialog(BuildContext context, int gameId, GameAction ga
             actions: [
               SimpleDialogOption(
                 onPressed: () => {
-                  if (!validateTime(gameRecordInfo.game.quarterMin, gameRecordInfo.time)) {
+                  if (!validateTime(gameRecordInfo.currentQuarter, gameRecordInfo.game.quarterMin, gameRecordInfo.game.overtimeQuarterMin, gameRecordInfo.time)) {
                     timeAlertSnackBar(context)
                   } else {
                     gameRecord.addGameAction(gameAction, true),
@@ -657,7 +616,7 @@ Future<dynamic> gameActionDialog(BuildContext context, int gameId, GameAction ga
               ),
               SimpleDialogOption(
                 onPressed: () => {
-                  if (!validateTime(gameRecordInfo.game.quarterMin, gameRecordInfo.time)) {
+                  if (!validateTime(gameRecordInfo.currentQuarter, gameRecordInfo.game.quarterMin, gameRecordInfo.game.overtimeQuarterMin, gameRecordInfo.time)) {
                     timeAlertSnackBar(context)
                   } else {
                     gameRecord.addGameAction(gameAction, false),
@@ -751,38 +710,63 @@ Widget substituteSheet(int gameId, int onCourtPlayerIndex) {
 
 Future<dynamic> quarterChangeDialog(BuildContext context, int gameId) {
   return showDialog(
+      barrierDismissible: false,
       context: context,
       builder: (context) {
         return Consumer(builder: (context, ref, _) {
           final gameRecord = ref.watch(gameRecordProvider(gameId).notifier);
           final gameRecordInfo = ref.watch(gameRecordProvider(gameId));
-          final gamePreparation = ref.watch(gamePreparationProvider.notifier);
+
           return AlertDialog(
             title: const Text('Settings'),
-            content: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            content: Column(
               children: [
-                const Text('Quarter Min'),
-                DropdownButton(
-                  items: [
-                    for(int i = 24; i > 0; i--) ... {
-                      DropdownMenuItem(
-                        value:  i,
-                        child: Text(i.toString()),
-                      )
-                    }
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    const Text('Quarter Min'),
+                    DropdownButton(
+                      items: [
+                        for(int i = 24; i > 0; i--) ... {
+                          DropdownMenuItem(
+                            value:  i,
+                            child: Text(i.toString()),
+                          )
+                        }
+                      ],
+                      onChanged: (int? value) {
+                        gameRecord.updateQuarterMinState(value!);
+                      },
+                      value: gameRecordInfo.quarterMin,
+                    ),
                   ],
-                  onChanged: (int? value) {
-                    gameRecord.updateQuarterMinState(value!);
-                  },
-                  value: gameRecordInfo.quarterMin,
                 ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    const Text('OT Quarter Min'),
+                    DropdownButton(
+                      items: [
+                        for(int i = 24; i > 0; i--) ... {
+                          DropdownMenuItem(
+                            value:  i,
+                            child: Text(i.toString()),
+                          )
+                        }
+                      ],
+                      onChanged: (int? value) {
+                        gameRecord.updateOvertimeQuarterMinState(value!);
+                      },
+                      value: gameRecordInfo.overtimeQuarterMin,
+                    ),
+                  ],
+                )
               ],
             ),
             actions: [
               SimpleDialogOption(
                 onPressed: () => {
-                  if (gameRecord.beDeletedPbpExists(gameId, gameRecordInfo.quarterMin)) {
+                  if (gameRecord.beDeletedPbpExists()) {
                     showDialog(
                         context: context,
                         builder: (context) {
@@ -792,9 +776,9 @@ Future<dynamic> quarterChangeDialog(BuildContext context, int gameId) {
                               actions : [
                                 SimpleDialogOption(
                                   onPressed: () => {
-                                    gameRecord.deleteOutOfQuarterPbps(gameId, gameRecordInfo.quarterMin),
-                                    gameRecord.saveQuarterMin(gameId),
-                                    gamePreparation.updateQuarterMinState(gameRecordInfo.quarterMin),
+                                    gameRecord.deleteOutOfQuarterPbps(),
+                                    gameRecord.deleteOutOfOtQuarterPbps(),
+                                    gameRecord.updateQuarterMin(),
                                     Navigator.of(context).pop(false),
                                     Navigator.of(context).pop(false)
                                   },
@@ -809,16 +793,18 @@ Future<dynamic> quarterChangeDialog(BuildContext context, int gameId) {
                         }
                     ),
                   } else {
-                    gameRecord.saveQuarterMin(gameId),
-                    gamePreparation.updateQuarterMinState(gameRecordInfo.quarterMin),
+                    gameRecord.updateQuarterMin(),
                     Navigator.of(context).pop(false),
                   },
                 },
-                child: const Text('はい'),
+                child: const Text('Update'),
               ),
               SimpleDialogOption(
-                onPressed: () => Navigator.of(context).pop(false),
-                child: const Text('いいえ'),
+                onPressed: () => {
+                  gameRecord.resetQuarterMinState(),
+                  Navigator.of(context).pop(false),
+                },
+                child: const Text('Cancel'),
               ),
             ],
           );
@@ -833,10 +819,92 @@ void timeAlertSnackBar(BuildContext context) {
   );
 }
 
-bool validateTime(int quarterMin, DateTime now) {
+bool validateTime(int currentQuarter, int quarterMin, int overtimeQuarterMin, DateTime now) {
   DateTime quarterMinDateTime = DateTime(2000,1,1,quarterMin,0,0);
-  if (quarterMinDateTime.compareTo(now) == -1) {
-    return false;
+  DateTime overtimeQuarterMinDateTime = DateTime(2000,1,1,overtimeQuarterMin,0,0);
+
+  if (currentQuarter <= 4) {
+    if (quarterMinDateTime.compareTo(now) == -1) {
+      return false;
+    }
+  } else {
+    if (overtimeQuarterMinDateTime.compareTo(now) == -1) {
+      return false;
+    }
   }
+
   return true;
+}
+
+Widget showGameOperation(BuildContext context, int id) {
+  return PopupMenuButton(
+      onSelected: (GameAction value) {
+        if (value == GameAction.GAMESET) {
+          showDialog(
+              context: context,
+              builder: (context) {
+                return Consumer(builder: (context, ref, _) {
+                  final onGame = ref.watch(onGameProvider.notifier);
+                  final gamePreparation = ref.watch(gamePreparationProvider.notifier);
+                  final gameRecord = ref.watch(gameRecordProvider(id).notifier);
+                  final gameRecordInfo = ref.watch(gameRecordProvider(id));
+
+                  return AlertDialog(
+                    title: const Text('GameSet'),
+                    content: gameRecordInfo.game.myPts == gameRecordInfo.game.opponentPts ? const Text('Will the match enter into overtime?') : const Text('GameSet?'),
+                    actions: [
+                      gameRecordInfo.game.myPts == gameRecordInfo.game.opponentPts ?
+                      SimpleDialogOption(
+                        onPressed: () {
+                          gameRecord.createOvertime();
+                          Navigator.of(context).pop();
+                          Navigator.of(context).pop();
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => GameRecordScreen(id)
+                              ),
+                          );
+                        },
+                        child: const Text('Yes'),
+                      )
+                      :
+                      SimpleDialogOption(
+                        onPressed: () {
+                          gameRecord.gameSet();
+                          onGame.change(false);
+                          gamePreparation.initState();
+                          Navigator.of(context).pop();
+                          Navigator.of(context).pop();
+                        },
+                        child: const Text('Yes'),
+                      ),
+                      SimpleDialogOption(
+                        onPressed: () => Navigator.of(context).pop(false),
+                        child: const Text('No'),
+                      ),
+                    ],
+                  );
+                });
+              }
+          );
+        } else {
+          gameActionDialog(context, id, value);
+        }
+      },
+      itemBuilder: (context) => [
+        const PopupMenuItem(
+            value: GameAction.SHOT_CLOCK_TURNOVER,
+            child: Text('Shot Clock TurnOver')
+        ),
+        const PopupMenuItem(
+            value: GameAction.TIMEOUT,
+            child: Text('Timeout')
+        ),
+        const PopupMenuItem(
+            value: GameAction.GAMESET,
+            child: Text('GameSet', style: TextStyle(color: Colors.red),)
+        ),
+      ]
+  );
 }

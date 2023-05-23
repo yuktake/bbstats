@@ -1,6 +1,5 @@
 import 'dart:typed_data';
 
-import 'package:bb_stats/src/enums/Period.dart';
 import 'package:bb_stats/src/enums/PlayType.dart';
 import 'package:bb_stats/src/enums/ShotType.dart';
 import 'package:flutter/material.dart';
@@ -21,7 +20,7 @@ class GameChartModel with _$GameChartModel {
     required MemoryImage? image,
     required Uint8List? src,
     required List<Pbp> pbps,
-    required Period period,
+    required int period,
     required PlayType playType,
     required ShotType shotType,
     required ShotZone shotZone,
@@ -31,7 +30,7 @@ class GameChartModel with _$GameChartModel {
     required MemoryImage? opponentImage,
     required Uint8List? opponentSrc,
     required List<Pbp> opponentPbps,
-    required Period opponentPeriod,
+    required int opponentPeriod,
     required PlayType opponentPlayType,
     required ShotType opponentShotType,
     required ShotZone opponentShotZone,

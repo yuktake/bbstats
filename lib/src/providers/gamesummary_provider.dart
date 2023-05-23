@@ -69,4 +69,10 @@ class GameSummaryStateNotifier extends StateNotifier<GameSummaryModel> {
       opponentScoreByQuarter: pbpRepository.getOpponentScoresByQuarter(gameId),
     );
   }
+
+  int getOtNum() {
+    Game game = gameRepository.findGame(gameId)!;
+
+    return game.otNum;
+  }
 }

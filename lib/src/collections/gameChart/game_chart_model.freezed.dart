@@ -21,7 +21,7 @@ mixin _$GameChartModel {
   MemoryImage? get image => throw _privateConstructorUsedError;
   Uint8List? get src => throw _privateConstructorUsedError;
   List<Pbp> get pbps => throw _privateConstructorUsedError;
-  Period get period => throw _privateConstructorUsedError;
+  int get period => throw _privateConstructorUsedError;
   PlayType get playType => throw _privateConstructorUsedError;
   ShotType get shotType => throw _privateConstructorUsedError;
   ShotZone get shotZone => throw _privateConstructorUsedError;
@@ -30,7 +30,7 @@ mixin _$GameChartModel {
   MemoryImage? get opponentImage => throw _privateConstructorUsedError;
   Uint8List? get opponentSrc => throw _privateConstructorUsedError;
   List<Pbp> get opponentPbps => throw _privateConstructorUsedError;
-  Period get opponentPeriod => throw _privateConstructorUsedError;
+  int get opponentPeriod => throw _privateConstructorUsedError;
   PlayType get opponentPlayType => throw _privateConstructorUsedError;
   ShotType get opponentShotType => throw _privateConstructorUsedError;
   ShotZone get opponentShotZone => throw _privateConstructorUsedError;
@@ -53,7 +53,7 @@ abstract class $GameChartModelCopyWith<$Res> {
       MemoryImage? image,
       Uint8List? src,
       List<Pbp> pbps,
-      Period period,
+      int period,
       PlayType playType,
       ShotType shotType,
       ShotZone shotZone,
@@ -62,7 +62,7 @@ abstract class $GameChartModelCopyWith<$Res> {
       MemoryImage? opponentImage,
       Uint8List? opponentSrc,
       List<Pbp> opponentPbps,
-      Period opponentPeriod,
+      int opponentPeriod,
       PlayType opponentPlayType,
       ShotType opponentShotType,
       ShotZone opponentShotZone,
@@ -126,7 +126,7 @@ class _$GameChartModelCopyWithImpl<$Res>
       period: period == freezed
           ? _value.period
           : period // ignore: cast_nullable_to_non_nullable
-              as Period,
+              as int,
       playType: playType == freezed
           ? _value.playType
           : playType // ignore: cast_nullable_to_non_nullable
@@ -162,7 +162,7 @@ class _$GameChartModelCopyWithImpl<$Res>
       opponentPeriod: opponentPeriod == freezed
           ? _value.opponentPeriod
           : opponentPeriod // ignore: cast_nullable_to_non_nullable
-              as Period,
+              as int,
       opponentPlayType: opponentPlayType == freezed
           ? _value.opponentPlayType
           : opponentPlayType // ignore: cast_nullable_to_non_nullable
@@ -200,7 +200,7 @@ abstract class _$$_GameChartModelCopyWith<$Res>
       MemoryImage? image,
       Uint8List? src,
       List<Pbp> pbps,
-      Period period,
+      int period,
       PlayType playType,
       ShotType shotType,
       ShotZone shotZone,
@@ -209,7 +209,7 @@ abstract class _$$_GameChartModelCopyWith<$Res>
       MemoryImage? opponentImage,
       Uint8List? opponentSrc,
       List<Pbp> opponentPbps,
-      Period opponentPeriod,
+      int opponentPeriod,
       PlayType opponentPlayType,
       ShotType opponentShotType,
       ShotZone opponentShotZone,
@@ -275,7 +275,7 @@ class __$$_GameChartModelCopyWithImpl<$Res>
       period: period == freezed
           ? _value.period
           : period // ignore: cast_nullable_to_non_nullable
-              as Period,
+              as int,
       playType: playType == freezed
           ? _value.playType
           : playType // ignore: cast_nullable_to_non_nullable
@@ -311,7 +311,7 @@ class __$$_GameChartModelCopyWithImpl<$Res>
       opponentPeriod: opponentPeriod == freezed
           ? _value.opponentPeriod
           : opponentPeriod // ignore: cast_nullable_to_non_nullable
-              as Period,
+              as int,
       opponentPlayType: opponentPlayType == freezed
           ? _value.opponentPlayType
           : opponentPlayType // ignore: cast_nullable_to_non_nullable
@@ -385,7 +385,7 @@ class _$_GameChartModel implements _GameChartModel {
   }
 
   @override
-  final Period period;
+  final int period;
   @override
   final PlayType playType;
   @override
@@ -408,7 +408,7 @@ class _$_GameChartModel implements _GameChartModel {
   }
 
   @override
-  final Period opponentPeriod;
+  final int opponentPeriod;
   @override
   final PlayType opponentPlayType;
   @override
@@ -501,7 +501,7 @@ abstract class _GameChartModel implements GameChartModel {
       required final MemoryImage? image,
       required final Uint8List? src,
       required final List<Pbp> pbps,
-      required final Period period,
+      required final int period,
       required final PlayType playType,
       required final ShotType shotType,
       required final ShotZone shotZone,
@@ -510,7 +510,7 @@ abstract class _GameChartModel implements GameChartModel {
       required final MemoryImage? opponentImage,
       required final Uint8List? opponentSrc,
       required final List<Pbp> opponentPbps,
-      required final Period opponentPeriod,
+      required final int opponentPeriod,
       required final PlayType opponentPlayType,
       required final ShotType opponentShotType,
       required final ShotZone opponentShotZone,
@@ -528,7 +528,7 @@ abstract class _GameChartModel implements GameChartModel {
   @override
   List<Pbp> get pbps;
   @override
-  Period get period;
+  int get period;
   @override
   PlayType get playType;
   @override
@@ -546,7 +546,7 @@ abstract class _GameChartModel implements GameChartModel {
   @override
   List<Pbp> get opponentPbps;
   @override
-  Period get opponentPeriod;
+  int get opponentPeriod;
   @override
   PlayType get opponentPlayType;
   @override

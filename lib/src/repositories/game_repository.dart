@@ -823,7 +823,20 @@ class GameRepository {
     return game.quarterMin;
   }
 
-  void updateQuarterMin(int gameId, int quarterMin) {
+  int getOvertimeQuarterMin(int id) {
+    if (!isar.isOpen) {
+      return -1;
+    }
+
+    final game = isar.games.where().idEqualTo(id).findFirstSync();
+    if (game == null) {
+      return -1;
+    }
+
+    return game.overtimeQuarterMin;
+  }
+
+  void updateQuarterMin(int gameId, int quarterMin, int overtimeQuarterMin) {
     if (!isar.isOpen) {
       return;
     }
@@ -834,6 +847,24 @@ class GameRepository {
     }
 
     game.quarterMin = quarterMin;
+    game.overtimeQuarterMin = overtimeQuarterMin;
+
+    isar.writeTxnSync(() {
+      isar.games.putSync(game);
+    });
+  }
+
+  void incrementOtNum(int gameId) {
+    if (!isar.isOpen) {
+      return;
+    }
+
+    final game = isar.games.where().idEqualTo(gameId).findFirstSync();
+    if (game == null) {
+      return;
+    }
+
+    game.otNum+=1;
 
     isar.writeTxnSync(() {
       isar.games.putSync(game);

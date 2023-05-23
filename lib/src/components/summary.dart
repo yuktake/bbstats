@@ -1,3 +1,4 @@
+import 'package:bb_stats/src/collections/game/game.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -185,23 +186,28 @@ class SummaryScreen extends ConsumerWidget {
                         showBottomBorder: true,
                         showCheckboxColumn: false,
                         columnSpacing: MediaQuery.of(context).size.width/11,
-                        columns: const [
-                          DataColumn(
+                        columns: [
+                          const DataColumn(
                             label: Text(''),
                           ),
-                          DataColumn(
+                          const DataColumn(
                             label: Text('Q1'),
                           ),
-                          DataColumn(
+                          const DataColumn(
                             label: Text('Q2'),
                           ),
-                          DataColumn(
+                          const DataColumn(
                             label: Text('Q3'),
                           ),
-                          DataColumn(
+                          const DataColumn(
                             label: Text('Q4'),
                           ),
-                          DataColumn(
+                          for(int i = 1; i <= gameSummary.getOtNum(); i++) ... {
+                            DataColumn(
+                              label: Text('OT$i'),
+                            ),
+                          },
+                          const DataColumn(
                               label: Text('FINAL')
                           )
                         ],
@@ -527,27 +533,38 @@ class SummaryScreen extends ConsumerWidget {
       ),
     );
   }
-}
 
-Widget bottomTitles(double value, TitleMeta meta) {
-  const style = TextStyle(color: Color(0xff939393), fontSize: 15);
-  String text;
-  int intValue = value.toInt();
-  int maxValue = meta.max.toInt();
-  int quarter = (maxValue~/4)+1;
-  if (intValue == 0) {
-    text = '1Q';
-  } else if (intValue == quarter) {
-    text = '2Q';
-  } else if (intValue == quarter*2) {
-    text = '3Q';
-  } else if (intValue == quarter*3) {
-    text = '4Q';
-  } else {
-    text = '';
+  Widget bottomTitles(double value, TitleMeta meta) {
+    return Consumer(builder: (context, ref, _) {
+      final gameSummaryInfo = ref.watch(gameSummaryProvider(id));
+
+      const style = TextStyle(color: Color(0xff939393), fontSize: 15);
+      String text;
+      int intValue = value.toInt();
+      int maxValue = meta.max.toInt();
+      int fourQuarterValue = maxValue - (gameSummaryInfo.game.overtimeQuarterMin * gameSummaryInfo.game.otNum);
+      int quarter = (fourQuarterValue~/4)+1;
+
+      if (intValue == 0) {
+        text = '1Q';
+      } else if (intValue == quarter) {
+        text = '2Q';
+      } else if (intValue == quarter*2) {
+        text = '3Q';
+      } else if (intValue == quarter*3) {
+        text = '4Q';
+      } else if ((intValue > fourQuarterValue) && (maxValue - (intValue-1)) % gameSummaryInfo.game.overtimeQuarterMin == 0) {
+        int tmp = (maxValue - (intValue-1)) ~/ gameSummaryInfo.game.overtimeQuarterMin;
+        int otIndex = gameSummaryInfo.game.otNum - tmp + 1;
+        text = 'OT$otIndex';
+      } else {
+        text = '';
+      }
+
+      return SideTitleWidget(
+        axisSide: meta.axisSide,
+        child: Text(text, style: style),
+      );
+    });
   }
-  return SideTitleWidget(
-    axisSide: meta.axisSide,
-    child: Text(text, style: style),
-  );
 }

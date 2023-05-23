@@ -5,6 +5,7 @@ import 'package:bb_stats/src/repositories/pbp_repository.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
 
+import '../collections/game/game.dart';
 import '../consts/CsvColumns.dart';
 import '../repositories/player_repository.dart';
 
@@ -20,7 +21,7 @@ class GamePbpStateNotifier extends StateNotifier<GamePbpModel> {
     game: gameRepository.findGame(gameId)!,
     pbps: pbpRepository.getPbpByQuarter(gameId, 5),
     // ALL
-    quarter: 5
+    quarter: 100
   ));
 
     final int gameId;
@@ -58,5 +59,11 @@ class GamePbpStateNotifier extends StateNotifier<GamePbpModel> {
 
       return pbps.join("\n");
     }
+
+  int getOtNum() {
+    Game game = gameRepository.findGame(gameId)!;
+
+    return game.otNum;
+  }
 
   }

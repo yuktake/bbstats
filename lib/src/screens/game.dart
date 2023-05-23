@@ -47,6 +47,7 @@ class GameScreen extends ConsumerWidget {
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 8.0),
               child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -57,8 +58,7 @@ class GameScreen extends ConsumerWidget {
                       ),
                       Expanded(
                         child: Column(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          crossAxisAlignment: CrossAxisAlignment.stretch,
+                          crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
                             onGame ? Text(
                                 DateFormat('yyyy-MM-dd').format(gamePreparationInfo.gameDate),

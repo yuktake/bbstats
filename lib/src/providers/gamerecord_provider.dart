@@ -32,6 +32,7 @@ class GameRecordStateNotifier extends StateNotifier<GameRecordModel> {
       player5: null,
       game: gameRepository.findGame(gameId)!,
       quarterMin: gameRepository.getQuarterMin(gameId),
+      overtimeQuarterMin: gameRepository.getOvertimeQuarterMin(gameId),
       time: pbpRepository.getLatestPlayAt(gameId),
       currentQuarter: pbpRepository.getCurrentQuarter(gameId),
       records: pbpRepository.getPbpByCurrentQuarter(gameId),
@@ -440,25 +441,63 @@ class GameRecordStateNotifier extends StateNotifier<GameRecordModel> {
     );
   }
 
-  void saveQuarterMin(int gameId) {
-    gameRepository.updateQuarterMin(gameId, state.quarterMin);
+  void updateOvertimeQuarterMinState(int overtimeQuarterMin) {
+    state = state.copyWith(
+        overtimeQuarterMin: overtimeQuarterMin
+    );
+  }
+
+  void updateQuarterMin() {
+    gameRepository.updateQuarterMin(gameId, state.quarterMin, state.overtimeQuarterMin);
     Game game = gameRepository.findGame(gameId)!;
     state = state.copyWith(
       game: game
     );
   }
 
-  bool beDeletedPbpExists(int gameId, int quarterMin) {
-    List<Pbp> beDeletedPbps = pbpRepository.getPbpsBetweenDateTime(gameId, state.quarterMin);
-
-    return beDeletedPbps.isNotEmpty;
+  void resetQuarterMinState() {
+    Game game = gameRepository.findGame(gameId)!;
+    state = state.copyWith(
+        quarterMin: game.quarterMin,
+        overtimeQuarterMin: game.overtimeQuarterMin,
+    );
   }
 
-  void deleteOutOfQuarterPbps(int gameId, int quarterMin) {
+  bool beDeletedPbpExists() {
+    List<Pbp> beDeletedPbps = pbpRepository.getPbpsBetweenDateTime(gameId, state.quarterMin);
+    List<Pbp> otBeDeletedPbps = pbpRepository.getOtPbpsBetweenDateTime(gameId, state.overtimeQuarterMin);
+
+    return (beDeletedPbps.isNotEmpty || otBeDeletedPbps.isNotEmpty);
+  }
+
+  void deleteOutOfQuarterPbps() {
     List<Pbp> beDeletedPbps = pbpRepository.getPbpsBetweenDateTime(gameId, state.quarterMin);
     for (var pbp in beDeletedPbps) {
       deletePbp(pbp);
     }
+  }
+
+  void deleteOutOfOtQuarterPbps() {
+    List<Pbp> otBeDeletedPbps = pbpRepository.getOtPbpsBetweenDateTime(gameId, state.overtimeQuarterMin);
+    for (var pbp in otBeDeletedPbps) {
+      deletePbp(pbp);
+    }
+  }
+
+  void createOvertime() {
+    gameRepository.incrementOtNum(gameId);
+    Game game = gameRepository.findGame(gameId)!;
+    DateTime time = DateTime(2000,1,1,game.overtimeQuarterMin,0,0);
+    state = state.copyWith(
+      currentQuarter: game.otNum + 4,
+      time: time,
+    );
+  }
+
+  int getOtNum() {
+    Game game = gameRepository.findGame(gameId)!;
+
+    return game.otNum;
   }
 
   void gameSet() {

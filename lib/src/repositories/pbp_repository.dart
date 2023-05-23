@@ -2,9 +2,7 @@ import 'dart:async';
 import 'package:bb_stats/src/collections/game/game.dart';
 import 'package:bb_stats/src/collections/pbp/pbp.dart';
 import 'package:bb_stats/src/collections/player/player.dart';
-import 'package:bb_stats/src/collections/team/team.dart';
 import 'package:bb_stats/src/enums/GameAction.dart';
-import 'package:bb_stats/src/enums/Period.dart';
 import 'package:bb_stats/src/enums/PlayType.dart';
 import 'package:bb_stats/src/enums/RecordType.dart';
 import 'package:bb_stats/src/enums/ShotType.dart';
@@ -287,7 +285,7 @@ class PbpRepository {
     return num;
   }
 
-  List<Pbp> getShotChartPbps(int gameId, Period period, PlayType playType, ShotType shotType, int? playerId, int shotFilter, ShotZone shotZone) {
+  List<Pbp> getShotChartPbps(int gameId, int period, PlayType playType, ShotType shotType, int? playerId, int shotFilter, ShotZone shotZone) {
     if (!isar.isOpen) {
       return [];
     }
@@ -295,28 +293,8 @@ class PbpRepository {
     QueryBuilder<Pbp, Pbp, QAfterFilterCondition> queryBuilder;
     queryBuilder = isar.pbps.filter().game((q) => q.idEqualTo(gameId)).and().shotPositionIsNotNull().and().not().playerIsNull();
 
-    switch (period) {
-      case Period.FIRST:
-        queryBuilder = queryBuilder.quarterEqualTo(1);
-        break;
-      case Period.SECOND:
-        queryBuilder = queryBuilder.quarterEqualTo(2);
-        break;
-      case Period.THIRD:
-        queryBuilder = queryBuilder.quarterEqualTo(3);
-        break;
-      case Period.FOURTH:
-        queryBuilder = queryBuilder.quarterEqualTo(4);
-        break;
-      case Period.FIRST_HALF:
-        queryBuilder = queryBuilder.group((q) => q.quarterEqualTo(1).or().quarterEqualTo(2));
-        break;
-      case Period.SECOND_HALF:
-        queryBuilder = queryBuilder.group((q) => q.quarterEqualTo(3).or().quarterEqualTo(4));
-        break;
-      case Period.ALL:
-      default:
-        break;
+    if (period != 100) {
+      queryBuilder = queryBuilder.quarterEqualTo(period);
     }
 
     switch(playType) {
@@ -387,7 +365,7 @@ class PbpRepository {
     return pbps;
   }
 
-  List<Pbp> getOpponentShotChartPbps(int gameId, Period period, PlayType playType, ShotType shotType, int? defencedPlayerId, int shotFilter, ShotZone shotZone) {
+  List<Pbp> getOpponentShotChartPbps(int gameId, int period, PlayType playType, ShotType shotType, int? defencedPlayerId, int shotFilter, ShotZone shotZone) {
     if (!isar.isOpen) {
       return [];
     }
@@ -395,28 +373,8 @@ class PbpRepository {
     QueryBuilder<Pbp, Pbp, QAfterFilterCondition> queryBuilder;
     queryBuilder = isar.pbps.filter().game((q) => q.idEqualTo(gameId)).and().shotPositionIsNotNull().and().playerIsNull();
 
-    switch (period) {
-      case Period.FIRST:
-        queryBuilder = queryBuilder.quarterEqualTo(1);
-        break;
-      case Period.SECOND:
-        queryBuilder = queryBuilder.quarterEqualTo(2);
-        break;
-      case Period.THIRD:
-        queryBuilder = queryBuilder.quarterEqualTo(3);
-        break;
-      case Period.FOURTH:
-        queryBuilder = queryBuilder.quarterEqualTo(4);
-        break;
-      case Period.FIRST_HALF:
-        queryBuilder = queryBuilder.group((q) => q.quarterEqualTo(1).or().quarterEqualTo(2));
-        break;
-      case Period.SECOND_HALF:
-        queryBuilder = queryBuilder.group((q) => q.quarterEqualTo(3).or().quarterEqualTo(4));
-        break;
-      case Period.ALL:
-      default:
-        break;
+    if (period != 100) {
+      queryBuilder = queryBuilder.quarterEqualTo(period);
     }
 
     switch(playType) {
@@ -502,17 +460,10 @@ class PbpRepository {
 
     List<Pbp> pbps;
 
-    switch(quarter){
-      case 1:
-      case 2:
-      case 3:
-      case 4:
-        pbps = isar.pbps.filter().game((q) => q.idEqualTo(gameId)).and().quarterEqualTo(quarter).sortByPlayAtDesc().findAllSync();
-        break;
-      case 5:
-      default:
-        pbps = isar.pbps.filter().game((q) => q.idEqualTo(gameId)).findAllSync();
-        break;
+    if (quarter == 100) {
+      pbps = isar.pbps.filter().game((q) => q.idEqualTo(gameId)).findAllSync();
+    } else {
+      pbps = isar.pbps.filter().game((q) => q.idEqualTo(gameId)).and().quarterEqualTo(quarter).sortByPlayAtDesc().findAllSync();
     }
 
     return pbps;
@@ -556,6 +507,8 @@ class PbpRepository {
   }
 
   List<int> getScoresByQuarter(int gameId) {
+    final game = isar.games.where().idEqualTo(gameId).findFirstSync()!;
+
     List<Pbp> q1Pbps = isar.pbps.filter().game((q) => q.idEqualTo(gameId)).and().quarterEqualTo(1).and().not().playerIsNull().group((q) => q.typeEqualTo(RecordType.TWO_POINT_MADE).or().typeEqualTo(RecordType.THREE_POINT_MADE).or().typeEqualTo(RecordType.FT_MADE)).findAllSync();
     List<Pbp> q2Pbps = isar.pbps.filter().game((q) => q.idEqualTo(gameId)).and().quarterEqualTo(2).and().not().playerIsNull().group((q) => q.typeEqualTo(RecordType.TWO_POINT_MADE).or().typeEqualTo(RecordType.THREE_POINT_MADE).or().typeEqualTo(RecordType.FT_MADE)).findAllSync();
     List<Pbp> q3Pbps = isar.pbps.filter().game((q) => q.idEqualTo(gameId)).and().quarterEqualTo(3).and().not().playerIsNull().group((q) => q.typeEqualTo(RecordType.TWO_POINT_MADE).or().typeEqualTo(RecordType.THREE_POINT_MADE).or().typeEqualTo(RecordType.FT_MADE)).findAllSync();
@@ -571,14 +524,26 @@ class PbpRepository {
     for (var element in q2Pbps) { q2 = q2 + (element.shotPosition == null ? 1 : element.shotPosition!.point); }
     for (var element in q3Pbps) { q3 = q3 + (element.shotPosition == null ? 1 : element.shotPosition!.point); }
     for (var element in q4Pbps) { q4 = q4 + (element.shotPosition == null ? 1 : element.shotPosition!.point); }
+
+    List<int> scoresByQuarter = [q1, q2, q3, q4];
     all = q1 + q2 + q3 + q4;
 
-    List<int> scoresByQuarter = [q1, q2, q3, q4, all];
+    for(int i = 1; i <= game.otNum; i++) {
+      List<Pbp> otPbps = isar.pbps.filter().game((q) => q.idEqualTo(gameId)).and().quarterEqualTo(i+4).and().not().playerIsNull().group((q) => q.typeEqualTo(RecordType.TWO_POINT_MADE).or().typeEqualTo(RecordType.THREE_POINT_MADE).or().typeEqualTo(RecordType.FT_MADE)).findAllSync();
+      int ot = 0;
+      for (var element in otPbps) { ot = ot + (element.shotPosition == null ? 1 : element.shotPosition!.point); }
+      scoresByQuarter.add(ot);
+      all += ot;
+    }
+
+    scoresByQuarter.add(all);
 
     return scoresByQuarter;
   }
 
   List<int> getOpponentScoresByQuarter(int gameId) {
+    final game = isar.games.where().idEqualTo(gameId).findFirstSync()!;
+
     List<Pbp> q1Pbps = isar.pbps.filter().game((q) => q.idEqualTo(gameId)).and().quarterEqualTo(1).and().playerIsNull().group((q) => q.typeEqualTo(RecordType.TWO_POINT_MADE).or().typeEqualTo(RecordType.THREE_POINT_MADE).or().typeEqualTo(RecordType.FT_MADE)).findAllSync();
     List<Pbp> q2Pbps = isar.pbps.filter().game((q) => q.idEqualTo(gameId)).and().quarterEqualTo(2).and().playerIsNull().group((q) => q.typeEqualTo(RecordType.TWO_POINT_MADE).or().typeEqualTo(RecordType.THREE_POINT_MADE).or().typeEqualTo(RecordType.FT_MADE)).findAllSync();
     List<Pbp> q3Pbps = isar.pbps.filter().game((q) => q.idEqualTo(gameId)).and().quarterEqualTo(3).and().playerIsNull().group((q) => q.typeEqualTo(RecordType.TWO_POINT_MADE).or().typeEqualTo(RecordType.THREE_POINT_MADE).or().typeEqualTo(RecordType.FT_MADE)).findAllSync();
@@ -594,9 +559,19 @@ class PbpRepository {
     for (var element in q2Pbps) { q2 = q2 + (element.shotPosition == null ? 1 : element.shotPosition!.point); }
     for (var element in q3Pbps) { q3 = q3 + (element.shotPosition == null ? 1 : element.shotPosition!.point); }
     for (var element in q4Pbps) { q4 = q4 + (element.shotPosition == null ? 1 : element.shotPosition!.point); }
+
+    List<int> opponentScoresByQuarter = [q1, q2, q3, q4];
     all = q1 + q2 + q3 + q4;
 
-    List<int> opponentScoresByQuarter = [q1, q2, q3, q4, all];
+    for(int i = 1; i <= game.otNum; i++) {
+      List<Pbp> otPbps = isar.pbps.filter().game((q) => q.idEqualTo(gameId)).and().quarterEqualTo(i+4).and().playerIsNull().group((q) => q.typeEqualTo(RecordType.TWO_POINT_MADE).or().typeEqualTo(RecordType.THREE_POINT_MADE).or().typeEqualTo(RecordType.FT_MADE)).findAllSync();
+      int ot = 0;
+      for (var element in otPbps) { ot = ot + (element.shotPosition == null ? 1 : element.shotPosition!.point);}
+      opponentScoresByQuarter.add(ot);
+      all += ot;
+    }
+
+    opponentScoresByQuarter.add(all);
 
     return opponentScoresByQuarter;
   }
@@ -617,6 +592,22 @@ class PbpRepository {
         scores.add(score);
       }
     }
+
+    if (game.otNum == 0) {
+      return scores;
+    }
+
+    for(int i = 1; i <= game.otNum; i++) {
+      int quarter = i + 4;
+      for(int j = game.overtimeQuarterMin; j > 0; j--) {
+        List<Pbp> pbps = isar.pbps.filter().game((q) => q.idEqualTo(gameId)).and().quarterEqualTo(quarter).and().playAtBetween(DateTime(2000,1,1,j-1,0,1), DateTime(2000,1,1,j,0,0)).and().not().playerIsNull().group((q) => q.typeEqualTo(RecordType.TWO_POINT_MADE).or().typeEqualTo(RecordType.THREE_POINT_MADE).or().typeEqualTo(RecordType.FT_MADE)).findAllSync();
+        int score = 0;
+        for (var element in pbps) { score = score + (element.shotPosition == null ? 1 : element.shotPosition!.point); }
+        score+=scores.last;
+        scores.add(score);
+      }
+    }
+
     return scores;
   }
 
@@ -634,6 +625,21 @@ class PbpRepository {
         } else {
           score = score + scores.last;
         }
+        scores.add(score);
+      }
+    }
+
+    if (game.otNum == 0) {
+      return scores;
+    }
+
+    for(int i = 1; i <= game.otNum; i++) {
+      int quarter = i + 4;
+      for(int j = game.overtimeQuarterMin; j > 0; j--) {
+        List<Pbp> pbps = isar.pbps.filter().game((q) => q.idEqualTo(gameId)).and().quarterEqualTo(quarter).and().playAtBetween(DateTime(2000,1,1,j-1,0,1), DateTime(2000,1,1,j,0,0)).and().playerIsNull().group((q) => q.typeEqualTo(RecordType.TWO_POINT_MADE).or().typeEqualTo(RecordType.THREE_POINT_MADE).or().typeEqualTo(RecordType.FT_MADE)).findAllSync();
+        int score = 0;
+        for (var element in pbps) { score = score + (element.shotPosition == null ? 1 : element.shotPosition!.point); }
+        score+=scores.last;
         scores.add(score);
       }
     }
@@ -659,6 +665,8 @@ class PbpRepository {
     RecordType recordType = RecordType.NONE;
     String description = '';
     String playerName = player == null ? 'opponent' : player.name;
+    String quarterText;
+
     switch(recordTypeArg) {
       case RecordType.TWO_POINT_MADE:
         recordType = RecordType.TWO_POINT_MADE;
@@ -817,13 +825,19 @@ class PbpRepository {
       return;
     }
 
+    if (quarter <= 4) {
+      quarterText = '${quarter}Q';
+    } else {
+      quarterText = 'OT${quarter-4}';
+    }
+
     final pbp = Pbp()
       ..game.value = game
       ..player.value = player
       ..playAt = playAt
       ..type = recordType
       ..quarter = quarter
-      ..description = "${quarter}Q: $time\n $description"
+      ..description = "$quarterText: $time\n $description"
       ..shotPosition = shotPosition
       ..supportedPlayerId = supportPlayer?.id
       ..myTeamPlay = myTeamPlay
@@ -851,6 +865,7 @@ class PbpRepository {
     String time = DateFormat('H:mm').format(playAt);
     RecordType recordType;
     String description;
+    String quarterText;
     switch (gameAction) {
       case GameAction.SHOT_CLOCK_TURNOVER:
         recordType = RecordType.SHOT_CLOCK_TURNOVER;
@@ -866,13 +881,19 @@ class PbpRepository {
         break;
     }
 
+    if (currentQuarter <= 4) {
+      quarterText = '${currentQuarter}Q';
+    } else {
+      quarterText = 'OT${currentQuarter-4}';
+    }
+
     final pbp = Pbp()
       ..game.value = game
       ..playAt = playAt
       ..type = recordType
       ..supportedPlayerId = null
       ..quarter = currentQuarter
-      ..description = '${currentQuarter}Q: $time $description'
+      ..description = '$quarterText: $time $description'
       ..myTeamPlay = myTeamPlay
       ..shotPosition = null
     ;
@@ -892,13 +913,21 @@ class PbpRepository {
   ) {
     String time = DateFormat('H:mm').format(playAt);
     String description = '${onCourtPlayer.name} substitutes to ${substitutePlayer.name}';
+    String quarterText;
+
+    if (quarter <= 4) {
+      quarterText = '${quarter}Q';
+    } else {
+      quarterText = 'OT${quarter-4}';
+    }
+
     final pbp = Pbp()
       ..game.value = game
       ..playAt = playAt
       ..player.value = onCourtPlayer
       ..type = RecordType.SUBSTITUTE
       ..quarter = quarter
-      ..description = '${quarter}Q: $time $description'
+      ..description = '$quarterText: $time $description'
       ..supportedPlayerId = null
       ..myTeamPlay = myTeamPlay
       ..shotPosition = null
@@ -1118,6 +1147,24 @@ class PbpRepository {
       )
       .playAtBetween(DateTime(2000,1,1,quarterMin,0,1), DateTime(2000,1,1,game.quarterMin,0,0))
       .findAllSync();
+
+    return pbps;
+  }
+
+  List<Pbp> getOtPbpsBetweenDateTime(int gameId, int quarterMin) {
+    Game game = isar.games.filter().idEqualTo(gameId).findFirstSync()!;
+
+    if (game.quarterMin <= quarterMin) {
+      return [];
+    }
+
+    List<Pbp> pbps = isar.pbps.filter()
+        .game((q) =>
+          q.idEqualTo(gameId)
+        )
+        .quarterGreaterThan(4)
+        .playAtBetween(DateTime(2000,1,1,quarterMin,0,1), DateTime(2000,1,1,game.quarterMin,0,0))
+        .findAllSync();
 
     return pbps;
   }

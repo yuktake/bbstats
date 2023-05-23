@@ -18,6 +18,7 @@ class GameRecordModel with _$GameRecordModel {
     required Player? player5,
     required Game game,
     required int quarterMin,
+    required int overtimeQuarterMin,
     required DateTime time,
     required int currentQuarter,
     required List<Pbp> records,

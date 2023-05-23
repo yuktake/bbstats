@@ -4,8 +4,6 @@ import 'package:bb_stats/src/providers/isar_provider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-
-import '../enums/Period.dart';
 import '../enums/ShotZone.dart';
 
 class GameChartScreen extends ConsumerWidget {
@@ -30,37 +28,35 @@ class GameChartScreen extends ConsumerWidget {
           children: [
             const Text("SHOT CHARTS"),
             DropdownButton(
-              items: const [
-                DropdownMenuItem(
-                  value: Period.ALL,
+              items: [
+                const DropdownMenuItem(
+                  value: 100,
                   child: Text('All'),
                 ),
-                DropdownMenuItem(
-                  value: Period.FIRST,
+                const DropdownMenuItem(
+                  value: 1,
                   child: Text('Q1'),
                 ),
-                DropdownMenuItem(
-                  value: Period.SECOND,
+                const DropdownMenuItem(
+                  value: 2,
                   child: Text('Q2'),
                 ),
-                DropdownMenuItem(
-                  value: Period.THIRD,
+                const DropdownMenuItem(
+                  value: 3,
                   child: Text('Q3'),
                 ),
-                DropdownMenuItem(
-                  value: Period.FOURTH,
+                const DropdownMenuItem(
+                  value: 4,
                   child: Text('Q4'),
                 ),
-                DropdownMenuItem(
-                  value: Period.FIRST_HALF,
-                  child: Text('1st Half'),
-                ),
-                DropdownMenuItem(
-                  value: Period.SECOND_HALF,
-                  child: Text('2nd Half'),
-                ),
+                for(int i = 1; i <= gameChart.getOtNum(); i++) ... {
+                  DropdownMenuItem(
+                    value: i+4,
+                    child: Text('OT$i'),
+                  ),
+                }
               ],
-              onChanged: (Period? value) {
+              onChanged: (int? value) {
                 gameChart.updatePeriod(value!);
               },
               value: gameChartInfo.period,
@@ -112,11 +108,11 @@ class GameChartScreen extends ConsumerWidget {
                     ),
                     DropdownMenuItem(
                       value:  PlayType.POSTUP,
-                      child: Text('POSTUP'),
+                      child: Text('POST UP'),
                     ),
                     DropdownMenuItem(
                       value:  PlayType.SPOTUP,
-                      child: Text('SPOTUP'),
+                      child: Text('SPOT UP'),
                     ),
                     DropdownMenuItem(
                       value:  PlayType.HANDOFF,
@@ -162,7 +158,7 @@ class GameChartScreen extends ConsumerWidget {
                     ),
                     DropdownMenuItem(
                       value: ShotType.PULLUP,
-                      child: Text('PULLUP'),
+                      child: Text('PULL UP'),
                     ),
                     DropdownMenuItem(
                       value: ShotType.FLOATING_SHOT,
@@ -178,7 +174,7 @@ class GameChartScreen extends ConsumerWidget {
                     ),
                     DropdownMenuItem(
                       value: ShotType.FADEAWAY,
-                      child: Text('FADEAWAY'),
+                      child: Text('FADE AWAY'),
                     ),
                     DropdownMenuItem(
                       value: ShotType.DUNK,
@@ -301,37 +297,35 @@ class GameChartScreen extends ConsumerWidget {
             //  Opponent
             const Text("OPPONENT SHOT CHARTS"),
             DropdownButton(
-              items: const [
-                DropdownMenuItem(
-                  value: Period.ALL,
+              items: [
+                const DropdownMenuItem(
+                  value: 100,
                   child: Text('All'),
                 ),
-                DropdownMenuItem(
-                  value: Period.FIRST,
+                const DropdownMenuItem(
+                  value: 1,
                   child: Text('Q1'),
                 ),
-                DropdownMenuItem(
-                  value: Period.SECOND,
+                const DropdownMenuItem(
+                  value: 2,
                   child: Text('Q2'),
                 ),
-                DropdownMenuItem(
-                  value: Period.THIRD,
+                const DropdownMenuItem(
+                  value: 3,
                   child: Text('Q3'),
                 ),
-                DropdownMenuItem(
-                  value: Period.FOURTH,
+                const DropdownMenuItem(
+                  value: 4,
                   child: Text('Q4'),
                 ),
-                DropdownMenuItem(
-                  value: Period.FIRST_HALF,
-                  child: Text('1st Half'),
-                ),
-                DropdownMenuItem(
-                  value: Period.SECOND_HALF,
-                  child: Text('2nd Half'),
-                ),
+                for(int i = 1; i <= gameChart.getOtNum(); i++) ... {
+                  DropdownMenuItem(
+                    value: i+4,
+                    child: Text('OT$i'),
+                  ),
+                }
               ],
-              onChanged: (Period? value) {
+              onChanged: (int? value) {
                 gameChart.updateOpponentPeriod(value!);
               },
               value: gameChartInfo.opponentPeriod,

@@ -13,7 +13,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:image_editor/image_editor.dart';
 
 import '../collections/player/player.dart';
-import '../enums/Period.dart';
 import '../enums/PlayType.dart';
 import '../enums/ShotType.dart';
 import '../repositories/player_repository.dart';
@@ -31,7 +30,7 @@ class GameStatStateNotifier extends StateNotifier<GameStatModel> {
         image: null,
         blendMode: BlendMode.srcOver,
         src: null,
-        pbps: pbpRepository.getShotChartPbps(gameId, Period.ALL, PlayType.NONE, ShotType.NONE, null, 1, ShotZone.ALL),
+        pbps: pbpRepository.getShotChartPbps(gameId, 100, PlayType.NONE, ShotType.NONE, null, 1, ShotZone.ALL),
         shotFilter: 1,
         selectedPlayerId: null,
         detailPlayer: null,
@@ -64,7 +63,7 @@ class GameStatStateNotifier extends StateNotifier<GameStatModel> {
 
   void prepareImageProvider(int shotFilter, int? selectedPlayerId) async {
     state = state.copyWith(
-      pbps: pbpRepository.getShotChartPbps(gameId, Period.ALL, PlayType.NONE, ShotType.NONE, selectedPlayerId, shotFilter, ShotZone.ALL)
+      pbps: pbpRepository.getShotChartPbps(gameId, 100, PlayType.NONE, ShotType.NONE, selectedPlayerId, shotFilter, ShotZone.ALL)
     );
     String courtAsset = "assets/others/court.png"; //path to asset
     ByteData bytes = await rootBundle.load(courtAsset); //load sound from assets

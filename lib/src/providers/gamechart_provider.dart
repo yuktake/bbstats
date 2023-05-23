@@ -1,5 +1,6 @@
 import 'dart:typed_data';
 
+import 'package:bb_stats/src/collections/game/game.dart';
 import 'package:bb_stats/src/collections/gameChart/game_chart_model.dart';
 import 'package:bb_stats/src/enums/PlayType.dart';
 import 'package:bb_stats/src/enums/ShotType.dart';
@@ -9,7 +10,6 @@ import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:image_editor/image_editor.dart';
 
-import '../enums/Period.dart';
 import '../enums/RecordType.dart';
 import '../enums/ShotZone.dart';
 import '../repositories/boxscore_repository.dart';
@@ -32,8 +32,8 @@ class GameChartStateNotifier extends StateNotifier<GameChartModel> {
 
     image: null,
     src: null,
-    pbps: pbpRepository.getShotChartPbps(gameId, Period.ALL, PlayType.NONE, ShotType.NONE, null, 1, ShotZone.ALL),
-    period: Period.ALL,
+    pbps: pbpRepository.getShotChartPbps(gameId, 100, PlayType.NONE, ShotType.NONE, null, 1, ShotZone.ALL),
+    period: 100,
     playType: PlayType.NONE,
     shotType: ShotType.NONE,
     shotZone: ShotZone.ALL,
@@ -42,16 +42,16 @@ class GameChartStateNotifier extends StateNotifier<GameChartModel> {
 
     opponentImage: null,
     opponentSrc: null,
-    opponentPbps: pbpRepository.getOpponentShotChartPbps(gameId, Period.ALL, PlayType.NONE, ShotType.NONE, null, 1, ShotZone.ALL),
-    opponentPeriod: Period.ALL,
+    opponentPbps: pbpRepository.getOpponentShotChartPbps(gameId, 100, PlayType.NONE, ShotType.NONE, null, 1, ShotZone.ALL),
+    opponentPeriod: 100,
     opponentPlayType: PlayType.NONE,
     opponentShotType: ShotType.NONE,
     opponentShotZone: ShotZone.ALL,
     opponentShotFilter: 1,
     defencedPlayerId: null,
   )){
-    prepareImageProvider(Period.ALL, PlayType.NONE, ShotType.NONE, null, 1, ShotZone.ALL);
-    prepareOpponentImageProvider(Period.ALL, PlayType.NONE, ShotType.NONE, null, 1, ShotZone.ALL);
+    prepareImageProvider(100, PlayType.NONE, ShotType.NONE, null, 1, ShotZone.ALL);
+    prepareOpponentImageProvider(100, PlayType.NONE, ShotType.NONE, null, 1, ShotZone.ALL);
   }
 
   final int gameId;
@@ -64,7 +64,7 @@ class GameChartStateNotifier extends StateNotifier<GameChartModel> {
     await ImageGallerySaver.saveImage(memoryImage.bytes);
   }
 
-  void prepareImageProvider(Period period, PlayType playType, ShotType shotType, int? selectedPlayerId, int shotFilter, ShotZone shotZone) async {
+  void prepareImageProvider(int period, PlayType playType, ShotType shotType, int? selectedPlayerId, int shotFilter, ShotZone shotZone) async {
     state = state.copyWith(
         pbps: pbpRepository.getShotChartPbps(gameId, period, playType, shotType, selectedPlayerId, shotFilter, shotZone)
     );
@@ -97,7 +97,7 @@ class GameChartStateNotifier extends StateNotifier<GameChartModel> {
     );
   }
 
-  void prepareOpponentImageProvider(Period period, PlayType playType, ShotType shotType, int? defencedPlayerId, int shotFilter, ShotZone shotZone) async {
+  void prepareOpponentImageProvider(int period, PlayType playType, ShotType shotType, int? defencedPlayerId, int shotFilter, ShotZone shotZone) async {
     state = state.copyWith(
         opponentPbps: pbpRepository.getOpponentShotChartPbps(gameId, period, playType, shotType, defencedPlayerId, shotFilter, shotZone)
     );
@@ -129,14 +129,14 @@ class GameChartStateNotifier extends StateNotifier<GameChartModel> {
     );
   }
 
-  void updatePeriod(Period period) {
+  void updatePeriod(int period) {
     state = state.copyWith(
         period: period
     );
     prepareImageProvider(state.period, state.playType, state.shotType, state.selectedPlayerId, state.shotFilter, state.shotZone);
   }
 
-  void updateOpponentPeriod(Period period) {
+  void updateOpponentPeriod(int period) {
     state = state.copyWith(
         opponentPeriod: period
     );
@@ -216,5 +216,11 @@ class GameChartStateNotifier extends StateNotifier<GameChartModel> {
   Future<Uint8List> loadFromAsset(String key) async {
     final ByteData byteData = await rootBundle.load(key);
     return byteData.buffer.asUint8List();
+  }
+
+  int getOtNum() {
+    Game game = gameRepository.findGame(gameId)!;
+
+    return game.otNum;
   }
 }

@@ -23,12 +23,15 @@ class PlayByPlayScreen extends ConsumerWidget {
             children: [
               Expanded(
                 child: CupertinoSegmentedControl(
-                    children: const {
-                      1: Text('Q1'),
-                      2: Text('Q2'),
-                      3: Text('Q3'),
-                      4: Text('Q4'),
-                      5: Text('All'),
+                    children: {
+                      1: const Text('Q1'),
+                      2: const Text('Q2'),
+                      3: const Text('Q3'),
+                      4: const Text('Q4'),
+                      for(int i = 1; i <= gamePbp.getOtNum(); i++) ... {
+                        i+4: Text('OT$i')
+                      },
+                      100: const Text('All'),
                     },
                     groupValue: gamePbpInfo.quarter,
                     onValueChanged: (int value) {
