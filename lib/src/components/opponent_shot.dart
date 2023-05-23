@@ -25,6 +25,7 @@ class OpponentShot extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final gameRecord = ref.watch(gameRecordProvider(gameId).notifier);
     final gameRecordInfo = ref.watch(gameRecordProvider(gameId));
+    final gameChart = ref.watch(gameChartProvider(gameId).notifier);
     final opponentShotInfo = ref.watch(opponentShotProvider(ShotParameter(gameId: gameId, playerId: 0)));
     final opponentShot = ref.watch(opponentShotProvider(ShotParameter(gameId: gameId, playerId: 0)).notifier);
     final gameSummary = ref.watch(gameSummaryProvider(gameId).notifier);
@@ -295,6 +296,7 @@ class OpponentShot extends ConsumerWidget {
                   );
                   gameStat.updateStats();
                   gameSummary.update();
+                  gameChart.updateOpponentShotChart();
                   Navigator.of(context).pop();
                   gameRecord.scrollDown();
                 },

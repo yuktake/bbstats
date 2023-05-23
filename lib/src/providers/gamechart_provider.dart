@@ -89,7 +89,6 @@ class GameChartStateNotifier extends StateNotifier<GameChartModel> {
     }
 
     Uint8List? result = await ImageEditor.editImage(image: src, imageEditorOption: optionGroup);
-    // final aaa = await ImageGallerySaver.saveImage(result!);
 
     state = state.copyWith(
       image: MemoryImage(result!),
@@ -127,6 +126,14 @@ class GameChartStateNotifier extends StateNotifier<GameChartModel> {
       opponentImage: MemoryImage(result!),
       opponentSrc: src,
     );
+  }
+
+  void updateShotChart() {
+    prepareImageProvider(state.period, state.playType, state.shotType, state.selectedPlayerId, state.shotFilter, state.shotZone);
+  }
+
+  void updateOpponentShotChart() {
+    prepareOpponentImageProvider(state.opponentPeriod, state.opponentPlayType, state.opponentShotType, state.defencedPlayerId, state.opponentShotFilter, state.opponentShotZone);
   }
 
   void updatePeriod(int period) {
