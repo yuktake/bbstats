@@ -11,30 +11,6 @@ class StatDataTable extends ConsumerWidget {
   StatDataTable(this.gameId,{Key? key}) : super(key: key);
 
   final int gameId;
-
-  final List<Map> overall_list = List.generate(10, (index) => {
-    'PLAYER': index,
-    'MIN':  index,
-    'FGM': index,
-    'FGA': Random().nextDouble() + 1,
-    'FG%': Random().nextDouble() + 1,
-    '3PM': index,
-    '3PA': index,
-    '3P%': index,
-    'FTM': index,
-    'FTA': index,
-    'FT%': index,
-    'OREB': index,
-    'DREB': index,
-    'REB': index,
-    'AST': index,
-    'STL': index,
-    'BLK': index,
-    'TO': index,
-    'PF': index,
-    'PTS': index,
-    '+/-': index,
-  },);
   
   Widget PlayerColumn(String name, String path) {
     return (
@@ -42,7 +18,7 @@ class StatDataTable extends ConsumerWidget {
         child: Row(
           children: [
             Padding(
-              padding: EdgeInsets.only(right: 8.0),
+              padding: const EdgeInsets.only(right: 8.0),
               child: CircleAvatar(
                 backgroundImage: AssetImage(path),
               ),
@@ -63,7 +39,7 @@ class StatDataTable extends ConsumerWidget {
       Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16.0),
         child: Container(
-          height: overall_list.length*60,
+          height: MediaQuery.of(context).size.height*0.7,
           decoration: BoxDecoration(
             color: Colors.white,
             boxShadow: [
