@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:bb_stats/src/collections/pbp/pbp.dart';
 import 'package:bb_stats/src/collections/shot/shot_parameter.dart';
+import 'package:bb_stats/src/components/shot.dart';
 import 'package:bb_stats/src/enums/PlayType.dart';
 import 'package:bb_stats/src/enums/ShotType.dart';
 import 'package:flutter/cupertino.dart';
@@ -275,6 +276,7 @@ class OpponentShot extends ConsumerWidget {
                 backgroundColor: Colors.blue,
                 onPressed: () {
                   if (opponentShotInfo.positionX == null || opponentShotInfo.positionY == null) {
+                    noShotPositionDialog(context);
                     return;
                   }
                   opponentShot.confirm(gameId);
