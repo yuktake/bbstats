@@ -111,7 +111,7 @@ class GameDetailScreen extends ConsumerWidget {
                 builder: (context) {
                   return AlertDialog(
                     title: const Text('Confirm'),
-                    content: const Text('この試合を再度編集しますか？'),
+                    content: const Text('Do you want to edit it?'),
                     actions: [
                       SimpleDialogOption(
                         onPressed: () {
