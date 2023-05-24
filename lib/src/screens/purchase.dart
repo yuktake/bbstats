@@ -42,7 +42,7 @@ class PurchaseScreen extends ConsumerWidget {
                 const Text('・Stats by ShotZone'),
                 const Padding(
                     padding: EdgeInsets.only(top: 8.0),
-                    child: Text('Player stats: ', style: TextStyle(fontWeight: FontWeight.w800, color: Color(0xFF242629)))
+                    child: Text('Player stats: (Players Screen)', style: TextStyle(fontWeight: FontWeight.w800, color: Color(0xFF242629)))
                 ),
                 const Text('・Overall stats'),
                 const Text('・Stats by ShotType'),
@@ -52,8 +52,8 @@ class PurchaseScreen extends ConsumerWidget {
                     padding: EdgeInsets.only(top: 8.0),
                     child: Text('Game stats: ', style: TextStyle(fontWeight: FontWeight.w800, color: Color(0xFF242629)))
                 ),
-                const Text('・BoxScores'),
-                const Text('・PlayByPlay Data'),
+                const Text('・BoxScores(Game Screen/Box Score Tab)'),
+                const Text('・PlayByPlay Data(Game Screen/Play-By-Play Tab)'),
 
                 Padding(
                   padding: const EdgeInsets.only(top: 16.0),
