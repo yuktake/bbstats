@@ -994,7 +994,7 @@ class PbpRepository {
     return lists;
   }
   
-  List<int> getPickupStats(int gameId) {
+  List<String> getPickupStats(int gameId) {
     int pitpPbpsCount = isar.pbps.filter()
         .game((q) => q.idEqualTo(gameId))
         .and()
@@ -1047,10 +1047,10 @@ class PbpRepository {
         .findAllSync();
     for (var pbp in secondChancePbps) { secondChancePts = secondChancePts + pbp.shotPosition!.point; }
     
-    return [pitpPts, fbPts, secondChancePts];
+    return [pitpPts.toString(), fbPts.toString(), secondChancePts.toString()];
   }
 
-  List<int> getOpponentPickupStats(int gameId) {
+  List<String> getOpponentPickupStats(int gameId) {
     int pitpPbpsCount = isar.pbps.filter()
         .game((q) =>
           q.idEqualTo(gameId)
@@ -1106,9 +1106,7 @@ class PbpRepository {
         .findAllSync();
     for (var pbp in secondChancePbps) { secondChancePts = secondChancePts + pbp.shotPosition!.point; }
 
-    int benchPts = -1;
-
-    return [pitpPts, fbPts, secondChancePts, benchPts];
+    return [pitpPts.toString(), fbPts.toString(), secondChancePts.toString(), '-'];
   }
 
   List<Pbp> getPbpsBetweenDateTime(int gameId, int quarterMin) {

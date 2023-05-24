@@ -55,15 +55,15 @@ class GameSummaryStateNotifier extends StateNotifier<GameSummaryModel> {
     return pbpRepository.getOpponentScoresByQuarter(gameId);
   }
 
-  List<int> getPickUpStats() {
-    List<int> pickUpStats = pbpRepository.getPickupStats(gameId);
-    int benchPts = boxScoreRepository.getBenchPts(gameId);
+  List<String> getPickUpStats() {
+    List<String> pickUpStats = pbpRepository.getPickupStats(gameId);
+    String benchPts = boxScoreRepository.getBenchPts(gameId);
     pickUpStats.add(benchPts);
 
     return pickUpStats;
   }
 
-  List<int> getOpponentPickUpStats() {
+  List<String> getOpponentPickUpStats() {
     return pbpRepository.getOpponentPickupStats(gameId);
   }
 

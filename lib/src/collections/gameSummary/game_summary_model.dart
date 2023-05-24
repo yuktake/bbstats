@@ -15,7 +15,7 @@ class GameSummaryModel with _$GameSummaryModel {
     required List<int> scoreByQuarter,
     required List<int> opponentScoreByQuarter,
     required List<List<dynamic>> comparisonStats,
-    required List<int> pickupStats,
-    required List<int> opponentPickupStats,
+    required List<String> pickupStats,
+    required List<String> opponentPickupStats,
   }) = _GameSummaryModel;
 }

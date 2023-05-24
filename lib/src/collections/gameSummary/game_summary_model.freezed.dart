@@ -23,8 +23,8 @@ mixin _$GameSummaryModel {
   List<int> get scoreByQuarter => throw _privateConstructorUsedError;
   List<int> get opponentScoreByQuarter => throw _privateConstructorUsedError;
   List<List<dynamic>> get comparisonStats => throw _privateConstructorUsedError;
-  List<int> get pickupStats => throw _privateConstructorUsedError;
-  List<int> get opponentPickupStats => throw _privateConstructorUsedError;
+  List<String> get pickupStats => throw _privateConstructorUsedError;
+  List<String> get opponentPickupStats => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $GameSummaryModelCopyWith<GameSummaryModel> get copyWith =>
@@ -44,8 +44,8 @@ abstract class $GameSummaryModelCopyWith<$Res> {
       List<int> scoreByQuarter,
       List<int> opponentScoreByQuarter,
       List<List<dynamic>> comparisonStats,
-      List<int> pickupStats,
-      List<int> opponentPickupStats});
+      List<String> pickupStats,
+      List<String> opponentPickupStats});
 }
 
 /// @nodoc
@@ -101,11 +101,11 @@ class _$GameSummaryModelCopyWithImpl<$Res>
       pickupStats: pickupStats == freezed
           ? _value.pickupStats
           : pickupStats // ignore: cast_nullable_to_non_nullable
-              as List<int>,
+              as List<String>,
       opponentPickupStats: opponentPickupStats == freezed
           ? _value.opponentPickupStats
           : opponentPickupStats // ignore: cast_nullable_to_non_nullable
-              as List<int>,
+              as List<String>,
     ));
   }
 }
@@ -125,8 +125,8 @@ abstract class _$$_GameSummaryModelCopyWith<$Res>
       List<int> scoreByQuarter,
       List<int> opponentScoreByQuarter,
       List<List<dynamic>> comparisonStats,
-      List<int> pickupStats,
-      List<int> opponentPickupStats});
+      List<String> pickupStats,
+      List<String> opponentPickupStats});
 }
 
 /// @nodoc
@@ -184,11 +184,11 @@ class __$$_GameSummaryModelCopyWithImpl<$Res>
       pickupStats: pickupStats == freezed
           ? _value._pickupStats
           : pickupStats // ignore: cast_nullable_to_non_nullable
-              as List<int>,
+              as List<String>,
       opponentPickupStats: opponentPickupStats == freezed
           ? _value._opponentPickupStats
           : opponentPickupStats // ignore: cast_nullable_to_non_nullable
-              as List<int>,
+              as List<String>,
     ));
   }
 }
@@ -204,8 +204,8 @@ class _$_GameSummaryModel implements _GameSummaryModel {
       required final List<int> scoreByQuarter,
       required final List<int> opponentScoreByQuarter,
       required final List<List<dynamic>> comparisonStats,
-      required final List<int> pickupStats,
-      required final List<int> opponentPickupStats})
+      required final List<String> pickupStats,
+      required final List<String> opponentPickupStats})
       : _scores = scores,
         _opponentScores = opponentScores,
         _scoreByQuarter = scoreByQuarter,
@@ -253,16 +253,16 @@ class _$_GameSummaryModel implements _GameSummaryModel {
     return EqualUnmodifiableListView(_comparisonStats);
   }
 
-  final List<int> _pickupStats;
+  final List<String> _pickupStats;
   @override
-  List<int> get pickupStats {
+  List<String> get pickupStats {
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_pickupStats);
   }
 
-  final List<int> _opponentPickupStats;
+  final List<String> _opponentPickupStats;
   @override
-  List<int> get opponentPickupStats {
+  List<String> get opponentPickupStats {
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_opponentPickupStats);
   }
@@ -322,8 +322,8 @@ abstract class _GameSummaryModel implements GameSummaryModel {
       required final List<int> scoreByQuarter,
       required final List<int> opponentScoreByQuarter,
       required final List<List<dynamic>> comparisonStats,
-      required final List<int> pickupStats,
-      required final List<int> opponentPickupStats}) = _$_GameSummaryModel;
+      required final List<String> pickupStats,
+      required final List<String> opponentPickupStats}) = _$_GameSummaryModel;
 
   @override
   Game get game;
@@ -340,9 +340,9 @@ abstract class _GameSummaryModel implements GameSummaryModel {
   @override
   List<List<dynamic>> get comparisonStats;
   @override
-  List<int> get pickupStats;
+  List<String> get pickupStats;
   @override
-  List<int> get opponentPickupStats;
+  List<String> get opponentPickupStats;
   @override
   @JsonKey(ignore: true)
   _$$_GameSummaryModelCopyWith<_$_GameSummaryModel> get copyWith =>

@@ -2198,7 +2198,7 @@ class BoxscoreRepository {
     return playTypeStats;
   }
 
-  int getBenchPts(int gameId) {
+  String getBenchPts(int gameId) {
     final boxScores = isar.boxscores.filter()
         .game(
             (q) => q.idEqualTo(gameId)
@@ -2212,7 +2212,7 @@ class BoxscoreRepository {
       benchPts+=boxScore.pts;
     }
 
-    return benchPts;
+    return benchPts.toString();
   }
 
   void deleteByGame(int gameId) {
