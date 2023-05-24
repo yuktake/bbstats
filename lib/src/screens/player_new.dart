@@ -16,7 +16,6 @@ class PlayerNewScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final scaffoldKey = GlobalKey<ScaffoldState>();
     final formKey = GlobalKey<FormState>();
-    // final playerNameInputController = TextEditingController();
     final player = ref.watch(playerProvider(id).notifier);
     final playerInfo = ref.watch(playerProvider(id));
     final playerList = ref.watch(playerListProvider.notifier);
@@ -55,8 +54,8 @@ class PlayerNewScreen extends ConsumerWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Container(
-                    width: 100,
-                    height: 100,
+                    width: MediaQuery.of(context).size.width/4,
+                    height: MediaQuery.of(context).size.width/4,
                     decoration: const BoxDecoration(
                       shape: BoxShape.circle,
                       color: Colors.blue,
@@ -65,7 +64,7 @@ class PlayerNewScreen extends ConsumerWidget {
                     // })
                 ),
                 SizedBox(
-                  width: 200,
+                  width: MediaQuery.of(context).size.width/2,
                   child: TextFormField(
                     controller: playerInfo.playerNameInputController,
                     autovalidateMode: AutovalidateMode.onUserInteraction,
@@ -96,8 +95,8 @@ class PlayerNewScreen extends ConsumerWidget {
                       await getPictureImage(player);
                     },
                     style: ElevatedButton.styleFrom(
-                      primary: Colors.orange,
-                      onPrimary: Colors.white,
+                      foregroundColor: Colors.white,
+                      backgroundColor: Colors.orange,
                     ),
                     child: const Text("画像選択"),
                   );
@@ -128,7 +127,6 @@ class PlayerNewScreen extends ConsumerWidget {
   Future<void> getPictureImage(PlayerStateNotifier playerStateNotifier) async {
     ImagePicker picker = ImagePicker();
     PickedFile? xfile = await picker.getImage(source: ImageSource.gallery);
-    // final XFile? xfile = await picker.pickImage(source: ImageSource.gallery);
     var dir = Directory("${(await getApplicationDocumentsDirectory()).path}/players");
     if (!(await dir.exists())) {
       dir.create();

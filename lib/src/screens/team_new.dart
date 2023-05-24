@@ -15,7 +15,6 @@ class TeamNewScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final formKey = GlobalKey<FormState>();
-    // final teamNameInputController = TextEditingController();
 
     final teamInfo = ref.watch(teamProvider(0));
     final documentPath = ref.watch(documentPathProvider);
@@ -63,7 +62,7 @@ class TeamNewScreen extends ConsumerWidget {
                     child: showProfileImage(null, "${documentPath.value}/teams/preview.jpg", teamInfo.showPreview )
                 ),
                 SizedBox(
-                  width: 100,
+                  width: MediaQuery.of(context).size.width/2,
                   child: TextFormField(
                     controller: teamInfo.teamNameInputController,
                     validator: (value) {

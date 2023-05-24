@@ -50,15 +50,15 @@ class TeamEditScreen extends ConsumerWidget {
             }),
           ],
         ),
-        body: Form(
-          key: formKey,
-          child: Center(
+        body: Center(
+          child: Form(
+            key: formKey,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Container(
-                  width: 100,
-                  height: 100,
+                  width: MediaQuery.of(context).size.width/4,
+                  height: MediaQuery.of(context).size.width/4,
                   decoration: const BoxDecoration(
                     shape: BoxShape.circle,
                     color: Colors.blue,
@@ -67,7 +67,7 @@ class TeamEditScreen extends ConsumerWidget {
                 ),
                 // }),
                 SizedBox(
-                  width: 100,
+                  width: MediaQuery.of(context).size.width/2,
                   child: TextFormField(
                       controller: teamInfo.teamNameInputController,
                       validator: (value) {
@@ -97,8 +97,8 @@ class TeamEditScreen extends ConsumerWidget {
                       await getPictureImage(team);
                     },
                     style: ElevatedButton.styleFrom(
-                      primary: Colors.orange,
-                      onPrimary: Colors.white,
+                      foregroundColor: Colors.white,
+                      backgroundColor: Colors.orange,
                     ),
                     child: const Text("画像選択"),
                   )
@@ -111,30 +111,16 @@ class TeamEditScreen extends ConsumerWidget {
   }
 
   Widget showProfileImage(String imagePath, String previewImagePath, bool showPreview) {
-    // if (showPreview) {
-    //   return CircleAvatar(
-    //     backgroundImage: AssetImage(previewImagePath),
-    //   );
-    // } else if(imagePath != null) {
-    //   return CircleAvatar(
-    //     backgroundImage: AssetImage(imagePath),
-    //   );
-    // } else {
-    //   return const CircleAvatar(
-    //     radius: 50,
-    //     backgroundColor: Colors.blue,
-    //     child: Text('No Image'),
-    //   );
-    // }
-
     if (showPreview) {
       var a = File(previewImagePath);
       return CircleAvatar(
+        radius: 50,
         backgroundImage: MemoryImage(a.readAsBytesSync()),
       );
     } else {
       var a = File(imagePath);
       return CircleAvatar(
+        radius: 50,
         backgroundImage: MemoryImage(a.readAsBytesSync()),
       );
     }
