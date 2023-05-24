@@ -21,7 +21,7 @@ class JapaneseAbout extends StatelessWidget {
           ),
           const Text("このアプリはあなたの（応援している）チームの試合データを記録することを目的としたアプリです。"),
           const Text(
-            '※現状、本アプリにはデータ引き継ぎ機能がないため、CSV出力機能(有料)でのみデータを取り出すことができます。',
+            '※現状、本アプリにはデータ引き継ぎ機能がないため、CSV出力機能(有料予定)でのみデータを取り出すことができます。',
             style: TextStyle(
               color: Colors.red
             ),
