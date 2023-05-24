@@ -491,6 +491,7 @@ class GameRecordStateNotifier extends StateNotifier<GameRecordModel> {
     state = state.copyWith(
       currentQuarter: game.otNum + 4,
       time: time,
+      records: pbpRepository.getPbpByCurrentQuarter(gameId),
     );
   }
 
