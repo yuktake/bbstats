@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:bb_stats/src/collections/boxscore/boxscore.dart';
 import 'package:bb_stats/src/collections/game/game.dart';
 import 'package:bb_stats/src/collections/pbp/pbp.dart';
 import 'package:bb_stats/src/collections/player/player.dart';
@@ -1045,32 +1046,8 @@ class PbpRepository {
         )
         .findAllSync();
     for (var pbp in secondChancePbps) { secondChancePts = secondChancePts + pbp.shotPosition!.point; }
-
-    int benchPts = 0;
-    // TODO modify
-    // List<Pbp> benchPbps = isar.pbps.filter()
-    //     .game((q) =>
-    //       q.idEqualTo(gameId)
-    //       .and()
-    //       .boxscores((b) =>
-    //         b.starterEqualTo(false)
-    //       )
-    //     )
-    //     .and()
-    //     .not()
-    //     .playerIsNull()
-    //     .and()
-    //     .group((q) => q
-    //       .typeEqualTo(RecordType.TWO_POINT_MADE)
-    //       .or()
-    //       .typeEqualTo(RecordType.THREE_POINT_MADE)
-    //     )
-    //     .and()
-    //     .shotPositionIsNotNull()
-    //     .findAllSync();
-    // for (var pbp in benchPbps) { benchPts = benchPts + pbp.shotPosition!.point; }
     
-    return [pitpPts, fbPts, secondChancePts, benchPts];
+    return [pitpPts, fbPts, secondChancePts];
   }
 
   List<int> getOpponentPickupStats(int gameId) {

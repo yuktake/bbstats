@@ -189,6 +189,7 @@ final gameSummaryProvider = StateNotifierProvider.family<GameSummaryStateNotifie
   return GameSummaryStateNotifier(
       id,
       ref.watch(gameRepositoryProvider),
+      ref.watch(boxscoreRepositoryProvider),
       ref.watch(teamRepositoryProvider),
       ref.watch(pbpRepositoryProvider)
   );

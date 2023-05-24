@@ -1,4 +1,5 @@
 import 'package:bb_stats/src/collections/gameSummary/game_summary_model.dart';
+import 'package:bb_stats/src/repositories/boxscore_repository.dart';
 import 'package:bb_stats/src/repositories/game_repository.dart';
 import 'package:bb_stats/src/repositories/team_repository.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -9,6 +10,7 @@ class GameSummaryStateNotifier extends StateNotifier<GameSummaryModel> {
   GameSummaryStateNotifier(
     this.gameId,
     this.gameRepository,
+    this.boxScoreRepository,
     this.teamRepository,
     this.pbpRepository,
   ) : super (
@@ -20,7 +22,7 @@ class GameSummaryStateNotifier extends StateNotifier<GameSummaryModel> {
         scoreByQuarter: pbpRepository.getScoresByQuarter(gameId),
         opponentScoreByQuarter: pbpRepository.getOpponentScoresByQuarter(gameId),
         comparisonStats: gameRepository.getStatsForComparison(gameId),
-        pickupStats: pbpRepository.getPickupStats(gameId),
+        pickupStats: [],
         opponentPickupStats: pbpRepository.getOpponentPickupStats(gameId),
       )
   ) {
@@ -28,6 +30,7 @@ class GameSummaryStateNotifier extends StateNotifier<GameSummaryModel> {
   }
 
   final GameRepository gameRepository;
+  final BoxscoreRepository boxScoreRepository;
   final TeamRepository teamRepository;
   final PbpRepository pbpRepository;
   final int gameId;
@@ -53,7 +56,11 @@ class GameSummaryStateNotifier extends StateNotifier<GameSummaryModel> {
   }
 
   List<int> getPickUpStats() {
-    return pbpRepository.getPickupStats(gameId);
+    List<int> pickUpStats = pbpRepository.getPickupStats(gameId);
+    int benchPts = boxScoreRepository.getBenchPts(gameId);
+    pickUpStats.add(benchPts);
+
+    return pickUpStats;
   }
 
   List<int> getOpponentPickUpStats() {

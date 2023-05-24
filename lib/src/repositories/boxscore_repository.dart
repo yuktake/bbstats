@@ -2198,6 +2198,23 @@ class BoxscoreRepository {
     return playTypeStats;
   }
 
+  int getBenchPts(int gameId) {
+    final boxScores = isar.boxscores.filter()
+        .game(
+            (q) => q.idEqualTo(gameId)
+    )
+        .and()
+        .starterEqualTo(false)
+        .findAllSync();
+
+    int benchPts = 0;
+    for (final boxScore in boxScores) {
+      benchPts+=boxScore.pts;
+    }
+
+    return benchPts;
+  }
+
   void deleteByGame(int gameId) {
     isar.boxscores.filter().game((q) => q.idEqualTo(gameId)).deleteAllSync();
   }
