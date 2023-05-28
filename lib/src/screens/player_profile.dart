@@ -3,7 +3,8 @@ import 'dart:io';
 import 'package:bb_stats/src/screens/player_edit.dart';
 import 'package:data_table_2/data_table_2.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
+import 'package:flutter_datetime_picker_plus/flutter_datetime_picker_plus.dart';
+// import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
 import 'package:path_provider/path_provider.dart';
@@ -157,35 +158,35 @@ class PlayerProfile extends ConsumerWidget {
                     decoration: BoxDecoration(
                         color: Colors.blueGrey.withOpacity(0.3)
                     ),
-                    child: Column(
+                    child: const Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                           Padding(
-                            padding:const EdgeInsets.only(right:10),
+                            padding:EdgeInsets.only(right:10),
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceAround,
                               children: [
                                 Column(
-                                  children: const [
+                                  children: [
                                     Text('PPG'),
                                     Text('-'),
                                   ],
                                 ),
                                 Column(
-                                  children: const [
+                                  children: [
                                     Text('RPG'),
                                     Text('-'),
                                   ],
                                 ),
                                 Column(
-                                  children: const [
+                                  children: [
                                     Text('APG'),
                                     Text('-'),
                                   ],
                                 ),
                                 Column(
-                                  children: const [
+                                  children: [
                                     Text('PIE'),
                                     Text('-'),
                                   ],
@@ -194,13 +195,13 @@ class PlayerProfile extends ConsumerWidget {
                                 Column(
                                   children: [
                                     Column(
-                                      children: const [
+                                      children: [
                                         Text('HEIGHT'),
                                         Text('1.98m')
                                       ],
                                     ),
                                     Column(
-                                      children: const [
+                                      children: [
                                         Text('AGE'),
                                         Text('32')
                                       ],
@@ -210,13 +211,13 @@ class PlayerProfile extends ConsumerWidget {
                                 Column(
                                   children: [
                                     Column(
-                                      children: const [
+                                      children: [
                                         Text('WEIGHT'),
                                         Text('100kg')
                                       ],
                                     ),
                                     Column(
-                                      children: const [
+                                      children: [
                                         Text('BIRTHDAY'),
                                         Text('February 8, 1990')
                                       ],
