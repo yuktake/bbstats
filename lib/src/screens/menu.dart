@@ -32,24 +32,27 @@ class MenuScreen extends ConsumerWidget {
           )
         ],
       ),
-      body: Padding(
-        padding: const EdgeInsets.only(top: 16.0, left: 16.0, right: 16.0),
-        child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Container(
-                alignment: Alignment.center,
-                width: MediaQuery.of(context).size.width,
-                height: 100.0,
-                child: adWidget,
-              ),
+      body: SizedBox(
+        height: MediaQuery.of(context).size.height,
+        child: Padding(
+          padding: const EdgeInsets.only(top: 16.0, left: 16.0, right: 16.0),
+          child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Container(
+                  alignment: Alignment.center,
+                  width: MediaQuery.of(context).size.width,
+                  height: 100.0,
+                  child: adWidget,
+                ),
 
-              for(int i = 0; i < sidebarItems.length; i++) ... {
-                i == sidebarItems.length-2 ? const Spacer() : Container(),
-                SidebarRow(item: sidebarItems[i])
-              }
-            ],
-          ),
+                for(int i = 0; i < sidebarItems.length; i++) ... {
+                  i == sidebarItems.length-2 ? mediumAd(MediaQuery.of(context).size.width) : Container(),
+                  SidebarRow(item: sidebarItems[i])
+                }
+              ],
+            ),
+        ),
       )
     );
   }
@@ -66,4 +69,28 @@ AdWidget createAd() {
   final AdWidget adWidget = AdWidget(ad: myBanner);
 
   return adWidget;
+}
+
+AdWidget createMidAd() {
+  final BannerAd myBanner = BannerAd(
+    adUnitId: 'ca-app-pub-3940256099942544/2934735716',
+    size: AdSize.mediumRectangle,
+    request: const AdRequest(),
+    listener: const BannerAdListener(),
+  );
+  myBanner.load();
+  final AdWidget adWidget = AdWidget(ad: myBanner);
+
+  return adWidget;
+}
+
+Widget mediumAd(double width) {
+  final adWidget = createMidAd();
+  return Expanded(
+      child: Container(
+        alignment: Alignment.center,
+        width: width,
+        child: adWidget,
+      )
+  );
 }
