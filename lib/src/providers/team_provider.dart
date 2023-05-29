@@ -29,7 +29,6 @@ class TeamStateNotifier extends StateNotifier<TeamModel> {
     state.teamNameInputController.text = '';
     state = state.copyWith(
       name: "",
-      // image: await teamRepository.getMyTeamImage(),
       image: null,
       showPreview: false,
     );
@@ -44,16 +43,6 @@ class TeamStateNotifier extends StateNotifier<TeamModel> {
   }
 
   bool checkForm() {
-    // bool addable = false;
-    // if (state.showPreview) {
-    //   addable = true;
-    // }
-    // return addable;
-
-    // if (state.image != null ) {
-    //   return true;
-    // }
-
     if (state.showPreview == true) {
       return true;
     }
@@ -72,12 +61,6 @@ class TeamStateNotifier extends StateNotifier<TeamModel> {
       showPreview: result,
     );
   }
-
-  // void resetPreview() {
-  //   state = state.copyWith(
-  //     previewImage: null,
-  //   );
-  // }
 
   Future<void> showImage({required int id}) async {
     var teamImagePath = "${(await getApplicationDocumentsDirectory()).path}/teams/$id.jpg";

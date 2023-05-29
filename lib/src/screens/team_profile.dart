@@ -1,6 +1,5 @@
 import 'dart:io';
 
-import 'package:bb_stats/src/screens/player_profile.dart';
 import 'package:bb_stats/src/screens/team_edit.dart';
 import 'package:data_table_2/data_table_2.dart';
 import 'package:flutter/material.dart';
@@ -49,7 +48,7 @@ class TeamProfile extends ConsumerWidget {
             IconButton(
               icon: const Icon(Icons.edit),
               onPressed: () => {
-                team.setEditState('${documentPath.value}/teams/$id.jpg'),
+                team.setEditState('${documentPath.value}/teams/1.jpg'),
                 Navigator.push(
                   context,
                   MaterialPageRoute(

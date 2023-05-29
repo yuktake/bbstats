@@ -38,12 +38,9 @@ class TeamEditScreen extends ConsumerWidget {
                 onPressed: () async => {
                   if (formKey.currentState!.validate() && team.checkForm()) {
                     await team.update(id:id, name: teamInfo.teamNameInputController.text),
-                    team.updateShowPreview(false),
                     Navigator.of(context).pop()
                   } else {
-                    ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(content: Text('チーム画像を設定してください。'))
-                    )
+                    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('チーム画像を設定してください。')))
                   }
                 },
               );
@@ -63,7 +60,7 @@ class TeamEditScreen extends ConsumerWidget {
                     shape: BoxShape.circle,
                     color: Colors.blue,
                   ),
-                  child: teamInfo.showPreview ? showCircleImage(teamInfo.image!, 50.0) : showCircleImage("${documentPath.value}/teams/preview.jpg", 50.0)
+                  child: teamInfo.showPreview ? showCircleImage("${documentPath.value}/teams/preview.jpg", 50.0) : showCircleImage(teamInfo.image!, 50.0)
                 ),
                 // }),
                 SizedBox(
@@ -130,8 +127,15 @@ class TeamEditScreen extends ConsumerWidget {
 
 Widget showCircleImage(String imagePath, double radius) {
   var a = File(imagePath);
-  return CircleAvatar(
-    radius: radius,
-    backgroundImage: MemoryImage(a.readAsBytesSync()),
-  );
+  if (a.existsSync()) {
+    return CircleAvatar(
+      radius: radius,
+      backgroundImage: MemoryImage(a.readAsBytesSync()),
+    );
+  } else {
+    return CircleAvatar(
+      radius: radius,
+      backgroundImage: const AssetImage('assets/logos/default.png'),
+    );
+  }
 }
