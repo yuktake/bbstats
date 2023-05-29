@@ -28,6 +28,7 @@ class PlayerProfile extends ConsumerWidget {
     final playerDetail = ref.watch(playerDetailProvider(id).notifier);
     final playerDetailInfo = ref.watch(playerDetailProvider(id));
     final players = ref.watch(playerListProvider.notifier);
+    final teamInfo = ref.watch(teamProvider(1));
     final documentPath = ref.watch(documentPathProvider);
 
     return Scaffold(
@@ -140,7 +141,7 @@ class PlayerProfile extends ConsumerWidget {
                           mainAxisAlignment: MainAxisAlignment.start,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            const Text("Golden State Warriors | #11 | Guard"),
+                            Text(teamInfo.name),
                             Text(
                               playerInfo.name,
                               style: const TextStyle(
@@ -153,82 +154,6 @@ class PlayerProfile extends ConsumerWidget {
                         ),
                       ),
                     ],
-                  ),
-                  Container(
-                    decoration: BoxDecoration(
-                        color: Colors.blueGrey.withOpacity(0.3)
-                    ),
-                    child: const Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Padding(
-                            padding:EdgeInsets.only(right:10),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceAround,
-                              children: [
-                                Column(
-                                  children: [
-                                    Text('PPG'),
-                                    Text('-'),
-                                  ],
-                                ),
-                                Column(
-                                  children: [
-                                    Text('RPG'),
-                                    Text('-'),
-                                  ],
-                                ),
-                                Column(
-                                  children: [
-                                    Text('APG'),
-                                    Text('-'),
-                                  ],
-                                ),
-                                Column(
-                                  children: [
-                                    Text('PIE'),
-                                    Text('-'),
-                                  ],
-                                ),
-
-                                Column(
-                                  children: [
-                                    Column(
-                                      children: [
-                                        Text('HEIGHT'),
-                                        Text('1.98m')
-                                      ],
-                                    ),
-                                    Column(
-                                      children: [
-                                        Text('AGE'),
-                                        Text('32')
-                                      ],
-                                    ),
-                                  ],
-                                ),
-                                Column(
-                                  children: [
-                                    Column(
-                                      children: [
-                                        Text('WEIGHT'),
-                                        Text('100kg')
-                                      ],
-                                    ),
-                                    Column(
-                                      children: [
-                                        Text('BIRTHDAY'),
-                                        Text('February 8, 1990')
-                                      ],
-                                    ),
-                                  ],
-                                ),
-                              ],
-                            ),
-                          )
-                        ]
-                    ),
                   ),
                 ],
               ),
