@@ -1,3 +1,4 @@
+import 'dart:io';
 import 'dart:math';
 
 import 'package:bb_stats/src/collections/pbp/pbp.dart';
@@ -330,6 +331,7 @@ class Shot extends ConsumerWidget {
       );
     } else {
       if(selectedId == player.id) {
+        var a = File("$documentPath/players/${player.id}.jpg");
         return Container(
           padding: const EdgeInsets.all(5.0),
           decoration: const BoxDecoration(
@@ -338,13 +340,14 @@ class Shot extends ConsumerWidget {
           ),
           child: CircleAvatar(
             radius: radius,
-            backgroundImage: AssetImage("$documentPath/players/${player.id}.jpg"),
+            backgroundImage: MemoryImage(a.readAsBytesSync()),
           )
         );
       } else {
+        var a = File("$documentPath/players/${player.id}.jpg");
         return CircleAvatar(
           radius: radius,
-          backgroundImage: AssetImage("$documentPath/players/${player.id}.jpg"),
+          backgroundImage: MemoryImage(a.readAsBytesSync()),
         );
       }
     }

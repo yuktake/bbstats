@@ -1,3 +1,4 @@
+import 'package:bb_stats/src/screens/team_edit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -32,10 +33,7 @@ class PlayersSelectScreen extends ConsumerWidget {
                 padding: const EdgeInsets.symmetric(vertical: 8.0),
                 child: Row(
                   children: [
-                    CircleAvatar(
-                      radius: 40,
-                      backgroundImage: AssetImage("${documentPath.value}/players/${playersInfo.players[index].id}.jpg"),
-                    ),
+                    showCircleImage("${documentPath.value}/players/${playersInfo.players[index].id}.jpg", 40.0),
                     const SizedBox(width: 32.0),
                     Text(playersInfo.players[index].name)
                   ],

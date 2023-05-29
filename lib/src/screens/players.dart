@@ -65,7 +65,7 @@ class PlayersScreen extends ConsumerWidget {
                 ),
               );
             },
-            child: showProfileImage("${documentPath.value}/players/${playersInfo.players[index].id}.jpg"),
+            child: showPlayerImage("${documentPath.value}/players/${playersInfo.players[index].id}.jpg"),
           );
         }).toList()
         ,
@@ -73,7 +73,7 @@ class PlayersScreen extends ConsumerWidget {
     );
   }
 
-  Widget showProfileImage(String imagePath) {
+  Widget showPlayerImage(String imagePath) {
     var a = File(imagePath);
     return CircleAvatar(
       backgroundImage: MemoryImage(a.readAsBytesSync()),

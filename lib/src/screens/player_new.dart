@@ -60,7 +60,7 @@ class PlayerNewScreen extends ConsumerWidget {
                       shape: BoxShape.circle,
                       color: Colors.blue,
                     ),
-                    child: showProfileImage("${documentPath.value}/players/preview.jpg", playerInfo.showPreview)
+                    child: showPlayerNewImage("${documentPath.value}/players/preview.jpg", playerInfo.showPreview, 50)
                     // })
                 ),
                 SizedBox(
@@ -108,18 +108,18 @@ class PlayerNewScreen extends ConsumerWidget {
     );
   }
 
-  Widget showProfileImage(String previewImagePath, bool showPreview) {
+  Widget showPlayerNewImage(String previewImagePath, bool showPreview, double radius) {
     if (showPreview) {
       var a = File(previewImagePath);
-      return
-        CircleAvatar(
-          backgroundImage: MemoryImage(a.readAsBytesSync()),
-        );
+      return CircleAvatar(
+        backgroundImage: MemoryImage(a.readAsBytesSync()),
+        radius: radius,
+      );
     } else {
-      return const CircleAvatar(
-        radius: 50,
+      return CircleAvatar(
+        radius: radius,
         backgroundColor: Colors.blue,
-        child: Text('No Image'),
+        child: const Text('No Image'),
       );
     }
   }

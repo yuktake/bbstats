@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:bb_stats/src/collections/pbp/pbp.dart';
 import 'package:bb_stats/src/enums/RecordType.dart';
 import 'package:bb_stats/src/providers/isar_provider.dart';
@@ -64,11 +66,12 @@ class PlayByPlayScreen extends ConsumerWidget {
 
 Widget pbpRow(Pbp pbp, String path) {
     if (pbp.type == RecordType.TIMEOUT || pbp.type == RecordType.SHOT_CLOCK_TURNOVER){
+      final a = File('$path/teams/1.jpg');
       return Row(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
           CircleAvatar(
-            backgroundImage: AssetImage('$path/teams/1.jpg'),
+            backgroundImage: MemoryImage(a.readAsBytesSync()),
             radius: 20,
           ),
           Flexible(
@@ -80,11 +83,12 @@ Widget pbpRow(Pbp pbp, String path) {
         ],
       );
     } else {
+      final a = File('$path/players/${pbp.player.value!.id}.jpg');
       return Row(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
           CircleAvatar(
-            backgroundImage: AssetImage('$path/players/${pbp.player.value!.id}.jpg'),
+            backgroundImage: MemoryImage(a.readAsBytesSync()),
             radius: 20,
           ),
           Flexible(
@@ -99,6 +103,7 @@ Widget pbpRow(Pbp pbp, String path) {
 }
 
 Widget pbpOpponentRow(Pbp pbp, String path, int opponentTeamId) {
+  final a = File('$path/teams/$opponentTeamId.jpg');
   if (pbp.type == RecordType.TIMEOUT || pbp.type == RecordType.SHOT_CLOCK_TURNOVER){
     return Row(
       mainAxisAlignment: MainAxisAlignment.end,
@@ -110,11 +115,12 @@ Widget pbpOpponentRow(Pbp pbp, String path, int opponentTeamId) {
           ),
         ),
         CircleAvatar(
-          backgroundImage: AssetImage('$path/teams/$opponentTeamId.jpg'),
+          backgroundImage: MemoryImage(a.readAsBytesSync()),
         ),
       ],
     );
   } else {
+    final a = File('$path/teams/$opponentTeamId.jpg');
     return Row(
       mainAxisAlignment: MainAxisAlignment.end,
       children: [
@@ -125,7 +131,7 @@ Widget pbpOpponentRow(Pbp pbp, String path, int opponentTeamId) {
           ),
         ),
         CircleAvatar(
-          backgroundImage: AssetImage('$path/teams/$opponentTeamId.jpg'),
+          backgroundImage: MemoryImage(a.readAsBytesSync()),
         ),
       ],
     );

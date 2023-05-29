@@ -133,7 +133,7 @@ class PlayerProfile extends ConsumerWidget {
                     children: [
                       Padding(
                         padding: const EdgeInsets.all(8),
-                        child: showProfileImage('${documentPath.value}/players/$id.jpg')
+                        child: showPlayerProfileImage('${documentPath.value}/players/$id.jpg', 50)
                       ),
                       Expanded(
                         child: Column(
@@ -427,10 +427,10 @@ class PlayerProfile extends ConsumerWidget {
   }
 }
 
-Widget showProfileImage(String imagePath) {
+Widget showPlayerProfileImage(String imagePath, double radius) {
   var a = File(imagePath);
   return CircleAvatar(
-    radius: 50,
+    radius: radius,
     backgroundImage: MemoryImage(a.readAsBytesSync()),
   );
 }

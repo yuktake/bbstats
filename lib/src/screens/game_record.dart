@@ -1,4 +1,5 @@
 
+import 'dart:io';
 import 'dart:math';
 
 import 'package:bb_stats/src/components/game_stat.dart';
@@ -9,6 +10,7 @@ import 'package:bb_stats/src/enums/GameAction.dart';
 import 'package:bb_stats/src/enums/RecordType.dart';
 import 'package:bb_stats/src/enums/PlayerAction.dart';
 import 'package:bb_stats/src/providers/isar_provider.dart';
+import 'package:bb_stats/src/screens/team_edit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_time_picker_spinner/flutter_time_picker_spinner.dart';
@@ -65,10 +67,7 @@ class GameRecordScreen extends ConsumerWidget {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
-                            CircleAvatar(
-                              backgroundImage: AssetImage('${documentPath.value}/teams/1.jpg'),
-                              radius: 25.0,
-                            ),
+                            showCircleImage('${documentPath.value}/teams/1.jpg', 25.0),
                             DropdownButton(
                               items: [
                                 const DropdownMenuItem(
@@ -175,11 +174,7 @@ class GameRecordScreen extends ConsumerWidget {
                                     child: Text('FOUL')
                                 ),
                               ],
-                              icon: CircleAvatar(
-                                radius: 25,
-                                backgroundImage: AssetImage('${documentPath.value}/teams/${gameRecordInfo.game.opponent.value!.id}.jpg'),
-                                // backgroundImage: AssetImage(img),
-                              ),
+                              icon: showCircleImage('${documentPath.value}/teams/${gameRecordInfo.game.opponent.value!.id}.jpg', 25.0),
                               iconSize: 50,
                             ),
                           ],
@@ -339,6 +334,7 @@ Widget _buildCircleAvatar(int gameId, Player player, String img, int index) {
   return LayoutBuilder(
     builder: (context, constraints) {
       final radius = min(constraints.maxHeight / 2, constraints.maxWidth / 2);
+      var a = File(img);
 
       return Consumer(builder: (context, ref, _) {
         final gameRecordInfo = ref.watch(gameRecordProvider(gameId));
@@ -432,7 +428,7 @@ Widget _buildCircleAvatar(int gameId, Player player, String img, int index) {
                 ],
                 icon: CircleAvatar(
                   radius: radius,
-                  backgroundImage: AssetImage(img),
+                  backgroundImage: MemoryImage(a.readAsBytesSync()),
                 ),
                 iconSize: radius*2,
               ),
@@ -690,9 +686,10 @@ Widget substituteSheet(int gameId, int onCourtPlayerIndex) {
                           child: LayoutBuilder(
                             builder: (context, constraints) {
                               final radius = MediaQuery.of(context).size.width / 10;
+                              final a = File("${documentPath.value}/players/${gameRecordInfo.substitutes[i].player.value!.id}.jpg");
                               return CircleAvatar(
                                 radius: radius,
-                                backgroundImage: AssetImage("${documentPath.value}/players/${gameRecordInfo.substitutes[i].player.value!.id}.jpg"),
+                                backgroundImage: MemoryImage(a.readAsBytesSync()),
                               );
                             },
                           ),

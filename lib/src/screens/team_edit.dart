@@ -63,7 +63,7 @@ class TeamEditScreen extends ConsumerWidget {
                     shape: BoxShape.circle,
                     color: Colors.blue,
                   ),
-                  child: showProfileImage(teamInfo.image!, "${documentPath.value}/teams/preview.jpg", teamInfo.showPreview)
+                  child: teamInfo.showPreview ? showCircleImage(teamInfo.image!, 50.0) : showCircleImage("${documentPath.value}/teams/preview.jpg", 50.0)
                 ),
                 // }),
                 SizedBox(
@@ -110,22 +110,6 @@ class TeamEditScreen extends ConsumerWidget {
     );
   }
 
-  Widget showProfileImage(String imagePath, String previewImagePath, bool showPreview) {
-    if (showPreview) {
-      var a = File(previewImagePath);
-      return CircleAvatar(
-        radius: 50,
-        backgroundImage: MemoryImage(a.readAsBytesSync()),
-      );
-    } else {
-      var a = File(imagePath);
-      return CircleAvatar(
-        radius: 50,
-        backgroundImage: MemoryImage(a.readAsBytesSync()),
-      );
-    }
-  }
-
   Future<void> getPictureImage(TeamStateNotifier teamStateNotifier) async {
     ImagePicker picker = ImagePicker();
     PickedFile? xFile = await picker.getImage(source: ImageSource.gallery);
@@ -142,4 +126,12 @@ class TeamEditScreen extends ConsumerWidget {
       teamStateNotifier.updateShowPreview(true);
     }
   }
+}
+
+Widget showCircleImage(String imagePath, double radius) {
+  var a = File(imagePath);
+  return CircleAvatar(
+    radius: radius,
+    backgroundImage: MemoryImage(a.readAsBytesSync()),
+  );
 }

@@ -1,6 +1,7 @@
 import 'package:bb_stats/src/consts/CsvColumns.dart';
 import 'package:bb_stats/src/consts/TeamStatColumns.dart';
 import 'package:bb_stats/src/providers/isar_provider.dart';
+import 'package:bb_stats/src/screens/team_edit.dart';
 import 'package:data_table_2/data_table_2.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_datetime_picker_plus/flutter_datetime_picker_plus.dart';
@@ -55,10 +56,7 @@ class HomeScreen extends ConsumerWidget {
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
-                                CircleAvatar(
-                                  backgroundImage: AssetImage('${documentPath.value}/teams/1.jpg'),
-                                  radius: 50.0,
-                                ),
+                                showCircleImage('${documentPath.value}/teams/1.jpg', 50.0),
                                 Expanded(
                                   child: Padding(
                                     padding: const EdgeInsets.symmetric(horizontal: 16),
@@ -194,7 +192,6 @@ class HomeScreen extends ConsumerWidget {
                                       (e) => DataRow(
                                     cells: [
                                       DataCell(
-                                        // Text('${e.playerHistory.value!.player.value?.name}'),
                                           playerColumn('${e[1]}', '${documentPath.value}/players/${e[0]}.jpg')
                                       ),
                                       DataCell(
@@ -268,20 +265,21 @@ class HomeScreen extends ConsumerWidget {
         ),
     );
   }
+}
 
-  Widget playerColumn(String name, String path) {
-    return (
-        Row(
-          children: [
-            Padding(
-              padding: const EdgeInsets.only(right: 8.0),
-              child: CircleAvatar(
-                backgroundImage: AssetImage(path),
-              ),
+Widget playerColumn(String name, String path) {
+  var a = File(path);
+  return (
+      Row(
+        children: [
+          Padding(
+            padding: const EdgeInsets.only(right: 8.0),
+            child: CircleAvatar(
+              backgroundImage: MemoryImage(a.readAsBytesSync()),
             ),
-            // Text(name),
-          ],
-        )
-    );
-  }
+          ),
+          // Text(name),
+        ],
+      )
+  );
 }

@@ -1,5 +1,6 @@
 import 'dart:math';
 
+import 'package:bb_stats/src/screens/home.dart';
 import 'package:data_table_2/data_table_2.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -8,27 +9,9 @@ import '../consts/CsvColumns.dart';
 import '../providers/isar_provider.dart';
 
 class StatDataTable extends ConsumerWidget {
-  StatDataTable(this.gameId,{Key? key}) : super(key: key);
+  const StatDataTable(this.gameId,{Key? key}) : super(key: key);
 
   final int gameId;
-  
-  Widget PlayerColumn(String name, String path) {
-    return (
-      Container(
-        child: Row(
-          children: [
-            Padding(
-              padding: const EdgeInsets.only(right: 8.0),
-              child: CircleAvatar(
-                backgroundImage: AssetImage(path),
-              ),
-            ),
-            // Text(name),
-          ],
-        ),
-      )
-    );
-  }
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -84,7 +67,7 @@ class StatDataTable extends ConsumerWidget {
                       cells: [
                         DataCell(
                           // Text('${e.playerHistory.value!.player.value?.name}'),
-                          PlayerColumn(e.player.value!.name, '${documentPath.value}/players/${e.player.value!.id}.jpg')
+                          playerColumn(e.player.value!.name, '${documentPath.value}/players/${e.player.value!.id}.jpg')
                         ),
                         DataCell(
                           Text('${e.pts}'),

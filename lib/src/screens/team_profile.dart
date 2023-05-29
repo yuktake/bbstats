@@ -56,7 +56,7 @@ class TeamProfile extends ConsumerWidget {
                     builder: (context) => TeamEditScreen(id),
                   ),
                 ).then((value) => {
-                  showProfileImage('${documentPath.value}/teams/$id.jpg')
+                  showCircleImage('${documentPath.value}/teams/$id.jpg', 50)
                 })
               },
             )
@@ -77,7 +77,7 @@ class TeamProfile extends ConsumerWidget {
                         mainAxisAlignment: MainAxisAlignment.start,
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-                          showProfileImage('${documentPath.value}/teams/$id.jpg'),
+                          showCircleImage('${documentPath.value}/teams/$id.jpg', 50),
                           Expanded(
                             child: Padding(
                               padding: const EdgeInsets.symmetric(horizontal: 16),

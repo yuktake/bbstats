@@ -1,6 +1,7 @@
 import 'dart:math';
 import 'package:bb_stats/src/providers/isar_provider.dart';
 import 'package:bb_stats/src/screens/player_select.dart';
+import 'package:bb_stats/src/screens/team_edit.dart';
 import 'package:bb_stats/src/screens/team_select.dart';
 
 import 'package:flutter/material.dart';
@@ -14,6 +15,7 @@ import '../collections/team/team.dart';
 import 'game_detail.dart';
 import 'game_record.dart';
 import 'history.dart';
+import 'dart:io';
 
 class GameScreen extends ConsumerWidget {
   const GameScreen({Key? key}) : super(key: key);
@@ -22,8 +24,6 @@ class GameScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final gamePreparation = ref.watch(gamePreparationProvider.notifier);
     final gamePreparationInfo = ref.watch(gamePreparationProvider);
-    final settingDetails = ref.watch(settingDetailsProvider.notifier);
-    final settingDetailsInfo = ref.watch(settingDetailsProvider);
     final documentPath = ref.watch(documentPathProvider);
 
     final bool onGame = ref.watch(onGameProvider);
@@ -53,10 +53,7 @@ class GameScreen extends ConsumerWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      CircleAvatar(
-                        backgroundImage: AssetImage('${documentPath.value}/teams/1.jpg'),
-                        radius: iconRadius,
-                      ),
+                      showCircleImage('${documentPath.value}/teams/1.jpg', iconRadius),
                       Expanded(
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.center,
@@ -83,49 +80,13 @@ class GameScreen extends ConsumerWidget {
                                   style: const TextStyle(color: Colors.black)
                               ),
                             ),
-                            onGame ? Text("${gamePreparationInfo.quarterMin} Min Per Quarter", style: const TextStyle(color: Colors.black)) :
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                DropdownButton(
-                                  items: [
-                                    for(int i = 24; i > 0; i--) ... {
-                                      DropdownMenuItem(
-                                        value:  i,
-                                        child: Text(i.toString()),
-                                      )
-                                    }
-                                  ],
-                                  onChanged: (int? value) {
-                                    settingDetails.updateQuarterMinState(value!);
-                                  },
-                                  value: settingDetailsInfo.quarterMin,
-                                ),
-                                const Text('Min Per Quarter'),
-                              ],
+                            Padding(
+                                padding: const EdgeInsets.only(top: 8.0),
+                                child: Text("${gamePreparationInfo.quarterMin} Min Per Quarter", style: const TextStyle(color: Colors.black))
                             ),
-
-                            onGame ? Text("OT ${gamePreparationInfo.overtimeQuarterMin} Minutes", style: const TextStyle(color: Colors.black)) :
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                const Text('OT: '),
-                                DropdownButton(
-                                  items: [
-                                    for(int i = 24; i > 0; i--) ... {
-                                      DropdownMenuItem(
-                                        value:  i,
-                                        child: Text(i.toString()),
-                                      )
-                                    }
-                                  ],
-                                  onChanged: (int? value) {
-                                    settingDetails.updateOvertimeQuarterMinState(value!);
-                                  },
-                                  value: settingDetailsInfo.overtimeQuarterMin,
-                                ),
-                                const Text('Minutes'),
-                              ],
+                            Padding(
+                                padding: const EdgeInsets.only(top: 8.0),
+                                child: Text("OT ${gamePreparationInfo.overtimeQuarterMin} Minutes", style: const TextStyle(color: Colors.black))
                             ),
                           ],
                         ),
@@ -302,10 +263,7 @@ class GameScreen extends ConsumerWidget {
                                           width: 100,
                                           child: Column(
                                             children: [
-                                              CircleAvatar(
-                                                backgroundImage: AssetImage('${documentPath.value}/teams/1.jpg'),
-                                                radius: 25.0,
-                                              ),
+                                              showCircleImage('${documentPath.value}/teams/1.jpg', 25.0),
                                               Text(gamePreparationInfo.myTeam.name),
                                             ],
                                           ),
@@ -400,15 +358,15 @@ CircleAvatar avatarImage(double radius, Player? player, String? documentPath) {
       child: const Text('?'),
     );
   } else {
+    var a = File("$documentPath/players/${player.id}.jpg");
     return CircleAvatar(
       radius: radius,
-      backgroundImage: AssetImage("$documentPath/players/${player.id}.jpg"),
+      backgroundImage: MemoryImage(a.readAsBytesSync()),
     );
   }
 }
 
 CircleAvatar teamImage(double radius, Team? team, String? documentPath) {
-
   if (team == null) {
     return CircleAvatar(
       radius: radius,
@@ -416,9 +374,10 @@ CircleAvatar teamImage(double radius, Team? team, String? documentPath) {
       child: const Text('?'),
     );
   } else {
+    var a = File("$documentPath/teams/${team.id}.jpg");
     return CircleAvatar(
       radius: radius,
-      backgroundImage: AssetImage("$documentPath/teams/${team.id}.jpg"),
+      backgroundImage: MemoryImage(a.readAsBytesSync()),
     );
   }
 }

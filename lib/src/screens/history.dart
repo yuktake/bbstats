@@ -1,5 +1,8 @@
+import 'dart:io';
+
 import 'package:bb_stats/src/providers/isar_provider.dart';
 import 'package:bb_stats/src/screens/game_detail.dart';
+import 'package:bb_stats/src/screens/team_edit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
@@ -75,10 +78,7 @@ class HistoryScreen extends ConsumerWidget {
                                     width: cardComponentWidth,
                                     child: Column(
                                       children: [
-                                        CircleAvatar(
-                                          backgroundImage: AssetImage('${documentPath.value}/teams/1.jpg'),
-                                          radius: width,
-                                        ),
+                                        showCircleImage('${documentPath.value}/teams/1.jpg', width),
                                         Text(teamInfo.name),
                                       ],
                                     ),
@@ -121,8 +121,9 @@ class HistoryScreen extends ConsumerWidget {
 
 Widget showOpponentImage(String? imagePath, double radius) {
   if(imagePath != null) {
+    final a = File(imagePath);
     return CircleAvatar(
-      backgroundImage: AssetImage(imagePath),
+      backgroundImage: MemoryImage(a.readAsBytesSync()),
       radius: radius,
     );
   } else {

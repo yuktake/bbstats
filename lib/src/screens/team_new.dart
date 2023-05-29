@@ -59,7 +59,7 @@ class TeamNewScreen extends ConsumerWidget {
                       shape: BoxShape.circle,
                       color: Colors.blue,
                     ),
-                    child: showProfileImage(null, "${documentPath.value}/teams/preview.jpg", teamInfo.showPreview )
+                    child: showTeamNewImage(null, "${documentPath.value}/teams/preview.jpg", teamInfo.showPreview, 50.0)
                 ),
                 SizedBox(
                   width: MediaQuery.of(context).size.width/2,
@@ -96,23 +96,24 @@ class TeamNewScreen extends ConsumerWidget {
     );
   }
 
-  // Widget showProfileImage(File? image, File? previewImage) {
-  Widget showProfileImage(String? imagePath, String previewImagePath, bool showPreview) {
+  Widget showTeamNewImage(String? imagePath, String previewImagePath, bool showPreview, double radius) {
     if (showPreview) {
+      var a = File(previewImagePath);
       return CircleAvatar(
-        // backgroundImage: AssetImage(previewImage.path),
-        backgroundImage: AssetImage(previewImagePath),
+        backgroundImage: MemoryImage(a.readAsBytesSync()),
+        radius: radius,
       );
     } else if(imagePath != null) {
+      var a = File(imagePath);
       return CircleAvatar(
-        // backgroundImage: AssetImage(image.path),
-        backgroundImage: AssetImage(imagePath),
+        backgroundImage: AssetImage(a.readAsStringSync()),
+        radius: radius,
       );
     } else {
-      return const CircleAvatar(
-        radius: 50,
+      return CircleAvatar(
+        radius: radius,
         backgroundColor: Colors.blue,
-        child: Text('No Image'),
+        child: const Text('No Image'),
       );
     }
   }
