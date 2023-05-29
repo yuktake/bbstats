@@ -19,7 +19,7 @@ class GamePbpStateNotifier extends StateNotifier<GamePbpModel> {
   )
   : super (GamePbpModel(
     game: gameRepository.findGame(gameId)!,
-    pbps: pbpRepository.getPbpByQuarter(gameId, 5),
+    pbps: pbpRepository.getPbpByQuarter(gameId, 100),
     // ALL
     quarter: 100
   ));
