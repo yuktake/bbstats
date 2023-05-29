@@ -45,7 +45,7 @@ class MenuScreen extends ConsumerWidget {
               ),
 
               for(int i = 0; i < sidebarItems.length; i++) ... {
-                sidebarItems.last == sidebarItems[i] ? const Spacer() : Container(),
+                i == sidebarItems.length-2 ? const Spacer() : Container(),
                 SidebarRow(item: sidebarItems[i])
               }
             ],
