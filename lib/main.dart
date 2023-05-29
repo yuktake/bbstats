@@ -41,7 +41,12 @@ Future<void> main() async {
     prefs.setBool('first', false);
   }
 
-  runApp(MyApp(isar: isar,));
+  SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp,
+    DeviceOrientation.portraitDown,
+  ]).then((_) {
+    runApp(MyApp(isar: isar,));
+  });
 }
 
 Future<void> _initTeam(Isar isar) async {
