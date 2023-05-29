@@ -75,8 +75,11 @@ class PlayersScreen extends ConsumerWidget {
 
   Widget showPlayerImage(String imagePath) {
     var a = File(imagePath);
-    return CircleAvatar(
-      backgroundImage: MemoryImage(a.readAsBytesSync()),
+    return Padding(
+      padding: const EdgeInsets.all(1.0),
+      child: CircleAvatar(
+        backgroundImage: MemoryImage(a.readAsBytesSync()),
+      ),
     );
   }
 }
