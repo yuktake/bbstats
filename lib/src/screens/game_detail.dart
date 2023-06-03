@@ -30,9 +30,9 @@ class GameDetailScreen extends ConsumerWidget {
     final gameInfo = ref.watch(gameProvider(id));
     final boxScoreList = ref.watch(boxScoreListProvider(id).notifier);
     final gamePbp = ref.watch(gamePbpProvider(id).notifier);
-
     final gameList = ref.watch(gameListProvider.notifier);
 
+    Rect shareRect = const Rect.fromLTWH(0, 0, 50, 50);
     const segmentedControlMaxWidth = 500.0;
     final selection = <int, Widget>{
       0: const Text("Summary"),
@@ -98,7 +98,12 @@ class GameDetailScreen extends ConsumerWidget {
               final csvFile = File('${(await getApplicationDocumentsDirectory()).path}/csvs/box-scores.csv');
               String csvString = boxScoreList.getBoxScoresString();
               await csvFile.writeAsString(csvString);
-              Share.shareXFiles([XFile('${documentPath.value}/csvs/box-scores.csv', name: 'box-scores.csv')], subject: 'Export', text: 'Output BoxScores');
+              Share.shareXFiles(
+                  [XFile('${documentPath.value}/csvs/box-scores.csv', name: 'box-scores.csv')],
+                  subject: 'Export',
+                  text: 'Output BoxScores',
+                  sharePositionOrigin: shareRect,
+              );
             },
           ) : Container(),
 
@@ -149,7 +154,12 @@ class GameDetailScreen extends ConsumerWidget {
               final csvFile = File('${(await getApplicationDocumentsDirectory()).path}/csvs/pbp.csv');
               String csvString = gamePbp.getPbpString(id);
               await csvFile.writeAsString(csvString);
-              Share.shareXFiles([XFile('${documentPath.value}/csvs/pbp.csv', name: 'pbp.csv')], subject: 'Export', text: 'Output Pbp');
+              Share.shareXFiles(
+                  [XFile('${documentPath.value}/csvs/pbp.csv', name: 'pbp.csv')],
+                  subject: 'Export',
+                  text: 'Output Pbp',
+                  sharePositionOrigin: shareRect,
+              );
             },
           ) : Container(),
         ]

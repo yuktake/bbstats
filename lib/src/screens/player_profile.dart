@@ -31,6 +31,13 @@ class PlayerProfile extends ConsumerWidget {
     final teamInfo = ref.watch(teamProvider(1));
     final documentPath = ref.watch(documentPathProvider);
 
+    Rect shareRect = const Rect.fromLTWH(0, 0, 50, 50);
+    double iconRadius = MediaQuery.of(context).size.height*0.05;
+    double normalTextSize = MediaQuery.of(context).size.width / 27;
+    double smallTextSize = MediaQuery.of(context).size.width / 30;
+    double normalPadding = MediaQuery.of(context).size.height / 40;
+    double smallPadding = MediaQuery.of(context).size.height / 80;
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('Player Profile'),
@@ -101,7 +108,12 @@ class PlayerProfile extends ConsumerWidget {
               final csvFile = File('${(await getApplicationDocumentsDirectory()).path}/csvs/player.csv');
               String csvString = playerDetail.getStatsString(id);
               await csvFile.writeAsString(csvString);
-              Share.shareXFiles([XFile('${documentPath.value}/csvs/player.csv', name: 'player.csv')], subject: 'Export', text: 'Output Player Stats');
+              Share.shareXFiles(
+                  [XFile('${documentPath.value}/csvs/player.csv', name: 'player.csv')],
+                  subject: 'Export',
+                  text: 'Output Player Stats',
+                  sharePositionOrigin: shareRect,
+              );
             },
           ),
           IconButton(

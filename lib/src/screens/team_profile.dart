@@ -31,6 +31,7 @@ class TeamProfile extends ConsumerWidget {
     final teamDetailInfo = ref.watch(teamDetailProvider);
     final documentPath = ref.watch(documentPathProvider);
 
+    Rect shareRect = const Rect.fromLTWH(0, 0, 50, 50);
     return Scaffold(
         appBar: AppBar(
           title: const Text('Team Profile'),
@@ -42,7 +43,12 @@ class TeamProfile extends ConsumerWidget {
                 final csvFile = File('${(await getApplicationDocumentsDirectory()).path}/csvs/team.csv');
                 String csvString = teamDetail.getStatsString(id);
                 await csvFile.writeAsString(csvString);
-                Share.shareXFiles([XFile('${documentPath.value}/csvs/team.csv', name: 'team.csv')], subject: 'Export', text: 'Output Team Stats');
+                Share.shareXFiles(
+                    [XFile('${documentPath.value}/csvs/team.csv', name: 'team.csv')],
+                    subject: 'Export',
+                    text: 'Output Team Stats',
+                    sharePositionOrigin: shareRect,
+                );
               },
             ),
             IconButton(

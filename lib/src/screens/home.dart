@@ -21,6 +21,8 @@ class HomeScreen extends ConsumerWidget {
     final homeInfo = ref.watch(homeProvider);
     final documentPath = ref.watch(documentPathProvider);
 
+    Rect shareRect = const Rect.fromLTWH(0, 0, 50, 50);
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('Home'),
@@ -31,7 +33,12 @@ class HomeScreen extends ConsumerWidget {
               final csvFile = File('${(await getApplicationDocumentsDirectory()).path}/csvs/home.csv');
               String csvString = home.getBoxScoresString();
               await csvFile.writeAsString(csvString);
-              Share.shareXFiles([XFile('${documentPath.value}/csvs/home.csv', name: 'boxScores.csv')], subject: 'Export', text: 'Output Overall BoxScores');
+              Share.shareXFiles(
+                  [XFile('${documentPath.value}/csvs/home.csv', name: 'boxScores.csv')],
+                  subject: 'Export',
+                  text: 'Output Overall BoxScores',
+                  sharePositionOrigin: shareRect,
+              );
             },
           )
         ],
