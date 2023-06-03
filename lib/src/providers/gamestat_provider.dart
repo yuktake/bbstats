@@ -1,6 +1,5 @@
 import 'dart:typed_data';
 
-import 'package:bb_stats/src/collections/boxscore/boxscore.dart';
 import 'package:bb_stats/src/collections/gameStat/game_stat_model.dart';
 import 'package:bb_stats/src/enums/RecordType.dart';
 import 'package:bb_stats/src/enums/ShotZone.dart';
@@ -33,7 +32,6 @@ class GameStatStateNotifier extends StateNotifier<GameStatModel> {
         pbps: pbpRepository.getShotChartPbps(gameId, 100, PlayType.NONE, ShotType.NONE, null, 1, ShotZone.ALL),
         shotFilter: 1,
         selectedPlayerId: null,
-        detailPlayer: null,
         comparisonStats: gameRepository.getStatsForComparison(gameId),
       )
   ) {
@@ -100,17 +98,13 @@ class GameStatStateNotifier extends StateNotifier<GameStatModel> {
   }
 
   void updateDetailPlayer(Player player) {
-    Boxscore? boxScore = boxScoreRepository.findOneByGameAndPlayer(gameId, player.id);
-
     if (state.selectedPlayerId == player.id) {
       state = state.copyWith(
         selectedPlayerId: null,
-        detailPlayer: null,
       );
     } else {
       state = state.copyWith(
         selectedPlayerId: player.id,
-        detailPlayer: boxScore,
       );
     }
     prepareImageProvider(state.shotFilter, state.selectedPlayerId);

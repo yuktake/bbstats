@@ -20,7 +20,6 @@ class GameStatModel with _$GameStatModel {
     required List<Pbp> pbps,
     required int shotFilter,
     required int? selectedPlayerId,
-    required Boxscore? detailPlayer,
     required List<List<dynamic>> comparisonStats,
   }) = _GameStatModel;
 }

@@ -281,7 +281,7 @@ class GameStat extends ConsumerWidget {
                   image: gameStatInfo.image!,
                   fit: BoxFit.fill,
                   width: MediaQuery.of(context).size.width,
-                  height: 300,
+                  height: MediaQuery.of(context).size.height*0.5,
                 )
                 :
                 const Text(
@@ -293,126 +293,28 @@ class GameStat extends ConsumerWidget {
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical: 16),
                   child: Container(
-                    decoration: const BoxDecoration(color: Colors.grey),
-                    child: Column(
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.symmetric(vertical: 16),
-                          child: SizedBox(
-                            height: 100,
-                            child: ListView(
-                              // This next line does the trick.
-                              scrollDirection: Axis.horizontal,
-                              children: gameStat.getPlayers().asMap().entries.map((e) {
-                                final index = e.key;
-                                return GestureDetector(
-                                    onTap: () {
-                                      gameStat.updateDetailPlayer(e.value);
-                                    },
-                                    child: _buildCircleAvatar(gameStatInfo.selectedPlayerId ,e.value, documentPath.value)
-                                );
-                              }).toList(),
-                            ),
-                          ),
-                        ),
-                        AnimatedOpacity(
-                          opacity: gameStatInfo.detailPlayer != null ? 1.0 : 0.0,
-                          duration: const Duration(milliseconds: 500),
-                          // The green box must be a child of the AnimatedOpacity widget.
-                          child: gameStatInfo.detailPlayer != null ?
-                            SizedBox(
-                              height: 100,
+                      child: Column(
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.symmetric(vertical: 16),
+                            child: SizedBox(
+                              height: MediaQuery.of(context).size.height*0.1,
                               child: ListView(
                                 // This next line does the trick.
                                 scrollDirection: Axis.horizontal,
-                                children: [
-                                  SizedBox(
-                                    height: 100,
-                                    width: MediaQuery.of(context).size.width / 3,
-                                    child: Card(
-                                      color: Colors.red,
-                                      margin: const EdgeInsets.all(16),
-                                      shape: RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.circular(20),
-                                      ),
-                                      child: Column(
-                                        mainAxisAlignment: MainAxisAlignment.center,
-                                        crossAxisAlignment: CrossAxisAlignment.center,
-                                        children: [
-                                          const Text('AST'),
-                                          Text(gameStatInfo.detailPlayer!.ast.toString(), style: const TextStyle(fontSize: 20)),
-                                        ],
-                                      ),
-                                    ),
-                                  ),
-                                  SizedBox(
-                                    height: 100,
-                                    width: MediaQuery.of(context).size.width / 3,
-                                    child: Card(
-                                      color: Colors.red,
-                                      margin: const EdgeInsets.all(16),
-                                      shape: RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.circular(20),
-                                      ),
-                                      child: Column(
-                                        mainAxisAlignment: MainAxisAlignment.center,
-                                        crossAxisAlignment: CrossAxisAlignment.center,
-                                        children: [
-                                          const Text('STL'),
-                                          Text(gameStatInfo.detailPlayer!.stl.toString(), style: const TextStyle(fontSize: 20),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                  ),
-                                  SizedBox(
-                                    height: 100,
-                                    width: MediaQuery.of(context).size.width / 3,
-                                    child: Card(
-                                      color: Colors.red,
-                                      margin: const EdgeInsets.all(16),
-                                      shape: RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.circular(20),
-                                      ),
-                                      child: Column(
-                                        mainAxisAlignment: MainAxisAlignment.center,
-                                        crossAxisAlignment: CrossAxisAlignment.center,
-                                        children: [
-                                          const Text('BLK'),
-                                          Text(gameStatInfo.detailPlayer!.blk.toString(), style: const TextStyle(fontSize: 20),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                  ),
-                                  SizedBox(
-                                    height: 100,
-                                    width: MediaQuery.of(context).size.width / 3,
-                                    child: Card(
-                                      color: Colors.red,
-                                      margin: const EdgeInsets.all(16),
-                                      shape: RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.circular(20),
-                                      ),
-                                      child: Column(
-                                        mainAxisAlignment: MainAxisAlignment.center,
-                                        crossAxisAlignment: CrossAxisAlignment.center,
-                                        children: [
-                                          const Text('TO'),
-                                          Text(gameStatInfo.detailPlayer!.to.toString(), style: const TextStyle(fontSize: 20),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                  ),
-                                ],
+                                children: gameStat.getPlayers().asMap().entries.map((e) {
+                                  return GestureDetector(
+                                      onTap: () {
+                                        gameStat.updateDetailPlayer(e.value);
+                                      },
+                                      child: _buildCircleAvatar(gameStatInfo.selectedPlayerId ,e.value, documentPath.value)
+                                  );
+                                }).toList(),
                               ),
-                            )
-                              :
-                            Container(),
-                        )
-                      ],
-                    )
+                            ),
+                          ),
+                        ],
+                      )
                   ),
                 ),
               ]
