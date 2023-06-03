@@ -247,8 +247,8 @@ class ShotStateNotifier extends StateNotifier<ShotModel> {
     var localPos = getBox.globalToLocal(details.globalPosition);
     int x = localPos.dx.toInt();
     int y = localPos.dy.toInt();
-    double xRatio = 1000 / MediaQuery.of(context).size.width;
-    double yRatio = 1000 / 300;
+    double xRatio = 999 / MediaQuery.of(context).size.width;
+    double yRatio = 892 / (MediaQuery.of(context).size.height * 0.5);
     int modifiedX = (x*xRatio).toInt();
     int modifiedY = (y*yRatio).toInt();
 

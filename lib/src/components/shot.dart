@@ -51,7 +51,7 @@ class Shot extends ConsumerWidget {
                 image: shotInfo.image!,
                 fit: BoxFit.fill,
                 width: MediaQuery.of(context).size.width,
-                height: 300,
+                height: MediaQuery.of(context).size.height*0.5,
               ),
             )
               :
