@@ -10,6 +10,9 @@ class MenuScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    double deviceWidth = MediaQuery.of(context).size.width;
+    double itemHeight = MediaQuery.of(context).size.height*0.1;
+
     final adWidget = createAd();
 
     return Scaffold(
@@ -41,8 +44,8 @@ class MenuScreen extends ConsumerWidget {
               children: [
                 Container(
                   alignment: Alignment.center,
-                  width: MediaQuery.of(context).size.width,
-                  height: 100.0,
+                  width: deviceWidth,
+                  height: itemHeight,
                   child: adWidget,
                 ),
 

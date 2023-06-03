@@ -18,10 +18,15 @@ class HistoryScreen extends ConsumerWidget {
     final gameList = ref.watch(gameListProvider.notifier);
     final gameListInfo = ref.watch(gameListProvider);
     final documentPath = ref.watch(documentPathProvider);
-    var formatter = DateFormat('yyyy/MM/dd(E)', "ja_JP");
-    var cardComponentWidth = (MediaQuery.of(context).size.width - 42) / 3;
 
-    var width = MediaQuery.of(context).size.width / 10;
+    double screenWidth = MediaQuery.of(context).size.width;
+    double screenHeight = MediaQuery.of(context).size.height;
+    var formatter = DateFormat('yyyy/MM/dd(E)', "ja_JP");
+    double cardComponentWidth = (screenWidth - 42) / 3;
+    double cardComponentHeight = screenHeight / 5;
+    double iconRadius = screenHeight * 0.05;
+    double normalFontSize = screenWidth / 27;
+    double smallFontSize = MediaQuery.of(context).size.width / 40;
 
     return Scaffold(
       appBar: AppBar(
@@ -31,7 +36,7 @@ class HistoryScreen extends ConsumerWidget {
         padding: const EdgeInsets.all(8.0),
         child: Column(
           children: [
-            Text(DateFormat('MMMM yyyy').format(gameListInfo.dateTime)),
+            Text(DateFormat('MMMM yyyy').format(gameListInfo.dateTime), style: TextStyle(fontSize: normalFontSize)),
             WeeklyDatePicker(
               selectedDay: gameListInfo.dateTime,
               changeDay: (DateTime value) => gameList.updateGameListModel(value),
@@ -52,7 +57,7 @@ class HistoryScreen extends ConsumerWidget {
                     child: Padding(
                       padding: const EdgeInsets.only(top:20,left: 5,right: 5),
                       child: Container(
-                        height: 200,
+                        height: cardComponentHeight,
                         decoration: BoxDecoration(
                           color: Colors.white,
                           boxShadow: [
@@ -78,8 +83,8 @@ class HistoryScreen extends ConsumerWidget {
                                     width: cardComponentWidth,
                                     child: Column(
                                       children: [
-                                        showCircleImage('${documentPath.value}/teams/1.jpg', width),
-                                        Text(teamInfo.name),
+                                        showCircleImage('${documentPath.value}/teams/1.jpg', iconRadius),
+                                        Text(teamInfo.name, style: TextStyle(fontSize: normalFontSize),),
                                       ],
                                     ),
                                   ),
@@ -87,8 +92,14 @@ class HistoryScreen extends ConsumerWidget {
                                     child: Column(
                                       crossAxisAlignment: CrossAxisAlignment.center,
                                       children: [
-                                        Text('${gameListInfo.games[index].myPts}-${gameListInfo.games[index].opponentPts}', style: const TextStyle(fontSize: 20)),
-                                        Text(formatter.format(gameListInfo.games[index].gameDate)),
+                                        Text(
+                                            '${gameListInfo.games[index].myPts}-${gameListInfo.games[index].opponentPts}',
+                                            style: TextStyle(fontSize: normalFontSize))
+                                        ,
+                                        Text(
+                                            formatter.format(gameListInfo.games[index].gameDate),
+                                            style: TextStyle(fontSize: smallFontSize),
+                                        ),
                                       ],
                                     ),
                                   ),
@@ -96,8 +107,8 @@ class HistoryScreen extends ConsumerWidget {
                                     width: cardComponentWidth,
                                     child: Column(
                                       children: [
-                                        showOpponentImage("${documentPath.value}/teams/${gameListInfo.games[index].opponent.value?.id}.jpg", width),
-                                        Text(gameListInfo.games[index].opponent.value!.name),
+                                        showOpponentImage("${documentPath.value}/teams/${gameListInfo.games[index].opponent.value?.id}.jpg", iconRadius),
+                                        Text(gameListInfo.games[index].opponent.value!.name, style: TextStyle(fontSize: normalFontSize),),
                                       ],
                                     ),
                                   ),

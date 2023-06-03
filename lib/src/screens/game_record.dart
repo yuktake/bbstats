@@ -32,6 +32,15 @@ class GameRecordScreen extends ConsumerWidget {
     final opponentShot = ref.watch(opponentShotProvider(ShotParameter(gameId: id, playerId: 0)).notifier);
     final documentPath = ref.watch(documentPathProvider);
 
+    double screenWidth = MediaQuery.of(context).size.width;
+    double screenHeight = MediaQuery.of(context).size.height;
+
+    double iconRadius = screenHeight*0.05;
+    double pbpIconRadius = screenHeight*0.03;
+    double timePickerWidth = screenWidth*0.15;
+    double normalFontSize = screenWidth / 27;
+    double smallFontSize = screenWidth / 40;
+
     return Scaffold(
         appBar: AppBar(
           title: const Text('Game Record'),
@@ -39,10 +48,10 @@ class GameRecordScreen extends ConsumerWidget {
             IconButton(
               icon: const Icon(Icons.settings),
               onPressed: () => {
-                quarterChangeDialog(context, id)
+                quarterChangeDialog(context, id, normalFontSize, smallFontSize)
               },
             ),
-            showGameOperation(context, id),
+            showGameOperation(context, id, normalFontSize, smallFontSize),
           ],
         ),
         body: Column(
@@ -52,8 +61,8 @@ class GameRecordScreen extends ConsumerWidget {
               children: [
                 TimePickerSpinner(
                     time: gameRecordInfo.time,
-                    spacing: 50,
-                    itemHeight: 50,
+                    spacing: 0,
+                    itemWidth: timePickerWidth,
                     isForce2Digits: true,
                     onTimeChange: (time) {
                       gameRecord.updateTime(time);
@@ -67,30 +76,30 @@ class GameRecordScreen extends ConsumerWidget {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
-                            showCircleImage('${documentPath.value}/teams/1.jpg', 25.0),
+                            showCircleImage('${documentPath.value}/teams/1.jpg', iconRadius),
                             DropdownButton(
                               items: [
-                                const DropdownMenuItem(
+                                DropdownMenuItem(
                                   value: 1,
-                                  child: Text('1Q'),
+                                  child: Text('1Q', style: TextStyle(fontSize: smallFontSize),),
                                 ),
-                                const DropdownMenuItem(
+                                DropdownMenuItem(
                                   value: 2,
-                                  child: Text('2Q'),
+                                  child: Text('2Q', style: TextStyle(fontSize: smallFontSize),),
                                 ),
-                                const DropdownMenuItem(
+                                DropdownMenuItem(
                                   value: 3,
-                                  child: Text('3Q'),
+                                  child: Text('3Q', style: TextStyle(fontSize: smallFontSize),),
                                 ),
-                                const DropdownMenuItem(
+                                DropdownMenuItem(
                                   value: 4,
-                                  child: Text('4Q'),
+                                  child: Text('4Q', style: TextStyle(fontSize: smallFontSize),),
                                 ),
 
                                 for(int i = 1; i <= gameRecord.getOtNum(); i++) ... {
                                   DropdownMenuItem(
                                       value: i+4,
-                                      child: Text('OT$i'),
+                                      child: Text('OT$i', style: TextStyle(fontSize: smallFontSize),),
                                   )
                                 }
                               ],
@@ -117,65 +126,66 @@ class GameRecordScreen extends ConsumerWidget {
                                     );
                                     break;
                                   case PlayerAction.FT:
-                                    ftDialog(context, id, null);
+                                    ftDialog(context, id, null, normalFontSize, smallFontSize);
                                     break;
                                   case PlayerAction.REBOUND:
-                                    reboundDialog(context, id, null);
+                                    reboundDialog(context, id, null, normalFontSize, smallFontSize);
                                     break;
                                   case PlayerAction.BLOCK:
-                                    confirmDialog(context, 'Add Block', id, null, RecordType.BLOCK);
+                                    confirmDialog(context, 'Add Block', id, null, RecordType.BLOCK, normalFontSize, smallFontSize);
                                     break;
                                   case PlayerAction.STEAL:
-                                    confirmDialog(context, 'Add Steal', id, null, RecordType.STEAL);
+                                    confirmDialog(context, 'Add Steal', id, null, RecordType.STEAL, normalFontSize, smallFontSize);
                                     break;
                                   case PlayerAction.TURNOVER:
-                                    confirmDialog(context, 'Add TurnOver', id, null, RecordType.TURNOVER);
+                                    confirmDialog(context, 'Add TurnOver', id, null, RecordType.TURNOVER, normalFontSize, smallFontSize);
                                     break;
                                   case PlayerAction.ASSIST:
-                                    confirmDialog(context, 'Add Assist', id, null, RecordType.ASSIST);
+                                    confirmDialog(context, 'Add Assist', id, null, RecordType.ASSIST, normalFontSize, smallFontSize);
                                     break;
                                   case PlayerAction.FOUL:
-                                    confirmDialog(context, 'Add Foul', id, null, RecordType.FOUL);
+                                    confirmDialog(context, 'Add Foul', id, null, RecordType.FOUL, normalFontSize, smallFontSize);
                                     break;
                                   default:
                                     break;
                                 }
                               },
                               itemBuilder: (context) => [
-                                const PopupMenuItem(
+                                PopupMenuItem(
                                     value: PlayerAction.SHOT,
-                                    child: Text('Shot')
+                                    child: Text('Shot', style: TextStyle(fontSize: smallFontSize),)
                                 ),
-                                const PopupMenuItem(
+                                PopupMenuItem(
                                     value: PlayerAction.FT,
-                                    child: Text('FT')
+                                    child: Text('FT', style: TextStyle(fontSize: smallFontSize),)
                                 ),
-                                const PopupMenuItem(
+                                PopupMenuItem(
                                     value: PlayerAction.REBOUND,
-                                    child: Text('REBOUND')
+                                    child: Text('REBOUND', style: TextStyle(fontSize: smallFontSize),)
                                 ),
-                                const PopupMenuItem(
+                                PopupMenuItem(
                                     value: PlayerAction.BLOCK,
-                                    child: Text('BLOCK')
+                                    child: Text('BLOCK', style: TextStyle(fontSize: smallFontSize),)
                                 ),
-                                const PopupMenuItem(
+                                PopupMenuItem(
                                     value: PlayerAction.STEAL,
-                                    child: Text('STEAL')
+                                    child: Text('STEAL', style: TextStyle(fontSize: smallFontSize),)
                                 ),
-                                const PopupMenuItem(
+                                PopupMenuItem(
                                     value: PlayerAction.TURNOVER,
-                                    child: Text('TURNOVER')
+                                    child: Text('TURNOVER', style: TextStyle(fontSize: smallFontSize),)
                                 ),
-                                const PopupMenuItem(
+                                PopupMenuItem(
                                     value: PlayerAction.ASSIST,
-                                    child: Text('ASSIST')
-                                ),const PopupMenuItem(
+                                    child: Text('ASSIST', style: TextStyle(fontSize: smallFontSize),)
+                                ),
+                                PopupMenuItem(
                                     value: PlayerAction.FOUL,
-                                    child: Text('FOUL')
+                                    child: Text('FOUL', style: TextStyle(fontSize: smallFontSize),)
                                 ),
                               ],
-                              icon: showCircleImage('${documentPath.value}/teams/${gameRecordInfo.game.opponent.value!.id}.jpg', 25.0),
-                              iconSize: 50,
+                              icon: showCircleImage('${documentPath.value}/teams/${gameRecordInfo.game.opponent.value!.id}.jpg', iconRadius),
+                              iconSize: iconRadius*2,
                             ),
                           ],
                         ),
@@ -183,9 +193,9 @@ class GameRecordScreen extends ConsumerWidget {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
-                          Text('${gameRecordInfo.game.myPts}', style: const TextStyle(fontSize: 25)),
-                          const Text('-', style: TextStyle(fontSize: 20)),
-                          Text('${gameRecordInfo.game.opponentPts}', style: const TextStyle(fontSize: 25)),
+                          Text('${gameRecordInfo.game.myPts}', style: TextStyle(fontSize: normalFontSize)),
+                          Text('-', style: TextStyle(fontSize: normalFontSize)),
+                          Text('${gameRecordInfo.game.opponentPts}', style: TextStyle(fontSize: normalFontSize)),
                         ],
                       )
                     ],
@@ -200,7 +210,9 @@ class GameRecordScreen extends ConsumerWidget {
                     id,
                     gameRecordInfo.player1!,
                     '${documentPath.value}/players/${gameRecordInfo.player1?.id}.jpg',
-                    0
+                    0,
+                    normalFontSize,
+                    smallFontSize,
                   ),
                 ),
                 Expanded(
@@ -208,7 +220,9 @@ class GameRecordScreen extends ConsumerWidget {
                     id,
                     gameRecordInfo.player2!,
                     '${documentPath.value}/players/${gameRecordInfo.player2?.id}.jpg',
-                    1
+                    1,
+                    normalFontSize,
+                    smallFontSize,
                   ),
                 ),
                 Expanded(
@@ -216,7 +230,9 @@ class GameRecordScreen extends ConsumerWidget {
                     id,
                     gameRecordInfo.player3!,
                     '${documentPath.value}/players/${gameRecordInfo.player3?.id}.jpg',
-                    2
+                    2,
+                    normalFontSize,
+                    smallFontSize,
                   )
                 ),
                 Expanded(
@@ -224,7 +240,9 @@ class GameRecordScreen extends ConsumerWidget {
                     id,
                     gameRecordInfo.player4!,
                     '${documentPath.value}/players/${gameRecordInfo.player4?.id}.jpg',
-                    3
+                    3,
+                    normalFontSize,
+                    smallFontSize,
                   )
                 ),
                 Expanded(
@@ -232,7 +250,9 @@ class GameRecordScreen extends ConsumerWidget {
                     id,
                     gameRecordInfo.player5!,
                     '${documentPath.value}/players/${gameRecordInfo.player5?.id}.jpg',
-                    4
+                    4,
+                    normalFontSize,
+                    smallFontSize,
                   )
                 ),
               ],
@@ -255,16 +275,16 @@ class GameRecordScreen extends ConsumerWidget {
                           context: context,
                           builder: (context) {
                             return AlertDialog(
-                              title: const Text('確認'),
-                              content: const Text('削除しますか'),
+                              title: Text('Confirm', style: TextStyle(fontSize: normalFontSize),),
+                              content: Text('Delete This Record?', style: TextStyle(fontSize: smallFontSize),),
                               actions: [
                                 SimpleDialogOption(
                                   onPressed: () => Navigator.of(context).pop(true),
-                                  child: const Text('はい'),
+                                  child: Text('Delete', style: TextStyle(color: Colors.red, fontSize: smallFontSize),),
                                 ),
                                 SimpleDialogOption(
                                   onPressed: () => Navigator.of(context).pop(false),
-                                  child: const Text('いいえ'),
+                                  child: Text('Cancel', style: TextStyle(fontSize: smallFontSize),),
                                 ),
                               ],
                             );
@@ -276,7 +296,9 @@ class GameRecordScreen extends ConsumerWidget {
                       ),
                       child: Padding(
                         padding: const EdgeInsets.symmetric(vertical: 16),
-                        child: gameRecordInfo.records.elementAt(index).myTeamPlay == false ? pbpOpponentRow(gameRecordInfo.records.elementAt(index), documentPath.value!, gameRecordInfo.game.opponent.value!.id) : pbpRow(gameRecordInfo.records.elementAt(index), documentPath.value!)
+                        child: gameRecordInfo.records.elementAt(index).myTeamPlay == false ?
+                        pbpOpponentRow(gameRecordInfo.records.elementAt(index), documentPath.value!, gameRecordInfo.game.opponent.value!.id, pbpIconRadius, smallFontSize) :
+                        pbpRow(gameRecordInfo.records.elementAt(index), documentPath.value!, pbpIconRadius, smallFontSize)
                       ),
                     );
                     
@@ -295,12 +317,12 @@ class GameRecordScreen extends ConsumerWidget {
                       onPressed: () {
                         gameRecord.scrollUp();
                       },
-                      child: const Icon(Icons.arrow_upward)
+                      child: Icon(Icons.arrow_upward, size: normalFontSize,)
                     ),
                     FloatingActionButton.extended(
                       heroTag: "not gonna use2",
-                      icon: const Icon(Icons.query_stats),
-                      label: const Text("Stats"),
+                      icon: Icon(Icons.query_stats, size: normalFontSize,),
+                      label: Text("Stats", style: TextStyle(fontSize: smallFontSize),),
                       backgroundColor: Colors.blue,
                       onPressed: () {
                         gameStat.prepareImageProvider(1, null);
@@ -319,7 +341,7 @@ class GameRecordScreen extends ConsumerWidget {
                         onPressed: () {
                           gameRecord.scrollDown();
                         },
-                        child: const Icon(Icons.arrow_downward)
+                        child: Icon(Icons.arrow_downward, size: normalFontSize)
                     ),
                   ]
               ),
@@ -330,7 +352,7 @@ class GameRecordScreen extends ConsumerWidget {
   }
 }
 
-Widget _buildCircleAvatar(int gameId, Player player, String img, int index) {
+Widget _buildCircleAvatar(int gameId, Player player, String img, int index, double normalFontSize, double smallFontSize) {
   return LayoutBuilder(
     builder: (context, constraints) {
       final radius = min(constraints.maxHeight / 2, constraints.maxWidth / 2);
@@ -360,22 +382,22 @@ Widget _buildCircleAvatar(int gameId, Player player, String img, int index) {
                       );
                       break;
                     case PlayerAction.FT:
-                      ftDialog(context, gameId, player);
+                      ftDialog(context, gameId, player, normalFontSize, smallFontSize);
                       break;
                     case PlayerAction.REBOUND:
-                      reboundDialog(context, gameId, player);
+                      reboundDialog(context, gameId, player, normalFontSize, smallFontSize);
                       break;
                     case PlayerAction.BLOCK:
-                      confirmDialog(context, 'Add Block', gameId, player, RecordType.BLOCK);
+                      confirmDialog(context, 'Add Block', gameId, player, RecordType.BLOCK, normalFontSize, smallFontSize);
                       break;
                     case PlayerAction.STEAL:
-                      confirmDialog(context, 'Add Steal',gameId, player, RecordType.STEAL);
+                      confirmDialog(context, 'Add Steal',gameId, player, RecordType.STEAL, normalFontSize, smallFontSize);
                       break;
                     case PlayerAction.TURNOVER:
-                      confirmDialog(context, 'Add Turnover',gameId, player, RecordType.TURNOVER);
+                      confirmDialog(context, 'Add Turnover',gameId, player, RecordType.TURNOVER, normalFontSize, smallFontSize);
                       break;
                     case PlayerAction.FOUL:
-                      confirmDialog(context, 'Add Foul',gameId, player, RecordType.FOUL);
+                      confirmDialog(context, 'Add Foul',gameId, player, RecordType.FOUL, normalFontSize, smallFontSize);
                       break;
                     case PlayerAction.SUBSTITUTE:
                       showModalBottomSheet(
@@ -393,37 +415,45 @@ Widget _buildCircleAvatar(int gameId, Player player, String img, int index) {
                   }
                 },
                 itemBuilder: (context) => [
-                  const PopupMenuItem(
+                  PopupMenuItem(
+                      padding: const EdgeInsets.all(16),
                       value: PlayerAction.SHOT,
-                      child: Text('Shot')
+                      child: Text('Shot', style: TextStyle(fontSize: smallFontSize,))
                   ),
-                  const PopupMenuItem(
+                  PopupMenuItem(
+                      padding: const EdgeInsets.all(16),
                       value: PlayerAction.FT,
-                      child: Text('FT')
+                      child: Text('FT', style: TextStyle(fontSize: smallFontSize,))
                   ),
-                  const PopupMenuItem(
+                  PopupMenuItem(
+                      padding: const EdgeInsets.all(16),
                       value: PlayerAction.REBOUND,
-                      child: Text('Rebound')
+                      child: Text('Rebound', style: TextStyle(fontSize: smallFontSize,))
                   ),
-                  const PopupMenuItem(
+                  PopupMenuItem(
+                      padding: const EdgeInsets.all(16),
                       value: PlayerAction.BLOCK,
-                      child: Text('Block')
+                      child: Text('Block', style: TextStyle(fontSize: smallFontSize,))
                   ),
-                  const PopupMenuItem(
+                  PopupMenuItem(
+                      padding: const EdgeInsets.all(16),
                       value: PlayerAction.STEAL,
-                      child: Text('Steal')
+                      child: Text('Steal', style: TextStyle(fontSize: smallFontSize,))
                   ),
-                  const PopupMenuItem(
+                  PopupMenuItem(
+                      padding: const EdgeInsets.all(16),
                       value: PlayerAction.TURNOVER,
-                      child: Text('Turnover')
+                      child: Text('Turnover', style: TextStyle(fontSize: smallFontSize,))
                   ),
-                  const PopupMenuItem(
+                  PopupMenuItem(
+                      padding: const EdgeInsets.all(16),
                       value: PlayerAction.FOUL,
-                      child: Text('Foul')
+                      child: Text('Foul', style: TextStyle(fontSize: smallFontSize,))
                   ),
-                  const PopupMenuItem(
+                  PopupMenuItem(
+                      padding: const EdgeInsets.all(16),
                       value: PlayerAction.SUBSTITUTE,
-                      child: Text('Substitute')
+                      child: Text('Substitute', style: TextStyle(fontSize: smallFontSize,))
                   ),
                 ],
                 icon: CircleAvatar(
@@ -432,7 +462,7 @@ Widget _buildCircleAvatar(int gameId, Player player, String img, int index) {
                 ),
                 iconSize: radius*2,
               ),
-              Text(player.name, maxLines: 1,)
+              Text(player.name, maxLines: 1, style: TextStyle(fontSize: smallFontSize),)
             ]
         );
       });
@@ -440,7 +470,7 @@ Widget _buildCircleAvatar(int gameId, Player player, String img, int index) {
   );
 }
 
-Future<dynamic> confirmDialog(BuildContext context, String title, int gameId, Player? player, RecordType recordType) {
+Future<dynamic> confirmDialog(BuildContext context, String title, int gameId, Player? player, RecordType recordType, double normalFontSize, double smallFontSize) {
   bool myTeamPlay = player == null ? false : true;
   return showDialog(
       context: context,
@@ -449,9 +479,10 @@ Future<dynamic> confirmDialog(BuildContext context, String title, int gameId, Pl
           final gameRecord = ref.watch(gameRecordProvider(gameId).notifier);
           final gameRecordInfo = ref.watch(gameRecordProvider(gameId));
           final gameSummary = ref.watch(gameSummaryProvider(gameId).notifier);
+
           return AlertDialog(
-            title: const Text('Confirm'),
-            content: Text(title),
+            title: Text('Confirm', style: TextStyle(fontSize: normalFontSize),),
+            content: Text(title, style: TextStyle(fontSize: smallFontSize),),
             actions: [
               SimpleDialogOption(
                 onPressed: () => {
@@ -468,11 +499,11 @@ Future<dynamic> confirmDialog(BuildContext context, String title, int gameId, Pl
                   Navigator.of(context).pop(true),
                   gameRecord.scrollDown()
                 },
-                child: const Text('はい'),
+                child: Text('Add', style: TextStyle(fontSize: smallFontSize),),
               ),
               SimpleDialogOption(
                 onPressed: () => Navigator.of(context).pop(false),
-                child: const Text('いいえ'),
+                child: Text('Cancel', style: TextStyle(fontSize: smallFontSize),),
               ),
             ],
           );
@@ -481,7 +512,7 @@ Future<dynamic> confirmDialog(BuildContext context, String title, int gameId, Pl
   );
 }
 
-Future<dynamic> ftDialog(BuildContext context, int gameId, Player? player) {
+Future<dynamic> ftDialog(BuildContext context, int gameId, Player? player, double normalFontSize, double smallFontSize) {
   bool myTeamPlay = player == null ? false : true;
   return showDialog(
       context: context,
@@ -491,8 +522,8 @@ Future<dynamic> ftDialog(BuildContext context, int gameId, Player? player) {
           final gameRecordInfo = ref.watch(gameRecordProvider(gameId));
           final gameSummary = ref.watch(gameSummaryProvider(gameId).notifier);
           return AlertDialog(
-            title: const Text('Confirm'),
-            content: const Text('FreeThrow'),
+            title: Text('Confirm', style: TextStyle(fontSize: normalFontSize),),
+            content: Text('FreeThrow', style: TextStyle(fontSize: smallFontSize),),
             actions: [
               SimpleDialogOption(
                 onPressed: () => {
@@ -502,7 +533,7 @@ Future<dynamic> ftDialog(BuildContext context, int gameId, Player? player) {
                   Navigator.of(context).pop(true),
                   gameRecord.scrollDown()
                 },
-                child: const Text('Make'),
+                child: Text('Make', style: TextStyle(fontSize: smallFontSize),),
               ),
               SimpleDialogOption(
                 onPressed: () => {
@@ -511,11 +542,11 @@ Future<dynamic> ftDialog(BuildContext context, int gameId, Player? player) {
                   Navigator.of(context).pop(true),
                   gameRecord.scrollDown()
                 },
-                child: const Text('Miss'),
+                child: Text('Miss', style: TextStyle(fontSize: smallFontSize),),
               ),
               SimpleDialogOption(
                 onPressed: () => Navigator.of(context).pop(false),
-                child: const Text('Cancel'),
+                child: Text('Cancel', style: TextStyle(fontSize: smallFontSize),),
               ),
             ],
           );
@@ -524,7 +555,7 @@ Future<dynamic> ftDialog(BuildContext context, int gameId, Player? player) {
   );
 }
 
-Future<dynamic> reboundDialog(BuildContext context, int gameId, Player? player) {
+Future<dynamic> reboundDialog(BuildContext context, int gameId, Player? player, double normalFontSize, double smallFontSize) {
   bool myTeamPlay = player == null ? false : true;
   return showDialog(
       context: context,
@@ -534,8 +565,8 @@ Future<dynamic> reboundDialog(BuildContext context, int gameId, Player? player) 
           final gameRecordInfo = ref.watch(gameRecordProvider(gameId));
           final gameSummary = ref.watch(gameSummaryProvider(gameId).notifier);
           return AlertDialog(
-            title: const Text('Confirm'),
-            content: const Text('Rebound'),
+            title: Text('Confirm', style: TextStyle(fontSize: normalFontSize),),
+            content: Text('Rebound', style: TextStyle(fontSize: smallFontSize),),
             actions: [
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -548,7 +579,7 @@ Future<dynamic> reboundDialog(BuildContext context, int gameId, Player? player) 
                       Navigator.of(context).pop(true),
                       gameRecord.scrollDown()
                     },
-                    child: const Text('OFF'),
+                    child: Text('OFF', style: TextStyle(fontSize: smallFontSize),),
                   ),
                   SimpleDialogOption(
                     onPressed: () => {
@@ -558,11 +589,11 @@ Future<dynamic> reboundDialog(BuildContext context, int gameId, Player? player) 
                       Navigator.of(context).pop(true),
                       gameRecord.scrollDown()
                     },
-                    child: const Text('DEF'),
+                    child: Text('DEF', style: TextStyle(fontSize: smallFontSize),),
                   ),
                   SimpleDialogOption(
                     onPressed: () => Navigator.of(context).pop(false),
-                    child: const Text('Cancel'),
+                    child: Text('Cancel', style: TextStyle(fontSize: smallFontSize),),
                   ),
                 ],
               ),
@@ -705,7 +736,7 @@ Widget substituteSheet(int gameId, int onCourtPlayerIndex) {
   });
 }
 
-Future<dynamic> quarterChangeDialog(BuildContext context, int gameId) {
+Future<dynamic> quarterChangeDialog(BuildContext context, int gameId, double normalFontSize, double smallFontSize) {
   return showDialog(
       barrierDismissible: false,
       context: context,
@@ -715,50 +746,54 @@ Future<dynamic> quarterChangeDialog(BuildContext context, int gameId) {
           final gameRecordInfo = ref.watch(gameRecordProvider(gameId));
 
           return AlertDialog(
-            title: const Text('Settings'),
-            content: Column(
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    const Text('Quarter Min'),
-                    DropdownButton(
-                      items: [
-                        for(int i = 24; i > 0; i--) ... {
-                          DropdownMenuItem(
-                            value:  i,
-                            child: Text(i.toString()),
-                          )
-                        }
-                      ],
-                      onChanged: (int? value) {
-                        gameRecord.updateQuarterMinState(value!);
-                      },
-                      value: gameRecordInfo.quarterMin,
-                    ),
-                  ],
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    const Text('OT Quarter Min'),
-                    DropdownButton(
-                      items: [
-                        for(int i = 24; i > 0; i--) ... {
-                          DropdownMenuItem(
-                            value:  i,
-                            child: Text(i.toString()),
-                          )
-                        }
-                      ],
-                      onChanged: (int? value) {
-                        gameRecord.updateOvertimeQuarterMinState(value!);
-                      },
-                      value: gameRecordInfo.overtimeQuarterMin,
-                    ),
-                  ],
-                )
-              ],
+            title: Text('Settings', style: TextStyle(fontSize: normalFontSize),),
+            content: SizedBox(
+              width: MediaQuery.of(context).size.width*0.7,
+              height: MediaQuery.of(context).size.height*0.3,
+              child: Column(
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text('Quarter Min', style: TextStyle(fontSize: smallFontSize),),
+                      DropdownButton(
+                        items: [
+                          for(int i = 24; i > 0; i--) ... {
+                            DropdownMenuItem(
+                              value:  i,
+                              child: Text(i.toString(), style: TextStyle(fontSize: smallFontSize),),
+                            )
+                          }
+                        ],
+                        onChanged: (int? value) {
+                          gameRecord.updateQuarterMinState(value!);
+                        },
+                        value: gameRecordInfo.quarterMin,
+                      ),
+                    ],
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text('OT Quarter Min', style: TextStyle(fontSize: smallFontSize),),
+                      DropdownButton(
+                        items: [
+                          for(int i = 24; i > 0; i--) ... {
+                            DropdownMenuItem(
+                              value:  i,
+                              child: Text(i.toString(), style: TextStyle(fontSize: smallFontSize),),
+                            )
+                          }
+                        ],
+                        onChanged: (int? value) {
+                          gameRecord.updateOvertimeQuarterMinState(value!);
+                        },
+                        value: gameRecordInfo.overtimeQuarterMin,
+                      ),
+                    ],
+                  )
+                ],
+              ),
             ),
             actions: [
               SimpleDialogOption(
@@ -768,8 +803,8 @@ Future<dynamic> quarterChangeDialog(BuildContext context, int gameId) {
                         context: context,
                         builder: (context) {
                           return AlertDialog(
-                              title: const Text('Warning'),
-                              content: const Text('There are some pbps to be deleted.'),
+                              title: Text('Warning', style: TextStyle(fontSize: normalFontSize),),
+                              content: Text('There are some pbps to be deleted.', style: TextStyle(fontSize: smallFontSize),),
                               actions : [
                                 SimpleDialogOption(
                                   onPressed: () => {
@@ -779,11 +814,11 @@ Future<dynamic> quarterChangeDialog(BuildContext context, int gameId) {
                                     Navigator.of(context).pop(false),
                                     Navigator.of(context).pop(false)
                                   },
-                                  child: const Text('Delete?'),
+                                  child: Text('Delete?', style: TextStyle(fontSize: smallFontSize),),
                                 ),
                                 SimpleDialogOption(
                                   onPressed: () => Navigator.of(context).pop(false),
-                                  child: const Text('Cancel'),
+                                  child: Text('Cancel', style: TextStyle(fontSize: smallFontSize),),
                                 ),
                               ]
                           );
@@ -833,7 +868,7 @@ bool validateTime(int currentQuarter, int quarterMin, int overtimeQuarterMin, Da
   return true;
 }
 
-Widget showGameOperation(BuildContext context, int id) {
+Widget showGameOperation(BuildContext context, int id, double normalFontSize, double smallFontSize) {
   return PopupMenuButton(
       onSelected: (GameAction value) {
         if (value == GameAction.GAMESET) {
@@ -847,8 +882,8 @@ Widget showGameOperation(BuildContext context, int id) {
                   final gameRecordInfo = ref.watch(gameRecordProvider(id));
 
                   return AlertDialog(
-                    title: const Text('GameSet'),
-                    content: gameRecordInfo.game.myPts == gameRecordInfo.game.opponentPts ? const Text('Will the match enter into overtime?') : const Text('GameSet?'),
+                    title: Text('GameSet', style: TextStyle(fontSize: normalFontSize),),
+                    content: gameRecordInfo.game.myPts == gameRecordInfo.game.opponentPts ? Text('Will the match enter into overtime?', style: TextStyle(fontSize: smallFontSize),) : Text('GameSet?', style: TextStyle(fontSize: smallFontSize),),
                     actions: [
                       gameRecordInfo.game.myPts == gameRecordInfo.game.opponentPts ?
                       SimpleDialogOption(
@@ -863,7 +898,7 @@ Widget showGameOperation(BuildContext context, int id) {
                               ),
                           );
                         },
-                        child: const Text('Yes'),
+                        child: Text('Yes', style: TextStyle(fontSize: smallFontSize),),
                       )
                       :
                       SimpleDialogOption(
@@ -874,11 +909,11 @@ Widget showGameOperation(BuildContext context, int id) {
                           Navigator.of(context).pop();
                           Navigator.of(context).pop();
                         },
-                        child: const Text('Yes'),
+                        child: Text('Yes', style: TextStyle(fontSize: smallFontSize),),
                       ),
                       SimpleDialogOption(
                         onPressed: () => Navigator.of(context).pop(false),
-                        child: const Text('No'),
+                        child: Text('No', style: TextStyle(fontSize: smallFontSize),),
                       ),
                     ],
                   );
@@ -890,17 +925,17 @@ Widget showGameOperation(BuildContext context, int id) {
         }
       },
       itemBuilder: (context) => [
-        const PopupMenuItem(
+        PopupMenuItem(
             value: GameAction.SHOT_CLOCK_TURNOVER,
-            child: Text('Shot Clock TurnOver')
+            child: Text('Shot Clock TurnOver', style: TextStyle(fontSize: smallFontSize),)
         ),
-        const PopupMenuItem(
+        PopupMenuItem(
             value: GameAction.TIMEOUT,
-            child: Text('Timeout')
+            child: Text('Timeout', style: TextStyle(fontSize: smallFontSize),)
         ),
-        const PopupMenuItem(
+        PopupMenuItem(
             value: GameAction.GAMESET,
-            child: Text('GameSet', style: TextStyle(color: Colors.red),)
+            child: Text('GameSet', style: TextStyle(color: Colors.red, fontSize: smallFontSize),)
         ),
       ]
   );

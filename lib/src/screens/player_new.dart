@@ -21,6 +21,10 @@ class PlayerNewScreen extends ConsumerWidget {
     final playerList = ref.watch(playerListProvider.notifier);
     final documentPath = ref.watch(documentPathProvider);
 
+    double normalFontSize = MediaQuery.of(context).size.width / 27;
+    double textFormWidth = MediaQuery.of(context).size.width / 2;
+    double normalPadding = MediaQuery.of(context).size.height / 40;
+
     return Scaffold(
         key: scaffoldKey,
         appBar: AppBar(
@@ -64,8 +68,9 @@ class PlayerNewScreen extends ConsumerWidget {
                     // })
                 ),
                 SizedBox(
-                  width: MediaQuery.of(context).size.width/2,
+                  width: textFormWidth,
                   child: TextFormField(
+                    autofocus:true,
                     controller: playerInfo.playerNameInputController,
                     autovalidateMode: AutovalidateMode.onUserInteraction,
                     validator: (value) {
@@ -85,8 +90,8 @@ class PlayerNewScreen extends ConsumerWidget {
                     },
                   ),
                 ),
-                const SizedBox(
-                  height: 10,
+                SizedBox(
+                  height: normalPadding,
                 ),
                 Consumer(builder: (context, ref, _) {
                   final player = ref.watch(playerProvider(id).notifier);
@@ -98,7 +103,7 @@ class PlayerNewScreen extends ConsumerWidget {
                       foregroundColor: Colors.white,
                       backgroundColor: Colors.orange,
                     ),
-                    child: const Text("画像選択"),
+                    child: Text("Select Image", style: TextStyle(fontSize: normalFontSize),),
                   );
                 }),
               ],

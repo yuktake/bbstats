@@ -21,6 +21,17 @@ class HomeScreen extends ConsumerWidget {
     final homeInfo = ref.watch(homeProvider);
     final documentPath = ref.watch(documentPathProvider);
 
+    double screenWidth = MediaQuery.of(context).size.width;
+    double screenHeight = MediaQuery.of(context).size.height;
+
+    double iconHeight = screenHeight*0.1;
+    double iconRadius = screenHeight*0.03;
+    double dataRowHeight = screenHeight*0.1;
+    double normalFontSize = screenWidth / 27;
+    double smallFontSize = screenWidth / 40;
+    double normalPadding = screenHeight / 40;
+    double smallPadding = screenHeight / 80;
+
     Rect shareRect = const Rect.fromLTWH(0, 0, 50, 50);
 
     return Scaffold(
@@ -63,7 +74,7 @@ class HomeScreen extends ConsumerWidget {
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
-                                showCircleImage('${documentPath.value}/teams/1.jpg', 50.0),
+                                showCircleImage('${documentPath.value}/teams/1.jpg', iconHeight/2),
                                 Expanded(
                                   child: Padding(
                                     padding: const EdgeInsets.symmetric(horizontal: 16),
@@ -71,8 +82,8 @@ class HomeScreen extends ConsumerWidget {
                                       mainAxisAlignment: MainAxisAlignment.center,
                                       crossAxisAlignment: CrossAxisAlignment.start,
                                       children: [
-                                        Text(homeInfo.team.name),
-                                        Text("${home.countWinGame().toString()}-${home.countLostGame().toString()}"),
+                                        Text(homeInfo.team.name, style: TextStyle(fontSize: normalFontSize)),
+                                        Text("${home.countWinGame().toString()}-${home.countLostGame().toString()}", style: TextStyle(fontSize: smallFontSize)),
                                       ],
                                     ),
                                   ),
@@ -96,8 +107,23 @@ class HomeScreen extends ConsumerWidget {
                                           final index = e.key;
                                           return Column(
                                             children: [
-                                              Text(TeamStatColumns.teamStatColumnList[index]),
-                                              Text(e.value.toString()),
+                                              Padding(
+                                                  padding: const EdgeInsets.symmetric(vertical: 8.0),
+                                                  child: Text(
+                                                    TeamStatColumns.teamStatColumnList[index],
+                                                    style: TextStyle(
+                                                      fontSize: normalFontSize,
+                                                      fontWeight: FontWeight.w800,
+                                                    )
+                                                  ),
+                                              ),
+                                              Padding(
+                                                  padding: const EdgeInsets.only(bottom: 8.0),
+                                                  child: Text(
+                                                      e.value.toString(),
+                                                      style: TextStyle(fontSize: normalFontSize),
+                                                  ),
+                                              ),
                                             ],
                                           );
                                       }).toList(),
@@ -110,41 +136,44 @@ class HomeScreen extends ConsumerWidget {
                       ),
                     ),
 
-                    Row(
-                      children: [
-                        TextButton(
-                          onPressed: () {
-                            DatePicker.showDatePicker(context,
-                                showTitleActions: true,
-                                minTime: DateTime(1950, 1, 1),
-                                maxTime: DateTime.now(),
-                                onConfirm: (date) {
-                                  home.updateStartDate(date);
-                                },
-                                currentTime: homeInfo.start,
-                                locale: LocaleType.jp
-                            );
-                          },
-                          child: Text(homeInfo.start == null ? '-/-/-/' : DateFormat('yyyy-MM-dd').format(homeInfo.start!), style: const TextStyle(color: Colors.black)),
-                        ),
-                        const Text('-'),
-                        TextButton(
-                          onPressed: () {
-                            DatePicker.showDatePicker(context,
-                                showTitleActions: true,
-                                minTime: DateTime(1950, 1, 1),
-                                maxTime: DateTime.now(),
-                                onConfirm: (date) {
-                                  DateTime modifiedDateTime = DateTime(date.year, date.month, date.day, 23, 59, 59);
-                                  home.updateEndDate(modifiedDateTime);
-                                },
-                                currentTime: homeInfo.end,
-                                locale: LocaleType.jp
-                            );
-                          },
-                          child: Text(homeInfo.end == null ? '-/-/-/' : DateFormat('yyyy-MM-dd').format(homeInfo.end!), style: const TextStyle(color: Colors.black)),
-                        ),
-                      ],
+                    Padding(
+                      padding: EdgeInsets.only(top: 16, bottom: 16),
+                      child: Row(
+                        children: [
+                          TextButton(
+                            onPressed: () {
+                              DatePicker.showDatePicker(context,
+                                  showTitleActions: true,
+                                  minTime: DateTime(1950, 1, 1),
+                                  maxTime: DateTime.now(),
+                                  onConfirm: (date) {
+                                    home.updateStartDate(date);
+                                  },
+                                  currentTime: homeInfo.start,
+                                  locale: LocaleType.jp
+                              );
+                            },
+                            child: Text(homeInfo.start == null ? '-/-/-/' : DateFormat('yyyy-MM-dd').format(homeInfo.start!), style: TextStyle(color: Colors.black, fontSize: smallFontSize)),
+                          ),
+                          Text('~', style: TextStyle(fontSize: smallFontSize)),
+                          TextButton(
+                            onPressed: () {
+                              DatePicker.showDatePicker(context,
+                                  showTitleActions: true,
+                                  minTime: DateTime(1950, 1, 1),
+                                  maxTime: DateTime.now(),
+                                  onConfirm: (date) {
+                                    DateTime modifiedDateTime = DateTime(date.year, date.month, date.day, 23, 59, 59);
+                                    home.updateEndDate(modifiedDateTime);
+                                  },
+                                  currentTime: homeInfo.end,
+                                  locale: LocaleType.jp
+                              );
+                            },
+                            child: Text(homeInfo.end == null ? '-/-/-/' : DateFormat('yyyy-MM-dd').format(homeInfo.end!), style: TextStyle(color: Colors.black, fontSize: smallFontSize)),
+                          ),
+                        ],
+                      ),
                     ),
 
                     Padding(
@@ -173,6 +202,7 @@ class HomeScreen extends ConsumerWidget {
                             Expanded(
                               // ソートしないならbottomMarginのために普通のdatatableか他のものでいいかも
                               child: DataTable2(
+                                dataRowHeight: dataRowHeight,
                                 fixedLeftColumns: 1,
                                 sortColumnIndex: homeInfo.sortTargetIndex,
                                 sortAscending: homeInfo.ascending,
@@ -199,7 +229,7 @@ class HomeScreen extends ConsumerWidget {
                                       (e) => DataRow(
                                     cells: [
                                       DataCell(
-                                          playerColumn('${e[1]}', '${documentPath.value}/players/${e[0]}.jpg')
+                                          playerColumn('${e[1]}', '${documentPath.value}/players/${e[0]}.jpg', iconRadius)
                                       ),
                                       DataCell(
                                         Text('${e[2]}'),
@@ -274,19 +304,14 @@ class HomeScreen extends ConsumerWidget {
   }
 }
 
-Widget playerColumn(String name, String path) {
+Widget playerColumn(String name, String path, double radius) {
   var a = File(path);
-  return (
-      Row(
-        children: [
-          Padding(
-            padding: const EdgeInsets.only(right: 8.0),
-            child: CircleAvatar(
-              backgroundImage: MemoryImage(a.readAsBytesSync()),
-            ),
-          ),
-          // Text(name),
-        ],
-      )
+  return Row(
+    children: [
+      CircleAvatar(
+        radius: radius,
+        backgroundImage: MemoryImage(a.readAsBytesSync()),
+      ),
+    ],
   );
 }

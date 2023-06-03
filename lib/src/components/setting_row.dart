@@ -6,12 +6,19 @@ import '../screens/purchase.dart';
 import '../screens/team_profile.dart';
 
 class SidebarRow extends StatelessWidget {
-  SidebarRow({required this.item});
+  const SidebarRow({super.key, required this.item});
 
   final SidebarItem item;
 
   @override
   Widget build(BuildContext context) {
+    double screenWidth = MediaQuery.of(context).size.width;
+    double screenHeight = MediaQuery.of(context).size.height;
+
+    double itemWidth = screenHeight*0.05;
+    double itemHeight = screenHeight*0.05;
+    double normalFontSize = screenWidth / 27;
+
     return Padding(
         padding: const EdgeInsets.symmetric(vertical: 8.0),
         child: GestureDetector(
@@ -28,11 +35,10 @@ class SidebarRow extends StatelessWidget {
               Row(
                 children: [
                   Container(
-                    width: 42.0,
-                    height: 42.0,
-                    padding: const EdgeInsets.all(10.0),
+                    width: itemWidth,
+                    height: itemHeight,
                     decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(14.0),
+                      borderRadius: BorderRadius.circular(itemHeight/3),
                       gradient: item.background,
                     ),
                     child: item.icon,
@@ -40,10 +46,10 @@ class SidebarRow extends StatelessWidget {
                   const SizedBox(width: 24),
                   Text(
                     item.title,
-                    style: const TextStyle(
-                      fontSize: 16.0,
+                    style: TextStyle(
+                      fontSize: normalFontSize,
                       fontWeight: FontWeight.w800,
-                      color: Color(0xFF242629),
+                      color: const Color(0xFF242629),
                     ),
                   ),
                   const Spacer(),

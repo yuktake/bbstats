@@ -32,11 +32,17 @@ class PlayerProfile extends ConsumerWidget {
     final documentPath = ref.watch(documentPathProvider);
 
     Rect shareRect = const Rect.fromLTWH(0, 0, 50, 50);
-    double iconRadius = MediaQuery.of(context).size.height*0.05;
-    double normalTextSize = MediaQuery.of(context).size.width / 27;
-    double smallTextSize = MediaQuery.of(context).size.width / 30;
-    double normalPadding = MediaQuery.of(context).size.height / 40;
-    double smallPadding = MediaQuery.of(context).size.height / 80;
+    double screenWidth = MediaQuery.of(context).size.width;
+    double screenHeight = MediaQuery.of(context).size.height;
+
+    double iconRadius = screenHeight*0.05;
+    double normalFontSize = screenWidth / 27;
+    double smallFontSize = screenWidth / 40;
+    double normalPadding = screenHeight / 40;
+    double overallDataTableHeight = screenHeight * 0.1;
+    double shotTypeDataTableHeight = screenHeight * 0.4;
+    double playTypeDataTableHeight = screenHeight * 0.4;
+    double playerDataTableHeight = screenHeight * 0.3;
 
     return Scaffold(
       appBar: AppBar(
@@ -146,20 +152,20 @@ class PlayerProfile extends ConsumerWidget {
                     children: [
                       Padding(
                         padding: const EdgeInsets.all(8),
-                        child: showPlayerProfileImage('${documentPath.value}/players/$id.jpg', 50)
+                        child: showPlayerProfileImage('${documentPath.value}/players/$id.jpg', iconRadius)
                       ),
                       Expanded(
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.start,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text(teamInfo.name),
+                            Text(teamInfo.name, style: TextStyle(fontSize: normalFontSize),),
                             Text(
                               playerInfo.name,
-                              style: const TextStyle(
-                                fontSize: 16.0,
+                              style: TextStyle(
+                                fontSize: smallFontSize,
                                 fontWeight: FontWeight.w800,
-                                color: Color(0xFF242629),
+                                color: const Color(0xFF242629),
                               ),
                             ),
                           ],
@@ -187,9 +193,9 @@ class PlayerProfile extends ConsumerWidget {
                         locale: LocaleType.jp
                     );
                   },
-                  child: Text(playerDetailInfo.start == null ? '-/-/-/' : DateFormat('yyyy-MM-dd').format(playerDetailInfo.start!), style: const TextStyle(color: Colors.black)),
+                  child: Text(playerDetailInfo.start == null ? '-/-/-/' : DateFormat('yyyy-MM-dd').format(playerDetailInfo.start!), style: TextStyle(color: Colors.black, fontSize: smallFontSize)),
                 ),
-                const Text('-'),
+                Text('~', style: TextStyle(fontSize: smallFontSize),),
                 TextButton(
                     onPressed: () {
                       DatePicker.showDatePicker(context,
@@ -204,12 +210,13 @@ class PlayerProfile extends ConsumerWidget {
                           locale: LocaleType.jp
                       );
                     },
-                    child: Text(playerDetailInfo.end == null ? '-/-/-/' : DateFormat('yyyy-MM-dd').format(playerDetailInfo.end!), style: const TextStyle(color: Colors.black)),
+                    child: Text(playerDetailInfo.end == null ? '-/-/-/' : DateFormat('yyyy-MM-dd').format(playerDetailInfo.end!), style: TextStyle(color: Colors.black, fontSize: smallFontSize)),
                 ),
               ],
             ),
+
             SizedBox(
-              height: 100,
+              height: overallDataTableHeight,
               child: DataTable2(
                 columnSpacing: 16,
                 minWidth: 1000,
@@ -233,7 +240,7 @@ class PlayerProfile extends ConsumerWidget {
             ),
 
             SizedBox(
-              height: 500,
+              height: shotTypeDataTableHeight,
               child: DataTable2(
                 fixedLeftColumns: 1,
                 sortColumnIndex: playerDetailInfo.shotTypeSortTargetIndex,
@@ -280,7 +287,7 @@ class PlayerProfile extends ConsumerWidget {
             ),
 
             SizedBox(
-              height: 500,
+              height: playTypeDataTableHeight,
               child: DataTable2(
                 fixedLeftColumns: 1,
                 sortColumnIndex: playerDetailInfo.playTypeSortTargetIndex,
@@ -327,12 +334,11 @@ class PlayerProfile extends ConsumerWidget {
             ),
 
             SizedBox(
-              height: 500,
+              height: playerDataTableHeight,
               child: DataTable2(
                 fixedLeftColumns: 1,
                 sortColumnIndex: playerDetailInfo.assistSortTargetIndex,
                 sortAscending: playerDetailInfo.assistAscending,
-                // minWidth: 1000,
                 columns: [
                   for(int i = 0; i < CsvColumns.assistColumnList.length; i++) ... {
                     DataColumn(

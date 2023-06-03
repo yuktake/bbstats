@@ -30,7 +30,11 @@ class GameScreen extends ConsumerWidget {
     final onGameNotifier = ref.watch(onGameProvider.notifier);
     var formatter = DateFormat('yyyy/MM/dd(E)', "ja_JP");
 
-    double iconRadius = MediaQuery.of(context).size.height * 0.07;
+    double screenWidth = MediaQuery.of(context).size.width;
+    double screenHeight = MediaQuery.of(context).size.height;
+    double iconRadius = screenHeight * 0.07;
+    double normalFontSize = screenWidth / 27;
+    double smallFontSize = screenWidth / 40;
 
     return Scaffold(
       appBar: AppBar(
@@ -77,16 +81,16 @@ class GameScreen extends ConsumerWidget {
                               },
                               child: Text(
                                   DateFormat('yyyy-MM-dd').format(gamePreparationInfo.gameDate),
-                                  style: const TextStyle(color: Colors.black)
+                                  style: TextStyle(color: Colors.black, fontSize: normalFontSize)
                               ),
                             ),
                             Padding(
                                 padding: const EdgeInsets.only(top: 8.0),
-                                child: Text("${gamePreparationInfo.quarterMin} Min Per Quarter", style: const TextStyle(color: Colors.black))
+                                child: Text("${gamePreparationInfo.quarterMin} Min Per Quarter", style: TextStyle(color: Colors.black, fontSize: smallFontSize))
                             ),
                             Padding(
                                 padding: const EdgeInsets.only(top: 8.0),
-                                child: Text("OT ${gamePreparationInfo.overtimeQuarterMin} Minutes", style: const TextStyle(color: Colors.black))
+                                child: Text("OT ${gamePreparationInfo.overtimeQuarterMin} Minutes", style: TextStyle(color: Colors.black, fontSize: smallFontSize))
                             ),
                           ],
                         ),
@@ -206,18 +210,18 @@ class GameScreen extends ConsumerWidget {
             ),
           ),
 
-          const Padding(
-            padding: EdgeInsets.symmetric(vertical: 16),
-            child: Text('Past 3 games')
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 16),
+            child: Text('Past 3 games', style: TextStyle(fontSize: normalFontSize))
           ),
 
           gamePreparationInfo.opponentTeam != null ?
               
             gamePreparationInfo.histories.isEmpty ?
-                const Expanded(
+                Expanded(
                     child: Padding(
-                      padding: EdgeInsets.symmetric(vertical: 32.0),
-                      child: Text('No History Data')
+                      padding: const EdgeInsets.symmetric(vertical: 32.0),
+                      child: Text('No History Data', style: TextStyle(fontSize: normalFontSize))
                     )
                 )
             :
@@ -301,16 +305,14 @@ class GameScreen extends ConsumerWidget {
               const Spacer(),
 
            Padding(
-             padding: const EdgeInsets.symmetric(vertical: 16.0),
+             padding: const EdgeInsets.all(16.0),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 FloatingActionButton.extended(
-                  icon: const Icon(Icons.sports_basketball),
-                  label: Text(onGame ? "Continue Game" : "Start Game"),
-                  backgroundColor: gamePreparationInfo.startable
-                      ? Colors.blue
-                      : Colors.black12,
+                  icon: Icon(Icons.sports_basketball, size: normalFontSize,),
+                  label: Text(onGame ? "Continue Game" : "Start Game", style: TextStyle(fontSize: normalFontSize)),
+                  backgroundColor: gamePreparationInfo.startable ? Colors.blue : Colors.grey,
                   onPressed: !gamePreparationInfo.startable ? null : () async {
                     int? gameId;
                     if (onGame) {

@@ -36,6 +36,14 @@ class Shot extends ConsumerWidget {
     final gameStat = ref.watch(gameStatProvider(gameId).notifier);
     final documentPath = ref.watch(documentPathProvider);
 
+    double screenWidth = MediaQuery.of(context).size.width;
+    double screenHeight = MediaQuery.of(context).size.height;
+
+    double normalFontSize = screenWidth / 27;
+    double smallFontSize = screenWidth / 40;
+    double assistedPlayersBoxHeight = screenHeight * 0.1;
+    double shotChartHeight = screenHeight*0.5;
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('Shot'),
@@ -50,8 +58,8 @@ class Shot extends ConsumerWidget {
                 key: globalKey,
                 image: shotInfo.image!,
                 fit: BoxFit.fill,
-                width: MediaQuery.of(context).size.width,
-                height: MediaQuery.of(context).size.height*0.5,
+                width: screenWidth,
+                height: shotChartHeight,
               ),
             )
               :
@@ -59,16 +67,16 @@ class Shot extends ConsumerWidget {
               'No Image Taken',
               textAlign: TextAlign.center,
             ),
-            const Text('Make or Miss'),
+            Text('Make or Miss', style: TextStyle(fontSize: normalFontSize),),
             Padding(
               padding: const EdgeInsets.only(top: 16, left: 16, right: 16),
               child: Row(
                 children: [
                   Expanded(
                     child: CupertinoSegmentedControl(
-                        children: const {
-                          1: Text('Make'),
-                          0: Text('Miss'),
+                        children: {
+                          1: Text('Make', style: TextStyle(fontSize: smallFontSize),),
+                          0: Text('Miss', style: TextStyle(fontSize: smallFontSize),),
                         },
                         groupValue: shotInfo.result ? 1 : 0,
                         onValueChanged: (int value) {
@@ -80,10 +88,10 @@ class Shot extends ConsumerWidget {
               ),
             ),
             // change depend on support type
-            Text(shotInfo.result ? 'Assisted By' : ''),
+            Text(shotInfo.result ? 'Assisted By' : '', style: TextStyle(fontSize: normalFontSize),),
             shotInfo.result ?
             SizedBox(
-              height: 100,
+              height: assistedPlayersBoxHeight,
               child: ListView(
                 scrollDirection: Axis.horizontal,
                 children: [
@@ -104,16 +112,16 @@ class Shot extends ConsumerWidget {
               ),
             ) : Container(),
 
-            const Text('Points'),
+            Text('Points', style: TextStyle(fontSize: normalFontSize),),
             Padding(
               padding: const EdgeInsets.all(16),
               child: Row(
                 children: [
                   Expanded(
                     child: CupertinoSegmentedControl(
-                        children: const {
-                          2: Text('2'),
-                          3: Text('3'),
+                        children: {
+                          2: Text('2', style: TextStyle(fontSize: smallFontSize),),
+                          3: Text('3', style: TextStyle(fontSize: smallFontSize),),
                         },
                         groupValue: shotInfo.point,
                         onValueChanged: (int value) {
@@ -128,52 +136,53 @@ class Shot extends ConsumerWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                const Text('Play Type'),
+                Text('Play Type', style: TextStyle(fontSize: normalFontSize),),
                 DropdownButton(
-                  items: const [
+                  padding: const EdgeInsets.all(16),
+                  items: [
                     DropdownMenuItem(
                       value: PlayType.NONE,
-                      child: Text('-'),
+                      child: Text('-', style: TextStyle(fontSize: smallFontSize),),
                     ),
                     DropdownMenuItem(
                       value: PlayType.ISOLATION,
-                      child: Text('ISOLATION'),
+                      child: Text('ISOLATION', style: TextStyle(fontSize: smallFontSize),),
                     ),
                     DropdownMenuItem(
                       value: PlayType.FASTBREAK,
-                      child: Text('FAST BREAK'),
+                      child: Text('FAST BREAK', style: TextStyle(fontSize: smallFontSize),),
                     ),
                     DropdownMenuItem(
                       value: PlayType.PICK_AND_ROLL_BALL_HANDLER,
-                      child: Text('P&R BALLER'),
+                      child: Text('P&R BALLER', style: TextStyle(fontSize: smallFontSize),),
                     ),
                     DropdownMenuItem(
                       value: PlayType.PICK_AND_ROLL_ROLL_MAN,
-                      child: Text('P&R ROLLER'),
+                      child: Text('P&R ROLLER', style: TextStyle(fontSize: smallFontSize),),
                     ),
                     DropdownMenuItem(
                       value: PlayType.POSTUP,
-                      child: Text('POST UP'),
+                      child: Text('POST UP', style: TextStyle(fontSize: smallFontSize),),
                     ),
                     DropdownMenuItem(
                       value: PlayType.SPOTUP,
-                      child: Text('SPOT UP'),
+                      child: Text('SPOT UP', style: TextStyle(fontSize: smallFontSize),),
                     ),
                     DropdownMenuItem(
                       value: PlayType.HANDOFF,
-                      child: Text('HANDOFF'),
+                      child: Text('HANDOFF', style: TextStyle(fontSize: smallFontSize),),
                     ),
                     DropdownMenuItem(
                       value: PlayType.CUT,
-                      child: Text('CUT'),
+                      child: Text('CUT', style: TextStyle(fontSize: smallFontSize),),
                     ),
                     DropdownMenuItem(
                       value: PlayType.OFF_SCREEN,
-                      child: Text('OFF SCREEN'),
+                      child: Text('OFF SCREEN', style: TextStyle(fontSize: smallFontSize),),
                     ),
                     DropdownMenuItem(
                       value: PlayType.SECOND_CHANCE,
-                      child: Text('2nd Chance'),
+                      child: Text('2nd Chance', style: TextStyle(fontSize: smallFontSize),),
                     ),
                   ],
                   onChanged: (PlayType? value) {
@@ -186,48 +195,49 @@ class Shot extends ConsumerWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                const Text('Shot Type'),
+                Text('Shot Type', style: TextStyle(fontSize: normalFontSize),),
                 DropdownButton(
-                  items: const [
+                  padding: const EdgeInsets.all(16),
+                  items: [
                     DropdownMenuItem(
                       value: ShotType.NONE,
-                      child: Text('-'),
+                      child: Text('-', style: TextStyle(fontSize: smallFontSize),),
                     ),
                     DropdownMenuItem(
                       value: ShotType.LAYUP,
-                      child: Text('LAYUP'),
+                      child: Text('LAYUP', style: TextStyle(fontSize: smallFontSize),),
                     ),
                     DropdownMenuItem(
                       value: ShotType.CATCH_AND_SHOT,
-                      child: Text('CATCH_AND_SHOT'),
+                      child: Text('CATCH_AND_SHOT', style: TextStyle(fontSize: smallFontSize),),
                     ),
                     DropdownMenuItem(
                       value: ShotType.PULLUP,
-                      child: Text('PULL UP'),
+                      child: Text('PULL UP', style: TextStyle(fontSize: smallFontSize),),
                     ),
                     DropdownMenuItem(
                       value: ShotType.FLOATING_SHOT,
-                      child: Text('FLOATING_SHOT'),
+                      child: Text('FLOATING_SHOT', style: TextStyle(fontSize: smallFontSize),),
                     ),
                     DropdownMenuItem(
                       value: ShotType.HOOK_SHOT,
-                      child: Text('HOOK_SHOT'),
+                      child: Text('HOOK_SHOT', style: TextStyle(fontSize: smallFontSize),),
                     ),
                     DropdownMenuItem(
                       value: ShotType.TIP_SHOT,
-                      child: Text('TIP_SHOT'),
+                      child: Text('TIP_SHOT', style: TextStyle(fontSize: smallFontSize),),
                     ),
                     DropdownMenuItem(
                       value: ShotType.FADEAWAY,
-                      child: Text('FADE AWAY'),
+                      child: Text('FADE AWAY', style: TextStyle(fontSize: smallFontSize),),
                     ),
                     DropdownMenuItem(
                       value: ShotType.DUNK,
-                      child: Text('DUNK'),
+                      child: Text('DUNK', style: TextStyle(fontSize: smallFontSize),),
                     ),
                     DropdownMenuItem(
                       value: ShotType.ALLEY_OOP,
-                      child: Text('ALLEY_OOP'),
+                      child: Text('ALLEY_OOP', style: TextStyle(fontSize: smallFontSize),),
                     ),
                   ],
                   onChanged: (ShotType? value) {
@@ -240,28 +250,29 @@ class Shot extends ConsumerWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                const Text('Shot Zone'),
+                Text('Shot Zone', style: TextStyle(fontSize: normalFontSize),),
                 DropdownButton(
-                  items: const [
+                  padding: const EdgeInsets.all(16),
+                  items: [
                     DropdownMenuItem(
                       value: ShotZone.IN_THE_PAINT,
-                      child: Text('IN_THE_PAINT'),
+                      child: Text('IN_THE_PAINT', style: TextStyle(fontSize: smallFontSize),),
                     ),
                     DropdownMenuItem(
                       value: ShotZone.MIDDLE_AREA,
-                      child: Text('MIDDLE_AREA'),
+                      child: Text('MIDDLE_AREA', style: TextStyle(fontSize: smallFontSize),),
                     ),
                     DropdownMenuItem(
                       value: ShotZone.AROUND_TOP_THREE,
-                      child: Text('AROUND_TOP_THREE'),
+                      child: Text('AROUND_TOP_THREE', style: TextStyle(fontSize: smallFontSize),),
                     ),
                     DropdownMenuItem(
                       value: ShotZone.LEFT_CORNER_THREE,
-                      child: Text('LEFT_CORNER_THREE'),
+                      child: Text('LEFT_CORNER_THREE', style: TextStyle(fontSize: smallFontSize),),
                     ),
                     DropdownMenuItem(
                       value: ShotZone.RIGHT_CORNER_THREE,
-                      child: Text('RIGHT_CORNER_THREE'),
+                      child: Text('RIGHT_CORNER_THREE', style: TextStyle(fontSize: smallFontSize),),
                     ),
                   ],
                   onChanged: (ShotZone? value) {
@@ -279,7 +290,7 @@ class Shot extends ConsumerWidget {
                 backgroundColor: Colors.blue,
                 onPressed: () {
                   if (shotInfo.positionX == null || shotInfo.positionY == null) {
-                    noShotPositionDialog(context);
+                    noShotPositionDialog(context, normalFontSize, smallFontSize);
                     return;
                   }
                   shot.confirm(gameId, playerId);
@@ -354,17 +365,17 @@ class Shot extends ConsumerWidget {
   }
 }
 
-Future<dynamic> noShotPositionDialog(BuildContext context) {
+Future<dynamic> noShotPositionDialog(BuildContext context, double normalFontSize, double smallFontSize) {
   return showDialog(
     context: context,
     builder: (context) {
       return AlertDialog(
-        title: const Text('Shot Position'),
-        content: const Text('No shot position has been entered'),
+        title: Text('Shot Position', style: TextStyle(fontSize: normalFontSize),),
+        content: Text('No shot position has been entered', style: TextStyle(fontSize: smallFontSize),),
         actions : [
           SimpleDialogOption(
             onPressed: () => Navigator.of(context).pop(false),
-            child: const Text('OK'),
+            child: Text('OK', style: TextStyle(fontSize: smallFontSize),),
           ),
         ]
       );

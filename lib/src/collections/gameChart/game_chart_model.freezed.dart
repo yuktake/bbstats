@@ -16,6 +16,7 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$GameChartModel {
+  Game get game => throw _privateConstructorUsedError;
   BlendMode get blendMode => throw _privateConstructorUsedError;
   List<Player> get players => throw _privateConstructorUsedError;
   MemoryImage? get image => throw _privateConstructorUsedError;
@@ -48,7 +49,8 @@ abstract class $GameChartModelCopyWith<$Res> {
           GameChartModel value, $Res Function(GameChartModel) then) =
       _$GameChartModelCopyWithImpl<$Res>;
   $Res call(
-      {BlendMode blendMode,
+      {Game game,
+      BlendMode blendMode,
       List<Player> players,
       MemoryImage? image,
       Uint8List? src,
@@ -81,6 +83,7 @@ class _$GameChartModelCopyWithImpl<$Res>
 
   @override
   $Res call({
+    Object? game = freezed,
     Object? blendMode = freezed,
     Object? players = freezed,
     Object? image = freezed,
@@ -103,6 +106,10 @@ class _$GameChartModelCopyWithImpl<$Res>
     Object? defencedPlayerId = freezed,
   }) {
     return _then(_value.copyWith(
+      game: game == freezed
+          ? _value.game
+          : game // ignore: cast_nullable_to_non_nullable
+              as Game,
       blendMode: blendMode == freezed
           ? _value.blendMode
           : blendMode // ignore: cast_nullable_to_non_nullable
@@ -195,7 +202,8 @@ abstract class _$$_GameChartModelCopyWith<$Res>
       __$$_GameChartModelCopyWithImpl<$Res>;
   @override
   $Res call(
-      {BlendMode blendMode,
+      {Game game,
+      BlendMode blendMode,
       List<Player> players,
       MemoryImage? image,
       Uint8List? src,
@@ -230,6 +238,7 @@ class __$$_GameChartModelCopyWithImpl<$Res>
 
   @override
   $Res call({
+    Object? game = freezed,
     Object? blendMode = freezed,
     Object? players = freezed,
     Object? image = freezed,
@@ -252,6 +261,10 @@ class __$$_GameChartModelCopyWithImpl<$Res>
     Object? defencedPlayerId = freezed,
   }) {
     return _then(_$_GameChartModel(
+      game: game == freezed
+          ? _value.game
+          : game // ignore: cast_nullable_to_non_nullable
+              as Game,
       blendMode: blendMode == freezed
           ? _value.blendMode
           : blendMode // ignore: cast_nullable_to_non_nullable
@@ -340,7 +353,8 @@ class __$$_GameChartModelCopyWithImpl<$Res>
 
 class _$_GameChartModel implements _GameChartModel {
   const _$_GameChartModel(
-      {required this.blendMode,
+      {required this.game,
+      required this.blendMode,
       required final List<Player> players,
       required this.image,
       required this.src,
@@ -364,6 +378,8 @@ class _$_GameChartModel implements _GameChartModel {
         _pbps = pbps,
         _opponentPbps = opponentPbps;
 
+  @override
+  final Game game;
   @override
   final BlendMode blendMode;
   final List<Player> _players;
@@ -422,7 +438,7 @@ class _$_GameChartModel implements _GameChartModel {
 
   @override
   String toString() {
-    return 'GameChartModel(blendMode: $blendMode, players: $players, image: $image, src: $src, pbps: $pbps, period: $period, playType: $playType, shotType: $shotType, shotZone: $shotZone, shotFilter: $shotFilter, selectedPlayerId: $selectedPlayerId, opponentImage: $opponentImage, opponentSrc: $opponentSrc, opponentPbps: $opponentPbps, opponentPeriod: $opponentPeriod, opponentPlayType: $opponentPlayType, opponentShotType: $opponentShotType, opponentShotZone: $opponentShotZone, opponentShotFilter: $opponentShotFilter, defencedPlayerId: $defencedPlayerId)';
+    return 'GameChartModel(game: $game, blendMode: $blendMode, players: $players, image: $image, src: $src, pbps: $pbps, period: $period, playType: $playType, shotType: $shotType, shotZone: $shotZone, shotFilter: $shotFilter, selectedPlayerId: $selectedPlayerId, opponentImage: $opponentImage, opponentSrc: $opponentSrc, opponentPbps: $opponentPbps, opponentPeriod: $opponentPeriod, opponentPlayType: $opponentPlayType, opponentShotType: $opponentShotType, opponentShotZone: $opponentShotZone, opponentShotFilter: $opponentShotFilter, defencedPlayerId: $defencedPlayerId)';
   }
 
   @override
@@ -430,6 +446,7 @@ class _$_GameChartModel implements _GameChartModel {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_GameChartModel &&
+            const DeepCollectionEquality().equals(other.game, game) &&
             const DeepCollectionEquality().equals(other.blendMode, blendMode) &&
             const DeepCollectionEquality().equals(other._players, _players) &&
             const DeepCollectionEquality().equals(other.image, image) &&
@@ -466,6 +483,7 @@ class _$_GameChartModel implements _GameChartModel {
   @override
   int get hashCode => Object.hashAll([
         runtimeType,
+        const DeepCollectionEquality().hash(game),
         const DeepCollectionEquality().hash(blendMode),
         const DeepCollectionEquality().hash(_players),
         const DeepCollectionEquality().hash(image),
@@ -496,7 +514,8 @@ class _$_GameChartModel implements _GameChartModel {
 
 abstract class _GameChartModel implements GameChartModel {
   const factory _GameChartModel(
-      {required final BlendMode blendMode,
+      {required final Game game,
+      required final BlendMode blendMode,
       required final List<Player> players,
       required final MemoryImage? image,
       required final Uint8List? src,
@@ -517,6 +536,8 @@ abstract class _GameChartModel implements GameChartModel {
       required final int opponentShotFilter,
       required final int? defencedPlayerId}) = _$_GameChartModel;
 
+  @override
+  Game get game;
   @override
   BlendMode get blendMode;
   @override

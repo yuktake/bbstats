@@ -32,6 +32,13 @@ class GameStat extends ConsumerWidget {
     final gameStat = ref.watch(gameStatProvider(gameId).notifier);
     final documentPath = ref.watch(documentPathProvider);
 
+    double screenWidth = MediaQuery.of(context).size.width;
+    double screenHeight = MediaQuery.of(context).size.height;
+
+    double normalFontSize = screenWidth / 27;
+    double smallFontSize = screenWidth / 40;
+    double shotComparisonHeight = screenHeight * 0.1;
+
     return Scaffold(
         appBar: AppBar(
           title: const Text('Game Stat'),
@@ -42,17 +49,17 @@ class GameStat extends ConsumerWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Text('Team/Opponent'),
+                Text('Team/Opponent', style: TextStyle(fontSize: normalFontSize),),
                 Padding(
                   padding: const EdgeInsets.only(top: 16),
                   child: Row(
                     children: [
                       Expanded(
                         child: SizedBox(
-                          height: 80,
+                          height: shotComparisonHeight,
                           child: Column(
                             children: [
-                              const Text('FG%'),
+                              Text('FG%', style: TextStyle(fontSize: normalFontSize),),
                               Padding(
                                 padding: const EdgeInsets.only(top:16),
                                 child: Row(
@@ -62,15 +69,15 @@ class GameStat extends ConsumerWidget {
                                       '${gameStatInfo.game.fgRatio.toString()}%',
                                       style: TextStyle(
                                         color: gameStatInfo.game.fgRatio > gameStatInfo.game.opponentFgRatio ? Colors.greenAccent : Colors.black,
-                                        fontSize: 15,
+                                        fontSize: smallFontSize,
                                       ),
                                     ),
-                                    const Text('/'),
+                                    Text('/', style: TextStyle(fontSize: smallFontSize),),
                                     Text(
                                       '${gameStatInfo.game.opponentFgRatio.toString()}%',
                                       style: TextStyle(
                                         color: gameStatInfo.game.fgRatio < gameStatInfo.game.opponentFgRatio ? Colors.redAccent : Colors.black,
-                                        fontSize: 15,
+                                        fontSize: smallFontSize,
                                       ),
                                     ),
                                   ],
@@ -82,10 +89,10 @@ class GameStat extends ConsumerWidget {
                       ),
                       Expanded(
                         child: SizedBox(
-                          height: 80,
+                          height: shotComparisonHeight,
                           child: Column(
                             children: [
-                              const Text('3P%'),
+                              Text('3P%', style: TextStyle(fontSize: normalFontSize),),
                               Padding(
                                 padding: const EdgeInsets.only(top:16),
                                 child: Row(
@@ -95,15 +102,15 @@ class GameStat extends ConsumerWidget {
                                       '${gameStatInfo.game.tpRatio.toString()}%',
                                       style: TextStyle(
                                         color: gameStatInfo.game.tpRatio > gameStatInfo.game.opponentTpRatio ? Colors.greenAccent : Colors.black,
-                                        fontSize: 15,
+                                        fontSize: smallFontSize,
                                       ),
                                     ),
-                                    const Text('/'),
+                                    Text('/', style: TextStyle(fontSize: smallFontSize),),
                                     Text(
                                       '${gameStatInfo.game.opponentTpRatio.toString()}%',
                                       style: TextStyle(
                                         color: gameStatInfo.game.tpRatio < gameStatInfo.game.opponentTpRatio ? Colors.redAccent : Colors.black,
-                                        fontSize: 15,
+                                        fontSize: smallFontSize,
                                       ),
                                     ),
                                   ],
@@ -115,10 +122,10 @@ class GameStat extends ConsumerWidget {
                       ),
                       Expanded(
                         child: SizedBox(
-                          height: 80,
+                          height: shotComparisonHeight,
                           child: Column(
                             children: [
-                              const Text('FT%'),
+                              Text('FT%', style: TextStyle(fontSize: normalFontSize),),
                               Padding(
                                 padding: const EdgeInsets.only(top:16),
                                 child: Row(
@@ -128,15 +135,15 @@ class GameStat extends ConsumerWidget {
                                       '${gameStatInfo.game.ftRatio.toString()}%',
                                       style: TextStyle(
                                         color: gameStatInfo.game.ftRatio > gameStatInfo.game.opponentFtRatio ? Colors.greenAccent : Colors.black,
-                                        fontSize: 15,
+                                        fontSize: smallFontSize,
                                       ),
                                     ),
-                                    const Text('/'),
+                                    Text('/', style: TextStyle(fontSize: smallFontSize),),
                                     Text(
                                       '${gameStatInfo.game.opponentFtRatio.toString()}%',
                                       style: TextStyle(
                                         color: gameStatInfo.game.ftRatio < gameStatInfo.game.opponentFtRatio ? Colors.redAccent : Colors.black,
-                                        fontSize: 15,
+                                        fontSize: smallFontSize,
                                       ),
                                     ),
                                   ],
@@ -254,17 +261,17 @@ class GameStat extends ConsumerWidget {
                   ),
                 ),
 
-                const Text('Shot Chart'),
+                Text('Shot Chart', style: TextStyle(fontSize: normalFontSize),),
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical: 16),
                   child: Row(
                     children:[
                       Expanded(
                         child: CupertinoSegmentedControl(
-                            children: const {
-                              1: Text('All'),
-                              2: Text('Make'),
-                              3: Text('Miss'),
+                            children: {
+                              1: Text('All', style: TextStyle(fontSize: smallFontSize),),
+                              2: Text('Make', style: TextStyle(fontSize: smallFontSize),),
+                              3: Text('Miss', style: TextStyle(fontSize: smallFontSize),),
                             },
                             groupValue: gameStatInfo.shotFilter,
                             onValueChanged: (int value) {
@@ -284,37 +291,36 @@ class GameStat extends ConsumerWidget {
                   height: MediaQuery.of(context).size.height*0.5,
                 )
                 :
-                const Text(
+                Text(
                   'No Image Taken',
                   textAlign: TextAlign.center,
+                  style: TextStyle(fontSize: normalFontSize),
                 ),
 
-                const Text('Player Stats'),
+                Text('Players', style: TextStyle(fontSize: normalFontSize),),
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical: 16),
-                  child: Container(
-                      child: Column(
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.symmetric(vertical: 16),
-                            child: SizedBox(
-                              height: MediaQuery.of(context).size.height*0.1,
-                              child: ListView(
-                                // This next line does the trick.
-                                scrollDirection: Axis.horizontal,
-                                children: gameStat.getPlayers().asMap().entries.map((e) {
-                                  return GestureDetector(
-                                      onTap: () {
-                                        gameStat.updateDetailPlayer(e.value);
-                                      },
-                                      child: _buildCircleAvatar(gameStatInfo.selectedPlayerId ,e.value, documentPath.value)
-                                  );
-                                }).toList(),
-                              ),
-                            ),
+                  child: Column(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 16),
+                        child: SizedBox(
+                          height: MediaQuery.of(context).size.height*0.1,
+                          child: ListView(
+                            // This next line does the trick.
+                            scrollDirection: Axis.horizontal,
+                            children: gameStat.getPlayers().asMap().entries.map((e) {
+                              return GestureDetector(
+                                  onTap: () {
+                                    gameStat.updateDetailPlayer(e.value);
+                                  },
+                                  child: _buildCircleAvatar(gameStatInfo.selectedPlayerId ,e.value, documentPath.value)
+                              );
+                            }).toList(),
                           ),
-                        ],
-                      )
+                        ),
+                      ),
+                    ],
                   ),
                 ),
               ]

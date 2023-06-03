@@ -15,6 +15,9 @@ class PlayersSelectScreen extends ConsumerWidget {
     final playersInfo = ref.watch(playerSelectProvider);
     final documentPath = ref.watch(documentPathProvider);
 
+    double iconRadius = MediaQuery.of(context).size.height*0.05;
+    double normalFontSize = MediaQuery.of(context).size.width / 27;
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('Player Select'),
@@ -33,9 +36,9 @@ class PlayersSelectScreen extends ConsumerWidget {
                 padding: const EdgeInsets.symmetric(vertical: 8.0),
                 child: Row(
                   children: [
-                    showCircleImage("${documentPath.value}/players/${playersInfo.players[index].id}.jpg", 40.0),
+                    showCircleImage("${documentPath.value}/players/${playersInfo.players[index].id}.jpg", iconRadius),
                     const SizedBox(width: 32.0),
-                    Text(playersInfo.players[index].name)
+                    Text(playersInfo.players[index].name, style: TextStyle(fontSize: normalFontSize),)
                   ],
                 ),
               ),

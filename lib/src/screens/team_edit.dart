@@ -26,6 +26,11 @@ class TeamEditScreen extends ConsumerWidget {
     final documentPath = ref.watch(documentPathProvider);
     teamInfo.teamNameInputController.text = teamInfo.editName;
 
+    double iconHeight = MediaQuery.of(context).size.height*0.1;
+    double textFormWidth = MediaQuery.of(context).size.width / 2;
+    double normalFontSize = MediaQuery.of(context).size.width / 27;
+    double normalPadding = MediaQuery.of(context).size.height / 40;
+
     return Scaffold(
         key: scaffoldKey,
         appBar: AppBar(
@@ -60,12 +65,16 @@ class TeamEditScreen extends ConsumerWidget {
                     shape: BoxShape.circle,
                     color: Colors.blue,
                   ),
-                  child: teamInfo.showPreview ? showCircleImage("${documentPath.value}/teams/preview.jpg", 50.0) : showCircleImage(teamInfo.image!, 50.0)
+                  child: teamInfo.showPreview ? showCircleImage("${documentPath.value}/teams/preview.jpg", iconHeight) : showCircleImage(teamInfo.image!, 50.0)
                 ),
                 // }),
                 SizedBox(
-                  width: MediaQuery.of(context).size.width/2,
+                  width: textFormWidth,
                   child: TextFormField(
+                      autofocus:true,
+                      style: TextStyle(
+                        fontSize: normalFontSize,
+                      ),
                       controller: teamInfo.teamNameInputController,
                       validator: (value) {
                         if (value == null || value.isEmpty) {
@@ -85,8 +94,8 @@ class TeamEditScreen extends ConsumerWidget {
                     )
                   // })
                 ),
-                const SizedBox(
-                  height: 10,
+                SizedBox(
+                  height: normalPadding,
                 ),
                 ElevatedButton(
                     onPressed: () async {
@@ -97,7 +106,7 @@ class TeamEditScreen extends ConsumerWidget {
                       foregroundColor: Colors.white,
                       backgroundColor: Colors.orange,
                     ),
-                    child: const Text("画像選択"),
+                    child: Text("Select Image", style: TextStyle(fontSize: normalFontSize)),
                   )
                 // }),
               ],

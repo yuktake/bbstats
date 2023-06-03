@@ -19,6 +19,13 @@ class GameChartScreen extends ConsumerWidget {
     final gameChart = ref.watch(gameChartProvider(id).notifier);
     final gameChartInfo = ref.watch(gameChartProvider(id));
 
+    double screenWidth = MediaQuery.of(context).size.width;
+    double screenHeight = MediaQuery.of(context).size.height;
+
+    double normalFontSize = screenWidth / 27;
+    double smallFontSize = screenWidth / 40;
+    double shotChartHeight = screenHeight*0.5;
+
     return SingleChildScrollView(
       scrollDirection: Axis.vertical,
       child: Padding(
@@ -26,33 +33,33 @@ class GameChartScreen extends ConsumerWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Text("SHOT CHARTS"),
+            Text("SHOT CHARTS", style: TextStyle(fontSize: normalFontSize),),
             DropdownButton(
               items: [
-                const DropdownMenuItem(
+                DropdownMenuItem(
                   value: 100,
-                  child: Text('All'),
+                  child: Text('All', style: TextStyle(fontSize: smallFontSize),),
                 ),
-                const DropdownMenuItem(
+                DropdownMenuItem(
                   value: 1,
-                  child: Text('Q1'),
+                  child: Text('Q1', style: TextStyle(fontSize: smallFontSize),),
                 ),
-                const DropdownMenuItem(
+                DropdownMenuItem(
                   value: 2,
-                  child: Text('Q2'),
+                  child: Text('Q2', style: TextStyle(fontSize: smallFontSize),),
                 ),
-                const DropdownMenuItem(
+                DropdownMenuItem(
                   value: 3,
-                  child: Text('Q3'),
+                  child: Text('Q3', style: TextStyle(fontSize: smallFontSize),),
                 ),
-                const DropdownMenuItem(
+                DropdownMenuItem(
                   value: 4,
-                  child: Text('Q4'),
+                  child: Text('Q4', style: TextStyle(fontSize: smallFontSize),),
                 ),
                 for(int i = 1; i <= gameChart.getOtNum(); i++) ... {
                   DropdownMenuItem(
                     value: i+4,
-                    child: Text('OT$i'),
+                    child: Text('OT$i', style: TextStyle(fontSize: smallFontSize),),
                   ),
                 }
               ],
@@ -62,17 +69,17 @@ class GameChartScreen extends ConsumerWidget {
               value: gameChartInfo.period,
             ),
             const SizedBox(height: 20,),
-            const Text('Scored By  '),
+            Text('Scored By  ', style: TextStyle(fontSize: normalFontSize),),
             DropdownButton(
               items: <DropdownMenuItem<int>>[
-                const DropdownMenuItem(
+                DropdownMenuItem(
                   value: null,
-                  child: Text('-'),
+                  child: Text('-', style: TextStyle(fontSize: smallFontSize),),
                 ),
                 for (final player in gameChartInfo.players)
                   DropdownMenuItem(
                     value: player.id,
-                    child: Text(player.name),
+                    child: Text(player.name, style: TextStyle(fontSize: smallFontSize),),
                   ),
               ],
               onChanged: (int? value) {
@@ -83,52 +90,52 @@ class GameChartScreen extends ConsumerWidget {
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Text("Play Type"),
+                Text("Play Type", style: TextStyle(fontSize: normalFontSize),),
                 DropdownButton(
-                  items: const [
+                  items: [
                     DropdownMenuItem(
                       value:  PlayType.NONE,
-                      child: Text('-'),
+                      child: Text('-', style: TextStyle(fontSize: smallFontSize),),
                     ),
                     DropdownMenuItem(
                       value:  PlayType.ISOLATION,
-                      child: Text('ISOLATION'),
+                      child: Text('ISOLATION', style: TextStyle(fontSize: smallFontSize),),
                     ),
                     DropdownMenuItem(
                       value:  PlayType.FASTBREAK,
-                      child: Text('FAST BREAK'),
+                      child: Text('FAST BREAK', style: TextStyle(fontSize: smallFontSize),),
                     ),
                     DropdownMenuItem(
                       value:  PlayType.PICK_AND_ROLL_BALL_HANDLER,
-                      child: Text('PICK&ROLL BALLER'),
+                      child: Text('PICK&ROLL BALLER', style: TextStyle(fontSize: smallFontSize),),
                     ),
                     DropdownMenuItem(
                       value:  PlayType.PICK_AND_ROLL_ROLL_MAN,
-                      child: Text('PICK&ROLL ROLLER'),
+                      child: Text('PICK&ROLL ROLLER', style: TextStyle(fontSize: smallFontSize),),
                     ),
                     DropdownMenuItem(
                       value:  PlayType.POSTUP,
-                      child: Text('POST UP'),
+                      child: Text('POST UP', style: TextStyle(fontSize: smallFontSize),),
                     ),
                     DropdownMenuItem(
                       value:  PlayType.SPOTUP,
-                      child: Text('SPOT UP'),
+                      child: Text('SPOT UP', style: TextStyle(fontSize: smallFontSize),),
                     ),
                     DropdownMenuItem(
                       value:  PlayType.HANDOFF,
-                      child: Text('HANDOFF'),
+                      child: Text('HANDOFF', style: TextStyle(fontSize: smallFontSize),),
                     ),
                     DropdownMenuItem(
                       value:  PlayType.CUT,
-                      child: Text('CUT'),
+                      child: Text('CUT', style: TextStyle(fontSize: smallFontSize),),
                     ),
                     DropdownMenuItem(
                       value:  PlayType.OFF_SCREEN,
-                      child: Text('OFF_SCREEN'),
+                      child: Text('OFF_SCREEN', style: TextStyle(fontSize: smallFontSize),),
                     ),
                     DropdownMenuItem(
                       value:  PlayType.SECOND_CHANCE,
-                      child: Text('2nd Chance'),
+                      child: Text('2nd Chance', style: TextStyle(fontSize: smallFontSize),),
                     ),
                   ],
                   onChanged: (PlayType? value) {
@@ -141,48 +148,48 @@ class GameChartScreen extends ConsumerWidget {
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Text("Shot Type"),
+                Text("Shot Type", style: TextStyle(fontSize: normalFontSize),),
                 DropdownButton(
-                  items: const <DropdownMenuItem<ShotType>>[
+                  items: <DropdownMenuItem<ShotType>>[
                     DropdownMenuItem(
                       value: ShotType.NONE,
-                      child: Text('-'),
+                      child: Text('-', style: TextStyle(fontSize: smallFontSize),),
                     ),
                     DropdownMenuItem(
                       value: ShotType.LAYUP,
-                      child: Text('LAYUP'),
+                      child: Text('LAYUP', style: TextStyle(fontSize: smallFontSize),),
                     ),
                     DropdownMenuItem(
                       value: ShotType.CATCH_AND_SHOT,
-                      child: Text('CATCH_AND_SHOT'),
+                      child: Text('CATCH_AND_SHOT', style: TextStyle(fontSize: smallFontSize),),
                     ),
                     DropdownMenuItem(
                       value: ShotType.PULLUP,
-                      child: Text('PULL UP'),
+                      child: Text('PULL UP', style: TextStyle(fontSize: smallFontSize),),
                     ),
                     DropdownMenuItem(
                       value: ShotType.FLOATING_SHOT,
-                      child: Text('FLOATING_SHOT'),
+                      child: Text('FLOATING_SHOT', style: TextStyle(fontSize: smallFontSize),),
                     ),
                     DropdownMenuItem(
                       value: ShotType.HOOK_SHOT,
-                      child: Text('HOOK_SHOT'),
+                      child: Text('HOOK_SHOT', style: TextStyle(fontSize: smallFontSize),),
                     ),
                     DropdownMenuItem(
                       value: ShotType.TIP_SHOT,
-                      child: Text('TIP_SHOT'),
+                      child: Text('TIP_SHOT', style: TextStyle(fontSize: smallFontSize),),
                     ),
                     DropdownMenuItem(
                       value: ShotType.FADEAWAY,
-                      child: Text('FADE AWAY'),
+                      child: Text('FADE AWAY', style: TextStyle(fontSize: smallFontSize),),
                     ),
                     DropdownMenuItem(
                       value: ShotType.DUNK,
-                      child: Text('DUNK'),
+                      child: Text('DUNK', style: TextStyle(fontSize: smallFontSize),),
                     ),
                     DropdownMenuItem(
                       value: ShotType.ALLEY_OOP,
-                      child: Text('ALLEY_OOP'),
+                      child: Text('ALLEY_OOP', style: TextStyle(fontSize: smallFontSize),),
                     ),
                   ],
                   onChanged: (ShotType? value) {
@@ -192,34 +199,34 @@ class GameChartScreen extends ConsumerWidget {
                 ),
               ],
             ),
-            const Text('Shot Zone'),
+            Text('Shot Zone', style: TextStyle(fontSize: normalFontSize),),
             Row(
               children: [
                 DropdownButton(
-                  items: const [
+                  items: [
                     DropdownMenuItem(
                       value: ShotZone.ALL,
-                      child: Text('-'),
+                      child: Text('-', style: TextStyle(fontSize: smallFontSize),),
                     ),
                     DropdownMenuItem(
                       value: ShotZone.IN_THE_PAINT,
-                      child: Text('IN_THE_PAINT'),
+                      child: Text('IN_THE_PAINT', style: TextStyle(fontSize: smallFontSize),),
                     ),
                     DropdownMenuItem(
                       value: ShotZone.MIDDLE_AREA,
-                      child: Text('MIDDLE_AREA'),
+                      child: Text('MIDDLE_AREA', style: TextStyle(fontSize: smallFontSize),),
                     ),
                     DropdownMenuItem(
                       value: ShotZone.AROUND_TOP_THREE,
-                      child: Text('AROUND_TOP_THREE'),
+                      child: Text('AROUND_TOP_THREE', style: TextStyle(fontSize: smallFontSize),),
                     ),
                     DropdownMenuItem(
                       value: ShotZone.LEFT_CORNER_THREE,
-                      child: Text('LEFT_CORNER_THREE'),
+                      child: Text('LEFT_CORNER_THREE', style: TextStyle(fontSize: smallFontSize),),
                     ),
                     DropdownMenuItem(
                       value: ShotZone.RIGHT_CORNER_THREE,
-                      child: Text('RIGHT_CORNER_THREE'),
+                      child: Text('RIGHT_CORNER_THREE', style: TextStyle(fontSize: smallFontSize),),
                     ),
                   ],
                   onChanged: (ShotZone? value) {
@@ -235,10 +242,10 @@ class GameChartScreen extends ConsumerWidget {
                 children:[
                   Expanded(
                     child: CupertinoSegmentedControl(
-                        children: const {
-                          1: Text('All'),
-                          2: Text('Make'),
-                          3: Text('Miss'),
+                        children: {
+                          1: Text('All', style: TextStyle(fontSize: smallFontSize),),
+                          2: Text('Make', style: TextStyle(fontSize: smallFontSize),),
+                          3: Text('Miss', style: TextStyle(fontSize: smallFontSize),),
                         },
                         groupValue: gameChartInfo.shotFilter,
                         onValueChanged: (int value) {
@@ -249,12 +256,10 @@ class GameChartScreen extends ConsumerWidget {
                 ],
               ),
             ),
-            Container(
+
+            SizedBox(
               width: MediaQuery.of(context).size.width,
-              decoration: const BoxDecoration(
-                color:Colors.green,
-              ),
-              child: const Text("Home"),
+              child: Text(gameChartInfo.players[0].team.value!.name, style: TextStyle(fontSize: smallFontSize),),
             ),
 
             gameChartInfo.image != null ?
@@ -264,8 +269,8 @@ class GameChartScreen extends ConsumerWidget {
                   context: context,
                   builder: (context) {
                     return AlertDialog(
-                      title: const Text('Confirm'),
-                      content: const Text('Download ShotChart'),
+                      title: Text('Confirm', style: TextStyle(fontSize: normalFontSize),),
+                      content: Text('Download ShotChart', style: TextStyle(fontSize: smallFontSize),),
                       actions: [
                         SimpleDialogOption(
                           onPressed: () => {
@@ -275,7 +280,7 @@ class GameChartScreen extends ConsumerWidget {
                                 const SnackBar(content: Text('画像を保存しました。'))
                             ),
                           },
-                          child: const Text('Save'),
+                          child: Text('Save', style: TextStyle(fontSize: smallFontSize),),
                         ),
                       ],
                     );
@@ -287,7 +292,7 @@ class GameChartScreen extends ConsumerWidget {
                 image: gameChartInfo.image!,
                 fit: BoxFit.fill,
                 width: MediaQuery.of(context).size.width,
-                height: 300,
+                height: shotChartHeight,
               )
             )
               :
@@ -295,33 +300,33 @@ class GameChartScreen extends ConsumerWidget {
 
             const SizedBox(height: 20,),
             //  Opponent
-            const Text("OPPONENT SHOT CHARTS"),
+            Text("OPPONENT SHOT CHARTS", style: TextStyle(fontSize: normalFontSize),),
             DropdownButton(
               items: [
-                const DropdownMenuItem(
+                DropdownMenuItem(
                   value: 100,
-                  child: Text('All'),
+                  child: Text('All', style: TextStyle(fontSize: smallFontSize),),
                 ),
-                const DropdownMenuItem(
+                DropdownMenuItem(
                   value: 1,
-                  child: Text('Q1'),
+                  child: Text('Q1', style: TextStyle(fontSize: smallFontSize),),
                 ),
-                const DropdownMenuItem(
+                DropdownMenuItem(
                   value: 2,
-                  child: Text('Q2'),
+                  child: Text('Q2', style: TextStyle(fontSize: smallFontSize),),
                 ),
-                const DropdownMenuItem(
+                DropdownMenuItem(
                   value: 3,
-                  child: Text('Q3'),
+                  child: Text('Q3', style: TextStyle(fontSize: smallFontSize),),
                 ),
-                const DropdownMenuItem(
+                DropdownMenuItem(
                   value: 4,
-                  child: Text('Q4'),
+                  child: Text('Q4', style: TextStyle(fontSize: smallFontSize),),
                 ),
                 for(int i = 1; i <= gameChart.getOtNum(); i++) ... {
                   DropdownMenuItem(
                     value: i+4,
-                    child: Text('OT$i'),
+                    child: Text('OT$i', style: TextStyle(fontSize: smallFontSize),),
                   ),
                 }
               ],
@@ -331,17 +336,17 @@ class GameChartScreen extends ConsumerWidget {
               value: gameChartInfo.opponentPeriod,
             ),
             const SizedBox(height: 20,),
-            const Text('Defenced By  '),
+            Text('Defenced By  ', style: TextStyle(fontSize: normalFontSize),),
             DropdownButton(
               items: <DropdownMenuItem<int>>[
-                const DropdownMenuItem(
+                DropdownMenuItem(
                   value: null,
-                  child: Text('-'),
+                  child: Text('-', style: TextStyle(fontSize: smallFontSize),),
                 ),
                 for (final player in gameChartInfo.players)
                   DropdownMenuItem(
                     value: player.id,
-                    child: Text(player.name),
+                    child: Text(player.name, style: TextStyle(fontSize: smallFontSize),),
                   ),
               ],
               onChanged: (int? value) {
@@ -352,52 +357,52 @@ class GameChartScreen extends ConsumerWidget {
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Text("Play Type"),
+                Text("Play Type", style: TextStyle(fontSize: normalFontSize),),
                 DropdownButton(
-                  items: const [
+                  items: [
                     DropdownMenuItem(
                       value:  PlayType.NONE,
-                      child: Text('-'),
+                      child: Text('-', style: TextStyle(fontSize: smallFontSize),),
                     ),
                     DropdownMenuItem(
                       value:  PlayType.ISOLATION,
-                      child: Text('ISOLATION'),
+                      child: Text('ISOLATION', style: TextStyle(fontSize: smallFontSize),),
                     ),
                     DropdownMenuItem(
                       value:  PlayType.FASTBREAK,
-                      child: Text('FAST BREAK'),
+                      child: Text('FAST BREAK', style: TextStyle(fontSize: smallFontSize),),
                     ),
                     DropdownMenuItem(
                       value:  PlayType.PICK_AND_ROLL_BALL_HANDLER,
-                      child: Text('PICK&ROLL BALLER'),
+                      child: Text('PICK&ROLL BALLER', style: TextStyle(fontSize: smallFontSize),),
                     ),
                     DropdownMenuItem(
                       value:  PlayType.PICK_AND_ROLL_ROLL_MAN,
-                      child: Text('PICK&ROLL ROLLER'),
+                      child: Text('PICK&ROLL ROLLER', style: TextStyle(fontSize: smallFontSize),),
                     ),
                     DropdownMenuItem(
                       value:  PlayType.POSTUP,
-                      child: Text('POST UP'),
+                      child: Text('POST UP', style: TextStyle(fontSize: smallFontSize),),
                     ),
                     DropdownMenuItem(
                       value:  PlayType.SPOTUP,
-                      child: Text('SPOT UP'),
+                      child: Text('SPOT UP', style: TextStyle(fontSize: smallFontSize),),
                     ),
                     DropdownMenuItem(
                       value:  PlayType.HANDOFF,
-                      child: Text('HANDOFF'),
+                      child: Text('HANDOFF', style: TextStyle(fontSize: smallFontSize),),
                     ),
                     DropdownMenuItem(
                       value:  PlayType.CUT,
-                      child: Text('CUT'),
+                      child: Text('CUT', style: TextStyle(fontSize: smallFontSize),),
                     ),
                     DropdownMenuItem(
                       value:  PlayType.OFF_SCREEN,
-                      child: Text('OFF_SCREEN'),
+                      child: Text('OFF_SCREEN', style: TextStyle(fontSize: smallFontSize),),
                     ),
                     DropdownMenuItem(
                       value:  PlayType.SECOND_CHANCE,
-                      child: Text('2nd Chance'),
+                      child: Text('2nd Chance', style: TextStyle(fontSize: smallFontSize),),
                     ),
                   ],
                   onChanged: (PlayType? value) {
@@ -410,48 +415,48 @@ class GameChartScreen extends ConsumerWidget {
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Text("Shot Type"),
+                Text("Shot Type", style: TextStyle(fontSize: normalFontSize),),
                 DropdownButton(
-                  items: const <DropdownMenuItem<ShotType>>[
+                  items: <DropdownMenuItem<ShotType>>[
                     DropdownMenuItem(
                       value: ShotType.NONE,
-                      child: Text('-'),
+                      child: Text('-', style: TextStyle(fontSize: smallFontSize),),
                     ),
                     DropdownMenuItem(
                       value: ShotType.LAYUP,
-                      child: Text('LAYUP'),
+                      child: Text('LAYUP', style: TextStyle(fontSize: smallFontSize),),
                     ),
                     DropdownMenuItem(
                       value: ShotType.CATCH_AND_SHOT,
-                      child: Text('CATCH_AND_SHOT'),
+                      child: Text('CATCH_AND_SHOT', style: TextStyle(fontSize: smallFontSize),),
                     ),
                     DropdownMenuItem(
                       value: ShotType.PULLUP,
-                      child: Text('PULL UP'),
+                      child: Text('PULL UP', style: TextStyle(fontSize: smallFontSize),),
                     ),
                     DropdownMenuItem(
                       value: ShotType.FLOATING_SHOT,
-                      child: Text('FLOATING_SHOT'),
+                      child: Text('FLOATING_SHOT', style: TextStyle(fontSize: smallFontSize),),
                     ),
                     DropdownMenuItem(
                       value: ShotType.HOOK_SHOT,
-                      child: Text('HOOK_SHOT'),
+                      child: Text('HOOK_SHOT', style: TextStyle(fontSize: smallFontSize),),
                     ),
                     DropdownMenuItem(
                       value: ShotType.TIP_SHOT,
-                      child: Text('TIP_SHOT'),
+                      child: Text('TIP_SHOT', style: TextStyle(fontSize: smallFontSize),),
                     ),
                     DropdownMenuItem(
                       value: ShotType.FADEAWAY,
-                      child: Text('FADEAWAY'),
+                      child: Text('FADEAWAY', style: TextStyle(fontSize: smallFontSize),),
                     ),
                     DropdownMenuItem(
                       value: ShotType.DUNK,
-                      child: Text('DUNK'),
+                      child: Text('DUNK', style: TextStyle(fontSize: smallFontSize),),
                     ),
                     DropdownMenuItem(
                       value: ShotType.ALLEY_OOP,
-                      child: Text('ALLEY_OOP'),
+                      child: Text('ALLEY_OOP', style: TextStyle(fontSize: smallFontSize),),
                     ),
                   ],
                   onChanged: (ShotType? value) {
@@ -461,34 +466,34 @@ class GameChartScreen extends ConsumerWidget {
                 ),
               ],
             ),
-            const Text('Shot Zone'),
+            Text('Shot Zone', style: TextStyle(fontSize: normalFontSize),),
             Row(
               children: [
                 DropdownButton(
-                  items: const [
+                  items: [
                     DropdownMenuItem(
                       value: ShotZone.ALL,
-                      child: Text('-'),
+                      child: Text('-', style: TextStyle(fontSize: smallFontSize),),
                     ),
                     DropdownMenuItem(
                       value: ShotZone.IN_THE_PAINT,
-                      child: Text('IN_THE_PAINT'),
+                      child: Text('IN_THE_PAINT', style: TextStyle(fontSize: smallFontSize),),
                     ),
                     DropdownMenuItem(
                       value: ShotZone.MIDDLE_AREA,
-                      child: Text('MIDDLE_AREA'),
+                      child: Text('MIDDLE_AREA', style: TextStyle(fontSize: smallFontSize),),
                     ),
                     DropdownMenuItem(
                       value: ShotZone.AROUND_TOP_THREE,
-                      child: Text('AROUND_TOP_THREE'),
+                      child: Text('AROUND_TOP_THREE', style: TextStyle(fontSize: smallFontSize),),
                     ),
                     DropdownMenuItem(
                       value: ShotZone.LEFT_CORNER_THREE,
-                      child: Text('LEFT_CORNER_THREE'),
+                      child: Text('LEFT_CORNER_THREE', style: TextStyle(fontSize: smallFontSize),),
                     ),
                     DropdownMenuItem(
                       value: ShotZone.RIGHT_CORNER_THREE,
-                      child: Text('RIGHT_CORNER_THREE'),
+                      child: Text('RIGHT_CORNER_THREE', style: TextStyle(fontSize: smallFontSize),),
                     ),
                   ],
                   onChanged: (ShotZone? value) {
@@ -504,10 +509,10 @@ class GameChartScreen extends ConsumerWidget {
                 children:[
                   Expanded(
                     child: CupertinoSegmentedControl(
-                        children: const {
-                          1: Text('All'),
-                          2: Text('Make'),
-                          3: Text('Miss'),
+                        children: {
+                          1: Text('All', style: TextStyle(fontSize: smallFontSize),),
+                          2: Text('Make', style: TextStyle(fontSize: smallFontSize),),
+                          3: Text('Miss', style: TextStyle(fontSize: smallFontSize),),
                         },
                         groupValue: gameChartInfo.opponentShotFilter,
                         onValueChanged: (int value) {
@@ -521,10 +526,7 @@ class GameChartScreen extends ConsumerWidget {
 
             Container(
               width: MediaQuery.of(context).size.width,
-              decoration: const BoxDecoration(
-                color:Colors.green,
-              ),
-              child: const Text("Opponent"),
+              child: Text("Opponent", style: TextStyle(fontSize: smallFontSize),),
             ),
 
             gameChartInfo.opponentImage != null ?
@@ -534,8 +536,8 @@ class GameChartScreen extends ConsumerWidget {
                   context: context,
                   builder: (context) {
                     return AlertDialog(
-                      title: const Text('Confirm'),
-                      content: const Text('DOWNLOAD SHOT CHART'),
+                      title: Text('Confirm', style: TextStyle(fontSize: normalFontSize),),
+                      content: Text('DOWNLOAD SHOT CHART', style: TextStyle(fontSize: smallFontSize),),
                       actions: [
                         SimpleDialogOption(
                           onPressed: () => {
@@ -545,7 +547,7 @@ class GameChartScreen extends ConsumerWidget {
                               const SnackBar(content: Text('画像を保存しました。'))
                             ),
                           },
-                          child: const Text('Save'),
+                          child: Text('Save', style: TextStyle(fontSize: smallFontSize),),
                         ),
                       ],
                     );
@@ -557,7 +559,7 @@ class GameChartScreen extends ConsumerWidget {
                 image: gameChartInfo.opponentImage!,
                 fit: BoxFit.fill,
                 width: MediaQuery.of(context).size.width,
-                height: 300,
+                height: shotChartHeight,
               ),
             )
                 :

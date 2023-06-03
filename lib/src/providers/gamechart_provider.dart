@@ -27,6 +27,7 @@ class GameChartStateNotifier extends StateNotifier<GameChartModel> {
       this.pbpRepository
   )
   : super (GameChartModel(
+    game: gameRepository.findGame(gameId)!,
     blendMode: BlendMode.srcOver,
     players: playerRepository.getAllPlayers(true),
 

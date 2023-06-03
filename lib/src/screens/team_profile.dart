@@ -32,9 +32,16 @@ class TeamProfile extends ConsumerWidget {
     final documentPath = ref.watch(documentPathProvider);
 
     Rect shareRect = const Rect.fromLTWH(0, 0, 50, 50);
+    double screenWidth = MediaQuery.of(context).size.width;
+    double screenHeight = MediaQuery.of(context).size.height;
+
+    double iconRadius = screenHeight * 0.05;
+    double normalFontSize = screenWidth / 27;
+    double smallFontSize = screenWidth / 40;
+
     return Scaffold(
         appBar: AppBar(
-          title: const Text('Team Profile'),
+          title: Text('Team Profile', style: TextStyle(fontSize: smallFontSize)),
           actions: [
             IconButton(
               icon: const Icon(Icons.download),
@@ -61,7 +68,7 @@ class TeamProfile extends ConsumerWidget {
                     builder: (context) => TeamEditScreen(id),
                   ),
                 ).then((value) => {
-                  showCircleImage('${documentPath.value}/teams/$id.jpg', 50)
+                  showCircleImage('${documentPath.value}/teams/$id.jpg', iconRadius)
                 })
               },
             )
@@ -82,7 +89,7 @@ class TeamProfile extends ConsumerWidget {
                         mainAxisAlignment: MainAxisAlignment.start,
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-                          showCircleImage('${documentPath.value}/teams/$id.jpg', 50),
+                          showCircleImage('${documentPath.value}/teams/$id.jpg', iconRadius),
                           Expanded(
                             child: Padding(
                               padding: const EdgeInsets.symmetric(horizontal: 16),
@@ -90,8 +97,8 @@ class TeamProfile extends ConsumerWidget {
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  Text(teamInfo.name),
-                                  Text("${home.countWinGame().toString()}-${home.countLostGame().toString()}"),
+                                  Text(teamInfo.name, style: TextStyle(fontSize: normalFontSize)),
+                                  Text("${home.countWinGame().toString()}-${home.countLostGame().toString()}", style: TextStyle(fontSize: smallFontSize)),
                                 ],
                               ),
                             ),
@@ -115,8 +122,20 @@ class TeamProfile extends ConsumerWidget {
                                   final index = e.key;
                                   return Column(
                                     children: [
-                                      Text(TeamStatColumns.teamStatColumnList[index]),
-                                      Text(e.value.toString()),
+                                      Padding(
+                                          padding: const EdgeInsets.symmetric(vertical: 8.0),
+                                          child: Text(
+                                              TeamStatColumns.teamStatColumnList[index],
+                                              style: TextStyle(fontSize: normalFontSize, fontWeight: FontWeight.w800)
+                                          )
+                                      ),
+                                      Padding(
+                                          padding: const EdgeInsets.symmetric(vertical: 8.0),
+                                          child: Text(
+                                              e.value.toString(),
+                                              style: TextStyle(fontSize: normalFontSize),
+                                          )
+                                      ),
                                     ],
                                   );
                                 }).toList(),
@@ -129,58 +148,62 @@ class TeamProfile extends ConsumerWidget {
                 ),
               ),
 
-              Row(
-                children: [
-                  TextButton(
-                    onPressed: () {
-                      DatePicker.showDatePicker(context,
-                          showTitleActions: true,
-                          minTime: DateTime(1950, 1, 1),
-                          maxTime: DateTime.now(),
-                          onConfirm: (date) {
-                            DateTime dateTime = DateTime(date.year,date.month,date.day,0,0,0);
-                            teamDetail.updateStartDate(dateTime);
-                          },
-                          currentTime: teamDetailInfo.start,
-                          locale: LocaleType.jp
-                      );
-                    },
-                    child: Text(teamDetailInfo.start == null ? '-/-/-/' : DateFormat('yyyy-MM-dd').format(teamDetailInfo.start!), style: const TextStyle(color: Colors.black)),
-                  ),
-                  const Text('-'),
-                  TextButton(
-                    onPressed: () {
-                      DatePicker.showDatePicker(context,
-                          showTitleActions: true,
-                          minTime: DateTime(1950, 1, 1),
-                          maxTime: DateTime.now(),
-                          onConfirm: (date) {
-                            DateTime dateTime = DateTime(date.year,date.month,date.day,23,59,59);
-                            teamDetail.updateEndDate(dateTime);
-                          },
-                          currentTime: teamDetailInfo.end,
-                          locale: LocaleType.jp
-                      );
-                    },
-                    child: Text(teamDetailInfo.end == null ? '-/-/-/' : DateFormat('yyyy-MM-dd').format(teamDetailInfo.end!), style: const TextStyle(color: Colors.black)),
-                  ),
-                ],
-              ),
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 16),
+                padding: EdgeInsets.symmetric(horizontal: 16),
+                child: Row(
+                    children: [
+                      TextButton(
+                        onPressed: () {
+                          DatePicker.showDatePicker(context,
+                              showTitleActions: true,
+                              minTime: DateTime(1950, 1, 1),
+                              maxTime: DateTime.now(),
+                              onConfirm: (date) {
+                                DateTime dateTime = DateTime(date.year,date.month,date.day,0,0,0);
+                                teamDetail.updateStartDate(dateTime);
+                              },
+                              currentTime: teamDetailInfo.start,
+                              locale: LocaleType.jp
+                          );
+                        },
+                        child: Text(teamDetailInfo.start == null ? '-/-/-/' : DateFormat('yyyy-MM-dd').format(teamDetailInfo.start!), style: TextStyle(color: Colors.black, fontSize: smallFontSize)),
+                      ),
+                      Text('~', style: TextStyle(color: Colors.black, fontSize: smallFontSize)),
+                      TextButton(
+                        onPressed: () {
+                          DatePicker.showDatePicker(context,
+                              showTitleActions: true,
+                              minTime: DateTime(1950, 1, 1),
+                              maxTime: DateTime.now(),
+                              onConfirm: (date) {
+                                DateTime dateTime = DateTime(date.year,date.month,date.day,23,59,59);
+                                teamDetail.updateEndDate(dateTime);
+                              },
+                              currentTime: teamDetailInfo.end,
+                              locale: LocaleType.jp
+                          );
+                        },
+                        child: Text(teamDetailInfo.end == null ? '-/-/-/' : DateFormat('yyyy-MM-dd').format(teamDetailInfo.end!), style: TextStyle(color: Colors.black, fontSize: smallFontSize)),
+                      ),
+                    ],
+                ),
+              ),
+
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: 16),
                 child: Row(
                   children: [
-                    const Text('VS  '),
+                    Text('VS  ', style: TextStyle(fontSize: smallFontSize)),
                     DropdownButton(
                       items: <DropdownMenuItem<int>>[
-                        const DropdownMenuItem(
+                        DropdownMenuItem(
                           value: null,
-                          child: Text('-'),
+                          child: Text('-', style: TextStyle(fontSize: smallFontSize)),
                         ),
                         for (final opponentTeam in teamDetailInfo.opponentTeams)
                           DropdownMenuItem(
                             value: opponentTeam.id,
-                            child: Text(opponentTeam.name),
+                            child: Text(opponentTeam.name, style: TextStyle(fontSize: smallFontSize)),
                           ),
                       ],
                       onChanged: (int? value) {

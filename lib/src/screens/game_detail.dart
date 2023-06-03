@@ -32,13 +32,16 @@ class GameDetailScreen extends ConsumerWidget {
     final gamePbp = ref.watch(gamePbpProvider(id).notifier);
     final gameList = ref.watch(gameListProvider.notifier);
 
+    double screenWidth = MediaQuery.of(context).size.width;
+    double smallFontSize = screenWidth / 40;
+
     Rect shareRect = const Rect.fromLTWH(0, 0, 50, 50);
     const segmentedControlMaxWidth = 500.0;
     final selection = <int, Widget>{
-      0: const Text("Summary"),
-      1: const Text("Box Score"),
-      2: const Text("Game Charts"),
-      3: const Text("Play-By-Play"),
+      0: Text("Summary", style: TextStyle(fontSize: smallFontSize),),
+      1: Text("Box Score", style: TextStyle(fontSize: smallFontSize),),
+      2: Text("Game Charts", style: TextStyle(fontSize: smallFontSize),),
+      3: Text("Play-By-Play", style: TextStyle(fontSize: smallFontSize),),
     };
     final pages = <int, Widget>{
       0: SummaryScreen(id),

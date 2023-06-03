@@ -18,6 +18,12 @@ class PlayByPlayScreen extends ConsumerWidget {
     final gamePbp = ref.watch(gamePbpProvider(id).notifier);
     final documentPath = ref.watch(documentPathProvider);
 
+    double screenWidth = MediaQuery.of(context).size.width;
+    double screenHeight = MediaQuery.of(context).size.height;
+
+    double iconRadius = screenHeight*0.03;
+    double smallFontSize = screenWidth / 40;
+
     return Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -26,14 +32,14 @@ class PlayByPlayScreen extends ConsumerWidget {
               Expanded(
                 child: CupertinoSegmentedControl(
                     children: {
-                      1: const Text('Q1'),
-                      2: const Text('Q2'),
-                      3: const Text('Q3'),
-                      4: const Text('Q4'),
+                      1: Text('Q1', style: TextStyle(fontSize: smallFontSize),),
+                      2: Text('Q2', style: TextStyle(fontSize: smallFontSize),),
+                      3: Text('Q3', style: TextStyle(fontSize: smallFontSize),),
+                      4: Text('Q4', style: TextStyle(fontSize: smallFontSize),),
                       for(int i = 1; i <= gamePbp.getOtNum(); i++) ... {
-                        i+4: Text('OT$i')
+                        i+4: Text('OT$i', style: TextStyle(fontSize: smallFontSize),)
                       },
-                      100: const Text('All'),
+                      100: Text('All', style: TextStyle(fontSize: smallFontSize),),
                     },
                     groupValue: gamePbpInfo.quarter,
                     onValueChanged: (int value) {
@@ -53,7 +59,9 @@ class PlayByPlayScreen extends ConsumerWidget {
                 itemBuilder: (context, index) {
                   return Padding(
                       padding: const EdgeInsets.symmetric(vertical: 16),
-                      child: gamePbpInfo.pbps.elementAt(index).player.value == null ? pbpOpponentRow(gamePbpInfo.pbps.elementAt(index), documentPath.value!, gamePbpInfo.game.opponent.value!.id) : pbpRow(gamePbpInfo.pbps.elementAt(index), documentPath.value!)
+                      child: gamePbpInfo.pbps.elementAt(index).player.value == null ?
+                      pbpOpponentRow(gamePbpInfo.pbps.elementAt(index), documentPath.value!, gamePbpInfo.game.opponent.value!.id, iconRadius, smallFontSize) :
+                      pbpRow(gamePbpInfo.pbps.elementAt(index), documentPath.value!, iconRadius, smallFontSize)
                   );
                 },
               ),
@@ -64,7 +72,7 @@ class PlayByPlayScreen extends ConsumerWidget {
   }
 }
 
-Widget pbpRow(Pbp pbp, String path) {
+Widget pbpRow(Pbp pbp, String path, double iconRadius, double fontSize) {
     if (pbp.type == RecordType.TIMEOUT || pbp.type == RecordType.SHOT_CLOCK_TURNOVER){
       final a = File('$path/teams/1.jpg');
       return Row(
@@ -72,12 +80,12 @@ Widget pbpRow(Pbp pbp, String path) {
         children: [
           CircleAvatar(
             backgroundImage: MemoryImage(a.readAsBytesSync()),
-            radius: 20,
+            radius: iconRadius,
           ),
           Flexible(
             child: Padding(
                 padding: const EdgeInsets.only(left: 16),
-                child: Text(pbp.description)
+                child: Text(pbp.description, style: TextStyle(fontSize: fontSize),)
             ),
           )
         ],
@@ -89,12 +97,12 @@ Widget pbpRow(Pbp pbp, String path) {
         children: [
           CircleAvatar(
             backgroundImage: MemoryImage(a.readAsBytesSync()),
-            radius: 20,
+            radius: iconRadius,
           ),
           Flexible(
             child: Padding(
                 padding: const EdgeInsets.only(left: 16),
-                child: Text(pbp.description)
+                child: Text(pbp.description, style: TextStyle(fontSize: fontSize),)
             ),
           )
         ],
@@ -102,7 +110,7 @@ Widget pbpRow(Pbp pbp, String path) {
     }
 }
 
-Widget pbpOpponentRow(Pbp pbp, String path, int opponentTeamId) {
+Widget pbpOpponentRow(Pbp pbp, String path, int opponentTeamId, double iconRadius, double fontSize) {
   final a = File('$path/teams/$opponentTeamId.jpg');
   if (pbp.type == RecordType.TIMEOUT || pbp.type == RecordType.SHOT_CLOCK_TURNOVER){
     return Row(
@@ -111,10 +119,11 @@ Widget pbpOpponentRow(Pbp pbp, String path, int opponentTeamId) {
         Flexible(
           child: Padding(
               padding: const EdgeInsets.only(right: 16),
-              child: Text(pbp.description)
+              child: Text(pbp.description, style: TextStyle(fontSize: fontSize),)
           ),
         ),
         CircleAvatar(
+          radius: iconRadius,
           backgroundImage: MemoryImage(a.readAsBytesSync()),
         ),
       ],
@@ -127,10 +136,11 @@ Widget pbpOpponentRow(Pbp pbp, String path, int opponentTeamId) {
         Flexible(
           child: Padding(
               padding: const EdgeInsets.only(right: 16),
-              child: Text(pbp.description)
+              child: Text(pbp.description, style: TextStyle(fontSize: fontSize),)
           ),
         ),
         CircleAvatar(
+          radius: iconRadius,
           backgroundImage: MemoryImage(a.readAsBytesSync()),
         ),
       ],

@@ -1,4 +1,3 @@
-import 'package:bb_stats/src/collections/game/game.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -18,13 +17,22 @@ class SummaryScreen extends ConsumerWidget {
     final gameSummaryInfo = ref.watch(gameSummaryProvider(id));
     final documentPath = ref.watch(documentPathProvider);
 
+    double screenWidth = MediaQuery.of(context).size.width;
+    double screenHeight = MediaQuery.of(context).size.height;
+    double iconRadius = screenHeight*0.05;
+    double normalFontSize = screenWidth / 27;
+    double smallFontSize = screenWidth / 40;
+    double heroHeight = screenHeight * 0.2;
+    double scoreChartHeight = screenHeight * 0.3;
+    double shotComparisonHeight = screenHeight * 0.1;
+
     return SingleChildScrollView(
       scrollDirection: Axis.vertical,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           SizedBox(
-            height: 150,
+            height: heroHeight,
             child: Column(
               children: [
                 Padding(
@@ -38,9 +46,9 @@ class SummaryScreen extends ConsumerWidget {
                           children: [
                             CircleAvatar(
                               backgroundImage: AssetImage('${documentPath.value}/teams/1.jpg',),
-                              radius: 50.0,
+                              radius: iconRadius,
                             ),
-                            Text(gameSummaryInfo.myTeam!.name),
+                            Text(gameSummaryInfo.myTeam!.name, style: TextStyle(fontSize: normalFontSize),),
                           ],
                         ),
                       ),
@@ -50,7 +58,7 @@ class SummaryScreen extends ConsumerWidget {
                           children: [
                             Text(
                               '${gameSummaryInfo.game.myPts}-${gameSummaryInfo.game.opponentPts}',
-                               style: const TextStyle(fontSize: 20)
+                              style: TextStyle(fontSize: normalFontSize),
                             ),
                           ],
                         ),
@@ -61,9 +69,9 @@ class SummaryScreen extends ConsumerWidget {
                           children: [
                             CircleAvatar(
                               backgroundImage: AssetImage('${documentPath.value}/teams/${gameInfo.game?.opponent.value?.id}.jpg'),
-                              radius: 50.0,
+                              radius: iconRadius,
                             ),
-                            Text(gameInfo.game!.opponent.value!.name),
+                            Text(gameInfo.game!.opponent.value!.name, style: TextStyle(fontSize: normalFontSize),),
                           ],
                         ),
                       ),
@@ -76,7 +84,7 @@ class SummaryScreen extends ConsumerWidget {
 
           SizedBox(
             width: MediaQuery.of(context).size.width,
-            height: 300,
+            height: scoreChartHeight,
             child: Padding(
               padding: const EdgeInsets.all(16),
               child:
@@ -235,9 +243,9 @@ class SummaryScreen extends ConsumerWidget {
             ),
           ),
 
-          const Padding(
-              padding: EdgeInsets.only(top: 16.0, left: 16.0, right: 16.0),
-              child: Text('Team/Opponent'),
+          Padding(
+              padding: const EdgeInsets.only(top: 16.0, left: 16.0, right: 16.0),
+              child: Text('Team/Opponent', style: TextStyle(fontSize: normalFontSize),),
           ),
 
           Padding(
@@ -246,10 +254,10 @@ class SummaryScreen extends ConsumerWidget {
               children: [
                 Expanded(
                   child: SizedBox(
-                    height: 80,
+                    height: shotComparisonHeight,
                     child: Column(
                       children: [
-                        const Text('FG%'),
+                        Text('FG%', style: TextStyle(fontSize: normalFontSize),),
                         Padding(
                           padding: const EdgeInsets.only(top:16),
                           child: Row(
@@ -259,15 +267,15 @@ class SummaryScreen extends ConsumerWidget {
                                 '${gameSummaryInfo.game.fgRatio.toString()}%',
                                 style: TextStyle(
                                   color: gameSummaryInfo.game.fgRatio > gameSummaryInfo.game.opponentFgRatio ? Colors.greenAccent : Colors.black,
-                                  fontSize: 15,
+                                  fontSize: smallFontSize,
                                 ),
                               ),
-                              const Text('/'),
+                              Text('/', style: TextStyle(fontSize: smallFontSize),),
                               Text(
                                 '${gameSummaryInfo.game.opponentFgRatio.toString()}%',
                                 style: TextStyle(
                                   color: gameSummaryInfo.game.fgRatio < gameSummaryInfo.game.opponentFgRatio ? Colors.redAccent : Colors.black,
-                                  fontSize: 15,
+                                  fontSize: smallFontSize,
                                 ),
                               ),
                             ],
@@ -279,10 +287,10 @@ class SummaryScreen extends ConsumerWidget {
                 ),
                 Expanded(
                   child: SizedBox(
-                    height: 80,
+                    height: shotComparisonHeight,
                     child: Column(
                       children: [
-                        const Text('3P%'),
+                        Text('3P%', style: TextStyle(fontSize: normalFontSize),),
                         Padding(
                           padding: const EdgeInsets.only(top:16),
                           child: Row(
@@ -292,15 +300,15 @@ class SummaryScreen extends ConsumerWidget {
                                 '${gameSummaryInfo.game.tpRatio.toString()}%',
                                 style: TextStyle(
                                   color: gameSummaryInfo.game.tpRatio > gameSummaryInfo.game.opponentTpRatio ? Colors.greenAccent : Colors.black,
-                                  fontSize: 15,
+                                  fontSize: smallFontSize,
                                 ),
                               ),
-                              const Text('/'),
+                              Text('/', style: TextStyle(fontSize: smallFontSize),),
                               Text(
                                 '${gameSummaryInfo.game.opponentTpRatio.toString()}%',
                                 style: TextStyle(
                                   color: gameSummaryInfo.game.tpRatio < gameSummaryInfo.game.opponentTpRatio ? Colors.redAccent : Colors.black,
-                                  fontSize: 15,
+                                  fontSize: smallFontSize,
                                 ),
                               ),
                             ],
@@ -312,10 +320,10 @@ class SummaryScreen extends ConsumerWidget {
                 ),
                 Expanded(
                   child: SizedBox(
-                    height: 80,
+                    height: shotComparisonHeight,
                     child: Column(
                       children: [
-                        const Text('FT%'),
+                        Text('FT%', style: TextStyle(fontSize: normalFontSize),),
                         Padding(
                           padding: const EdgeInsets.only(top:16),
                           child: Row(
@@ -325,15 +333,15 @@ class SummaryScreen extends ConsumerWidget {
                                 '${gameSummaryInfo.game.ftRatio.toString()}%',
                                 style: TextStyle(
                                   color: gameSummaryInfo.game.ftRatio > gameSummaryInfo.game.opponentFtRatio ? Colors.greenAccent : Colors.black,
-                                  fontSize: 15,
+                                  fontSize: smallFontSize,
                                 ),
                               ),
-                              const Text('/'),
+                              Text('/', style: TextStyle(fontSize: smallFontSize),),
                               Text(
                                 '${gameSummaryInfo.game.opponentFtRatio.toString()}%',
                                 style: TextStyle(
                                   color: gameSummaryInfo.game.ftRatio < gameSummaryInfo.game.opponentFtRatio ? Colors.redAccent : Colors.black,
-                                  fontSize: 15,
+                                  fontSize: smallFontSize,
                                 ),
                               ),
                             ],
@@ -454,9 +462,9 @@ class SummaryScreen extends ConsumerWidget {
             ),
           ),
 
-          const Padding(
-            padding: EdgeInsets.all(16.0),
-            child: Text('PickUp Stats'),
+          Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Text('PickUp Stats', style: TextStyle(fontSize: normalFontSize),),
           ),
 
           Padding(

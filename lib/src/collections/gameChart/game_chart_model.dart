@@ -1,5 +1,6 @@
 import 'dart:typed_data';
 
+import 'package:bb_stats/src/collections/game/game.dart';
 import 'package:bb_stats/src/enums/PlayType.dart';
 import 'package:bb_stats/src/enums/ShotType.dart';
 import 'package:flutter/material.dart';
@@ -14,6 +15,7 @@ part 'game_chart_model.freezed.dart';
 @freezed
 class GameChartModel with _$GameChartModel {
   const factory GameChartModel({
+    required Game game,
     required BlendMode blendMode,
     required List<Player> players,
 

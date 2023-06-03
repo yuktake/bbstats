@@ -16,6 +16,9 @@ class TeamsSelectScreen extends ConsumerWidget {
     final teamsInfo = ref.watch(teamsSelectProvider);
     final documentPath = ref.watch(documentPathProvider);
 
+    double iconRadius = MediaQuery.of(context).size.height * 0.07;
+    double normalFontSize = MediaQuery.of(context).size.width / 27;
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('Team Select'),
@@ -49,9 +52,9 @@ class TeamsSelectScreen extends ConsumerWidget {
                 padding: const EdgeInsets.symmetric(vertical: 8.0),
                 child: Row(
                   children: [
-                    showCircleImage("${documentPath.value}/teams/${teamsInfo.teams[index].id}.jpg", 40.0),
+                    showCircleImage("${documentPath.value}/teams/${teamsInfo.teams[index].id}.jpg", iconRadius),
                     const SizedBox(width: 32.0),
-                    Text(teamsInfo.teams[index].name)
+                    Text(teamsInfo.teams[index].name, style: TextStyle(fontSize: normalFontSize))
                   ],
                 ),
               ),

@@ -24,6 +24,10 @@ class PlayerEditScreen extends ConsumerWidget {
     final documentPath = ref.watch(documentPathProvider);
     playerInfo.playerNameInputController.text = playerInfo.editName;
 
+    double normalFontSize = MediaQuery.of(context).size.width / 27;
+    double textFormWidth = MediaQuery.of(context).size.width / 2;
+    double normalPadding = MediaQuery.of(context).size.height / 40;
+
     return Scaffold(
       key: scaffoldKey,
       appBar: AppBar(
@@ -68,8 +72,9 @@ class PlayerEditScreen extends ConsumerWidget {
                   // })
               ),
               SizedBox(
-                width: 200,
+                width: textFormWidth,
                 child: TextFormField(
+                  autofocus:true,
                   controller: playerInfo.playerNameInputController,
                   autovalidateMode: AutovalidateMode.onUserInteraction,
                   validator: (value) {
@@ -89,21 +94,20 @@ class PlayerEditScreen extends ConsumerWidget {
                   },
                 ),
               ),
-              const SizedBox(
-                height: 10,
+              SizedBox(
+                height: normalPadding,
               ),
-                ElevatedButton(
-                  onPressed: () async {
-                    player.updateName();
-                    await getPictureImage(player);
-                  },
-                  style: ElevatedButton.styleFrom(
-                    primary: Colors.orange,
-                    onPrimary: Colors.white,
-                  ),
-                  child: const Text("画像選択"),
-                )
-              // }),
+              ElevatedButton(
+                onPressed: () async {
+                  player.updateName();
+                  await getPictureImage(player);
+                },
+                style: ElevatedButton.styleFrom(
+                  primary: Colors.orange,
+                  onPrimary: Colors.white,
+                ),
+                child: Text("Select Image", style: TextStyle(fontSize: normalFontSize)),
+              )
             ],
           ),
         ),

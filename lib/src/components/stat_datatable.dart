@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:bb_stats/src/screens/home.dart';
 import 'package:data_table_2/data_table_2.dart';
 import 'package:flutter/material.dart';
@@ -18,8 +16,11 @@ class StatDataTable extends ConsumerWidget {
     final boxScoreListInfo = ref.watch(boxScoreListProvider(gameId));
     final boxScoreList = ref.watch(boxScoreListProvider(gameId).notifier);
     final documentPath = ref.watch(documentPathProvider);
-    return
-      Padding(
+
+    double iconRadius = MediaQuery.of(context).size.height*0.03;
+    double dataRowHeight = MediaQuery.of(context).size.height*0.1;
+
+    return Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16.0),
         child: Container(
           height: MediaQuery.of(context).size.height*0.7,
@@ -45,6 +46,7 @@ class StatDataTable extends ConsumerWidget {
               Expanded(
                 // ソートしないならbottomMarginのために普通のdatatableか他のものでいいかも
                 child: DataTable2(
+                  dataRowHeight: dataRowHeight,
                   fixedLeftColumns: 1,
                   sortColumnIndex: boxScoreListInfo.sortTargetIndex,
                   sortAscending: boxScoreListInfo.ascending,
@@ -66,8 +68,7 @@ class StatDataTable extends ConsumerWidget {
                         (e) => DataRow(
                       cells: [
                         DataCell(
-                          // Text('${e.playerHistory.value!.player.value?.name}'),
-                          playerColumn(e.player.value!.name, '${documentPath.value}/players/${e.player.value!.id}.jpg')
+                          playerColumn(e.player.value!.name, '${documentPath.value}/players/${e.player.value!.id}.jpg', iconRadius)
                         ),
                         DataCell(
                           Text('${e.pts}'),
